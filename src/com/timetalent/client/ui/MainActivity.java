@@ -1,7 +1,10 @@
-package com.timetalent.client;
+package com.timetalent.client.ui;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
+
+import com.timetalent.client.R;
+
 
 public class MainActivity extends Activity {
 
@@ -16,5 +19,4 @@ public class MainActivity extends Activity {
 	private void findView() {
 		//test github
 	}
-	
 }

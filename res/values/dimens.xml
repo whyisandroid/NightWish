@@ -3,5 +3,24 @@
     <!-- Default screen margins, per the Android Design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
-
+    <!--  间距的设置 -->
+	<dimen name = "dimen_other_large">28dp</dimen>
+	<dimen name = "dimen_xlarge">25dp</dimen>
+	<dimen name = "dimen_large">20dp</dimen>
+	<dimen name = "dimen_middle">18dp</dimen>
+	<dimen name = "dimen_xnormal">15dp</dimen>
+	<dimen name = "dimen_normal_1">14dp</dimen>
+	<dimen name = "dimen_normal_0">12dp</dimen>
+	<dimen name = "dimen_normal">10dp</dimen>
+	<dimen name = "dimen_small_1">8dp</dimen>
+	<dimen name = "dimen_small_0">6dp</dimen>
+	<dimen name = "dimen_small">5dp</dimen>	
+	
+	<!--字体大小标准  720-->
+	<dimen name = "new_size_1">11.0sp</dimen>
+	<dimen name = "new_size_2">14.0sp</dimen>
+	<dimen name = "new_size_3">15.0sp</dimen>
+	<dimen name = "new_size_4">17.0sp</dimen>
+	<dimen name = "new_size_5">20.0sp</dimen>
+	<dimen name = "new_size_6">27.0sp</dimen>
 </resources>

@@ -30,6 +30,5 @@ public class MainActivity extends BaseActivity {
 
 	private void findView() {
 		//test github
-		//testgitupdate
 	}
 }

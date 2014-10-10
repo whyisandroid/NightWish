@@ -17,4 +17,17 @@
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
 
+    
+         <style name="tab_rb_style">
+        <item name="android:layout_width" >0dp</item>
+        <item name="android:layout_height" >wrap_content</item>
+        <item name="android:layout_weight" >1</item>
+        <item name="android:button" >@null</item>
+        <item name="android:gravity" >center_horizontal|bottom</item>
+        <item name="android:layout_gravity" >bottom</item>
+        <!-- <item name="android:textColor" >@color/tabs_tv_color_select</item>
+        <item name="android:background" >@color/tabs_color</item>
+        <item name = "android:textSize">@dimen/new_size_4</item>
+        <item name = "android:padding">@dimen/dimen_small</item> -->
+    </style>
 </resources>

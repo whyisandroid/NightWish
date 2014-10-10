@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="titlebg">#FFFF8080</color>
+        <color name="white">#FFFFFFFF</color>
+        <color name="black">#FF000000</color>
+        <color name="texthui">#FF959595</color>
+        <color name="qianhui">#FFA5A5A5</color>
+        <color name="touming">#00FFFFFF</color>
+    </resources>

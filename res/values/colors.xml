@@ -4,7 +4,7 @@
         <color name="texthui">#FF959595</color>
         <color name="qianhui">#FFA5A5A5</color>
         <color name="touming">#00FFFFFF</color>
-        
+        <color name="bantouming">#66000000</color>
             <!-- 定义标准颜色 -->
     <color name="white">#FFFFFF</color> <!-- 纯白 -->
     <color name="black">#000000</color> <!-- 纯黑 -->
@@ -13,15 +13,15 @@
     <color name="spilt_line_color">#CCCCCC</color>
 
 	<!-- 字体颜色标准 -->
-	<color name = "new_color_1">#231815</color>
-	<color name = "new_color_2">#525861</color>
-	<color name = "new_color_3">#828A98</color>
-	<color name = "new_color_4">#CCCCCC</color>
-	<color name = "new_color_5">#CD102C</color>
-	<color name = "new_color_6">#FFFFFF</color>
+	<color name = "new_color_1">#231815</color><!-- 浅黑 -->
+	<color name = "new_color_2">#525861</color><!-- 深灰 -->
+	<color name = "new_color_3">#828A98</color><!-- 蓝灰 -->
+	<color name = "new_color_4">#CCCCCC</color><!-- 浅灰 -->
+	<color name = "new_color_5">#CD102C</color><!-- 浅红 -->
+	<color name = "new_color_6">#FFFFFF</color><!-- 纯白 -->
 
-	<color name="red"> #d72839</color>
-	 <color name="lightgray">#cccccc</color>
-	 <color name="bggray">#e2e2e2</color>
-	 <color name="yello_bg_top">#4c4236</color>
+	<color name="red"> #d72839</color><!-- 浅红 -->
+	 <color name="lightgray">#cccccc</color><!-- 浅灰 -->
+	 <color name="bggray">#e2e2e2</color><!-- 雾白 -->
+	 <color name="yello_bg_top">#4c4236</color><!-- 棕黑 -->
     </resources>

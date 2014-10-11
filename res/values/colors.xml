@@ -24,4 +24,11 @@
 	 <color name="lightgray">#cccccc</color><!-- 浅灰 -->
 	 <color name="bggray">#e2e2e2</color><!-- 雾白 -->
 	 <color name="yello_bg_top">#4c4236</color><!-- 棕黑 -->
+	 
+	 
+	 <color name="dailog_color_size">#CD102C</color><!-- 棕黑 -->
+	 <color name = "main_bg">#ededed</color> <!-- 背景 灰白 -->
+	 <color name = "bt_red">#FF494B</color>
+	  <color name = "login_bt">#77ba10</color> <!-- 浅绿 -->
+	   <color name = "color_3">#999999</color> <!-- 浅灰 -->
     </resources>

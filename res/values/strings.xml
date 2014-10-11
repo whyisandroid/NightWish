@@ -4,5 +4,13 @@
     <string name="app_name">"星探"</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="login">立即登录</string>
+    <string name="login_fgt_pwd">忘记密码?</string>
+    <string name="login_hint_username">输入用户名或手机号</string>
+    <string name="login_hint_pwd">输入6-16位密码,字母或数字或组合</string>
+    <string name="main_next">下一步</string>
+    <string name="register_protocol">使用真实姓名能让别人更快的找到和联系你,注册即表示同意&lt;星探用户协议></string>
+    <string name="register_choose_bir">选择生日</string>
+    <string name="register_bt_1">选择次角色,您可以关注喜欢的艺人和其他角色相互互动.</string>
 
 </resources>

@@ -138,4 +138,15 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @param alterHandler
+	  * @author: why
+	  * @time: 2014-10-11 下午3:39:55
+	  */
+	public void setAlterHandler(Handler alterHandler) {
+		
+	}
 }

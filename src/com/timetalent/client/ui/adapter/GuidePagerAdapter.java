@@ -1,4 +1,4 @@
-package com.timetalent.client.ui;
+package com.timetalent.client.ui.adapter;
 
 import java.util.List;
 

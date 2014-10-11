@@ -18,6 +18,11 @@
         <item name="android:background">@color/transparent_color</item>
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
+    
+        <style name="add_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@color/transparent_color</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
 
     <style name="tab_rb_style">
         <item name="android:layout_width">0dp</item>

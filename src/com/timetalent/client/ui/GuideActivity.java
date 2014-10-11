@@ -17,6 +17,9 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.ui.adapter.GuidePagerAdapter;
+import com.timetalent.client.ui.login.LoginActivity;
+import com.timetalent.client.ui.login.RegisterFirstActivity;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -180,11 +183,12 @@ public class GuideActivity extends BaseActivity implements OnClickListener,OnPag
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.bt_guide_register:
-			
+		case R.id.bt_guide_register:  
+		   IntentUtil.intent(GuideActivity.this, RegisterFirstActivity.class);
+			//DialogUtil.showError(GuideActivity.this, "dialog  Test");
 			break;
 		case R.id.bt_guide_login:
-			IntentUtil.intent(GuideActivity.this, MainFragmentActivity.class, true);
+			IntentUtil.intent(GuideActivity.this, LoginActivity.class);
 			break;
 		default:
 			break;

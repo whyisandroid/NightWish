@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="20dp"
+    android:layout_gravity="center"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bt_dialog_top"
+        android:gravity="center"
+        android:orientation="vertical" >
+        
+           <TextView
+            android:id="@+id/tv_dialog_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="20dip"
+            android:text="提示"
+            android:visibility="gone"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_dialog_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:lineSpacingExtra="5dip"
+            android:padding="20dip"
+            android:text="你确认要放弃此次借款吗？"
+            android:textColor="@color/yello_bg_top"
+            android:textSize="@dimen/new_size_2" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2" >
+
+        <Button
+            android:id="@+id/bt_dialog_no_title_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bt_dialog_left"
+            android:text="放弃，重新申请"
+            android:textColor="@color/dailog_color_size"
+            android:textSize="15sp"
+             />
+
+        <Button
+            android:id="@+id/bt_dialog_no_title_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/bt_dialog_right"
+            android:text="不放弃"
+            android:textColor="@color/dailog_color_size"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

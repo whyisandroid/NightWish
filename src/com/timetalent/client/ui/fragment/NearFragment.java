@@ -10,10 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.ListView;
+import android.widget.PopupWindow;
+import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.NearBaseAdapter;
 
 /**
@@ -29,6 +35,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 	private Context mContext;
 	private AppController controller;
 	private ListView list;
+	private TextView tvshaixuan;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -48,6 +55,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 	 */
 	private void initView() {
 		list.setAdapter(new NearBaseAdapter(getActivity()));
+		tvshaixuan.setOnClickListener(this);
 	}
 
 	/**
@@ -58,14 +66,30 @@ public class NearFragment extends Fragment implements OnClickListener {
 	 */
 	private void findView() {
 		list = (ListView) view.findViewById(R.id.listView1);
-
+		tvshaixuan = (TextView) view.findViewById(R.id.tvshaixuan);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case 0:
-
+		case R.id.tvshaixuan:
+			LayoutInflater inflater = LayoutInflater.from(view.getContext());
+			View popview = inflater.inflate(R.layout.near_shaixuan, null);
+			final PopupWindow pop = new PopupWindow(popview, LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, false);
+			pop.setBackgroundDrawable(new Background2());
+			pop.setOutsideTouchable(true);
+			pop.setFocusable(true);
+			Button btok = (Button) popview.findViewById(R.id.btok);
+			btok.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					pop.dismiss();
+					
+				}
+			});
+			pop.showAsDropDown(v);
+			
 			break;
 		default:
 			break;

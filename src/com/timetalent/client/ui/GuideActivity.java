@@ -156,21 +156,21 @@ public class GuideActivity extends BaseActivity implements OnClickListener,OnPag
 		
 		switch (position) {
 		case PAGE_ONE:
-			dot_one.setBackground(dotImages[1]);
-			dot_two.setBackground(dotImages[0]);
-			dot_three.setBackground(dotImages[0]);
+			dot_one.setBackgroundDrawable(dotImages[1]);
+			dot_two.setBackgroundDrawable(dotImages[0]);
+			dot_three.setBackgroundDrawable(dotImages[0]);
 			
 			break;
 		case PAGE_TWO:
-			dot_one.setBackground(dotImages[0]);
-			dot_two.setBackground(dotImages[1]);
-			dot_three.setBackground(dotImages[0]);
+			dot_one.setBackgroundDrawable(dotImages[0]);
+			dot_two.setBackgroundDrawable(dotImages[1]);
+			dot_three.setBackgroundDrawable(dotImages[0]);
 			
 			break;
 		case PAGE_THREE:
-			dot_one.setBackground(dotImages[0]);
-			dot_two.setBackground(dotImages[0]);
-			dot_three.setBackground(dotImages[1]);
+			dot_one.setBackgroundDrawable(dotImages[0]);
+			dot_two.setBackgroundDrawable(dotImages[0]);
+			dot_three.setBackgroundDrawable(dotImages[1]);
 			break;
 		default:
 			break;

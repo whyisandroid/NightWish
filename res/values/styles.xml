@@ -31,9 +31,9 @@
         <item name="android:button">@null</item>
         <item name="android:gravity">center_horizontal|bottom</item>
         <item name="android:layout_gravity">bottom</item>
-        <item name="android:background">@color/tabs_color</item>
+        <item name="android:background">@color/color_1</item>
         <item name="android:textSize">@dimen/new_size_1</item>
-        <item name="android:padding">@dimen/dimen_small</item>
+        <item name="android:padding">@dimen/dimen_small</item>  
         <item name = "android:textColor">@color/tabs_text_color</item>
     </style>
 

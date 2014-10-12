@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg"
+    android:background="@color/main_grey"
     android:orientation="vertical" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <include layout="@layout/main_top_layout" />
@@ -36,7 +36,7 @@
                     android:ems="20"
                     android:focusable="true"
                     android:hint="@string/login_hint_username"
-                    android:textColorHint="@color/lightgray"
+                    android:textColorHint="@color/color_2"
                     android:textSize="@dimen/new_size_3" >
 
                     <requestFocus />
@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/bt_red"
+            android:background="@color/main_red"
             android:text="@string/main_next"
             android:textColor="@color/white" 
              />

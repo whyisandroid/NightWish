@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg"
+    android:background="@color/main_grey"
     android:orientation="vertical" >
 
     <include layout="@layout/main_top_layout" />
@@ -168,7 +168,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/bt_red"
+            android:background="@color/main_red"
             android:text="@string/main_next"
             android:textColor="@color/white" />
     </FrameLayout>

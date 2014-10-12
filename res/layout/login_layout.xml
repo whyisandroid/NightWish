@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_bg"
+    android:background="@color/main_grey"
     android:orientation="vertical" >
 
     <include layout="@layout/main_top_layout" />
@@ -37,7 +37,7 @@
                     android:ems="20"
                     android:focusable="true"
                     android:hint="@string/login_hint_username"
-                    android:textColorHint="@color/lightgray"
+                    android:textColorHint="@color/color_2"
                     android:textSize="@dimen/new_size_3" >
 
                     <requestFocus />
@@ -60,7 +60,7 @@
                     android:ems="20"
                     android:hint="@string/login_hint_pwd"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/lightgray"
+                    android:textColorHint="@color/color_2"
                     android:textSize="@dimen/new_size_3" />
             </LinearLayout>
 
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/login_bt"
+            android:background="@color/login_bt_color"
             android:text="@string/login"
             android:textColor="@color/white" />
     </FrameLayout>

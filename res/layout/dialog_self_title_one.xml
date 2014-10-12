@@ -30,7 +30,7 @@
             android:lineSpacingExtra="5dip"
             android:padding="20dip"
             android:text="你确认要放弃此次借款吗？"
-            android:textColor="@color/yello_bg_top"
+            android:textColor="@color/color_2"
             android:textSize="@dimen/new_size_2" />
 
     </LinearLayout>
@@ -42,7 +42,7 @@
         android:layout_weight="1"
         android:background="@drawable/bt_dialog_one"
         android:text="确认"
-        android:textColor="@color/dailog_color_size"
+        android:textColor="@color/color_2"
         android:textSize="18sp" />
 
 </LinearLayout>

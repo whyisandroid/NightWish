@@ -1,22 +1,18 @@
 package com.timetalent.client.ui.login;
 
-import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
-import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -63,9 +59,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	private void initView() {
 		((TextView)findViewById(R.id.main_top_title)).setText("用户登录");
 		main_top_right.setVisibility(View.VISIBLE);
-		main_top_right.setText("3/4");
+		main_top_right.setText("");
 		bt_login_next.setOnClickListener(this);
 		tv_login_forget_pwd.setOnClickListener(this);
+		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.f9_06);
 	}
 	
 	

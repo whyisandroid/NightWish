@@ -9,26 +9,27 @@
     <color name="white">#FFFFFF</color> <!-- 纯白 -->
     <color name="black">#000000</color> <!-- 纯黑 -->
     <color name="transparent_color">#00000000</color> <!-- 透明色 -->
-    <color name="tabs_color">#FFFFFF</color>
     <color name="spilt_line_color">#CCCCCC</color>
 
 	<!-- 字体颜色标准 -->
 	<color name = "new_color_1">#231815</color><!-- 浅黑 -->
-	<color name = "new_color_2">#525861</color><!-- 深灰 -->
-	<color name = "new_color_3">#828A98</color><!-- 蓝灰 -->
 	<color name = "new_color_4">#CCCCCC</color><!-- 浅灰 -->
 	<color name = "new_color_5">#CD102C</color><!-- 浅红 -->
-	<color name = "new_color_6">#FFFFFF</color><!-- 纯白 -->
+	
+	
+	<!-- 星字体颜色标准 -->
+	<color name = "color_1">#FFFFFF</color><!-- 纯白 -->
+	<color name = "color_2">#333333</color><!-- 黑色  主要字体颜色 -->
+	<color name = "color_3">#6A6A6A</color><!-- 浅灰 -->
+	<color name = "color_4">#999999</color><!-- 浅浅灰 -->
+	<color name = "color_5">#666666</color><!-- 灰黑   个别 -->
+	
+	<!-- 界面背景颜色 -->
+	<color name = "main_grey">#ededed</color> <!-- 背景 灰白 -->
+	<color name = "main_white">#ededed</color> <!-- 背景 白 -->
+	<color name = "main_red">#FF494B</color> <!-- 背景  浅红 -->
 
-	<color name="red"> #d72839</color><!-- 浅红 -->
-	 <color name="lightgray">#cccccc</color><!-- 浅灰 -->
+
 	 <color name="bggray">#e2e2e2</color><!-- 雾白 -->
-	 <color name="yello_bg_top">#4c4236</color><!-- 棕黑 -->
-	 
-	 
-	 <color name="dailog_color_size">#CD102C</color><!-- 棕黑 -->
-	 <color name = "main_bg">#ededed</color> <!-- 背景 灰白 -->
-	 <color name = "bt_red">#FF494B</color>
-	  <color name = "login_bt">#77ba10</color> <!-- 浅绿 -->
-	   <color name = "color_3">#999999</color> <!-- 浅灰 -->
+	  <color name = "login_bt_color">#77ba10</color> <!-- 浅绿 -->
     </resources>

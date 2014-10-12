@@ -28,7 +28,12 @@
 	<color name = "main_grey">#ededed</color> <!-- 背景 灰白 -->
 	<color name = "main_white">#ededed</color> <!-- 背景 白 -->
 	<color name = "main_red">#FF494B</color> <!-- 背景  浅红 -->
-
+	
+	<!-- 按钮颜色 -->
+	<color name = "bt_green">#2ac600</color> <!-- 按钮 浅绿 -->
+	<color name = "bt_red">#ff9293</color> <!-- 按钮 粉红 -->
+	<color name = "bt_light_red">#FF494B</color> <!-- 按钮 浅红-->
+	
 
 	 <color name="bggray">#e2e2e2</color><!-- 雾白 -->
 	  <color name = "login_bt_color">#77ba10</color> <!-- 浅绿 -->

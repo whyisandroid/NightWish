@@ -5,16 +5,32 @@
     android:layout_height="@dimen/main_top_height"
     android:background="@color/main_red" >
 
-    <TextView
+    <ImageButton
         android:id="@+id/main_top_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_small"
-        android:drawableLeft="@drawable/btn_gobackl"
+        android:background="@drawable/btn_gobackl"
         android:onClick="goBack"
-        android:padding="10dp"
+        android:padding="5dp"
         tools:ignore="ContentDescription" />
+    
+    
+    <Button
+        android:id="@+id/main_top_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen_small"
+        android:background="@null"
+        android:textSize="@dimen/new_size_4"
+        android:textColor="@color/white"
+        android:visibility="gone"
+         />
+    
+    
+
     <TextView
         android:id="@+id/main_top_title"
         android:layout_width="wrap_content"
@@ -32,7 +48,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="@dimen/dimen_normal"
-        android:text="3/4"
         android:textSize="@dimen/new_size_4"
         android:textColor="@color/white"
         android:visibility="gone" 

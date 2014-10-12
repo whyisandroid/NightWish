@@ -17,12 +17,15 @@
 	<dimen name = "dimen_small">5dp</dimen>	
 	
 	<!--字体大小标准  720-->
+	<dimen name = "new_size_0">10.0sp</dimen>
 	<dimen name = "new_size_1">11.0sp</dimen>
-	<dimen name = "new_size_2">14.0sp</dimen>
+	<dimen name = "new_size_2">13.0sp</dimen>
 	<dimen name = "new_size_3">15.0sp</dimen>
 	<dimen name = "new_size_4">17.0sp</dimen>
 	<dimen name = "new_size_5">20.0sp</dimen>
-	<dimen name = "new_size_6">27.0sp</dimen>
+	<dimen name = "new_size_6">22.0sp</dimen>
+	<dimen name = "new_size_7">26.0sp</dimen>
+	
 	
 	<dimen name="main_top_height">50dp</dimen>
 </resources>

@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -23,6 +24,9 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	private AppController controller;
 	private TextView main_top_right;
 	private Button bt_register_second_next;
+	private RadioButton bt_register_second_1;
+	private RadioButton bt_register_second_2;
+	private RadioButton bt_register_second_3;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -40,6 +44,9 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	private void findView() {
 		main_top_right = (TextView)findViewById(R.id.main_top_right);
 		bt_register_second_next = (Button)findViewById(R.id.bt_register_second_next);
+		bt_register_second_1 = (RadioButton)findViewById(R.id.bt_register_second_1);
+		bt_register_second_2 = (RadioButton)findViewById(R.id.bt_register_second_2);
+		bt_register_second_3 = (RadioButton)findViewById(R.id.bt_register_second_3);
 	}
 
 	/**
@@ -53,6 +60,9 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		main_top_right.setVisibility(View.VISIBLE);
 		main_top_right.setText("2/4");
 		bt_register_second_next.setOnClickListener(this);
+		bt_register_second_1.setOnClickListener(this);
+		bt_register_second_2.setOnClickListener(this);
+		bt_register_second_3.setOnClickListener(this);
 	}
 	
 	
@@ -60,6 +70,22 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bt_register_second_next:
+			IntentUtil.intent(RegisterSecondActivity.this, RegisterThreeActivity.class);
+			break;
+		case R.id.bt_register_second_1:
+			bt_register_second_1.setChecked(true);
+			bt_register_second_2.setChecked(false);
+			bt_register_second_3.setChecked(false);
+			break;
+		case R.id.bt_register_second_2:
+			bt_register_second_1.setChecked(false);
+			bt_register_second_2.setChecked(true);
+			bt_register_second_3.setChecked(false);
+			break;
+		case R.id.bt_register_second_3:
+			bt_register_second_1.setChecked(false);
+			bt_register_second_2.setChecked(false);
+			bt_register_second_3.setChecked(true);
 			break;
 		default:
 			break;

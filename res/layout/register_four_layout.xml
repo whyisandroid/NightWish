@@ -27,15 +27,33 @@
                 android:paddingTop="15dp" >
 
                 <AutoCompleteTextView
-                    android:id="@+id/et_username"
+                    android:id="@+id/AutoCompleteTextView01"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:drawableLeft="@drawable/username_draw_xml"
                     android:drawablePadding="10dp"
                     android:ems="20"
                     android:focusable="true"
-                    android:hint="@string/login_hint_username"
+                    android:hint="@string/register_four_hint1"
+                    android:textColorHint="@color/color_4"
+                    android:textSize="@dimen/new_size_3" />
+
+				<TextView
+				    android:layout_width="match_parent"
+				    android:layout_height="0.5dp"
+				    android:layout_marginTop="10dp"
+				    android:background="@color/spilt_line_color" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="@null"
+                    android:drawablePadding="10dp"
+                    android:ems="20"
+                    android:focusable="true"
+                    android:hint="@string/register_four_hint2"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" >
 
@@ -48,26 +66,15 @@
                 android:layout_height="0.5dp"
                 android:background="@color/spilt_line_color" />
 
-            <TextView
-                android:id="@+id/tv_login_forget_pwd"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/register_protocol"
-                android:textColor="@color/color_4"
-                android:textSize="@dimen/new_size_2" />
-
         </LinearLayout>
 
         <Button
-            android:id="@+id/bt_register_first_next"
+            android:id="@+id/bt_register_four_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@color/main_red"
-            android:text="@string/main_next"
+            android:text="@string/register_four_over"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />
 

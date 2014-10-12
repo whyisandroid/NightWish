@@ -19,13 +19,13 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="20dp"
                 android:background="@color/white"
                 android:focusable="true"
                 android:orientation="vertical"
                 android:paddingBottom="10dp"
                 android:paddingLeft="20dp"
-                android:paddingTop="30dp" >
+                android:paddingTop="15dp" >
 
                 <AutoCompleteTextView
                     android:id="@+id/et_username"
@@ -36,30 +36,51 @@
                     android:drawablePadding="10dp"
                     android:ems="20"
                     android:focusable="true"
-                    android:hint="@string/login_hint_username"
+                    android:hint="@string/register_pwd_hint4"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" >
 
                     <requestFocus />
                 </AutoCompleteTextView>
+            </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="0.5dp"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@color/spilt_line_color" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/spilt_line_color" />
 
-                <EditText
-                    android:id="@+id/et_password"
+            <TextView
+                android:id="@+id/tv_login_forget_pwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/register_three_1"
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_2" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/white"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:paddingBottom="10dp"
+                android:paddingLeft="20dp"
+                android:paddingTop="15dp" >
+
+                <AutoCompleteTextView
+                    android:id="@+id/et_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
-                    android:drawableLeft="@drawable/password_draw_xml"
+                    android:drawableLeft="@drawable/username_draw_xml"
                     android:drawablePadding="10dp"
                     android:ems="20"
-                    android:hint="@string/login_hint_pwd"
-                    android:inputType="textPassword"
+                    android:focusable="true"
+                    android:hint="@string/register_three_hint2"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" />
             </LinearLayout>
@@ -73,25 +94,38 @@
                 android:id="@+id/tv_login_forget_pwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/login_fgt_pwd"
-                android:textColorHint="@color/color_4"
+                android:text="@string/register_three_text2"
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_2" />
+
+            <Button
+                android:id="@+id/bt_register_three_code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:background="@color/main_red"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:text="@string/register_three_code"
+                android:textColor="@color/white"
                 android:textSize="@dimen/new_size_3" />
 
         </LinearLayout>
 
         <Button
-            android:id="@+id/bt_login_next"
+            android:id="@+id/bt_register_three_next"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/login_bt_color"
-            android:text="@string/login"
+            android:background="@color/main_red"
+            android:text="@string/main_next"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />
-
     </FrameLayout>
 
 </LinearLayout>

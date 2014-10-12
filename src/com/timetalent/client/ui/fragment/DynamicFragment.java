@@ -7,9 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.adapter.DynamicAdapter;
+import com.timetalent.client.ui.dynamic.AddDynamicActivity;
+import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -23,7 +29,9 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	private View view;
 	private Context mContext;
 	private AppController controller;
-
+	private TextView main_top_right;
+	private TextView main_top_left2;
+	private ListView lv_dynamic;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -34,6 +42,17 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		initView();
 		return view;
 	}
+	/**
+	 * 方法描述：TODO
+	 * 
+	 * @author: why
+	 * @time: 2014-10-10 下午6:36:00
+	 */
+	private void findView() {
+		lv_dynamic = (ListView)view.findViewById(R.id.lv_dynamic);
+		main_top_right = (TextView)view.findViewById(R.id.main_top_right);
+		main_top_left2 = (TextView)view.findViewById(R.id.main_top_left2);
+	}
 
 	/**
 	 * 方法描述：TODO
@@ -42,26 +61,21 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		// TODO Auto-generated method stub
-
+		((TextView)view.findViewById(R.id.main_top_title)).setText("动态");
+		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.f9_06);
+		view.findViewById(R.id.main_top_left).setVisibility(View.GONE);
+		UIUtils.setDrawableLeft(getActivity(),main_top_left2,R.drawable.d3_03);
+		main_top_right.setOnClickListener(this);
+		
+		DynamicAdapter adapter = new DynamicAdapter(getActivity());
+		lv_dynamic.setAdapter(adapter);
 	}
-
-	/**
-	 * 方法描述：TODO
-	 * 
-	 * @author: why
-	 * @time: 2014-10-10 下午6:36:00
-	 */
-	private void findView() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case 0:
-
+		case R.id.main_top_right:
+			IntentUtil.intent(getActivity(), AddDynamicActivity.class);
 			break;
 		default:
 			break;

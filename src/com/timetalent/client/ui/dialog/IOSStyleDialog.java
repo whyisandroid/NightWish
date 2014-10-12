@@ -96,13 +96,13 @@ public class IOSStyleDialog extends BasicDialog implements DialogInterface{
 	}
 	
 	public IOSStyleDialog setmTitle(String message){
-		title.setVisibility(View.INVISIBLE);
+		title.setVisibility(View.VISIBLE);
 		this.title.setText(message);
 		return this;
 	}
 	
 	public IOSStyleDialog setmTitle(int titleId){
-		title.setVisibility(View.INVISIBLE);
+		title.setVisibility(View.VISIBLE);
 		this.title.setText(titleId);
 		return this;
 	}

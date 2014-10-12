@@ -10,27 +10,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="@dimen/dimen_small"
+        android:layout_marginLeft="@dimen/dimen_normal"
         android:background="@drawable/btn_gobackl"
         android:onClick="goBack"
         android:padding="5dp"
         tools:ignore="ContentDescription" />
     
     
-    <Button
+    <TextView
         android:id="@+id/main_top_left2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_small"
-        android:background="@null"
         android:textSize="@dimen/new_size_4"
         android:textColor="@color/white"
         android:visibility="gone"
          />
     
-    
-
     <TextView
         android:id="@+id/main_top_title"
         android:layout_width="wrap_content"

@@ -47,7 +47,9 @@
                         android:drawablePadding="10dp"
                         android:gravity="center"
                         android:padding="5dp"
-                        android:text="@string/register_choose_bir" />
+                        android:text="@string/register_choose_bir"
+                        android:textColor="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
 
                     <ImageView
                         android:id="@+id/imageView2"
@@ -79,7 +81,9 @@
                         android:id="@+id/radioButton1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="男" />
+                        android:text="男"
+                        android:textColor="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
@@ -87,7 +91,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"
                         android:checked="true"
-                        android:text="女" />
+                        android:text="女"
+                        android:textColor="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
+
                 </RadioGroup>
             </LinearLayout>
 
@@ -102,11 +109,16 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp" >
 
-                <Button
+               
+
+                <RadioButton
                     android:id="@+id/bt_register_second_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/btn_register_1" />
+                    android:background="@drawable/btn_register_1" 
+                    android:button="@null"
+                    android:checked="true"
+                    />
 
                 <TextView
                     android:id="@+id/textView2"
@@ -114,8 +126,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
                     android:layout_toRightOf="@+id/bt_register_second_1"
-                    android:text="@string/register_bt_1" />
+                    android:text="@string/register_bt_1"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_2" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -124,10 +140,11 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp" >
 
-                <Button
-                    android:id="@+id/bt_register_second_1"
+                <RadioButton
+                    android:id="@+id/bt_register_second_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                     android:button="@null"
                     android:background="@drawable/btn_register_2" />
 
                 <TextView
@@ -136,8 +153,12 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/bt_register_second_1"
-                    android:text="@string/register_bt_1" />
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/bt_register_second_2"
+                    android:text="@string/register_bt_2"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_2" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -146,20 +167,24 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp" >
 
-                <Button
-                    android:id="@+id/bt_register_second_1"
+                <RadioButton
+                    android:id="@+id/bt_register_second_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                     android:button="@null"
                     android:background="@drawable/btn_register_3" />
 
                 <TextView
-                    android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="20dp"
-                    android:layout_toRightOf="@+id/bt_register_second_1"
-                    android:text="@string/register_bt_1" />
+                    android:layout_marginRight="10dp"
+                    android:layout_toRightOf="@+id/bt_register_second_3"
+                    android:text="@string/register_bt_3"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_2" />
+
             </RelativeLayout>
         </LinearLayout>
 

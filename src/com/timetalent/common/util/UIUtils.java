@@ -50,6 +50,7 @@ public class UIUtils {
 	  * @time: 2014-10-12 下午2:48:45
 	  */
 	public static void setDrawableLeft(Context context,TextView textView, int id) {
+		textView.setVisibility(View.VISIBLE);
 		Drawable drawable= context.getResources().getDrawable(id);
 		/// 这一步必须要做,否则不会显示.
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());

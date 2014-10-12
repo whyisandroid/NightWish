@@ -12,5 +12,22 @@
     <string name="register_protocol">使用真实姓名能让别人更快的找到和联系你,注册即表示同意&lt;星探用户协议></string>
     <string name="register_choose_bir">选择生日</string>
     <string name="register_bt_1">选择次角色,您可以关注喜欢的艺人和其他角色相互互动.</string>
+    <string name="register_bt_2">选择此角色，您可以选择星探发布的活动或者接受粉丝的邀请。</string>
+    <string name="register_bt_3">选择此角色，您可以发布活动等待艺人的参加。</string>
+    <string name="register_three_1">为了保障您的用号安全，请输入常用手机号</string>
+    <string name="register_three_text2">为了保障您的账号安全，请勿设置过于简易的密码，星探不会在任何地方泄露您的手机密码</string>
+    <string name="register_three_code">提取验证码</string>
+    <string name="register_four_hint1">设置登陆密码</string>
+    <string name="register_four_hint2">再次输入密码</string>
+    <string name="register_four_over">完成注册</string>
+    <string name="register_three_hint2">请输入验证码</string>
+    <string name="register_pwd_hint1">输入新密码</string>
+    <string name="register_pwd_hint2">再次输入新密码</string>
+    <string name="main_submit">提交</string>
+    <string name="register_pwd_hint3">请输入您当时注册时使用的手机号</string>
+    <string name="register_pwd_hint4">输入您的手机号</string>
+    <string name="dynamic_text1">每一朵玫瑰都有刺，正如每个人性格里面都有你不能容忍的部分，爱护每一朵玫瑰，并不是要把每一个刺根除。</string>
+    <string name="dynamic_add_hint">说点什么吧</string>
+    <string name="dynamic_add_text">添加本地图片</string>
 
 </resources>

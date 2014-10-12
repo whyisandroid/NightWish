@@ -25,25 +25,6 @@ import android.widget.Toast;
  */
 public class DialogUtil {
 	
-	
-	/**
-	  * 方法描述：支持失败 弹窗提示 失败原因
-	  * @param context
-	  * @return
-	  * @author: GHZ
-	  * @time: 2014-6-26 下午7:15:31
-	 */
-	public static void showError(Context context,String message) {
-		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-		dialog.setmTitle("失败原因").setMessage(message);
-		dialog.setOne("确认",new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				dialog.closeDialog();
-			}
-		});
-	}
-	
 	/**
 	  * 方法描述：退出账号
 	  * @param activity
@@ -70,5 +51,25 @@ public class DialogUtil {
 				dialog.closeDialog();
 			}
 		});
+	}
+
+	
+	/**
+	  * 方法描述：单个按钮
+	  * @author: wanghy
+	  * @time: 2014-10-12 下午5:22:19
+	  */
+	public static void showMessage(Context context,
+			String message) {
+		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
+		dialog.setmTitle("提示").setMessage(message);
+		dialog.setOne("确认",new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+			}
+		});
+	
+		
 	}
 }

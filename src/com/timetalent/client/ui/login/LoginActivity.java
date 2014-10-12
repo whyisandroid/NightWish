@@ -12,6 +12,7 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -71,9 +72,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bt_login_next:
 			IntentUtil.intent(LoginActivity.this, MainFragmentActivity.class);
+			ToastUtil.showToast(LoginActivity.this, "登陆成功",ToastUtil.LENGTH_LONG);
 			break;
 		case R.id.tv_login_forget_pwd:
-			IntentUtil.intent(LoginActivity.this, MainFragmentActivity.class);
+			IntentUtil.intent(LoginActivity.this, FindpwdFirstActivity.class);
 			break;
 		default:
 			break;

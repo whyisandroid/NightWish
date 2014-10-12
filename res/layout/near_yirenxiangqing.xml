@@ -4,13 +4,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <include layout="@layout/main_top_layout" />
+    <include
+        layout="@layout/main_top_layout" />
 
-    <ListView
-        android:id="@+id/listView1"
+    <include
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="93" >
-    </ListView>
+        android:layout_weight="1"
+        layout="@layout/near_yirenxiangqingmobanhead" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/near_xiangqingmobantail" />
 
 </LinearLayout>

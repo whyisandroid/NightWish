@@ -62,7 +62,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	 */
 	private void initView() {
 		((TextView)view.findViewById(R.id.main_top_title)).setText("动态");
-		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.f9_06);
+		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
 		view.findViewById(R.id.main_top_left).setVisibility(View.GONE);
 		UIUtils.setDrawableLeft(getActivity(),main_top_left2,R.drawable.d3_03);
 		main_top_right.setOnClickListener(this);

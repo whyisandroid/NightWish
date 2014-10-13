@@ -7,9 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ListView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.adapter.ChanceAdapter;
 
 
 /******************************************
@@ -23,6 +25,8 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private View view;
 	private Context mContext;
 	private AppController controller;
+	
+	private ListView lv_chance;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,26 +46,24 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		// TODO Auto-generated method stub
-
+		ChanceAdapter adapter = new ChanceAdapter(getActivity());
+		lv_chance.setAdapter(adapter);
 	}
 
 	/**
-	 * 方法描述：TODO
+	 * 方法描述：TODO  
 	 * 
 	 * @author: why
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		// TODO Auto-generated method stub
-
+		lv_chance = (ListView)view.findViewById(R.id.lv_chance);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case 0:
-
 			break;
 		default:
 			break;

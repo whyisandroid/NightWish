@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -16,6 +18,7 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -31,7 +34,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	private Button bt_login_next;
 	private TextView main_top_right;
 	
-	private TextView tv_login_forget_pwd; //忘记密码
+	private ListView lzuopin;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		lzuopin = (ListView) findViewById(R.id.lzuopin);
 	}
 
 	/**
@@ -58,9 +62,35 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenActivity.this));
+		setListViewHeightBasedOnChildren(lzuopin);
 	}
 	
-	
+	/**
+	 * 重新计算listview高度
+	  * 方法描述：TODO
+	  * @param listView
+	  * @author: Administrator
+	  * @time: 2014-10-13 下午4:19:11
+	 */
+	public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();   
+        if (listAdapter == null) {  
+            // pre-condition  
+            return;  
+        }  
+  
+        int totalHeight = 0;  
+        for (int i = 0; i < listAdapter.getCount(); i++) {  
+            View listItem = listAdapter.getView(i, null, listView);  
+            listItem.measure(0, 0);  
+            totalHeight += listItem.getMeasuredHeight();  
+        }  
+  
+        ViewGroup.LayoutParams params = listView.getLayoutParams();  
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
+        listView.setLayoutParams(params);  
+    }
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {

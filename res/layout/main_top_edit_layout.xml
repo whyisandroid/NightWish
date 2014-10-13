@@ -1,0 +1,53 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/main_top_height"
+    android:background="@color/main_red"
+    android:gravity="center_vertical" >
+
+        <ImageButton
+            android:id="@+id/main_top_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/btn_gobackl"
+            android:onClick="goBack"
+            android:padding="5dp"
+            tools:ignore="ContentDescription" />
+<TextView
+        android:id="@+id/main_top_left2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:textSize="@dimen/new_size_4"
+        android:textColor="@color/white"
+        android:visibility="gone"
+         />
+        <EditText
+            android:id="@+id/main_top_title"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_weight="6"
+            android:background="@drawable/near_etbg"
+            android:hint="搜索"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textSize="@dimen/new_size_4" />
+
+        <TextView
+            android:id="@+id/main_top_right"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/white"
+            android:textSize="@dimen/new_size_4"
+            android:background="@color/main_red" />
+    
+</LinearLayout>

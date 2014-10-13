@@ -4,52 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="7"
-        android:background="@color/titlebg"
-        android:gravity="center_vertical" >
-
-        <ImageButton
-            android:id="@+id/imgback"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="2dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="2dp"
-            android:layout_weight="1"
-            android:background="@color/titlebg"
-            android:src="@drawable/f3_03" />
-
-        <EditText
-            android:id="@+id/etsrc"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="4dp"
-            android:layout_marginTop="4dp"
-            android:layout_weight="6"
-            android:background="@drawable/near_etbg"
-            android:hint="搜索"
-            android:singleLine="true"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
-
-        <TextView
-            android:id="@+id/tvok"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="5dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="确定"
-            android:textColor="@color/white"
-            android:textSize="15dp"
-            android:background="@color/titlebg" />
-
-    </LinearLayout>
-
+<include layout="@layout/main_top_edit_layout" />
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"

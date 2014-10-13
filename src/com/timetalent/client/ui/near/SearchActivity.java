@@ -53,7 +53,7 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	private void findView() {
 
 		list = (ListView) findViewById(R.id.listView1);
-		tvok = (TextView) findViewById(R.id.tvok);
+		tvok = (TextView) findViewById(R.id.main_top_right);
 	
 	}
 
@@ -75,7 +75,7 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.tvok:
+		case R.id.main_top_right:
 			list.setVisibility(list.VISIBLE);
 			break;
 		default:

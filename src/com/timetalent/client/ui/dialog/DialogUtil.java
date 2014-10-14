@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.dialog;
 
 import com.timetalent.client.TimeTalentApplication;
+import com.timetalent.common.util.ToastUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -69,7 +70,34 @@ public class DialogUtil {
 				dialog.closeDialog();
 			}
 		});
-	
-		
 	}
+	
+	/**
+	  * 方法描述：左右两个按钮
+	  * @param activity
+	  * @author: why
+	  * @time: 2014-8-13 下午7:43:12
+	  */
+	public static void showMessageTwo(final Context context,String message,final String toast) {
+		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
+		dialog.setMessage(message);
+		dialog.setLeft("取消", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+			}
+		});
+		dialog.setRight("确定", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+				// 对话框
+				ToastUtil.showToast(context, toast, ToastUtil.LENGTH_LONG);
+			}
+		});
+	}
+	
+	
 }

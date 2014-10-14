@@ -6,33 +6,30 @@
     android:gravity="center_vertical" >
 
     <EditText
-        android:id="@+id/main_top_title"
+        android:id="@+id/main_top_find_title"
         android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_height="35dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
-        android:paddingLeft="10dp"
-        android:layout_toLeftOf="@+id/main_top_right"
-        android:background="#C62B2C"
+        android:layout_marginRight="5dp"
+        android:layout_toLeftOf="@+id/main_top_find_right"
+        android:background="@drawable/c_03"
         android:drawableLeft="@drawable/f9_06"
         android:drawablePadding="5dp"
+        android:paddingLeft="10dp"
         android:singleLine="true"
         android:textColor="@color/color_1"
         android:textSize="@dimen/new_size_3" />
 
-    <Button
-        android:id="@+id/main_top_right"
+    <ImageView
+        android:id="@+id/main_top_find_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="5dp"  
-        android:background="@color/main_red"
-        android:gravity="center"   
-        android:text="发职位"
-        android:textColor="@color/white"
-        android:textSize="@dimen/new_size_4" />
-    
-    
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:src="@drawable/c_05" />
 
 </RelativeLayout>

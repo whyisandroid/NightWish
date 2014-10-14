@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_top_layout" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/c11_02" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|right"
+                    android:background="@color/main_red"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"
+                    android:text="@string/chance_add_p"
+                    android:textColor="@color/main_white"
+                    android:textSize="@dimen/new_size_3" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="23dp" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        style="@style/chance_offer_text_style"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/chance_text1" />
+
+                    <EditText
+                        android:id="@+id/editText1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="必填"
+                        android:textColor="@color/color_2"
+                        android:textColorHint="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:text="@string/chance_text2" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/iv_go"
+                        android:hint="@string/chance_text3" />
+
+                    <ImageView
+                        android:id="@+id/iv_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/main_go_ahead" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:text="@string/chance_text4" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/iv_go"
+                        android:hint="@string/chance_text3" />
+
+                    <ImageView
+                        android:id="@+id/iv_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/main_go_ahead" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        style="@style/chance_offer_text_style"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/chance_text5" />
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/c11_14"
+                        android:hint="@string/chance_hint1"
+                        android:maxLines="4"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/color_2"
+                        android:textSize="@dimen/new_size_2" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+            </LinearLayout>
+            
+            <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textView1"
+                            style="@style/chance_offer_text_style"
+                            android:layout_marginRight="8dp"
+                            android:text="@string/chance_text6" />
+
+                        <EditText
+                            android:id="@+id/EditText01"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:ems="10"
+                            android:hint="必填"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
+
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/editText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/c11_14"
+                        android:hint="@string/chance_hint2"
+                        android:maxLines="4"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="@color/color_2"
+                        android:textSize="@dimen/new_size_2" />
+                </LinearLayout>
+                
+            
+<RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:text="@string/chance_text7" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/iv_go"
+                        android:hint="@string/chance_text3" />
+
+                    <ImageView
+                        android:id="@+id/iv_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/main_go_ahead" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:text="@string/chance_text8" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:layout_toLeftOf="@+id/iv_go"
+                        android:hint="@string/chance_text3" />
+
+                    <ImageView
+                        android:id="@+id/iv_go"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:src="@drawable/main_go_ahead" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/spilt_line_color" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/c11_06" />
+
+                <Button
+                    android:id="@+id/bt_chance_offer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#77ba10"
+                    android:text="@string/chance_text9"
+                    android:textColor="@color/main_white"
+                    android:textSize="@dimen/new_size_4" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

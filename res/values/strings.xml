@@ -29,5 +29,23 @@
     <string name="dynamic_text1">每一朵玫瑰都有刺，正如每个人性格里面都有你不能容忍的部分，爱护每一朵玫瑰，并不是要把每一个刺根除。</string>
     <string name="dynamic_add_hint">说点什么吧</string>
     <string name="dynamic_add_text">添加本地图片</string>
+    <string name="chance_add_p">添加图片</string>
+    <string name="chance_text1">填写招聘专题名称:</string>
+    <string name="chance_text2">报名截止日期:</string>
+    <string name="chance_text3">必填</string>
+    <string name="chance_text4">选择工作地点:</string>
+    <string name="chance_text5">工作介绍:</string>
+    <string name="chance_hint1">介绍一下工作或者项目亮点</string>
+    <string name="chance_text6">招聘职位名称:</string>
+    <string name="chance_text7">工作开始时间:</string>
+    <string name="chance_text8">工作结束时间:</string>
+    <string name="chance_text9">立即发布</string>
+    <string name="chance_hint2">编辑具体职位要求</string>
+    <string name="chance_text10">活动介绍:</string>
+    <string name="chance_text11">活动介绍 活动介绍 活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍活动介绍</string>
+    <string name="chance_text12">活动地点:</string>
+    <string name="chance_text14">迎宾美女</string>
+    <string name="chance_text15">工作内容 工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容工作内容</string>
+    <string name="chance_text16">和发布者私聊</string>
 
 </resources>

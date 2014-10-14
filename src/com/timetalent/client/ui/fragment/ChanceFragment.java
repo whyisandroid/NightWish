@@ -7,11 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.ChanceAdapter;
+import com.timetalent.client.ui.chance.OfferActivity;
+import com.timetalent.client.ui.chance.OfferDetailActivity;
+import com.timetalent.common.util.IntentUtil;
 
 
 /******************************************
@@ -25,6 +31,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private View view;
 	private Context mContext;
 	private AppController controller;
+	private ImageView main_top_find_right;
 	
 	private ListView lv_chance;
 
@@ -38,7 +45,16 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		initView();
 		return view;
 	}
-
+	/**
+	 * 方法描述：TODO  
+	 * 
+	 * @author: why
+	 * @time: 2014-10-10 下午6:36:00
+	 */
+	private void findView() {
+		lv_chance = (ListView)view.findViewById(R.id.lv_chance);
+		main_top_find_right = (ImageView)view.findViewById(R.id.main_top_find_right);
+	}
 	/**
 	 * 方法描述：TODO
 	 * 
@@ -48,26 +64,27 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private void initView() {
 		ChanceAdapter adapter = new ChanceAdapter(getActivity());
 		lv_chance.setAdapter(adapter);
-	}
-
-	/**
-	 * 方法描述：TODO  
-	 * 
-	 * @author: why
-	 * @time: 2014-10-10 下午6:36:00
-	 */
-	private void findView() {
-		lv_chance = (ListView)view.findViewById(R.id.lv_chance);
+		main_top_find_right.setOnClickListener(this);
+		lv_chance.setOnItemClickListener(chanceItemlistener);
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case 0:
+		case R.id.main_top_find_right:
+			IntentUtil.intent(getActivity(), OfferActivity.class);
 			break;
 		default:
 			break;
 		}
 	}
+	
+	private OnItemClickListener chanceItemlistener = new  OnItemClickListener() {
 
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			IntentUtil.intent(getActivity(), OfferDetailActivity.class);
+		}
+	};
 }

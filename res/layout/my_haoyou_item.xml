@@ -27,34 +27,11 @@
 
             <TextView
                 android:id="@+id/tvname"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="吴沐熙vicky"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
-
-            <TextView
-                android:id="@+id/tvonlinetime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="北京/2分钟前"
-                android:gravity="right"
-                android:textColor="@color/texthui"
-                android:textSize="10dp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp" >
-
-            <ImageView
-                android:id="@+id/imgonline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/f3_13" />
+                android:text="吴沐熙vicky"
+                android:textColor="@color/color_2"
+                android:textSize="13dp" />
 
             <ImageView
                 android:id="@+id/imgsex"
@@ -72,12 +49,18 @@
                 android:text="21岁"
                 android:textColor="@color/texthui"
                 android:textSize="13dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" >
 
             <TextView
                 android:id="@+id/tvzhiye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="职业/模特、演员"
+                android:text="通讯录好友吴沐熙"
                 android:textColor="@color/texthui"
                 android:textSize="13dp" />
         </LinearLayout>
@@ -87,20 +70,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
-            android:text="北京电影学院获奖作品《安慰》中女一号"
-            android:textColor="@color/black"
+            android:text="距1523km"
+            android:textColor="@color/texthui"
             android:textSize="13dp" />
 
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="0dp"
+    <Button
+        android:id="@+id/bttianjia"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_weight="1"
-        android:src="@drawable/m16_03"
-        android:visibility="gone" />
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/my_btred"
+        android:text="添加"
+        android:textSize="@dimen/new_size_4" />
 
 </LinearLayout>

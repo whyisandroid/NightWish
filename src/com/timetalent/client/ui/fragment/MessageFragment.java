@@ -7,12 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.MessageDetailAdapter;
+import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.common.util.IntentUtil;
 
 
 /******************************************
@@ -50,6 +54,7 @@ public class MessageFragment extends Fragment implements OnClickListener {
 		view.findViewById(R.id.main_top_left).setVisibility(View.GONE);
 		MessageDetailAdapter adapter = new MessageDetailAdapter(mContext);
 		lv_message.setAdapter(adapter);
+		lv_message.setOnItemClickListener(messageItemListener);
 	}
 
 	/**
@@ -60,19 +65,25 @@ public class MessageFragment extends Fragment implements OnClickListener {
 	 */
 	private void findView() {
 		lv_message = (ListView)view.findViewById(R.id.lv_message);
-		
-
 	}
 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case 0:
-
+			
 			break;
 		default:
 			break;
 		}
 	}
+	
+	private OnItemClickListener messageItemListener = new OnItemClickListener() {
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+			IntentUtil.intent(getActivity(), MessageChatActivity.class);
+		}
+	};
 
 }

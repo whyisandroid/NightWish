@@ -28,6 +28,7 @@
 	<color name = "main_grey">#ededed</color> <!-- 背景 灰白 -->
 	<color name = "main_white">#ededed</color> <!-- 背景 白 -->
 	<color name = "main_red">#FF494B</color> <!-- 背景  浅红 -->
+	  <color name = "main_light_white">#F6F6F6</color> <!-- 浅白 -->
 	
 	<!-- 按钮颜色 -->
 	<color name = "bt_green">#2ac600</color> <!-- 按钮 浅绿 -->

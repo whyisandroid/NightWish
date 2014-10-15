@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white" >
+
+    <include
+        android:id="@+id/main_top"
+        layout="@layout/main_top_layout" />
+
+    <!-- 聊天内容 listview -->
+
+    <ListView
+        android:id="@+id/lv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_main_tv"
+        android:layout_below="@+id/main_top"
+        android:cacheColorHint="#000000"
+        android:divider="@null"
+        android:dividerHeight="5dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:stackFromBottom="true" />
+
+    <TextView
+        android:id="@+id/rl_main_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_above="@+id/rl_main_bottom"
+        android:background="@color/spilt_line_color" />
+
+    <RelativeLayout
+        android:id="@+id/rl_main_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/main_light_white" >
+
+        <ImageView
+            android:id="@+id/tv_chat_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/m18_06" />
+
+        <RelativeLayout
+            android:id="@+id/btn_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_chat_popup" >
+
+            <TextView
+                android:id="@+id/tv_chat_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:text="发送"
+                android:textColor="@color/main_red" />
+
+            <EditText
+                android:id="@+id/tv_chat_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_margin="10dp"
+                android:padding="8dp"
+                android:layout_toLeftOf="@id/tv_chat_send"
+                android:background="@drawable/m18_03"
+                android:singleLine="true"
+                android:textSize="18sp" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/btn_rcd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/ivPopUp"
+            android:gravity="center"
+            android:text="按住说话"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+</RelativeLayout>

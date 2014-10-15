@@ -71,6 +71,11 @@
                 android:text="输入你的出生日期，系统会自动算出年龄和星座。你的出生日期将不会出现在个人资料里。"
                 android:textColor="@color/color_3" />
 
+            <DatePicker
+                android:id="@+id/datePicker1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
         <Button

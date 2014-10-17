@@ -63,7 +63,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		main_top_right.setText("");
 		bt_login_next.setOnClickListener(this);
 		tv_login_forget_pwd.setOnClickListener(this);
-		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.f9_06);
+	//	UIUtils.setDrawableLeft(this,main_top_right,R.drawable.f9_06);
 	}
 	
 	

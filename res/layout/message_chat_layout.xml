@@ -75,19 +75,11 @@
                 android:singleLine="true"
                 android:textSize="18sp" />
         </RelativeLayout>
-
-        <TextView
-            android:id="@+id/btn_rcd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_toRightOf="@+id/ivPopUp"
-            android:gravity="center"
-            android:text="按住说话"
-            android:visibility="gone" />
     </RelativeLayout>
+ 
+<!--     <android.support.v7.widget.GridLayout
+        android:id="@+id/gl_chat_popup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" /> -->
 
 </RelativeLayout>

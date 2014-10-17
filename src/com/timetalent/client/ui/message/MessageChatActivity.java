@@ -1,14 +1,28 @@
 package com.timetalent.client.ui.message;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import android.annotation.SuppressLint;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ImageSpan;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.EditText;
+import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -16,6 +30,7 @@ import com.timetalent.client.entities.ChatMsg;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.MessageChatAdapter;
+import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
@@ -25,11 +40,16 @@ import com.timetalent.client.ui.adapter.MessageChatAdapter;
  * @author: why
  * @time: 2014-10-15 下午8:10:24 
  ******************************************/
+@SuppressLint("NewApi")
 public class MessageChatActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private ListView lv_chat;  
-	private EditText tv_chat_message; // 输入信息
+	private EditText et_chat_message; // 输入信息
 	private TextView tv_chat_send; // 发送
+	private ImageView tv_chat_popup; // 表情
+	
+	private GridView gl_chat_popup;// 表情 Grid
+	private int[] imageIds = new int[21];
 	
 	private List<ChatMsg> list;// 对话内容 
 	private MessageChatAdapter mAdapter;//list adapter
@@ -50,8 +70,10 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 	 */
 	private void findView() {
 		lv_chat = (ListView)findViewById(R.id.lv_chat);
-		tv_chat_message = (EditText)findViewById(R.id.tv_chat_message);
+		et_chat_message = (EditText)findViewById(R.id.tv_chat_message);
 		tv_chat_send = (TextView) findViewById(R.id.tv_chat_send);
+		tv_chat_popup = (ImageView)findViewById(R.id.tv_chat_popup);
+		gl_chat_popup =(GridView)findViewById(R.id.gl_chat_popup);
 	}
 	/**
 	 * 方法描述：TODO
@@ -67,7 +89,8 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 		mAdapter = new MessageChatAdapter(this,list);
 		lv_chat.setAdapter(mAdapter);
 		tv_chat_send.setOnClickListener(this);
-		
+		tv_chat_popup.setOnClickListener(this);
+		gl_chat_popup.setOnItemClickListener(glItemListener);
 	}
 	
 	
@@ -101,14 +124,80 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 		case R.id.tv_chat_send:
 			send();
 			break;
+		case R.id.tv_chat_popup:
+			ToastUtil.showToast(MessageChatActivity.this, "表情", ToastUtil.LENGTH_LONG);
+			if( Integer.valueOf(gl_chat_popup.getTag().toString()) == 1){
+				gl_chat_popup.setTag("0");
+				tv_chat_popup.setImageResource(R.drawable.m18_06);
+				// 处理 删掉 数据
+				List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
+				SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems,
+						R.layout.message_chat_popup_item, new String[] { "image" },
+						new int[] { R.id.image });
+				gl_chat_popup.setAdapter(simpleAdapter);
+			}else{
+				tv_chat_popup.setImageResource(R.drawable.f17_03);
+				popup();
+			}
+			break;
 		default:
 			break;
 		}
 	}
 	
 	
+	
+	/**
+	  * 方法描述：表情
+	  * @author: wanghy
+	  * @time: 2014-10-17 下午10:21:12
+	  */
+	private void popup(){
+		List<Map<String, Object>> listItems = new ArrayList<Map<String, Object>>();
+		// 生成21个表情的id，封装
+		for (int i = 0; i < 21; i++) {
+			try {
+				if (i < 10) {
+					Field field = R.drawable.class.getDeclaredField("f00" + i);
+					int resourceId = Integer.parseInt(field.get(null)
+							.toString());
+					imageIds[i] = resourceId;
+				} else if (i < 100) {
+					Field field = R.drawable.class.getDeclaredField("f0" + i);
+					int resourceId = Integer.parseInt(field.get(null)
+							.toString());
+					imageIds[i] = resourceId;
+				} else {
+					Field field = R.drawable.class.getDeclaredField("f" + i);
+					int resourceId = Integer.parseInt(field.get(null)
+							.toString());
+					imageIds[i] = resourceId;
+				}
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (NoSuchFieldException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			Map<String, Object> listItem = new HashMap<String, Object>();
+			listItem.put("image", imageIds[i]);
+			listItems.add(listItem);
+		}
+		SimpleAdapter simpleAdapter = new SimpleAdapter(this, listItems,
+				R.layout.message_chat_popup_item, new String[] { "image" },
+				new int[] { R.id.image });
+		gl_chat_popup.setAdapter(simpleAdapter);
+		gl_chat_popup.setTag(1);
+	}
+	
+	
 	private void send() {
-		String contString = tv_chat_message.getText().toString();
+		String contString = et_chat_message.getText().toString();
 		if (contString.length() > 0) {
 			ChatMsg entity = new ChatMsg();
 			entity.setDate(getDate());
@@ -118,7 +207,7 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 
 			list.add(entity);
 			mAdapter.notifyDataSetChanged();
-			tv_chat_message.setText("");
+			et_chat_message.setText("");
 			lv_chat.setSelection(lv_chat.getCount() - 1);
 		}
 	}
@@ -139,4 +228,30 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 
 		return sbBuffer.toString();
 	}
+	
+	private OnItemClickListener glItemListener = new OnItemClickListener() {
+
+		@Override
+		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+				long arg3) {
+
+			Bitmap bitmap = null;
+			bitmap = BitmapFactory.decodeResource(getResources(), imageIds[arg2 % imageIds.length]);
+			ImageSpan imageSpan = new ImageSpan(MessageChatActivity.this, bitmap);
+			String str = null;
+			if(arg2<10){
+				str = "f00"+arg2;
+			}else if(arg2<100){
+				str = "f0"+arg2;
+			}else{
+				str = "f"+arg2;
+			}
+			SpannableString spannableString = new SpannableString(str);
+			spannableString.setSpan(imageSpan, 0, 4, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+			et_chat_message.append(spannableString);
+		
+		}
+	};
+	
+	
 }

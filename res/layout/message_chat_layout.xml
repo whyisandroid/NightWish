@@ -33,7 +33,7 @@
         android:id="@+id/rl_main_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/gl_chat_popup"
         android:background="@color/main_light_white" >
 
         <ImageView
@@ -43,7 +43,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/m18_06" />
+            android:src="@drawable/btn_chat_popup" />
 
         <RelativeLayout
             android:id="@+id/btn_bottom"
@@ -73,13 +73,17 @@
                 android:layout_toLeftOf="@id/tv_chat_send"
                 android:background="@drawable/m18_03"
                 android:singleLine="true"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
         </RelativeLayout>
     </RelativeLayout>
  
-<!--     <android.support.v7.widget.GridLayout
+     <GridView
         android:id="@+id/gl_chat_popup"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" /> -->
-
+        android:layout_height="wrap_content" 
+        android:layout_alignParentBottom="true"
+        android:visibility="visible"
+        android:numColumns="7"
+        android:tag="0"
+        />
 </RelativeLayout>

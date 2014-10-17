@@ -71,20 +71,19 @@ public class MessageChatAdapter extends BaseAdapter{
 		ChatMsg chat = list.get(position);
 		boolean isComMsg = chat.getMsgType();
 		ViewHolder viewHolder = null;
-		if (convertView == null) {
-			if (isComMsg) {
-				convertView = mInflater.inflate(R.layout.message_chat_left,null);
-			} else {
-				convertView = mInflater.inflate(R.layout.message_chat_right,null);
-			}
-			viewHolder = new ViewHolder();
-			viewHolder.tvContent = (TextView)convertView.findViewById(R.id.tv_chatcontent);
-			viewHolder.tvSendTime = (TextView)convertView.findViewById(R.id.tv_sendtime);
-			viewHolder.isComMsg = isComMsg;			
-			convertView.setTag(viewHolder);
+
+		if (isComMsg) {
+			convertView = mInflater.inflate(R.layout.message_chat_left, null);
 		} else {
-			viewHolder = (ViewHolder) convertView.getTag();
+			convertView = mInflater.inflate(R.layout.message_chat_right, null);
 		}
+		viewHolder = new ViewHolder();
+		viewHolder.tvContent = (TextView) convertView
+				.findViewById(R.id.tv_chatcontent);
+		viewHolder.tvSendTime = (TextView) convertView
+				.findViewById(R.id.tv_sendtime);
+		viewHolder.isComMsg = isComMsg;	
+		
 		viewHolder.tvContent.setText(chat.getText());	
 		viewHolder.tvSendTime.setText(chat.getDate());	
 		return convertView;

@@ -1,11 +1,13 @@
 package com.timetalent.client.ui.message;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +27,12 @@ import com.timetalent.client.ui.adapter.MessageChatAdapter;
  ******************************************/
 public class MessageChatActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private ListView lv_chat;
+	private ListView lv_chat;  
+	private EditText tv_chat_message; // 输入信息
+	private TextView tv_chat_send; // 发送
+	
+	private List<ChatMsg> list;// 对话内容 
+	private MessageChatAdapter mAdapter;//list adapter
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +50,8 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 	 */
 	private void findView() {
 		lv_chat = (ListView)findViewById(R.id.lv_chat);
+		tv_chat_message = (EditText)findViewById(R.id.tv_chat_message);
+		tv_chat_send = (TextView) findViewById(R.id.tv_chat_send);
 	}
 	/**
 	 * 方法描述：TODO
@@ -53,10 +62,11 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 	private void initView() {
 		((TextView)findViewById(R.id.main_top_title)).setText("威尔斯顿");
 		
-		List<ChatMsg> list  = new ArrayList<ChatMsg>();
+		list  = new ArrayList<ChatMsg>();
 		initList(list);
-		MessageChatAdapter adapter = new MessageChatAdapter(this,list);
-		lv_chat.setAdapter(adapter);
+		mAdapter = new MessageChatAdapter(this,list);
+		lv_chat.setAdapter(mAdapter);
+		tv_chat_send.setOnClickListener(this);
 		
 	}
 	
@@ -88,11 +98,45 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.bt_login_next:
+		case R.id.tv_chat_send:
+			send();
 			break;
 		default:
 			break;
 		}
 	}
+	
+	
+	private void send() {
+		String contString = tv_chat_message.getText().toString();
+		if (contString.length() > 0) {
+			ChatMsg entity = new ChatMsg();
+			entity.setDate(getDate());
+			entity.setName("高富帅");
+			entity.setMsgType(false);
+			entity.setText(contString);
 
+			list.add(entity);
+			mAdapter.notifyDataSetChanged();
+			tv_chat_message.setText("");
+			lv_chat.setSelection(lv_chat.getCount() - 1);
+		}
+	}
+
+	
+	private String getDate() {
+		Calendar c = Calendar.getInstance();
+
+		String year = String.valueOf(c.get(Calendar.YEAR));
+		String month = String.valueOf(c.get(Calendar.MONTH));
+		String day = String.valueOf(c.get(Calendar.DAY_OF_MONTH) + 1);
+		String hour = String.valueOf(c.get(Calendar.HOUR_OF_DAY));
+		String mins = String.valueOf(c.get(Calendar.MINUTE));
+
+		StringBuffer sbBuffer = new StringBuffer();
+		sbBuffer.append(year + "-" + month + "-" + day + " " + hour + ":"
+				+ mins);
+
+		return sbBuffer.toString();
+	}
 }

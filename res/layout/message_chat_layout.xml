@@ -18,9 +18,9 @@
         android:layout_below="@+id/main_top"
         android:cacheColorHint="#000000"
         android:divider="@null"
-        android:dividerHeight="5dp"
+        android:dividerHeight="1dp"
         android:scrollbarStyle="outsideOverlay"
-        android:stackFromBottom="true" />
+        />
 
     <TextView
         android:id="@+id/rl_main_tv"

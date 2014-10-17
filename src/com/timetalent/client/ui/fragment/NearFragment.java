@@ -33,6 +33,7 @@ import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.UIUtils;
 
 /**
  * **************************************** 类描述： 附近 类名称：NearFragment
@@ -75,8 +76,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 		tvtitle.setText("附近");
 		btshaixuan.setText("筛选");
 		btsearch.setText("");
-		btsearch.setBackgroundResource(R.drawable.f9_06);
-		btsearch.setPadding(DipPxUtil.dip2px(mContext, 10), DipPxUtil.dip2px(mContext, 5), DipPxUtil.dip2px(mContext, 10), DipPxUtil.dip2px(mContext, 5));
+		UIUtils.setDrawableLeft(getActivity(),btsearch,R.drawable.f9_06);
 		list.setAdapter(new NearBaseAdapter(getActivity()));
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -92,8 +92,6 @@ public class NearFragment extends Fragment implements OnClickListener {
 				if(arg2 == 3){
 					IntentUtil.intent(mContext, FansActivity.class);
 				}
-				
-				
 			}
 		});
 		btshaixuan.setOnClickListener(this);

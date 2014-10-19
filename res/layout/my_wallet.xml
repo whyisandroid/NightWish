@@ -86,7 +86,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
-            android:background="@drawable/my_btgreen"
+            android:background="@drawable/btn_green"
             android:text="充值"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />
@@ -98,7 +98,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="3dp"
-            android:background="@drawable/my_btred"
+            android:background="@drawable/btn_red"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4"
             android:text="提现" />

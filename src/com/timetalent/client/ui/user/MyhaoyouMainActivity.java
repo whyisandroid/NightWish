@@ -20,6 +20,7 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.AddDynamicActivity;
+import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -58,6 +59,8 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		main_top_right = (TextView) this.findViewById(R.id.main_top_right);
 		tabHost=getTabHost();
 		spec1 = tabHost.newTabSpec("好友");
 		spec1.setContent(R.id.tab1);  
@@ -146,6 +149,13 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 	 */
 	private void initView() {
 	tabHost.setCurrentTab(index);
+	((TextView)this.findViewById(R.id.main_top_title)).setText("我的关注");
+//	UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+	main_top_left.setVisibility(View.VISIBLE);
+	main_top_right.setVisibility(View.VISIBLE);
+//	UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+	main_top_left.setOnClickListener(this);
+	main_top_right.setOnClickListener(this);
 	}
 	
 	
@@ -154,6 +164,9 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
+			break;
+		case R.id.main_top_right:
+			IntentUtil.intent(MyhaoyouMainActivity.this, SearchActivity.class);
 			break;
 		default:
 			break;

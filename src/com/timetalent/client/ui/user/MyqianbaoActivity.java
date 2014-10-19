@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
@@ -49,6 +50,8 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		main_top_right = (TextView) this.findViewById(R.id.main_top_right);
 		btchongzhi = (Button) findViewById(R.id.btchongzhi);
 		bttixian = (Button) findViewById(R.id.bttixian);
 	}
@@ -60,6 +63,14 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("我的零钱");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+		main_top_right.setVisibility(View.VISIBLE);
+		main_top_right.setText("账单");
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
+		main_top_right.setOnClickListener(this);
 		btchongzhi.setOnClickListener(this);
 		bttixian.setOnClickListener(this);
 	}
@@ -68,6 +79,12 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_left:
+			finish();
+			break;
+		case R.id.main_top_right:
+			Toast.makeText(MyqianbaoActivity.this, "点击账单", 1000).show();
+			break;
 		case R.id.btchongzhi:
 			IntentUtil.intent(MyqianbaoActivity.this, MychongzhiActivity.class);
 			break;

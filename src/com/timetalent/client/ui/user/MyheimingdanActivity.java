@@ -47,6 +47,7 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lheimingdan = (ListView) findViewById(R.id.lheimingdan);
 	}
 
@@ -57,6 +58,11 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("黑名单");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 		lheimingdan.setAdapter(new HeimingdanAdapter(MyheimingdanActivity.this));
 	}
 	

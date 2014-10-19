@@ -10,6 +10,7 @@ import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
@@ -33,6 +34,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
+	Button btok;
 	private GridView  gvhead;
 	private GridView  gvbody;
 	
@@ -54,6 +56,8 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	private void findView() {
 		gvhead = (GridView) findViewById(R.id.gvhead);
 		gvbody = (GridView) findViewById(R.id.gvbody);
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		
 	}
 
 	/**
@@ -67,6 +71,13 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 		gvbody.setAdapter(new fuwubodyAdapter(MyfuwuActivity.this));
 		setListViewHeightBasedOnChildren(gvhead);
 		setListViewHeightBasedOnChildren(gvbody);
+		btok = (Button) findViewById(R.id.btok);
+		((TextView)this.findViewById(R.id.main_top_title)).setText("我的服务");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
+		btok.setOnClickListener(this);
 	}
 	/**
 	 * 重新计算listview高度
@@ -83,14 +94,14 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
         }  
   
         int totalHeight = 0;
-        for (int i = 0; i < listAdapter.getCount()/3+1; i++) {  
+        for (int i = 0; i < listAdapter.getCount()/2+1; i++) {  
             View listItem = listAdapter.getView(i, null, listView);  
             listItem.measure(0, 0);  
             totalHeight += listItem.getMeasuredHeight();  
         }  
   
         ViewGroup.LayoutParams params = listView.getLayoutParams();  
-        params.height = totalHeight + (listView.getVerticalFadingEdgeLength() * (listAdapter.getCount()/3));  
+        params.height = totalHeight + (listView.getVerticalFadingEdgeLength() * (listAdapter.getCount()/2));  
         listView.setLayoutParams(params);  
     }
 	
@@ -99,6 +110,10 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
+			break;
+		case R.id.btok:
+			finish();
+			Toast.makeText(MyfuwuActivity.this, "baocun成功", 1000).show();
 			break;
 		default:
 			break;

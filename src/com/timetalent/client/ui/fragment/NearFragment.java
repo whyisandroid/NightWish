@@ -24,6 +24,7 @@ import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
+import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.DipPxUtil;
@@ -32,6 +33,7 @@ import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -96,8 +98,28 @@ public class NearFragment extends Fragment implements OnClickListener {
 		});
 		btshaixuan.setOnClickListener(this);
 		btsearch.setOnClickListener(this);
+		showMessageTwo(mContext, "现在去完善个人信息", "完成");
 	}
-
+	private void showMessageTwo(final Context context,String message,final String toast) {
+		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
+		dialog.setmTitle("提示");
+		dialog.setMessage(message);
+		dialog.setLeft("取消", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+			}
+		});
+		dialog.setRight("确认", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+				IntentUtil.intent(mContext, YirenziliaobianjiActivity.class);
+			}
+		});
+	}
 	/**
 	 * 方法描述：TODO
 	 * 

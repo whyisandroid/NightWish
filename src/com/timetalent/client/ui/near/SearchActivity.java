@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -32,11 +33,10 @@ import com.timetalent.common.util.IntentUtil;
  ******************************************/
 public class SearchActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private Button bt_login_next;
 	private TextView main_top_right;
+	private ImageButton main_top_left;
 	
 	private ListView list;
-	private TextView tvok;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -53,9 +53,9 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		list = (ListView) findViewById(R.id.listView1);
-		tvok = (TextView) findViewById(R.id.main_top_right);
+		main_top_right = (TextView) findViewById(R.id.main_top_right);
 	
 	}
 
@@ -85,7 +85,10 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 				}
 			}
 		});
-		tvok.setOnClickListener(this);
+		main_top_right.setOnClickListener(this);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 	
 	}
 	
@@ -95,6 +98,9 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_right:
 			list.setVisibility(list.VISIBLE);
+			break;
+		case R.id.main_top_left:
+			finish();
 			break;
 		default:
 			break;

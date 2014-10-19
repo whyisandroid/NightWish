@@ -6,28 +6,28 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
+        android:layout_height="wrap_content" >
 
         <ImageView
-            android:id="@+id/imageView1"
+            android:id="@+id/imgduihua"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/f10_52" />
+            android:background="@drawable/f10_52" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/imgguanzhu"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/f10_53" />
+            android:background="@drawable/f10_53" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/imgyuyue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/f10_54" />
+            android:background="@drawable/f10_54" />
     </LinearLayout>
 
 </LinearLayout>

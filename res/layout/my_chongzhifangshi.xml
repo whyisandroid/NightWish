@@ -233,14 +233,14 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btchongzhi"
+                android:id="@+id/btok"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/my_btgreen"
+                android:background="@drawable/btn_green"
                 android:text="确定"
                 android:textColor="@color/white"
                 android:textSize="@dimen/new_size_4" />

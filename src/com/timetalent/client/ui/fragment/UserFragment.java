@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
@@ -35,6 +37,8 @@ import com.timetalent.common.util.IntentUtil;
 public class UserFragment extends Fragment implements OnClickListener {
 	private View view;
 	private Context mContext;
+	private TextView main_top_right;
+	private ImageButton main_top_left;
 	private AppController controller;
 	private LinearLayout lmydongtai;
 	private LinearLayout lmyhaoyou;
@@ -63,6 +67,11 @@ public class UserFragment extends Fragment implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)view.findViewById(R.id.main_top_title)).setText("我的");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 		lmydongtai.setOnClickListener(this);
 		lmyhaoyou.setOnClickListener(this);
 		lmytuijian.setOnClickListener(this);
@@ -82,6 +91,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)view.findViewById(R.id.main_top_left);
 		lmydongtai = (LinearLayout) view.findViewById(R.id.lmydongtai);
 		lmyhaoyou = (LinearLayout) view.findViewById(R.id.lmyhaoyou);
 		lmytuijian = (LinearLayout) view.findViewById(R.id.lmytuijian);
@@ -97,6 +107,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_left:
+//			finish();
+			break;
 		case R.id.lmydongtai:
 			IntentUtil.intent(this.mContext, YirenziliaoActivity.class);
 			break;

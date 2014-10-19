@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,9 +23,8 @@ import com.timetalent.common.util.IntentUtil;
  ******************************************/
 public class PictureActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private Button bt_login_next;
 	private TextView main_top_right;
-	private LinearLayout ldongtai;
+	private ImageButton main_top_left;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class PictureActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 	}
 
 	/**
@@ -51,12 +52,20 @@ public class PictureActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 	}
 	
 	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_left:
+			finish();
+			break;
 		case R.id.lneardongtai:
 			IntentUtil.intent(PictureActivity.this, NearDongtaiActivity.class);
 			break;

@@ -257,7 +257,7 @@
             android:id="@+id/btchongzhi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bt_light_red"
+            android:background="@drawable/btn_red"
             android:text="下一步"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />

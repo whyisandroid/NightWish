@@ -133,7 +133,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="30dp"
-            android:background="@drawable/my_btgreen"
+            android:background="@drawable/btn_green"
             android:text="立即充值"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />

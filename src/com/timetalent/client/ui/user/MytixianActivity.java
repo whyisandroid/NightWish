@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
@@ -28,7 +29,7 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	private ListView lv_dynamic;
+	Button bttixian;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,10 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 	 * @author: why
 	 * @time: 2014-10-10 下午6:36:00
 	 */
-	private void findView() {}
+	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		bttixian = (Button) this.findViewById(R.id.bttixian);
+	}
 
 	/**
 	 * 方法描述：TODO
@@ -53,7 +57,14 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 	 * @author: why
 	 * @time: 2014-10-10 下午6:36:02
 	 */
-	private void initView() {}
+	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("我的零钱");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
+		bttixian.setOnClickListener(this);
+	}
 	
 	
 	@Override
@@ -61,6 +72,10 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
+			break;
+		case R.id.bttixian:
+			finish();
+			Toast.makeText(MytixianActivity.this, "提现成功", 1000).show();
 			break;
 		default:
 			break;

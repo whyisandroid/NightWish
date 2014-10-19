@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:text="吴沐熙vicky"
                 android:textColor="@color/color_2"
-                android:textSize="13dp" />
+                android:textSize="@dimen/new_size_2" />
 
             <ImageView
                 android:id="@+id/imgsex"
@@ -47,8 +47,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:text="21岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_2" />
         </LinearLayout>
 
         <LinearLayout
@@ -61,8 +61,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="通讯录好友吴沐熙"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_2" />
         </LinearLayout>
 
         <TextView
@@ -71,8 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="距1523km"
-            android:textColor="@color/texthui"
-            android:textSize="13dp" />
+            android:textColor="@color/color_4"
+            android:textSize="@dimen/new_size_2" />
 
     </LinearLayout>
 
@@ -86,7 +86,7 @@
         android:layout_marginTop="5dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:background="@drawable/my_btred"
+        android:background="@drawable/btn_red"
         android:text="添加"
         android:textColor="@color/white"
         android:textSize="@dimen/new_size_4" />

@@ -19,7 +19,7 @@
             android:layout_margin="10dp"
             android:text="1"
             android:textColor="@color/new_color_6"
-            android:textSize="@dimen/new_size_2" />
+            android:textSize="@dimen/new_size_4" />
 
     </LinearLayout>
 

@@ -92,7 +92,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/d10_16" />
+                        android:src="@drawable/d11_03" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -213,6 +213,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ldongtai"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -301,11 +302,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView20"
+                        <EditText
+                            android:id="@+id/et_chance_title"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="吴沐熙" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -337,11 +342,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView18"
+                        <EditText
+                            android:id="@+id/et1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Vicky" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -355,6 +364,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -445,11 +455,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView12"
+                        <EditText
+                            android:id="@+id/et2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="演员" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -481,11 +495,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView10"
+                        <EditText
+                            android:id="@+id/et3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="湖南省阮江市" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -517,11 +535,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView08"
+                        <EditText
+                            android:id="@+id/et4"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="172cm" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -535,6 +557,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/lsanwei"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -580,7 +603,7 @@
                         android:id="@+id/TextView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="她的作品" />
+                        android:text="我的作品" />
 
                    <LinearLayout
                         android:layout_width="0dp"
@@ -615,7 +638,7 @@
                         android:id="@+id/TextView03"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="她的代言" />
+                        android:text="我的代言" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -624,11 +647,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView04"
+                        <EditText
+                            android:id="@+id/et5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="第20届北京大学电影节最佳女主角\n第9届华鼎奖女演员\n第12届华语电影传媒大奖最佳女主角" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -660,11 +687,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView02"
+                        <EditText
+                            android:id="@+id/et6"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="第20届北京大学电影节最佳女主角\n第9届华鼎奖女演员" />
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -679,10 +710,10 @@
 
             </LinearLayout>
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btok"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bt_green"
+        android:background="@drawable/btn_green"
         android:textColor="@color/white"
         android:text="保存资料" />
         </LinearLayout>

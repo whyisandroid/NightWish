@@ -7,7 +7,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/main_light_white"
         android:orientation="vertical" >
 
         <TextView
@@ -15,9 +15,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
-            android:background="@color/white"
             android:text="您想看到的用户"
-            android:textColor="@color/texthui" />
+            android:textColor="@color/color_4" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,41 +24,52 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/new_color_4" >
+            android:background="@color/main_light_white" >
 
-            <Button
-                android:id="@+id/button1"
+            <RadioGroup
+                android:id="@+id/radioGroup1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:text="全部"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="只看女"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/radio0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:checked="true"
+                    android:padding="7dp"
+                    android:background="@drawable/btn_l"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="@color/color_4"
+                    android:text="全部" />
 
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="只看男"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/radio1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="7dp"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="@color/color_4"
+                    android:text="只看女" />
+
+                <RadioButton
+                    android:id="@+id/radio2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="7dp"
+                    android:background="@drawable/btn_r"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:textColor="@color/color_4"
+                    android:text="只看男" />
+            </RadioGroup>
         </LinearLayout>
 
         <TextView
@@ -69,7 +79,6 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@color/white"
             android:text="用户年龄"
             android:textColor="@color/texthui" />
 
@@ -80,52 +89,62 @@
             android:layout_marginRight="10dp"
             android:background="@color/new_color_4" >
 
-            <Button
-                android:id="@+id/button4"
+            <RadioGroup
+                android:id="@+id/RadioGroup03"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:text="全部"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="10-16岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton08"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_l"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="全部"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="16-24岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton10"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="10-16岁"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/button7"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="24-30岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton09"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="16-24岁"
+                    android:textColor="@color/color_4" />
+
+                <RadioButton
+                    android:id="@+id/RadioButton11"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_r"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="24-30岁"
+                    android:textColor="@color/color_4" />
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -137,54 +156,61 @@
             android:layout_marginRight="10dp"
             android:background="@color/new_color_4" >
 
-            <Button
-                android:id="@+id/button8"
+            <RadioGroup
+                android:id="@+id/RadioGroup04"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:text="30-36岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/button9"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="36-42岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_l"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="30-36岁"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/button10"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginLeft="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="42-50岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton14"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="36-42岁"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/button11"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="50-60岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton13"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="42-50岁"
+                    android:textColor="@color/color_4" />
+
+                <RadioButton
+                    android:id="@+id/RadioButton15"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_r"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="50-60岁"
+                    android:textColor="@color/color_4" />
+            </RadioGroup>
 
         </LinearLayout>
 
@@ -195,145 +221,153 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/near_buttonbg"
             android:text="职业"
             android:textColor="@color/texthui" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@color/new_color_4" >
 
-            <Button
-                android:id="@+id/Button03"
+            <RadioGroup
+                android:id="@+id/RadioGroup01"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="1dp"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:text="全部"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/Button04"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="艺人"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton04"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_l"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="全部"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/Button02"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="星探"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton03"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="艺人"
+                    android:textColor="@color/color_4" />
 
-            <Button
-                android:id="@+id/Button01"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginRight="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="粉丝"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                <RadioButton
+                    android:id="@+id/RadioButton01"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="星探"
+                    android:textColor="@color/color_4" />
+
+                <RadioButton
+                    android:id="@+id/RadioButton02"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_r"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="粉丝"
+                    android:textColor="@color/color_4" />
+            </RadioGroup>
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:background="@color/new_color_4" >
 
-            <Button
-                android:id="@+id/Button05"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="歌手"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
-
-            <Button
-                android:id="@+id/Button06"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_marginTop="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="模特"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
-
-            <Button
-                android:id="@+id/Button08"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_margin="1dp"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="演员"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp" >
-
-            <Button
-                android:id="@+id/btcanel"
+            <RadioGroup
+                android:id="@+id/RadioGroup02"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="@color/white"
-                android:text="取消"
-                android:textColor="@color/texthui" />
+                android:orientation="horizontal" >
 
-            <Button
-                android:id="@+id/btok"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:text="确认"
-                android:textColor="@color/new_color_5" />
+                <RadioButton
+                    android:id="@+id/RadioButton07"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_l"
+                    android:button="@null"
+                    android:checked="true"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="歌手"
+                    android:textColor="@color/color_4" />
+
+                <RadioButton
+                    android:id="@+id/RadioButton05"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_c"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="模特"
+                    android:textColor="@color/color_4" />
+
+                <RadioButton
+                    android:id="@+id/RadioButton06"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_r"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:padding="7dp"
+                    android:text="演员"
+                    android:textColor="@color/color_4" />
+            </RadioGroup>
+
         </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:background="@color/bantouming"
-        android:layout_weight="1" >
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/btcanel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_c"
+            android:text="取消"
+            android:textColor="@color/color_4" />
+
+        <Button
+            android:id="@+id/btok"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/btn_c"
+            android:text="确认"
+            android:textColor="@color/new_color_5" />
     </LinearLayout>
 
 </LinearLayout>

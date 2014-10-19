@@ -8,6 +8,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -16,6 +18,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.WorkAdapter;
+import com.timetalent.client.ui.adapter.YaoqingAdapter;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.client.ui.dynamic.AddDynamicActivity;
 import com.timetalent.common.util.IntentUtil;
@@ -33,7 +36,10 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
+	RadioButton rb1;
+	RadioButton rb2;
 	private ListView lwork;
+	private ListView lyaoqing;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +57,11 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lwork = (ListView) findViewById(R.id.lwork);
+		lyaoqing = (ListView) findViewById(R.id.lyaoqing);
+		rb1 = (RadioButton) findViewById(R.id.radioButton1);
+		rb2 = (RadioButton) findViewById(R.id.radioButton2);
 	}
 
 	/**
@@ -61,6 +71,11 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("工作管理");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 		lwork.setAdapter(new WorkAdapter(MyworkActivity.this));
 		lwork.setOnItemClickListener(new OnItemClickListener() {
 
@@ -71,6 +86,10 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 				
 			}
 		});
+		lyaoqing.setAdapter(new YaoqingAdapter(MyworkActivity.this));
+		rb1.setOnClickListener(this);
+		rb2.setOnClickListener(this);
+		lyaoqing.setVisibility(lyaoqing.GONE);
 	}
 	
 	
@@ -79,6 +98,14 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
+			break;
+		case R.id.radioButton1:
+			lwork.setVisibility(lwork.GONE);
+			lyaoqing.setVisibility(lyaoqing.VISIBLE);
+			break;
+		case R.id.radioButton2:
+			lwork.setVisibility(lwork.VISIBLE);
+			lyaoqing.setVisibility(lyaoqing.GONE);
 			break;
 		default:
 			break;

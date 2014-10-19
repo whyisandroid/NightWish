@@ -9,33 +9,39 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="93"
-        android:background="@color/bggray"
+        android:background="@color/main_huangbai"
         android:orientation="vertical" >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="10dp"
             android:layout_weight="1"
             android:orientation="vertical" >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" >
+                android:layout_marginTop="20dp"
+                android:background="@color/main_light_huangbai"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:id="@+id/textView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/color_2"
+                    android:textSize="@dimen/new_size_3"
                     android:text="胸围" />
 
                 <EditText
                     android:id="@+id/editText1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_3"
                     android:background="@null"
                     android:inputType="number" />
 
@@ -43,21 +49,35 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/spilt_line_color" >
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" >
+                android:background="@color/main_light_huangbai"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/color_2"
+                    android:textSize="@dimen/new_size_3"
                     android:text="腰围" />
 
                 <EditText
                     android:id="@+id/editText2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_3"
                     android:background="@null"
                     android:ems="10"
                     android:inputType="number" >
@@ -68,21 +88,35 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="30dp"
+                android:background="@color/spilt_line_color" >
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp" >
+                android:background="@color/main_light_huangbai"
+                android:gravity="center_vertical" >
 
                 <TextView
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    android:textColor="@color/color_2"
+                    android:textSize="@dimen/new_size_3"
                     android:text="臀围" />
 
                 <EditText
                     android:id="@+id/editText3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="20dp"
                     android:layout_weight="1"
+                    android:textColor="@color/color_4"
+                    android:textSize="@dimen/new_size_3"
                     android:background="@null"
                     android:ems="10"
                     android:inputType="number" />
@@ -92,10 +126,10 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btchongzhi"
+            android:id="@+id/btok"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/bt_light_red"
+            android:background="@drawable/btn_red"
             android:text="确定"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />

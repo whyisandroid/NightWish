@@ -28,7 +28,6 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	private ListView lv_dynamic;
 	Button btchongzhifangshi;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +45,7 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		btchongzhifangshi = (Button) findViewById(R.id.btchongzhifangshi);
 	}
 
@@ -56,6 +56,11 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("我的零钱");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 		btchongzhifangshi.setOnClickListener(this);
 	}
 	
@@ -63,6 +68,9 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_left:
+			finish();
+			break;
 		case R.id.btchongzhifangshi:
 			IntentUtil.intent(MychongzhiActivity.this, MychongzhifangshiActivity.class);
 			break;

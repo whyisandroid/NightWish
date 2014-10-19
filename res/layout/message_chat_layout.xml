@@ -14,76 +14,84 @@
         android:id="@+id/lv_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/rl_main_tv"
+        android:layout_above="@+id/tv_main_line"
         android:layout_below="@+id/main_top"
         android:cacheColorHint="#000000"
         android:divider="@null"
         android:dividerHeight="1dp"
-        android:scrollbarStyle="outsideOverlay"
-        />
+        android:scrollbarStyle="outsideOverlay" />
 
     <TextView
-        android:id="@+id/rl_main_tv"
+        android:id="@+id/tv_main_line"
         android:layout_width="match_parent"
+        android:layout_above="@+id/ll_main_bottom"
         android:layout_height="0.5dp"
-        android:layout_above="@+id/rl_main_bottom"
         android:background="@color/spilt_line_color" />
 
-    <RelativeLayout
-        android:id="@+id/rl_main_bottom"
+    <LinearLayout
+        android:id="@+id/ll_main_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/gl_chat_popup"
-        android:background="@color/main_light_white" >
-
-        <ImageView
-            android:id="@+id/tv_chat_popup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@drawable/btn_chat_popup" />
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
 
         <RelativeLayout
-            android:id="@+id/btn_bottom"
+            android:id="@+id/rl_main_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/tv_chat_popup" >
+            android:background="@color/main_light_white" >
 
-            <TextView
-                android:id="@+id/tv_chat_send"
+            <ImageView
+                android:id="@+id/tv_chat_popup"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/btn_chat_popup" />
+
+            <RelativeLayout
+                android:id="@+id/btn_bottom"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
-                android:text="发送"
-                android:textColor="@color/main_red" />
+                android:layout_toRightOf="@+id/tv_chat_popup" >
 
-            <EditText
-                android:id="@+id/tv_chat_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_margin="10dp"
-                android:padding="8dp"
-                android:layout_toLeftOf="@id/tv_chat_send"
-                android:background="@drawable/m18_03"
-                android:singleLine="true"
-                android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/tv_chat_send"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="发送"
+                    android:textColor="@color/main_red" />
+
+                <EditText
+                    android:id="@+id/tv_chat_message"
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="10dp"
+                    android:layout_toLeftOf="@id/tv_chat_send"
+                    android:background="@drawable/m18_03"
+                    android:padding="8dp"
+                    android:singleLine="true"
+                    android:textSize="15sp" >
+
+                    <requestFocus />
+                </EditText>
+            </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
- 
-     <GridView
-        android:id="@+id/gl_chat_popup"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" 
-        android:layout_alignParentBottom="true"
-        android:visibility="visible"
-        android:numColumns="7"
-        android:tag="0"
-        />
+
+        <GridView
+            android:id="@+id/gl_chat_popup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numColumns="7"
+            android:tag="0" >
+        </GridView>
+    </LinearLayout>
+
 </RelativeLayout>

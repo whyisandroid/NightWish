@@ -58,7 +58,7 @@
                         android:text="@string/chance_text1" />
 
                     <EditText
-                        android:id="@+id/editText1"
+                        android:id="@+id/et_chance_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -76,6 +76,7 @@
                     android:background="@color/spilt_line_color" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_chance_data1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -89,7 +90,7 @@
                         android:text="@string/chance_text2" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tv_chance_data1"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
@@ -231,6 +232,7 @@
                 
             
 <RelativeLayout
+    android:id="@+id/rl_chance_data2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -244,7 +246,7 @@
                         android:text="@string/chance_text7" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tv_chance_data2"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
@@ -266,6 +268,7 @@
                     android:layout_height="0.5dp"
                     android:background="@color/spilt_line_color" />
                 <RelativeLayout
+                     android:id="@+id/rl_chance_data3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -279,7 +282,7 @@
                         android:text="@string/chance_text8" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tv_chance_data3"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"
@@ -314,7 +317,7 @@
                     android:id="@+id/bt_chance_offer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#77ba10"
+                    android:background="@drawable/btn_green"
                     android:text="@string/chance_text9"
                     android:textColor="@color/main_white"
                     android:textSize="@dimen/new_size_4" />

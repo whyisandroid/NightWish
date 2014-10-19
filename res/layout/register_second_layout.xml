@@ -17,7 +17,7 @@
             android:orientation="vertical" >
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/iv_register_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -36,6 +36,7 @@
                 android:paddingTop="15dp" >
 
                 <RelativeLayout
+                    android:id="@+id/rl_register_data"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
@@ -51,14 +52,16 @@
                         android:textColor="@color/color_4"
                         android:textSize="@dimen/new_size_2" />
 
-                    <ImageView
-                        android:id="@+id/imageView2"
+                    <TextView
+                        android:id="@+id/tv_register_data"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="20dp"
-                        android:src="@drawable/main_go_ahead" />
+                        android:drawablePadding="5dp"
+                        android:drawableRight="@drawable/main_go_ahead"
+                         />
                 </RelativeLayout>
 
                 <TextView
@@ -193,7 +196,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/main_red"
+            android:background="@drawable/btn_red"
             android:text="@string/main_next"
             android:textColor="@color/white" />
     </FrameLayout>

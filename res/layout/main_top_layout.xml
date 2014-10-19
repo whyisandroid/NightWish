@@ -11,9 +11,10 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="@dimen/dimen_normal"
-        android:background="@drawable/btn_gobackl"
+        android:src="@drawable/btn_gobackl"
+        android:background="@null"
         android:onClick="goBack"
-        android:padding="5dp"
+        android:padding="10dp"
         tools:ignore="ContentDescription" />
     
     

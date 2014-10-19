@@ -47,7 +47,7 @@
             android:focusable="true"
             android:lineSpacingExtra="2dp"
             android:minHeight="40dp"
-            android:text="你好啊"
+            android:gravity="center"
             android:textColor="@color/color_2" />
 
         <TextView

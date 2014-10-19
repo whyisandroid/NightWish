@@ -9,7 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.common.util.IntentUtil;
 
 
 /******************************************
@@ -66,7 +68,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 		
 		@Override
 		public void onClick(View v) {
-			DialogUtil.showMessageTwo(mContext, "您要报名: 二人转演员?", "报名成功");
+			IntentUtil.intent(mContext, OfferInfoActivity.class);
 		}
 	};
 

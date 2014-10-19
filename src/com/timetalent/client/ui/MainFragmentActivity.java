@@ -82,18 +82,23 @@ public class MainFragmentActivity extends BaseFragmentActivity {
 
 			switch (checkedId) {
 			case R.id.tab_rb_1:
+				MainFragmentActivity.setCurrentTab(0);
 				fTabHost.setCurrentTab(0);
 				break;
 			case R.id.tab_rb_2:
+				MainFragmentActivity.setCurrentTab(1);
 				fTabHost.setCurrentTab(1);
 				break;
 			case R.id.tab_rb_3:
+				MainFragmentActivity.setCurrentTab(2);
 				fTabHost.setCurrentTab(2);
 				break;
 			case R.id.tab_rb_4:
+				MainFragmentActivity.setCurrentTab(3);
 				fTabHost.setCurrentTab(3);
 				break;
 			case R.id.tab_rb_5:
+				MainFragmentActivity.setCurrentTab(4);
 				fTabHost.setCurrentTab(4);
 				break;
 			default:

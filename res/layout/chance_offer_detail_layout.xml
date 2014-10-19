@@ -15,22 +15,21 @@
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-         >
+        android:fillViewport="true" >
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
-            android:orientation="vertical" >
-
-            <include layout="@layout/chance_list_item" />
-            
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:orientation="vertical" >
+
+                <include layout="@layout/chance_list_item" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -48,7 +47,6 @@
                             android:layout_marginRight="8dp"
                             android:text="@string/chance_text10"
                             android:textSize="@dimen/new_size_3" />
-
                     </LinearLayout>
 
                     <TextView
@@ -61,11 +59,9 @@
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
                         android:text="@string/chance_text11" />
-
                 </LinearLayout>
-                
-            
-            <RelativeLayout
+
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -101,38 +97,41 @@
                         android:hint="2014年12月16日-2014年12月19日"
                         android:singleLine="true"
                         android:textSize="@dimen/new_size_1" />
-
                 </RelativeLayout>
-                
-             <TextView
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
                     android:background="@color/spilt_line_color" />
 
-             <ListView
-                 android:id="@+id/lv_chance_detail"
-                 android:layout_width="match_parent"
-                 android:layout_height="wrap_content"
-                  
-                  android:layout_marginBottom="20dp"
-                  >
-             </ListView>
+                <ListView
+                    android:id="@+id/lv_chance_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp" >
+                </ListView>
+            </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/btn_red"
+                android:gravity="center"
+                android:orientation="vertical" >
 
-        <Button
-            android:id="@+id/bt_chance_offer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="30dp"
-            android:background="@color/main_red"
-            android:drawableLeft="@drawable/c14_13"
-            android:gravity="center"
-            android:text="@string/chance_text16"
-            android:textColor="@color/main_white"
-            android:textSize="@dimen/new_size_4" />
+                 <TextView
+                android:id="@+id/bt_chance_offer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/chance_text16"
+                android:drawableLeft="@drawable/c14_13"
+                android:textColor="@color/main_white"
+                android:textSize="@dimen/new_size_4" />
+            </LinearLayout>
 
-                </FrameLayout>
+           
+        </FrameLayout>
     </ScrollView>
 </LinearLayout>

@@ -66,7 +66,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:background="@color/main_red"
+            android:background="@drawable/btn_red"
             android:text="@string/main_next"
             android:textColor="@color/white"
             android:textSize="@dimen/new_size_4" />

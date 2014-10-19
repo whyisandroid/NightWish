@@ -84,8 +84,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:background="@drawable/my_btred"
         android:text="添加"
+        android:textColor="@color/white"
         android:textSize="@dimen/new_size_4" />
 
 </LinearLayout>

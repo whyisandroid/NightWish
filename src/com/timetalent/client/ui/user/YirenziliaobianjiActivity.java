@@ -1,4 +1,4 @@
-package com.timetalent.client.ui.near;
+package com.timetalent.client.ui.user;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -19,8 +20,9 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
-import com.timetalent.client.ui.adapter.TonggaoBaseAdapter;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.near.NearDongtaiActivity;
+import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -31,18 +33,18 @@ import com.timetalent.common.util.IntentUtil;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class XingtanActivity extends BaseActivity implements OnClickListener {
+public class YirenziliaobianjiActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private Button bt_login_next;
-	private TextView main_top_right;
 	private LinearLayout ldongtai;
-	private ListView ltonggao;
-	
+	private ListView lzuopin;
+	private ImageView imgpic;
+	private TextView main_top_right;
+	private ImageButton main_top_left;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.near_xingtanxiangqing);
+		setContentView(R.layout.my_yirenziliao);
 		controller = AppController.getController(this);
 		findView();
 		initView();
@@ -54,8 +56,11 @@ public class XingtanActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		ltonggao = (ListView) findViewById(R.id.ltonggao);
+		lzuopin = (ListView) findViewById(R.id.lzuopin);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
+		imgpic = (ImageView) findViewById(R.id.ImageView04);
+		main_top_right = (TextView)this.findViewById(R.id.main_top_right);
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 	}
 
 	/**
@@ -65,9 +70,16 @@ public class XingtanActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		ltonggao.setAdapter(new TonggaoBaseAdapter(XingtanActivity.this));
-		setListViewHeightBasedOnChildren(ltonggao);
+		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
+//		((TextView)this.findViewById(R.id.main_top_right)).setText("编辑");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+//		this.findViewById(R.id.main_top_left).setVisibility(View.GONE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_right.setOnClickListener(this);
+		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenziliaobianjiActivity.this));
+		setListViewHeightBasedOnChildren(lzuopin);
 		ldongtai.setOnClickListener(this);
+		imgpic.setOnClickListener(this);
 	}
 	
 	/**
@@ -100,10 +112,14 @@ public class XingtanActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bt_login_next:
 			break;
-		case R.id.tv_login_forget_pwd:
+		case R.id.ImageView04:
+			IntentUtil.intent(YirenziliaobianjiActivity.this, PictureActivity.class);
 			break;
 		case R.id.lneardongtai:
-			IntentUtil.intent(XingtanActivity.this, NearDongtaiActivity.class);
+			IntentUtil.intent(YirenziliaobianjiActivity.this, MyDongtaiActivity.class);
+			break;
+		case R.id.main_top_left:
+			finish();
 			break;
 		default:
 			break;

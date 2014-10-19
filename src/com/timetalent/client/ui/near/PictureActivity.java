@@ -20,7 +20,7 @@ import com.timetalent.common.util.IntentUtil;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class FansActivity extends BaseActivity implements OnClickListener {
+public class PictureActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private Button bt_login_next;
 	private TextView main_top_right;
@@ -30,7 +30,7 @@ public class FansActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.near_fansxiangqing);
+		setContentView(R.layout.near_getpic);
 		controller = AppController.getController(this);
 		findView();
 		initView();
@@ -42,7 +42,6 @@ public class FansActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
 	}
 
 	/**
@@ -52,7 +51,6 @@ public class FansActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		ldongtai.setOnClickListener(this);
 	}
 	
 	
@@ -60,7 +58,7 @@ public class FansActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.lneardongtai:
-			IntentUtil.intent(FansActivity.this, NearDongtaiActivity.class);
+			IntentUtil.intent(PictureActivity.this, NearDongtaiActivity.class);
 			break;
 		default:
 			break;

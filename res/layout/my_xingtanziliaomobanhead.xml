@@ -215,7 +215,6 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/lneardongtai"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginBottom="10dp"
@@ -236,7 +235,7 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="3dp"
                         android:layout_weight="1"
-                        android:text="她的动态" />
+                        android:text="我的动态" />
 
                     <TextView
                         android:id="@+id/textView6"
@@ -540,6 +539,42 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="172cm" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="5dp"
+                            android:background="@color/bggray"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView05"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="三围" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView06"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="89,60,95" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

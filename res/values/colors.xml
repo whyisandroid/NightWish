@@ -15,7 +15,7 @@
 	<color name = "new_color_1">#231815</color><!-- 浅黑 -->
 	<color name = "new_color_4">#CCCCCC</color><!-- 浅灰 -->
 	<color name = "new_color_5">#CD102C</color><!-- 浅红 -->
-	
+	<color name = "new_color_6">#3E8BD4</color><!--  蓝灰色-->
 	
 	<!-- 星字体颜色标准 -->
 	<color name = "color_1">#FFFFFF</color><!-- 纯白 -->

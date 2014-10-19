@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -31,10 +33,9 @@ import com.timetalent.common.util.IntentUtil;
  ******************************************/
 public class YirenActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private Button bt_login_next;
-	private TextView main_top_right;
-	
+	private LinearLayout ldongtai;
 	private ListView lzuopin;
+	private ImageView imgpic;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		lzuopin = (ListView) findViewById(R.id.lzuopin);
+		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
+		imgpic = (ImageView) findViewById(R.id.ImageView04);
 	}
 
 	/**
@@ -64,6 +67,8 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	private void initView() {
 		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenActivity.this));
 		setListViewHeightBasedOnChildren(lzuopin);
+		ldongtai.setOnClickListener(this);
+		imgpic.setOnClickListener(this);
 	}
 	
 	/**
@@ -96,7 +101,11 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.bt_login_next:
 			break;
-		case R.id.tv_login_forget_pwd:
+		case R.id.ImageView04:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.lneardongtai:
+			IntentUtil.intent(YirenActivity.this, NearDongtaiActivity.class);
 			break;
 		default:
 			break;

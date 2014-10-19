@@ -127,7 +127,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btchongzhi"
+            android:id="@+id/btchongzhifangshi"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"

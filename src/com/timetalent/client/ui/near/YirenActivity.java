@@ -3,10 +3,14 @@ package com.timetalent.client.ui.near;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -14,12 +18,11 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
-import com.timetalent.client.ui.GuideActivity;
-import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
@@ -35,9 +38,10 @@ import com.timetalent.common.util.IntentUtil;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class YirenActivity extends BaseActivity implements OnClickListener {
+public class YirenActivity extends BaseActivity implements OnClickListener,GestureDetector.OnDoubleTapListener, android.view.GestureDetector.OnGestureListener{
 	private AppController controller;
 	private LinearLayout ldongtai;
+	private ViewFlipper vfpics;
 	private ListView lzuopin;
 	private ImageView imgpic;
 	private TextView main_top_right;
@@ -45,6 +49,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	private ImageView img1;
 	private ImageView img2;
 	private ImageView img3;
+	private GestureDetector mGestureDetector;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,9 +66,11 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		mGestureDetector = new GestureDetector(this); 
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lzuopin = (ListView) findViewById(R.id.lzuopin);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
+		vfpics = (ViewFlipper) findViewById(R.id.vfpics);
 		imgpic = (ImageView) findViewById(R.id.ImageView04);
 		img1 = (ImageView) findViewById(R.id.imgduihua);
 		img2 = (ImageView) findViewById(R.id.imgguanzhu);
@@ -89,6 +96,21 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 		img1.setOnClickListener(this);
 		img2.setOnClickListener(this);
 		img3.setOnClickListener(this);
+		TranslateAnimation translateAnimation = new TranslateAnimation(
+				Animation.RELATIVE_TO_PARENT, -1.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f);
+		translateAnimation.setDuration(1000);
+		TranslateAnimation translateAnimation2 = new TranslateAnimation(
+				Animation.RELATIVE_TO_PARENT, 0.0f,
+				Animation.RELATIVE_TO_PARENT, 1.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f,
+				Animation.RELATIVE_TO_PARENT, 0.0f);
+		translateAnimation2.setDuration(1000);
+//		vfpics.setInAnimation(translateAnimation);
+//		vfpics.setOutAnimation(translateAnimation2);
+//		vfpics.startFlipping();
 	}
 	
 	/**
@@ -197,4 +219,107 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 			}
 		});
 	}
+	
+	@Override  
+    public boolean onTouchEvent(MotionEvent event) {  
+        return mGestureDetector.onTouchEvent(event);  
+    }
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onDown(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDown(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onFling(android.view.MotionEvent, android.view.MotionEvent, float, float)
+	 */
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {  
+        // TODO Auto-generated method stub  
+        if(e1.getX() > e2.getX() && Math.abs(e1.getY()-e2.getY())<200) {//向左滑动  
+            vfpics.setInAnimation(getApplicationContext(), R.anim.push_left_in);     
+            vfpics.setOutAnimation(getApplicationContext(), R.anim.push_left_out);     
+            vfpics.showNext();
+       }else if(e1.getX() < e2.getX()&& Math.abs(e1.getY()-e2.getY())<200) {//向右滑动  
+    	   vfpics.setInAnimation(getApplicationContext(), R.anim.push_right_in);     
+    	   vfpics.setOutAnimation(getApplicationContext(), R.anim.push_right_out);
+    	   vfpics.showPrevious();
+       }else {     
+           return false;     
+       }     
+       return true;  }
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onLongPress(android.view.MotionEvent)
+	 */
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float)
+	 */
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onShowPress(android.view.MotionEvent)
+	 */
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onSingleTapUp(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onDoubleTap(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDoubleTap(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onDoubleTapEvent(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDoubleTapEvent(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onSingleTapConfirmed(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onSingleTapConfirmed(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+            super.dispatchTouchEvent(ev);
+            return mGestureDetector.onTouchEvent(ev);
+    }
 }

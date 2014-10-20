@@ -40,7 +40,7 @@
                     android:layout_weight="1"
                     android:checked="true"
                     android:padding="7dp"
-                    android:background="@drawable/btn_l"
+                    android:background="@drawable/btn_squanbu0"
                     android:button="@null"
                     android:gravity="center"
                     android:textColor="@color/color_4"
@@ -52,7 +52,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="7dp"
-                    android:background="@drawable/btn_c"
+                    android:background="@drawable/btn_szhikannv"
                     android:button="@null"
                     android:gravity="center"
                     android:textColor="@color/color_4"
@@ -64,7 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:padding="7dp"
-                    android:background="@drawable/btn_r"
+                    android:background="@drawable/btn_szhikannan"
                     android:button="@null"
                     android:gravity="center"
                     android:textColor="@color/color_4"
@@ -89,128 +89,121 @@
             android:layout_marginRight="10dp"
             android:background="@color/new_color_4" >
 
-            <RadioGroup
+            <com.timetalent.client.ui.view.RadioGroup
                 android:id="@+id/RadioGroup03"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="horizontal" >
+                android:orientation="vertical" >
 
-                <RadioButton
-                    android:id="@+id/RadioButton08"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_l"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="全部"
-                    android:textColor="@color/color_4" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-                <RadioButton
-                    android:id="@+id/RadioButton10"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_c"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="10-16岁"
-                    android:textColor="@color/color_4" />
+                    <RadioButton
+                        android:id="@+id/RadioButton08"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_squanbu1"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="全部"
+                        android:textColor="@color/color_4" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton09"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_c"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="16-24岁"
-                    android:textColor="@color/color_4" />
+                    <RadioButton
+                        android:id="@+id/RadioButton10"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s10_16"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="10-16岁"
+                        android:textColor="@color/color_4" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton11"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_r"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="24-30岁"
-                    android:textColor="@color/color_4" />
-            </RadioGroup>
+                    <RadioButton
+                        android:id="@+id/RadioButton09"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s16_24"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="16-24岁"
+                        android:textColor="@color/color_4" />
 
-        </LinearLayout>
+                    <RadioButton
+                        android:id="@+id/RadioButton11"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s20_30"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="24-30岁"
+                        android:textColor="@color/color_4" />
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/new_color_4" >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
 
-            <RadioGroup
-                android:id="@+id/RadioGroup04"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal" >
+                    <RadioButton
+                        android:id="@+id/RadioButton12"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s30_36"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="30-36岁"
+                        android:textColor="@color/color_4" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton12"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_l"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="30-36岁"
-                    android:textColor="@color/color_4" />
+                    <RadioButton
+                        android:id="@+id/RadioButton14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s36_42"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="36-42岁"
+                        android:textColor="@color/color_4" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton14"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_c"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="36-42岁"
-                    android:textColor="@color/color_4" />
+                    <RadioButton
+                        android:id="@+id/RadioButton13"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s45_50"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="42-50岁"
+                        android:textColor="@color/color_4" />
 
-                <RadioButton
-                    android:id="@+id/RadioButton13"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_c"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="42-50岁"
-                    android:textColor="@color/color_4" />
+                    <RadioButton
+                        android:id="@+id/RadioButton15"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_s50_60"
+                        android:button="@null"
+                        android:gravity="center"
+                        android:padding="7dp"
+                        android:text="50-60岁"
+                        android:textColor="@color/color_4" />
+                </LinearLayout>
 
-                <RadioButton
-                    android:id="@+id/RadioButton15"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_r"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="50-60岁"
-                    android:textColor="@color/color_4" />
-            </RadioGroup>
+            </com.timetalent.client.ui.view.RadioGroup>
 
         </LinearLayout>
 
@@ -221,6 +214,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
             android:text="职业"
             android:textColor="@color/texthui" />
 
@@ -244,7 +238,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_l"
+                    android:background="@drawable/btn_squanbu2"
                     android:button="@null"
                     android:gravity="center"
                     android:padding="7dp"
@@ -256,7 +250,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_c"
+                    android:background="@drawable/btn_syiren"
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
@@ -269,7 +263,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_c"
+                    android:background="@drawable/btn_sxingtan"
                     android:button="@null"
                     android:gravity="center"
                     android:padding="7dp"
@@ -281,7 +275,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_r"
+                    android:background="@drawable/btn_sfensi"
                     android:button="@null"
                     android:gravity="center"
                     android:padding="7dp"
@@ -311,7 +305,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_l"
+                    android:background="@drawable/btn_sgeshou"
                     android:button="@null"
                     android:checked="true"
                     android:gravity="center"
@@ -324,7 +318,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_c"
+                    android:background="@drawable/btn_smote"
                     android:button="@null"
                     android:gravity="center"
                     android:padding="7dp"
@@ -336,7 +330,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="@drawable/btn_r"
+                    android:background="@drawable/btn_syanyuan"
                     android:button="@null"
                     android:gravity="center"
                     android:padding="7dp"
@@ -356,7 +350,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/btn_c"
+            android:background="@drawable/btn_shaixuanquxiao"
             android:text="取消"
             android:textColor="@color/color_4" />
 
@@ -365,7 +359,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@drawable/btn_c"
+            android:background="@drawable/btn_shaixuanok"
             android:text="确认"
             android:textColor="@color/new_color_5" />
     </LinearLayout>

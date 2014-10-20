@@ -29,6 +29,7 @@ import com.timetalent.client.ui.fragment.util.Background3;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -129,7 +130,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		case R.id.bt_login_next:
 			break;
 		case R.id.imageView2:
-			IntentUtil.intent(YirenziliaobianjiActivity.this, PictureActivity.class);
+			StringUtil.doGoToImg(YirenziliaobianjiActivity.this);
 			break;
 		case R.id.ImageView05:
 			LayoutInflater inflater = LayoutInflater.from(YirenziliaobianjiActivity.this);

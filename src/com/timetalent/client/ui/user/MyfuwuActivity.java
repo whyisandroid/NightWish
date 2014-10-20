@@ -18,7 +18,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.fuwubodyAdapter;
 import com.timetalent.client.ui.adapter.fuwuheadAdapter;
-import com.timetalent.client.ui.dynamic.AddDynamicActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 

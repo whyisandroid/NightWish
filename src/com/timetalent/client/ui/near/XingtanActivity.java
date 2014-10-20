@@ -41,8 +41,8 @@ public class XingtanActivity extends BaseActivity implements OnClickListener {
 	private ImageButton main_top_left;
 	private LinearLayout ldongtai;
 	private ListView ltonggao;
-	private ImageView img1;
-	private ImageView img2;
+	private LinearLayout img1;
+	private LinearLayout img2;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +63,8 @@ public class XingtanActivity extends BaseActivity implements OnClickListener {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		ltonggao = (ListView) findViewById(R.id.ltonggao);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
-		img1 = (ImageView) findViewById(R.id.imgduihua);
-		img2 = (ImageView) findViewById(R.id.imgguanzhu);
+		img1 = (LinearLayout) findViewById(R.id.imgduihua);
+		img2 = (LinearLayout) findViewById(R.id.imgguanzhu);
 	}
 
 	/**

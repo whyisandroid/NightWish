@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.user.MyDongtaiActivity;
 import com.timetalent.client.ui.user.MyfansActivity;
@@ -49,6 +50,11 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lmywork;
 	private LinearLayout lmyfuwu;
 	private LinearLayout lheimingdan;
+	
+	private LinearLayout lgengxin;
+	private LinearLayout lbangzhu;
+	private LinearLayout lqinglitupian;
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -81,6 +87,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lmywork.setOnClickListener(this);
 		lmyfuwu.setOnClickListener(this);
 		lheimingdan.setOnClickListener(this);
+		lgengxin.setOnClickListener(this);
+		lbangzhu.setOnClickListener(this);
+		lqinglitupian.setOnClickListener(this);
 
 	}
 
@@ -102,6 +111,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lmyfuwu = (LinearLayout) view.findViewById(R.id.lmyfuwu);
 		lheimingdan = (LinearLayout) view.findViewById(R.id.lheimingdan);
 
+		lgengxin = (LinearLayout) view.findViewById(R.id.lgengxin);
+		lbangzhu = (LinearLayout) view.findViewById(R.id.lbangzhu);
+		lqinglitupian = (LinearLayout) view.findViewById(R.id.lqinglitupian);
 	}
 
 	@Override
@@ -144,6 +156,15 @@ public class UserFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.lheimingdan:
 			IntentUtil.intent(this.mContext, MyheimingdanActivity.class);
+			break;
+		case R.id.lgengxin:
+			DialogUtil.showMessage(getActivity(), "已经是最新版本!");
+			break;
+		case R.id.lbangzhu:
+			DialogUtil.showMessage(getActivity(), "谢谢您的反馈!");
+			break;
+		case R.id.lqinglitupian:
+			DialogUtil.showMessage(getActivity(), "本地缓存图片已清除,清理缓存200M");
 			break;
 		default:
 			break;

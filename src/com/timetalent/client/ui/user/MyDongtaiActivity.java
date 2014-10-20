@@ -12,7 +12,7 @@ import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
-import com.timetalent.client.ui.dynamic.AddDynamicActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 

@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include layout="@layout/main_top_layout" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true" >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="25dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@string/work_price" />
+
+                    <TextView
+                        android:id="@+id/tv_offer_info"
+                        style="@style/chance_offer_text_style"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_toRightOf="@+id/tv_work_app"
+                        android:text="￥ 100.00"
+                        android:textColor="@color/main_red" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@string/work_address" />
+
+                    <TextView
+                        android:id="@+id/tv_offer_info"
+                        style="@style/chance_offer_text_style"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_toRightOf="@+id/tv_work_app"
+                        android:text="￥ 100.00"
+                        android:textColor="@color/color_5" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@string/work_context" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_work_app"
+                        android:contentDescription="工作内容"
+                        android:checkedButton="@+id/rb_1"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                            android:id="@+id/rb_1"
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:text="1" />
+
+                        <RadioButton
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:text="2" />
+
+                        <RadioButton
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:text="3" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@string/work_payment" />
+
+                    <RadioGroup
+                        android:id="@+id/radioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@+id/tv_work_app"
+                        android:contentDescription="工作内容"
+                        android:checkedButton="@+id/rb_content_1"
+                        android:orientation="horizontal" >
+
+                        <RadioButton
+                             android:id="@+id/rb_content_1"
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:checked="true"
+                            android:text="时结" />
+
+                        <RadioButton
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:checked="false"
+                            android:text="日结" />
+
+                        <RadioButton
+                            style="@style/radiobutton_style"
+                            android:layout_marginLeft="10dp"
+                            android:background="@drawable/btn_check_red"
+                            android:checked="false"
+                            android:text="月结" />
+                    </RadioGroup>
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+                   <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="13dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:layout_centerVertical="true"
+                        android:gravity="right"
+                        android:text="@string/work_num" />
+
+                   <EditText
+                       android:id="@+id/et_offer_num"
+                       android:layout_width="60dp"
+                       android:layout_height="wrap_content"
+                       android:layout_centerVertical="true"
+                       android:layout_toRightOf="@+id/tv_work_app"
+                       android:background="@null"
+                       android:ems="10"
+                       android:hint="@string/work_input"
+                       android:textColor="@color/color_2"
+                       android:textColorHint="@color/color_4"
+                       android:textSize="@dimen/new_size_2" />
+                   
+                    <TextView
+                         android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:background="@drawable/btn_red"
+                        android:layout_toRightOf="@+id/et_offer_num"
+                        android:text="按时"
+                        android:padding="10dp"
+                        android:textColor="@color/color_1" />
+
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+                
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="25dp" >
+
+                    <TextView
+                        android:id="@+id/tv_work_app"
+                        style="@style/chance_offer_text_style"
+                        android:layout_width="80dp"
+                        android:gravity="right"
+                        android:text="@string/work_data" />
+
+                    <TextView
+                        android:id="@+id/tv_work_data"
+                        style="@style/chance_offer_text_style"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_toRightOf="@+id/tv_work_app"
+                        android:text="2014-10-19"
+                        />
+                </RelativeLayout>
+                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="90dp"
+                    android:background="@color/spilt_line_color" />
+            </LinearLayout>
+            
+            
+            <LinearLayout
+                android:id="@+id/ll_work_apply"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_gravity="bottom"
+                android:background="@drawable/btn_green"
+                android:gravity="center"
+                android:orientation="vertical" >
+
+                 <TextView
+                     android:id="@+id/bt_chance_offer"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_gravity="center"
+                     android:text="@string/work_next"
+                     android:textColor="@color/main_white"
+                     android:textSize="@dimen/new_size_4" />
+
+            </LinearLayout>
+        </FrameLayout>
+    </ScrollView>
+
+</LinearLayout>

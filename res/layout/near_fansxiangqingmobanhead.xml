@@ -133,7 +133,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
 
             </LinearLayout>
@@ -209,7 +209,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
 
             </LinearLayout>
@@ -273,7 +273,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="200m"
-                        android:textColor="@color/bggray" />
+                        android:textColor="@color/spilt_line_color" />
 
                 </LinearLayout>
 
@@ -289,7 +289,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
             </LinearLayout>
 
@@ -299,224 +299,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:orientation="vertical" >
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView19"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="姓名" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView20"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="吴沐熙" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView17"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="昵称" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView18"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Vicky" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView15"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="年龄" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView16"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="25" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView13"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="星座" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView14"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="双子座" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView11"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="职业" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView12"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="演员" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView09"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="家乡" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="湖南省阮江市" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
+<LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
@@ -531,27 +314,229 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
                         <TextView
                             android:id="@+id/TextView08"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="172cm" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="12dp" >
 
+                    <TextView
+                        android:id="@+id/TextView19"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="姓名" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView20"
+                            style="@style/main_color3_style"
+                            android:text="吴沐熙" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="昵称" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView18"
+                            style="@style/main_color3_style"
+                            android:text="Vicky" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="年龄" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView16"
+                            style="@style/main_color3_style"
+                            android:text="25" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="星座" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView14"
+                            style="@style/main_color3_style"
+                            android:text="双子座" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="职业" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView12"
+                            style="@style/main_color3_style"
+                            android:text="演员" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+<LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp" >
+
+                    <TextView
+                        android:id="@+id/TextView09"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="家乡" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_other_xlarge"
+                        android:layout_weight="1"
+                        android:orientation="vertical" >
+
+                        <TextView
+                            android:id="@+id/TextView10"
+                            style="@style/main_color3_style"
+                            android:text="湖南省阮江市" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@color/spilt_line_color"
+                            android:orientation="vertical" >
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

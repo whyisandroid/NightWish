@@ -22,7 +22,8 @@
             android:paddingTop="20dip"
             android:text="提示"
             android:visibility="gone"
-            android:textSize="18sp" />
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3" />
 
         <TextView
             android:id="@+id/tv_dialog_message"
@@ -62,7 +63,7 @@
             android:layout_weight="1"
             android:background="@drawable/bt_dialog_right"
             android:text="不放弃"
-            android:textColor="@color/color_2"
+            android:textColor="@color/main_red"
             android:textSize="15sp"
             />
     </LinearLayout>

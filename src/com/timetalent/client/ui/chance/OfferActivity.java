@@ -30,6 +30,8 @@ public class OfferActivity extends BaseActivity implements OnClickListener {
 	private TextView tv_chance_data2;
 	private RelativeLayout rl_chance_data3;//工作结束日期
 	private TextView tv_chance_data3;
+	
+	private Button bt_chance_offer_picture;
 	 
 	
 	@Override
@@ -54,6 +56,7 @@ public class OfferActivity extends BaseActivity implements OnClickListener {
 		rl_chance_data2 = (RelativeLayout)findViewById(R.id.rl_chance_data2);
 		tv_chance_data3 = (TextView)findViewById(R.id.tv_chance_data3);
 		rl_chance_data3 = (RelativeLayout)findViewById(R.id.rl_chance_data3);
+		bt_chance_offer_picture = (Button)findViewById(R.id.bt_chance_offer_picture);
 	}
 	
 	/**
@@ -68,6 +71,7 @@ public class OfferActivity extends BaseActivity implements OnClickListener {
 		rl_chance_data1.setOnClickListener(this);
 		rl_chance_data2.setOnClickListener(this);
 		rl_chance_data3.setOnClickListener(this);
+		bt_chance_offer_picture.setOnClickListener(this);
 	}
 	@Override
 	public void onClick(View v) {
@@ -84,6 +88,10 @@ public class OfferActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.rl_chance_data3:
 			StringUtil.getData(OfferActivity.this,tv_chance_data3);
+			break;
+			
+		case R.id.bt_chance_offer_picture:
+			StringUtil.doGoToImg(OfferActivity.this);
 			break;
 		default:
 			break;

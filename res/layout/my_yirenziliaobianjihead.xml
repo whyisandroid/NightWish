@@ -131,7 +131,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
 
             </LinearLayout>
@@ -207,7 +207,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
 
             </LinearLayout>
@@ -272,7 +272,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@color/bggray"
+                android:background="@color/spilt_line_color"
                 android:orientation="vertical" >
             </LinearLayout>
 
@@ -317,7 +317,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -357,7 +357,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -394,7 +394,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -430,7 +430,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -470,7 +470,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -510,7 +510,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -550,7 +550,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -587,7 +587,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -622,7 +622,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -662,7 +662,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>
@@ -702,7 +702,7 @@
                             android:layout_height="1dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="5dp"
-                            android:background="@color/bggray"
+                            android:background="@color/spilt_line_color"
                             android:orientation="vertical" >
                         </LinearLayout>
                     </LinearLayout>

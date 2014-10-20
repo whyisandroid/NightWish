@@ -44,5 +44,23 @@
         <item name="android:padding">@dimen/dimen_small</item>  
         <item name = "android:textColor">@color/tabs_text_color</item>
     </style>
+    
+     <style name="radiobutton_style">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:textColor">@color/btn_check_red_color</item>
+        <item name="android:textSize">@dimen/new_size_3</item>
+        <item name="android:button">@null</item>
+        <item name="android:gravity">center</item>
+    </style>
+    
+     <style name="main_color3_style">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/color_3</item>
+        <item name="android:textSize">@dimen/new_size_2</item>
+        <item name="android:textColorHint">@color/color_4</item>
+        <item name = "android:singleLine">true</item>
+    </style>
 
 </resources>

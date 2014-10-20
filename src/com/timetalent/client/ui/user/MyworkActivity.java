@@ -20,7 +20,7 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.WorkAdapter;
 import com.timetalent.client.ui.adapter.YaoqingAdapter;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
-import com.timetalent.client.ui.dynamic.AddDynamicActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 

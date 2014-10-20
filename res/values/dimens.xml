@@ -4,6 +4,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <!--  间距的设置 -->
+    <dimen name = "dimen_other_xlarge">32dp</dimen>
 	<dimen name = "dimen_other_large">28dp</dimen>
 	<dimen name = "dimen_xlarge">25dp</dimen>
 	<dimen name = "dimen_large">20dp</dimen>

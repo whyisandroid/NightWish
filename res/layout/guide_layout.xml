@@ -6,7 +6,7 @@
         android:id="@+id/guide_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/bggray" 
+        android:background="@color/main_grey" 
         >
 
       <LinearLayout

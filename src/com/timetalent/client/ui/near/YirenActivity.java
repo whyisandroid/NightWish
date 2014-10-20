@@ -21,6 +21,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.message.MessageChatActivity;
@@ -134,7 +135,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener {
 			showMessageTwo(YirenActivity.this, "关注？", "完成");
 			break;
 		case R.id.imgyuyue:
-			IntentUtil.intent(YirenActivity.this, MessageChatActivity.class);
+			IntentUtil.intent(YirenActivity.this, WorkAppointmentActivity.class);
 			break;
 		default:
 			break;

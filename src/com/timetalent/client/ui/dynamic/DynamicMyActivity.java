@@ -1,9 +1,12 @@
-package com.timetalent.client.ui.user;
+package com.timetalent.client.ui.dynamic;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -12,31 +15,28 @@ import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
-import com.timetalent.client.ui.adapter.HeimingdanAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
- * 类描述： 动态界面
- * 类名称：NearDongtaiActivity  
+ * 类描述： 我的动态
+ * 类名称：DynamicMyActivity  
  * @version: 1.0
  * @author: why
- * @time: 2014-10-10 下午6:32:12 
+ * @time: 2014-10-10 下午6:31:03 
  ******************************************/
-public class MyheimingdanActivity extends BaseActivity implements OnClickListener {
+public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
-	private ImageButton main_top_left;
-	private ListView lheimingdan;
+	private ListView lv_dynamic;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_heimingdan);
 		controller = AppController.getController(this);
+		setContentView(R.layout.dynamic_fragment);
 		findView();
 		initView();
 	}
@@ -47,8 +47,8 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		lheimingdan = (ListView) findViewById(R.id.lheimingdan);
+		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
+		main_top_right = (TextView)findViewById(R.id.main_top_right);
 	}
 
 	/**
@@ -58,24 +58,22 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		((TextView)this.findViewById(R.id.main_top_title)).setText("黑名单");
-//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
-		main_top_left.setVisibility(View.VISIBLE);
-//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
-		main_top_left.setOnClickListener(this);
-		lheimingdan.setAdapter(new HeimingdanAdapter(MyheimingdanActivity.this));
+		((TextView)findViewById(R.id.main_top_title)).setText("我的动态");
+		UIUtils.setDrawableLeft(DynamicMyActivity.this,main_top_right,R.drawable.d3_06);
+		main_top_right.setOnClickListener(this);
+		
+		DynamicAdapter adapter = new DynamicAdapter(this);
+		lv_dynamic.setAdapter(adapter);
 	}
-	
 	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.main_top_left:
-			finish();
+		case R.id.main_top_right:
+			IntentUtil.intent(DynamicMyActivity.this, DynamicAddActivity.class);
 			break;
 		default:
 			break;
 		}
 	}
-
 }

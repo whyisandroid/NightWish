@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -20,7 +21,7 @@ import com.timetalent.common.util.ToastUtil;
  * @author: wanghy
  * @time: 2014-10-12 下午8:25:54 
  ******************************************/
-public class AddDynamicActivity extends BaseActivity implements OnClickListener {
+public class DynamicAddActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private TextView main_top_left2;
@@ -71,14 +72,14 @@ public class AddDynamicActivity extends BaseActivity implements OnClickListener 
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_top_right:
-			ToastUtil.showToast(AddDynamicActivity.this, "发表成功", ToastUtil.LENGTH_LONG);
-			AddDynamicActivity.this.finish();
+			ToastUtil.showToast(DynamicAddActivity.this, "发表成功", ToastUtil.LENGTH_LONG);
+			DynamicAddActivity.this.finish();
 			break;
 		case R.id.main_top_left2:
-			AddDynamicActivity.this.finish();
+			IntentUtil.intent(DynamicAddActivity.this, DynamicMyActivity.class);
 			break;
 		case R.id.iv_dynamic_add:
-			StringUtil.doGoToImg(AddDynamicActivity.this);
+			StringUtil.doGoToImg(DynamicAddActivity.this);
 			break;
 		default:
 			break;

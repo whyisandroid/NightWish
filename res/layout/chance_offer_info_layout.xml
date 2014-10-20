@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:background="@color/bggray"
+                android:background="@color/color_3"
                 android:padding="10dp"
                 android:text="职位买点：薪酬高 福利好，同事nice环境棒"
                 android:textColor="@color/color_5" />
@@ -271,7 +271,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawableLeft="@drawable/c14_13"
+                        android:drawableLeft="@drawable/c14_07"
+                        android:drawablePadding="3dp"
                         android:text="我要报名"
                         android:textColor="@color/main_white"
                         android:textSize="@dimen/new_size_4" />
@@ -290,6 +291,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
+                        android:drawablePadding="3dp"
                         android:drawableLeft="@drawable/c14_13"
                         android:text="@string/chance_text16"
                         android:textColor="@color/main_white"

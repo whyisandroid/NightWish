@@ -4,23 +4,53 @@
     android:layout_height="wrap_content"
     android:orientation="vertical" >
 
+    
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:weightSum="2" >
 
-        <ImageView
-            android:id="@+id/imgduihua"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/f10_52" />
+                <LinearLayout
+                     android:id="@+id/imgduihua"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_blank"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
 
-        <ImageView
-            android:id="@+id/imgguanzhu"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/f10_53" />
-    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawableLeft="@drawable/c14_13"
+                        android:drawablePadding="3dp"
+                        android:text="对话"
+                        android:textColor="@color/main_white"
+                        android:textSize="@dimen/new_size_4" />
+                </LinearLayout>
+
+                <LinearLayout
+                     android:id="@+id/imgguanzhu"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_red"
+                    android:gravity="center"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:drawablePadding="3dp"
+                        android:drawableLeft="@drawable/c14_07"
+                        android:text="关注"
+                        android:textColor="@color/main_white"
+                        android:textSize="@dimen/new_size_4" />
+                </LinearLayout>
+            </LinearLayout>
 
 </LinearLayout>
+

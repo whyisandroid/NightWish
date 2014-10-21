@@ -1,6 +1,5 @@
 package com.timetalent.client.ui.login;
 
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,8 +11,8 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ToastUtil;
-import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -71,8 +70,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bt_login_next:
-			IntentUtil.intent(LoginActivity.this, MainFragmentActivity.class);
-			ToastUtil.showToast(LoginActivity.this, "登陆成功",ToastUtil.LENGTH_LONG);
+			if (invaild()) {
+				login();
+			}
 			break;
 		case R.id.tv_login_forget_pwd:
 			IntentUtil.intent(LoginActivity.this, FindpwdFirstActivity.class);
@@ -80,6 +80,42 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		default:
 			break;
 		}
+	}
+	
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-10-21 上午11:17:14
+	  */
+	private void login() {
+		setValue();
+		ProgressDialogUtil.showProgressDialog(this, "登录中…", false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				controller.login();
+				ProgressDialogUtil.closeProgressDialog();
+			}
+		}).start();
+	}
+	
+	/**
+	  * 方法描述：登录 需要的值
+	  * @author: why
+	  * @time: 2014-10-21 上午11:17:38
+	  */
+	private void setValue() {
+		
+	}
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-10-21 上午11:17:11
+	  */
+	private boolean invaild() {
+		return true;
 	}
 
 }

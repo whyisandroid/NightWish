@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 public class Md5 {
 	public static String digist(String text) {
 		String result = "";
-
 		try {
 			MessageDigest md = MessageDigest.getInstance("md5");
 			md.update(text.getBytes());

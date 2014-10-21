@@ -45,8 +45,8 @@ public class AppServiceImpl implements AppService {
 
 		Request<LoginResp> request = new Request<LoginResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("userlogin", "111"));
-		nameValuePairs.add(new BasicNameValuePair("password", "111"));
+		nameValuePairs.add(new BasicNameValuePair("userlogin", "abc"));
+		nameValuePairs.add(new BasicNameValuePair("password", "abc"));
 		nameValuePairs.add(new BasicNameValuePair("isdata", "true"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_MOBLIE_LOGIN);

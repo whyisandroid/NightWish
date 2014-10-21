@@ -2,9 +2,12 @@ package com.timetalent.common.net;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.http.RequestParams;
@@ -16,6 +19,7 @@ import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.util.Json_U;
 import com.timetalent.common.util.LogUtil;
+import com.timetalent.common.util.aes.MD5Test;
 
 /******************************************
  * 类描述： XUtils 框架实现网络处理 类名称：XUtilsSocketImpl
@@ -39,7 +43,6 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			throw new BusinessException(new ErrorMessage("网络无法连接"));
 		}
 		String value = "";
-
 		HttpUtils httpUtils = getHttpUtils();
 		try {
 			RequestParams params = new RequestParams();
@@ -48,12 +51,14 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			if (nameValuePairs == null) {
 				nameValuePairs = new ArrayList<NameValuePair>();
 			}
-			params.addQueryStringParameter(nameValuePairs);
+			String sing = md5Sign(nameValuePairs); 
+			nameValuePairs.add(new BasicNameValuePair("_sign",sing));
+			params.addBodyParameter(nameValuePairs);
 			LogUtil.Log("sendHttp", request.getUrl() + nameValuePairs.toString());
 			ResponseStream responseStream = httpUtils.sendSync(HttpRequest.HttpMethod.POST,
 					request.getUrl(), params);
 
-			value = responseStream.readString();
+			value = responseStream.readString();  
 			LogUtil.Log("XUtilsSocketImpl", value);
 		} catch (com.lidroid.xutils.exception.HttpException e) {
 			e.printStackTrace();
@@ -67,6 +72,24 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
 		}
 		return Json_U.parseJsonToObj(value, request.getR_calzz());
+	}
+
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	 * @throws IOException 
+	  * @time: 2014-10-21 下午8:05:52
+	  */
+	private String md5Sign(List<NameValuePair> nameValuePairs) throws IOException {
+		HashMap<String, String> map = new HashMap<String, String>();
+		for (int i = 0; i < nameValuePairs.size(); i++) {
+			NameValuePair value = nameValuePairs.get(i);
+			map.put(value.getName(),value.getValue());
+		}
+		return MD5Test.getSignature(map, "999999");
 	}
 
 

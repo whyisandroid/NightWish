@@ -6,7 +6,10 @@ import android.os.Message;
 import android.text.TextUtils;
 
 import com.timetalent.client.service.impl.AppServiceImpl;
+import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ToastUtil;
 
 /******************************************
@@ -130,7 +133,9 @@ public class AppController {
 	public void login() {
 		try {
 			service.login();
-			AppManager.getAppManager().finishActivity(currentActivity);
+			//AppManager.getAppManager().finishActivity(currentActivity);
+			IntentUtil.intent(currentActivity, MainFragmentActivity.class);
+			handler.obtainMessage(HANDLER_TOAST, "登陆成功").sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

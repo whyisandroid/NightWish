@@ -8,6 +8,9 @@
         android:minSdkVersion="10"
         android:targetSdkVersion="19" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name="com.timetalent.client.TimeTalentApplication"
         android:allowBackup="true"
@@ -20,12 +23,11 @@
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-            
-     <activity
+        <activity
             android:name=".ui.BaseActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
@@ -38,14 +40,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-             <activity
+        <activity
             android:name=".ui.BaseFragmentActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-         <activity
+        <activity
             android:name=".ui.GuideActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
@@ -157,14 +159,14 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-                <activity
+        <activity
             android:name=".ui.user.MyDongtaiActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-                <activity
+        <activity
             android:name=".ui.user.MyfansActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
@@ -269,7 +271,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
         <activity
             android:name=".ui.chance.OfferActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
@@ -277,7 +278,6 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
         <activity
             android:name=".ui.chance.OfferDetailActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
@@ -285,24 +285,21 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
-         <activity
+        <activity
             android:name=".ui.message.MessageChatActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
-         <activity
+        <activity
             android:name=".ui.chance.OfferInfoActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" >
         </activity>
-        
-          <activity
+        <activity
             android:name=".ui.chance.WorkAppointmentActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"

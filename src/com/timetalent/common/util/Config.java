@@ -22,12 +22,10 @@ public class Config {
 	/** 临时文件保存路径. */
 	// 下载包保存路径
 	public static final String PATH_SDCARD = Environment.getExternalStorageDirectory()
-			.getAbsolutePath() + File.separator + "CreditWealth";
+			.getAbsolutePath() + File.separator + "TimeTalent";
 
-	// LOG
-	public static final String PATH_LOG = PATH_SDCARD + File.separator + "Log";
 	
-	public final static String HTTP_USER_MOBLIE_LOGIN = MY_SERVICE+ "/p2puserController/p2puserLogin.action"; // 登录接口
+	public final static String HTTP_USER_MOBLIE_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 
 	
 }

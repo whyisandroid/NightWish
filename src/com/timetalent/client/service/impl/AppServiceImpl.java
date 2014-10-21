@@ -45,20 +45,21 @@ public class AppServiceImpl implements AppService {
 
 		Request<LoginResp> request = new Request<LoginResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("marketId", "111"));
+		nameValuePairs.add(new BasicNameValuePair("userlogin", "111"));
+		nameValuePairs.add(new BasicNameValuePair("password", "111"));
+		nameValuePairs.add(new BasicNameValuePair("isdata", "true"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_MOBLIE_LOGIN);
 		request.setR_calzz(LoginResp.class);
 		LoginResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
-		if ("success".equals(resp.getResult())) {
+		if ("1".equals(resp.getStatus())) {
 			TimeTalentApplication.getInstance().setLogin(true);
 			// 登录成功 存储 账户
-			
 			if (resp.getData() != null) {
 				context.addBusinessData("loginData", resp.getData());
 			}
-		} else if ("failure".equals(resp.getResult())) {
-			throw new BusinessException(new ErrorMessage(resp.getMsg()));
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 }

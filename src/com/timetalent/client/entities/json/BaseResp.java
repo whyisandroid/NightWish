@@ -10,52 +10,30 @@ package com.timetalent.client.entities.json;
  ******************************************/
 public class BaseResp {
 	
-	private String result;
-	private String errorCode;
-	private String msg;
+	private String status;
+	private String text;
 	/**
-	 * @return result : return the property result.
+	 * @return status : return the property status.
 	 */
-	public String getResult() {
-		return result;
+	public String getStatus() {
+		return status;
 	}
 	/**
-	 * @param result : set the property result.
+	 * @param status : set the property status.
 	 */
-	public void setResult(String result) {
-		this.result = result;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	/**
-	 * @return errorCode : return the property errorCode.
+	 * @return text : return the property text.
 	 */
-	public String getErrorCode() {
-		return errorCode;
+	public String getText() {
+		return text;
 	}
 	/**
-	 * @param errorCode : set the property errorCode.
+	 * @param text : set the property text.
 	 */
-	public void setErrorCode(String errorCode) {
-		this.errorCode = errorCode;
-	}
-	/**
-	 * @return msg : return the property msg.
-	 */
-	public String getMsg() {
-		return msg;
-	}
-	/**
-	 * @param msg : set the property msg.
-	 */
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "BaseResp [result=" + result + ", errorCode=" + errorCode
-				+ ", msg=" + msg + "]";
+	public void setText(String text) {
+		this.text = text;
 	}
 }

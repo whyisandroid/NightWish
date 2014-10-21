@@ -146,7 +146,6 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 				public void onClick(View v) {
 					imgpic1.setImageResource(R.drawable.d11_03);
 					pop.dismiss();
-					
 				}
 			});
 			int[] location = new int[2];  

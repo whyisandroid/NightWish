@@ -9,11 +9,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.ShareMessage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ShareUtil;
 import com.timetalent.common.util.ToastUtil;
 
 
@@ -70,7 +72,9 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_top_right:
-			ToastUtil.showToast(OfferDetailActivity.this, "分享有钱赚", ToastUtil.LENGTH_LONG);
+			ShareMessage share = new  ShareMessage("今年杨坤20岁演唱会报名开始");
+			ShareUtil.showShare(OfferDetailActivity.this, share);
+			//ToastUtil.showToast(OfferDetailActivity.this, "分享有钱赚", ToastUtil.LENGTH_LONG);
 			break;
 		case R.id.bt_chance_offer:
 			IntentUtil.intent(OfferDetailActivity.this, MessageChatActivity.class);

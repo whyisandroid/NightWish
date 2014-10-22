@@ -45,7 +45,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_work);
+		setContentView(R.layout.my_workyiren);
 		controller = AppController.getController(this);
 		findView();
 		initView();

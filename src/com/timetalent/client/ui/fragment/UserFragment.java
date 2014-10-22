@@ -22,6 +22,7 @@ import com.timetalent.client.ui.user.MyguanzhuActivity;
 import com.timetalent.client.ui.user.MyhaoyouMainActivity;
 import com.timetalent.client.ui.user.MyheimingdanActivity;
 import com.timetalent.client.ui.user.MyqianbaoActivity;
+import com.timetalent.client.ui.user.MyrenzhengActivity;
 import com.timetalent.client.ui.user.MytuijianActivity;
 import com.timetalent.client.ui.user.MyworkActivity;
 import com.timetalent.client.ui.user.YirenziliaoActivity;
@@ -47,10 +48,10 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lmyguanzhu;
 	private LinearLayout lmyfans;
 	private LinearLayout lmyqianbao;
+	private LinearLayout lrenzheng;
 	private LinearLayout lmywork;
 	private LinearLayout lmyfuwu;
 	private LinearLayout lheimingdan;
-	
 	private LinearLayout lgengxin;
 	private LinearLayout lbangzhu;
 	private LinearLayout lqinglitupian;
@@ -90,7 +91,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lgengxin.setOnClickListener(this);
 		lbangzhu.setOnClickListener(this);
 		lqinglitupian.setOnClickListener(this);
-
+		lrenzheng.setOnClickListener(this);
 	}
 
 	/**
@@ -109,6 +110,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lmyqianbao = (LinearLayout) view.findViewById(R.id.lmyqianbao);
 		lmywork = (LinearLayout) view.findViewById(R.id.lmywork);
 		lmyfuwu = (LinearLayout) view.findViewById(R.id.lmyfuwu);
+		lrenzheng = (LinearLayout) view.findViewById(R.id.lmyrenzheng);
 		lheimingdan = (LinearLayout) view.findViewById(R.id.lheimingdan);
 
 		lgengxin = (LinearLayout) view.findViewById(R.id.lgengxin);
@@ -153,6 +155,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.lmyfuwu:
 			IntentUtil.intent(this.mContext, MyfuwuActivity.class);
+			break;
+		case R.id.lmyrenzheng:
+			IntentUtil.intent(this.mContext, MyrenzhengActivity.class);
 			break;
 		case R.id.lheimingdan:
 			IntentUtil.intent(this.mContext, MyheimingdanActivity.class);

@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:background="@color/main_white"
     android:gravity="center_vertical" >
 
     <ImageView
@@ -16,24 +17,28 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
+        android:background="@color/main_white"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/TextView02"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="片名:" />
 
         <TextView
             android:id="@+id/TextView01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="角色:" />
 
         <TextView
             android:id="@+id/TextView03"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="时间:" />
     </LinearLayout>
 
@@ -41,24 +46,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="10dp"
+        android:background="@color/main_white"
         android:orientation="vertical" >
 
         <TextView
             android:id="@+id/tvzuopinname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="一夜惊喜" />
 
         <TextView
             android:id="@+id/tvzuopinjuese"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="米雪" />
 
         <TextView
             android:id="@+id/tvzuopintime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/main_white"
             android:text="2013年8月9日" />
 
     </LinearLayout>

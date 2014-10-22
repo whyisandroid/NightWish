@@ -55,7 +55,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/btn_chance_new"
+                        android:background="@drawable/btn_mote"
                         android:button="@null"
                         android:textColor="@color/color_4"
                         android:textSize="@dimen/new_size_2" />
@@ -65,7 +65,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/btn_chance_new"
+                        android:background="@drawable/btn_geshou"
                         android:button="@null"
                         android:textColor="@color/color_4"
                         android:textSize="@dimen/new_size_2" />
@@ -75,7 +75,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:background="@drawable/btn_chance_hot"
+                        android:background="@drawable/btn_yanyuan"
                         android:button="@null"
                         android:checked="true"
                         android:textColor="@color/color_4"
@@ -95,6 +95,38 @@
                 android:layout_marginTop="20dp"
                 android:numColumns="3" >
             </GridView>
+            <RadioGroup
+                    android:id="@+id/radioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="职位"
+                    android:orientation="horizontal" >
+
+                    <RadioButton
+                        android:id="@+id/radioButton4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_anshi"
+                        android:button="@null"
+                        android:textColor="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton5"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_anjian"
+                        android:button="@null"
+                        android:checked="true"
+                        android:textColor="@color/color_4"
+                        android:textSize="@dimen/new_size_2" />
+                </RadioGroup>
         </LinearLayout>
     </ScrollView>
 

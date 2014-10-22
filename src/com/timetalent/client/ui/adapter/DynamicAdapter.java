@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -67,6 +68,11 @@ public class DynamicAdapter extends BaseAdapter{
 		ImageView iv_dynamic_3 = (ImageView)convertView.findViewById(R.id.iv_dynamic_3);
 		ImageView iv_dynamic_good = (ImageView)convertView.findViewById(R.id.iv_dynamic_good);
 		final TextView tv_dynamic_add_1 = (TextView)convertView.findViewById(R.id.tv_dynamic_add_1);
+		
+		ImageView iv_dynamic_message = (ImageView)convertView.findViewById(R.id.iv_dynamic_message);
+		final LinearLayout ll_dynamic_message = (LinearLayout)convertView.findViewById(R.id.ll_dynamic_message);
+		
+		
 		iv_dynamic_head.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -88,6 +94,14 @@ public class DynamicAdapter extends BaseAdapter{
 				}
 			}
 		);
+		
+		iv_dynamic_message.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				ll_dynamic_message.setVisibility(View.VISIBLE);
+			}
+		});
 		return convertView;
 	}
 	private OnClickListener ivListener= new OnClickListener() {

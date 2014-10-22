@@ -42,11 +42,13 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void login() throws BusinessException {
-
+		String account = (String)context.getBusinessData("user.account");
+		String password = (String)context.getBusinessData("user.password");
 		Request<LoginResp> request = new Request<LoginResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("userlogin", "abc"));
-		nameValuePairs.add(new BasicNameValuePair("password", "abc"));
+		
+		nameValuePairs.add(new BasicNameValuePair("userlogin", account));
+		nameValuePairs.add(new BasicNameValuePair("password", password));
 		nameValuePairs.add(new BasicNameValuePair("isdata", "true"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_MOBLIE_LOGIN);

@@ -133,7 +133,6 @@ public class AppController {
 	public void login() {
 		try {
 			service.login();
-			//AppManager.getAppManager().finishActivity(currentActivity);
 			IntentUtil.intent(currentActivity, MainFragmentActivity.class);
 			handler.obtainMessage(HANDLER_TOAST, "登陆成功").sendToTarget();
 		} catch (BusinessException e) {

@@ -28,7 +28,7 @@
                 android:paddingTop="30dp" >
 
                 <AutoCompleteTextView
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_login_username"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
@@ -36,6 +36,7 @@
                     android:drawablePadding="10dp"
                     android:ems="20"
                     android:focusable="true"
+                    android:singleLine="true"
                     android:hint="@string/login_hint_username"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" >
@@ -51,13 +52,14 @@
                     android:background="@color/spilt_line_color" />
 
                 <EditText
-                    android:id="@+id/et_password"
+                    android:id="@+id/et_login_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:drawableLeft="@drawable/password_draw_xml"
                     android:drawablePadding="10dp"
                     android:ems="20"
+                     android:singleLine="true"
                     android:hint="@string/login_hint_pwd"
                     android:inputType="textPassword"
                     android:textColorHint="@color/color_4"

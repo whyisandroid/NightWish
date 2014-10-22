@@ -79,7 +79,7 @@ public class StringUtil {
 	}
 	
 	/**
-	  * 方法描述：TODO
+	  * 方法描述：获取本地相册
 	  * @author: wanghy
 	  * @time: 2014-10-19 下午4:11:46
 	  */
@@ -88,5 +88,38 @@ public class StringUtil {
 		intent.setAction(Intent.ACTION_PICK);
 		intent.setType("image/*");
 		mContext.startActivity(intent);
+	}
+	
+	
+	
+	
+	/**
+	 *  账号验证
+	 * @param s
+	 * @return
+	 */
+	public static String accountName(String s){
+		String validation = "";
+		if (TextUtils.isEmpty(s)) {
+			validation ="请输入账号"; 
+		}else if (!RegExpUtil.isMobileNO(s) && !RegExpUtil.emailValidation(s)) {
+			validation = "请输入正确账号"; 
+		}
+		return validation;
+	}
+	
+	/**
+	 * 验证密码
+	 * @param s
+	 * @return
+	 */
+	public static String pwd(String s){
+		String validation = "";
+		if (TextUtils.isEmpty(s)) {
+			validation = "请输入密码"; 
+		}else if (s.length() > 16 || s.length() < 6) {
+			validation =  "请输入密码（6-16位之间）"; 
+		}
+		return validation;
 	}
 }

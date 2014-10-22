@@ -15,7 +15,7 @@ import android.widget.ListView;
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.ChanceAdapter;
-import com.timetalent.client.ui.chance.OfferActivity;
+import com.timetalent.client.ui.chance.OfferAddActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.common.util.IntentUtil;
 
@@ -72,7 +72,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_top_find_right:
-			IntentUtil.intent(getActivity(), OfferActivity.class);
+			IntentUtil.intent(getActivity(), OfferAddActivity.class);
 			break;
 		default:
 			break;

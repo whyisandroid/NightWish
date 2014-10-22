@@ -58,7 +58,7 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		((TextView)findViewById(R.id.main_top_title)).setText("我的动态");
+		((TextView)findViewById(R.id.main_top_title)).setText("动态");
 		UIUtils.setDrawableLeft(DynamicMyActivity.this,main_top_right,R.drawable.d3_06);
 		main_top_right.setOnClickListener(this);
 		

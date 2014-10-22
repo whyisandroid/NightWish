@@ -63,8 +63,8 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		et_login_password.setText("abc");
-		et_login_username.setText("abc");
+		//et_login_password.setText("abc");
+		//et_login_username.setText("abc");
 		((TextView)findViewById(R.id.main_top_title)).setText("用户登录");
 		main_top_right.setVisibility(View.VISIBLE);
 		main_top_right.setText("");
@@ -131,12 +131,12 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		String password = et_login_password.getText().toString().trim();
 		String accountValidate = StringUtil.accountName(account);
 		if(!TextUtils.isEmpty(accountValidate)){
-			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
+			//ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return true;
 		} 
 		String passwordValidate = StringUtil.pwd(password);
 		if (!TextUtils.isEmpty(passwordValidate)) {
-			ToastUtil.showToast(this, passwordValidate, ToastUtil.LENGTH_LONG);
+			//ToastUtil.showToast(this, passwordValidate, ToastUtil.LENGTH_LONG);
 			return true;
 		}
 		return true;

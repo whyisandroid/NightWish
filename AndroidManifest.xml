@@ -284,7 +284,7 @@
             android:windowSoftInputMode="adjustPan" >
         </activity>
         <activity
-            android:name=".ui.chance.OfferActivity"
+            android:name=".ui.chance.OfferAddActivity"
             android:configChanges="keyboard|keyboardHidden|orientation"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"

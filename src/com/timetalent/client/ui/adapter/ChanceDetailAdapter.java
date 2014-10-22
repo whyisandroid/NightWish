@@ -9,8 +9,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -68,8 +70,43 @@ public class ChanceDetailAdapter extends BaseAdapter{
 		
 		@Override
 		public void onClick(View v) {
-			IntentUtil.intent(mContext, OfferInfoActivity.class);
+			showMessageTwo(mContext, "您要报名: 二人转演员?", "报名成功");
 		}
 	};
+	
+	
+	/**
+	  * 方法描述：左右两个按钮
+	  * @param activity
+	  * @author: why
+	  * @time: 2014-8-13 下午7:43:12
+	  */
+	private void showMessageTwo(final Context context,String message,final String toast) {
+		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
+		dialog.setMessage(message);
+		dialog.setLeft("取消", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+			}
+		});
+		dialog.setRight("确定", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+				final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
+				dialog.setMessage("您已经报名了： 二人转演员");
+				dialog.setOne("确认",new OnClickListener() {
+					@Override
+					public void onClick(View v) {
+						IntentUtil.intent(mContext, MainFragmentActivity.class);
+						dialog.closeDialog();
+					}
+				});
+			}
+		});
+	}
 
 }

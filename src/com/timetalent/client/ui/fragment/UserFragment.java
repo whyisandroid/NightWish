@@ -59,7 +59,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
-		view = inflater.inflate(R.layout.user_fragment, container, false);
+		view = inflater.inflate(R.layout.my_main_mingxing, container, false);
 		mContext = getActivity();
 		findView();
 		initView();
@@ -75,7 +75,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private void initView() {
 		((TextView)view.findViewById(R.id.main_top_title)).setText("我的");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
-		main_top_left.setVisibility(View.VISIBLE);
+		main_top_left.setVisibility(View.GONE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		lmydongtai.setOnClickListener(this);

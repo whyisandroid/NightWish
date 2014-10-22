@@ -153,6 +153,15 @@ public class NearFragment extends Fragment implements OnClickListener {
 					
 				}
 			});
+			Button btcanel = (Button) popview.findViewById(R.id.btcanel);
+			btcanel.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					pop.dismiss();
+					
+				}
+			});
 			pop.showAsDropDown(v);
 			break;
 		case R.id.main_top_right:

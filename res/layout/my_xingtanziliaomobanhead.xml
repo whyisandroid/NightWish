@@ -271,8 +271,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="200m"
-                        android:textColor="@color/spilt_line_color" />
+                        android:text="北京"
+                        android:textColor="@color/color_4" />
                 </LinearLayout>
 
                 <ImageView

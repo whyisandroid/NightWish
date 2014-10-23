@@ -40,13 +40,26 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	RadioButton rb2;
 	private ListView lwork;
 	private ListView lyaoqing;
-	
+	int index;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_workyiren);
 		controller = AppController.getController(this);
+		index = this.getIntent().getIntExtra("index", 0);
+		switch (index) {
+		case 0:
+			setContentView(R.layout.my_workyiren);
+			break;
+		case 1:
+			setContentView(R.layout.my_workxingtan);
+			break;
+		case 2:
+			setContentView(R.layout.my_workfans);
+			break;
+		default:
+			break;
+		}
 		findView();
 		initView();
 	}
@@ -58,10 +71,13 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		lwork = (ListView) findViewById(R.id.lwork);
 		lyaoqing = (ListView) findViewById(R.id.lyaoqing);
-		rb1 = (RadioButton) findViewById(R.id.radioButton1);
-		rb2 = (RadioButton) findViewById(R.id.radioButton2);
+		if(index != 2){
+			rb1 = (RadioButton) findViewById(R.id.radioButton1);
+			rb2 = (RadioButton) findViewById(R.id.radioButton2);
+			lwork = (ListView) findViewById(R.id.lwork);
+		}
+		
 	}
 
 	/**
@@ -76,20 +92,23 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
-		lwork.setAdapter(new WorkAdapter(MyworkActivity.this));
-		lwork.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				IntentUtil.intent(MyworkActivity.this, OfferDetailActivity.class);
-				
-			}
-		});
 		lyaoqing.setAdapter(new YaoqingAdapter(MyworkActivity.this));
-		rb1.setOnClickListener(this);
-		rb2.setOnClickListener(this);
-		lyaoqing.setVisibility(lyaoqing.GONE);
+		if(index != 2){
+			rb1.setOnClickListener(this);
+			rb2.setOnClickListener(this);
+			lyaoqing.setVisibility(lyaoqing.GONE);
+			lwork.setAdapter(new WorkAdapter(MyworkActivity.this));
+			lwork.setOnItemClickListener(new OnItemClickListener() {
+
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+						long arg3) {
+					IntentUtil.intent(MyworkActivity.this, OfferDetailActivity.class);
+					
+				}
+			});
+		}
+		
 	}
 	
 	

@@ -201,7 +201,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 			IntentUtil.intent(this.mContext, MyqianbaoActivity.class);
 			break;
 		case R.id.lmywork:
-			IntentUtil.intent(this.mContext, MyworkActivity.class);
+			Bundle bundle = new Bundle();
+			bundle.putInt("index", r);
+			IntentUtil.intent(this.mContext, bundle,MyworkActivity.class,false);
 			break;
 		case R.id.lmyfuwu:
 			IntentUtil.intent(this.mContext, MyfuwuActivity.class);

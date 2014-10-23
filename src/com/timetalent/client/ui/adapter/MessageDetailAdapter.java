@@ -32,7 +32,6 @@ public class MessageDetailAdapter extends BaseAdapter{
 	 private SlideView mLastSlideViewWithStatusOn;
 	 private ListViewCompat mListview;
 	 
-	 private int position;
 	
 	/**
 	 * 类的构造方法

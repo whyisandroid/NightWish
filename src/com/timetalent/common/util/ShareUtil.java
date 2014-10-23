@@ -50,7 +50,7 @@ public class ShareUtil {
 		// oks.disableSSOWhenAuthorize();
 		// 添加自定义分享
 		//addURLLogo(oks, context);
-		//addMessageLogo(oks, context,share.getText());
+		addMessageLogo(oks, context,share.getText());
 		oks.setShareContentCustomizeCallback(new ShareContent(context,share));
 		// 启动分享GUI
 		oks.show(context);
@@ -79,17 +79,13 @@ public class ShareUtil {
 		// 参考代码配置章节，设置分享参数
 		// 构造一个图标
 		Bitmap logo = BitmapFactory.decodeResource(context.getResources(),
-				R.drawable.logo_wechat);
+				R.drawable.logo_shortmessage);
 		// 定义图标的标签
-		String label = "短信";
+		String label = "动态";
 		// 图标点击后会通过Toast提示消息
 		OnClickListener listener = new OnClickListener() {
 			public void onClick(View v) {
-				Uri uri = Uri.parse("smsto:");
-				Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
-				intent.putExtra("sms_body",text);
-				context.startActivity(intent);
-				oks.finish();
+				
 			}
 		};
 		oks.setCustomerLogo(logo, label, listener);

@@ -8,12 +8,14 @@
 
 package cn.sharesdk.onekeyshare;
 
-import static cn.sharesdk.framework.utils.R.*;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+
 import m.framework.ui.widget.viewpager.ViewPagerAdapter;
 import m.framework.ui.widget.viewpager.ViewPagerClassic;
 import android.content.Context;
@@ -37,6 +39,8 @@ import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
+
+import com.timetalent.client.R;
 
 /** 平台宫格列表显示工具。 */
 public class PlatformGridView extends LinearLayout implements
@@ -469,7 +473,7 @@ public class PlatformGridView extends LinearLayout implements
 			ll.addView(iv);
 
 			TextView tv = new TextView(context);
-			tv.setTextColor(0xffffffff);
+			tv.setTextColor(R.color.share_text);
 			tv.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 14);
 			tv.setSingleLine();
 			tv.setIncludeFontPadding(false);

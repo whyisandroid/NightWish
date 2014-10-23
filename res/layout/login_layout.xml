@@ -36,8 +36,8 @@
                     android:drawablePadding="10dp"
                     android:ems="20"
                     android:focusable="true"
+                    android:hint="@string/login_user_hint"
                     android:singleLine="true"
-                    android:hint="@string/login_hint_username"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" >
 

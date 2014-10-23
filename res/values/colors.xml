@@ -39,4 +39,6 @@
 <color name="bggray">#e2e2e2</color><!-- 雾白 -->
 	  <color name = "login_bt_color">#77ba10</color> <!-- 绿 -->
 	  <color name = "login_bt_color_press">#B6E173</color> <!-- 浅绿 -->
+	  <color name="share_back">#FFF2F2F2</color>
+	<color name="share_text">#aaaaaa</color>
     </resources>

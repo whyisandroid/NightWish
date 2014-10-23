@@ -1,26 +1,27 @@
 package com.timetalent.client.ui.user;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.BlankName;
+import com.timetalent.client.entities.MessageItem;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
-import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.HeimingdanAdapter;
-import com.timetalent.client.ui.dynamic.DynamicAddActivity;
-import com.timetalent.common.util.IntentUtil;
-import com.timetalent.common.util.UIUtils;
+import com.timetalent.client.ui.view.ListViewCompat;
 
 
 /******************************************
- * 类描述： 动态界面
- * 类名称：NearDongtaiActivity  
+ * 类描述： 黑名单
+ * 类名称：MyheimingdanActivity  
  * @version: 1.0
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
@@ -29,7 +30,9 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	private ListView lheimingdan;
+	private ListViewCompat lheimingdan;
+	
+	private List<BlankName> mBlankItems;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		lheimingdan = (ListView) findViewById(R.id.lheimingdan);
+		lheimingdan = (ListViewCompat) findViewById(R.id.lheimingdan);
 	}
 
 	/**
@@ -63,7 +66,14 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
-		lheimingdan.setAdapter(new HeimingdanAdapter(MyheimingdanActivity.this));
+		
+		mBlankItems = new ArrayList<BlankName>();
+		mBlankItems.add(new BlankName());
+		mBlankItems.add(new BlankName());
+		mBlankItems.add(new BlankName());
+		mBlankItems.add(new BlankName());
+		mBlankItems.add(new BlankName());
+		lheimingdan.setAdapter(new HeimingdanAdapter(MyheimingdanActivity.this,mBlankItems,lheimingdan));
 	}
 	
 	

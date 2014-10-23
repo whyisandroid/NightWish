@@ -8,12 +8,15 @@
 
 package cn.sharesdk.onekeyshare;
 
-import static cn.sharesdk.framework.utils.R.*;
-import static cn.sharesdk.framework.utils.BitmapHelper.*;
+import static cn.sharesdk.framework.utils.BitmapHelper.captureView;
+import static cn.sharesdk.framework.utils.R.getBitmapRes;
+import static cn.sharesdk.framework.utils.R.getStringRes;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -22,8 +25,8 @@ import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.os.Message;
 import android.os.Handler.Callback;
+import android.os.Message;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -32,19 +35,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
-import android.view.animation.TranslateAnimation;
 import android.view.animation.Animation.AnimationListener;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.FrameLayout.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import android.widget.FrameLayout.LayoutParams;
 import cn.sharesdk.framework.CustomPlatform;
 import cn.sharesdk.framework.FakeActivity;
 import cn.sharesdk.framework.Platform;
 import cn.sharesdk.framework.PlatformActionListener;
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.framework.utils.UIHandler;
+
+import com.timetalent.client.R;
 
 /**
  * 快捷分享的入口
@@ -320,7 +325,7 @@ public class OnekeyShare extends FakeActivity implements
 
 		// 显示列表
 		flPage.clearAnimation();
-		flPage.startAnimation(animShow);
+		//flPage.startAnimation(animShow);
 
 		// 打开分享菜单的统计
 		ShareSDK.logDemoEvent(1, null);
@@ -345,6 +350,8 @@ public class OnekeyShare extends FakeActivity implements
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		lpLl.gravity = Gravity.BOTTOM;
 		llPage.setLayoutParams(lpLl);
+		flPage.setBackgroundColor(R.color.share_back);
+		llPage.setBackgroundResource(R.drawable.share_back);
 		flPage.addView(llPage);
 
 		// 宫格列表
@@ -354,7 +361,6 @@ public class OnekeyShare extends FakeActivity implements
 				LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT);
 		grid.setLayoutParams(lpWg);
 		llPage.addView(grid);
-
 		// 取消按钮
 		btnCancel = new Button(getContext());
 		btnCancel.setTextColor(0xffffffff);
@@ -373,6 +379,7 @@ public class OnekeyShare extends FakeActivity implements
 		int dp_10 = cn.sharesdk.framework.utils.R.dipToPx(getContext(), 10);
 		lpBtn.setMargins(dp_10, dp_10, dp_10, dp_10);
 		btnCancel.setLayoutParams(lpBtn);
+		btnCancel.setBackgroundResource(R.drawable.bt_share_cancle);
 		llPage.addView(btnCancel);
 	}
 

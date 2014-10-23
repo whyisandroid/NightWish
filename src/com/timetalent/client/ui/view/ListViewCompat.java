@@ -7,7 +7,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ListView;
 
-import com.timetalent.client.entities.MessageItem;
+import com.timetalent.client.entities.BaseMessage;
 
 public class ListViewCompat extends ListView {
 
@@ -48,7 +48,7 @@ public class ListViewCompat extends ListView {
             int position = pointToPosition(x, y);
             Log.e(TAG, "postion=" + position);
             if (position != INVALID_POSITION) {
-                MessageItem data = (MessageItem) getItemAtPosition(position);
+            	BaseMessage data = (BaseMessage) getItemAtPosition(position);
                 mFocusedItemView = data.slideView;
                 Log.e(TAG, "FocusedItemView=" + mFocusedItemView);
             }

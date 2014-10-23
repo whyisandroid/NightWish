@@ -3,10 +3,12 @@ package com.timetalent.client.ui.user;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
@@ -15,6 +17,8 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.GuanzhuAdapter;
 import com.timetalent.client.ui.adapter.HaoyouAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
+import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -59,6 +63,14 @@ public class MyguanzhuActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void initView() {
 		lhaoyou.setAdapter(new GuanzhuAdapter(MyguanzhuActivity.this));
+		lhaoyou.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+					long arg3) {
+				IntentUtil.intent(MyguanzhuActivity.this, YirenActivity.class);
+			}
+		});
 		}
 	
 	

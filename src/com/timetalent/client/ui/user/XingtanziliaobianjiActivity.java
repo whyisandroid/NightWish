@@ -1,26 +1,39 @@
-package com.timetalent.client.ui.near;
+package com.timetalent.client.ui.user;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
-import com.timetalent.client.ui.chance.OfferInfoActivity;
-import com.timetalent.client.ui.dialog.IOSStyleDialog;
-import com.timetalent.client.ui.dialog.IOSStyleListDialog;
-import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.client.ui.GuideActivity;
+import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.fragment.util.Background2;
+import com.timetalent.client.ui.fragment.util.Background3;
+import com.timetalent.client.ui.near.NearDongtaiActivity;
+import com.timetalent.client.ui.near.PictureActivity;
+import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -30,7 +43,7 @@ import com.timetalent.common.util.IntentUtil;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class FansActivity extends BaseActivity implements OnClickListener,GestureDetector.OnDoubleTapListener, android.view.GestureDetector.OnGestureListener {
+public class XingtanziliaobianjiActivity extends BaseActivity implements OnClickListener,GestureDetector.OnDoubleTapListener, android.view.GestureDetector.OnGestureListener {
 	private AppController controller;
 	private ViewFlipper vfpics;
 	private ImageView imgpic1;
@@ -46,17 +59,18 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	private ImageView imgtab3;
 	private GestureDetector mGestureDetector;
 	int index = 0;
+	private LinearLayout ldongtai;
+	private ListView lzuopin;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	private LinearLayout ldongtai;
-	private LinearLayout img1;
-	private LinearLayout img2;
-	
+	private LinearLayout lage;
+	private LinearLayout lsanwei;
+	private Button btok;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.near_fansxiangqing);
+		setContentView(R.layout.my_xingtanziliaobianji);
 		controller = AppController.getController(this);
 		findView();
 		initView();
@@ -82,27 +96,13 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 		imgtab2 = (ImageView) findViewById(R.id.imgtab2);
 		imgtab3 = (ImageView) findViewById(R.id.imgtab3);
 		
+		lzuopin = (ListView) findViewById(R.id.lzuopin);
+		ldongtai = (LinearLayout) findViewById(R.id.ldongtai);
+		main_top_right = (TextView)this.findViewById(R.id.main_top_right);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
-		img1 = (LinearLayout) findViewById(R.id.imgduihua);
-		img2 = (LinearLayout) findViewById(R.id.imgguanzhu);
-	}
-
-	/**
-	 * 方法描述：TODO
-	 * 
-	 * @author: why
-	 * @time: 2014-10-10 下午6:36:02
-	 */
-	private void initView() {
-		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
-//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
-		main_top_left.setVisibility(View.VISIBLE);
-//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
-		main_top_left.setOnClickListener(this);
-		ldongtai.setOnClickListener(this);
-		img1.setOnClickListener(this);
-		img2.setOnClickListener(this);
+		lage = (LinearLayout) findViewById(R.id.lage);
+		lsanwei = (LinearLayout) findViewById(R.id.lsanwei);
+		btok = (Button) findViewById(R.id.btok);
 		
 		imgpic1.setOnClickListener(this);
 		imgpic2.setOnClickListener(this);
@@ -113,106 +113,115 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 		imgpic7.setOnClickListener(this);
 		imgpic8.setOnClickListener(this);
 	}
+
+	/**
+	 * 方法描述：TODO
+	 * 
+	 * @author: why
+	 * @time: 2014-10-10 下午6:36:02
+	 */
+	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
+//		((TextView)this.findViewById(R.id.main_top_right)).setText("编辑");
+//		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
+		this.findViewById(R.id.main_top_left).setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		lzuopin.setAdapter(new ZuopinBaseAdapter(XingtanziliaobianjiActivity.this));
+		setListViewHeightBasedOnChildren(lzuopin);
+		ldongtai.setOnClickListener(this);
+		imgpic1.setOnClickListener(this);
+		lage.setOnClickListener(this);
+		lsanwei.setOnClickListener(this);
+		btok.setOnClickListener(this);
+		
+		imgpic8.setImageResource(R.drawable.d11_03);
+		imgpic1.setOnClickListener(this);
+		imgpic2.setOnClickListener(this);
+		imgpic3.setOnClickListener(this);
+		imgpic4.setOnClickListener(this);
+		imgpic5.setOnClickListener(this);
+		imgpic6.setOnClickListener(this);
+		imgpic7.setOnClickListener(this);
+		imgpic8.setOnClickListener(this);
+	}
 	
-	
+	/**
+	 * 重新计算listview高度
+	  * 方法描述：TODO
+	  * @param listView
+	  * @author: Administrator
+	  * @time: 2014-10-13 下午4:19:11
+	 */
+	public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();   
+        if (listAdapter == null) {  
+            // pre-condition  
+            return;  
+        }
+  
+        int totalHeight = 0;  
+        for (int i = 0; i < listAdapter.getCount(); i++) {  
+            View listItem = listAdapter.getView(i, null, listView);  
+            listItem.measure(0, 0);  
+            totalHeight += listItem.getMeasuredHeight();  
+        }  
+  
+        ViewGroup.LayoutParams params = listView.getLayoutParams();  
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
+        listView.setLayoutParams(params);  
+    }
 	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
+	public void onClick(final View vclick) {
+		switch (vclick.getId()) {
+		case R.id.bt_login_next:
+			break;
+		case R.id.lneardongtai:
+			IntentUtil.intent(XingtanziliaobianjiActivity.this, MyDongtaiActivity.class);
+			break;
 		case R.id.main_top_left:
 			finish();
 			break;
-		case R.id.lneardongtai:
-			IntentUtil.intent(FansActivity.this, NearDongtaiActivity.class);
+		case R.id.lage:
+			IntentUtil.intent(XingtanziliaobianjiActivity.this, MyageActivity.class);
 			break;
-		case R.id.imgduihua:
-			IntentUtil.intent(FansActivity.this, MessageChatActivity.class);
+		case R.id.lsanwei:
+			IntentUtil.intent(XingtanziliaobianjiActivity.this, MysanweiActivity.class);
 			break;
-		case R.id.imgguanzhu:
-			showMessageTwo(FansActivity.this, "关注？", "完成");
+		case R.id.btok:
+			finish();
 			break;
 		case R.id.img1:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img2:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img3:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img4:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img5:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img6:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
-			break;
 		case R.id.img7:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
+			LayoutInflater inflater = LayoutInflater.from(XingtanziliaobianjiActivity.this);
+			View popview = inflater.inflate(R.layout.bianji_delete, null);
+			final PopupWindow pop = new PopupWindow(popview, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, false);
+			pop.setBackgroundDrawable(new Background3());
+			pop.setOutsideTouchable(true);
+			pop.setFocusable(true);
+			Button btok = (Button) popview.findViewById(R.id.btok);
+			btok.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					((ImageView) vclick).setImageResource(R.drawable.d11_03);
+					pop.dismiss();
+				}
+			});
+			int[] location = new int[2];  
+			vclick.getLocationOnScreen(location);
+			pop.showAtLocation(vclick, Gravity.NO_GRAVITY, location[0]-pop.getWidth()-15, location[1]-pop.getHeight()-15);
 			break;
 		case R.id.img8:
-			IntentUtil.intent(FansActivity.this, PictureActivity.class);
+			StringUtil.doGoToImg(XingtanziliaobianjiActivity.this);
 			break;
 		default:
 			break;
 		}
-	}
-	private void showMessageTwo(final Context context,String message,final String toast) {
-		final IOSStyleListDialog dialog = new IOSStyleListDialog(context, IOSStyleDialog.DIALOG_TWO);
-		dialog.setLeft("取消", new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dialog.closeDialog();
-			}
-		});
-		dialog.setRight("确认", new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				dialog.closeDialog();
-				switch (dialog.index) {
-				case 0:
-					final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog.setMessage("您关注了此人");
-					dialog.setOne("确认",new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							IntentUtil.intent(mContext, MainFragmentActivity.class);
-							dialog.closeDialog();
-						}
-					});
-					break;
-				case 1:
-					final IOSStyleDialog dialog1 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog1.setMessage("您拉黑了此人");
-					dialog1.setOne("确认",new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							IntentUtil.intent(mContext, MainFragmentActivity.class);
-							dialog1.closeDialog();
-						}
-					});
-					break;
-				case 2:
-					final IOSStyleDialog dialog2 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog2.setMessage("您举报了此人");
-					dialog2.setOne("确认",new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							IntentUtil.intent(mContext, MainFragmentActivity.class);
-							dialog2.closeDialog();
-						}
-					});
-					break;
-				default:
-					break;
-				}
-				
-
-			}
-		});
 	}
 	
 	/* (non-Javadoc)

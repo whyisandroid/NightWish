@@ -308,7 +308,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/lmyfuwu"
+                    android:id="@+id/lmyrenzheng"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="15dp"
@@ -342,12 +342,6 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
-                </LinearLayout>
-                
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/spilt_line_color" >
                 </LinearLayout>
 
                 <LinearLayout
@@ -617,10 +611,7 @@
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
                 </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
@@ -662,6 +653,10 @@
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
                 </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+
+        
     </LinearLayout>
 
 </LinearLayout>

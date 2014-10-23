@@ -10,10 +10,15 @@ import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.service.AppManager;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.client.ui.dialog.ExitIOSStyleListDialog;
+import com.timetalent.client.ui.dialog.IOSStyleDialog;
+import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.user.MyDongtaiActivity;
 import com.timetalent.client.ui.user.MyfansActivity;
@@ -55,12 +60,30 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lgengxin;
 	private LinearLayout lbangzhu;
 	private LinearLayout lqinglitupian;
-	
+	private LinearLayout lexit;
+	int r = 0;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
-		view = inflater.inflate(R.layout.my_main_mingxing, container, false);
+		r = (int)(3*Math.random());
+		switch (r) {
+		case 0:
+			Toast.makeText(getActivity(), "艺人身份", 1000).show();
+			view = inflater.inflate(R.layout.my_main_mingxing, container, false);
+			break;
+		case 1:
+			Toast.makeText(getActivity(), "星探身份", 1000).show();
+			view = inflater.inflate(R.layout.my_main_xingtan, container, false);
+			break;
+		case 2:
+			Toast.makeText(getActivity(), "粉丝身份", 1000).show();
+			view = inflater.inflate(R.layout.my_main_fans, container, false);
+			break;
+		default:
+			break;
+		}
+		
 		mContext = getActivity();
 		findView();
 		initView();
@@ -86,12 +109,26 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lmyfans.setOnClickListener(this);
 		lmyqianbao.setOnClickListener(this);
 		lmywork.setOnClickListener(this);
-		lmyfuwu.setOnClickListener(this);
+		
 		lheimingdan.setOnClickListener(this);
 		lgengxin.setOnClickListener(this);
 		lbangzhu.setOnClickListener(this);
 		lqinglitupian.setOnClickListener(this);
-		lrenzheng.setOnClickListener(this);
+		lexit.setOnClickListener(this);
+		switch (r) {
+		case 0:
+			lmyfuwu.setOnClickListener(this);
+			lrenzheng.setOnClickListener(this);
+			break;
+		case 1:
+			lrenzheng.setOnClickListener(this);
+			break;
+		case 2:
+	
+			break;
+		default:
+			break;
+		}
 	}
 
 	/**
@@ -109,13 +146,26 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lmyfans = (LinearLayout) view.findViewById(R.id.lmyfans);
 		lmyqianbao = (LinearLayout) view.findViewById(R.id.lmyqianbao);
 		lmywork = (LinearLayout) view.findViewById(R.id.lmywork);
-		lmyfuwu = (LinearLayout) view.findViewById(R.id.lmyfuwu);
-		lrenzheng = (LinearLayout) view.findViewById(R.id.lmyrenzheng);
 		lheimingdan = (LinearLayout) view.findViewById(R.id.lheimingdan);
 
 		lgengxin = (LinearLayout) view.findViewById(R.id.lgengxin);
 		lbangzhu = (LinearLayout) view.findViewById(R.id.lbangzhu);
 		lqinglitupian = (LinearLayout) view.findViewById(R.id.lqinglitupian);
+		lexit = (LinearLayout) view.findViewById(R.id.lexit);
+		switch (r) {
+		case 0:
+			lmyfuwu = (LinearLayout) view.findViewById(R.id.lmyfuwu);
+			lrenzheng = (LinearLayout) view.findViewById(R.id.lmyrenzheng);
+			break;
+		case 1:
+			lrenzheng = (LinearLayout) view.findViewById(R.id.lmyrenzheng);
+			break;
+		case 2:
+	
+			break;
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -170,6 +220,25 @@ public class UserFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.lqinglitupian:
 			DialogUtil.showMessage(getActivity(), "本地缓存图片已清除,清理缓存200M");
+			break;
+		case R.id.lexit:
+			final ExitIOSStyleListDialog dialog = new ExitIOSStyleListDialog(mContext, ExitIOSStyleListDialog.DIALOG_TWO);
+			dialog.setUp(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					AppManager.getAppManager().AppExit(mContext);
+				}
+			});
+			dialog.setDown(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					dialog.closeDialog();
+					System.exit(0);
+					
+				}
+			});
 			break;
 		default:
 			break;

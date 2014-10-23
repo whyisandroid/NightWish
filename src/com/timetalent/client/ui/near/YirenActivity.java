@@ -43,13 +43,24 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 	private LinearLayout ldongtai;
 	private ViewFlipper vfpics;
 	private ListView lzuopin;
-	private ImageView imgpic;
+	private ImageView imgpic1;
+	private ImageView imgpic2;
+	private ImageView imgpic3;
+	private ImageView imgpic4;
+	private ImageView imgpic5;
+	private ImageView imgpic6;
+	private ImageView imgpic7;
+	private ImageView imgpic8;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	private ImageView img1;
 	private ImageView img2;
 	private ImageView img3;
+	private ImageView imgtab1;
+	private ImageView imgtab2;
+	private ImageView imgtab3;
 	private GestureDetector mGestureDetector;
+	int index = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -71,7 +82,17 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		lzuopin = (ListView) findViewById(R.id.lzuopin);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
 		vfpics = (ViewFlipper) findViewById(R.id.vfpics);
-		imgpic = (ImageView) findViewById(R.id.ImageView04);
+		imgpic1 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img1);
+		imgpic2 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img2);
+		imgpic3 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img3);
+		imgpic4 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img4);
+		imgpic5 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img5);
+		imgpic6 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img6);
+		imgpic7 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img7);
+		imgpic8 = (ImageView) vfpics.getCurrentView().findViewById(R.id.img8);
+		imgtab1 = (ImageView) findViewById(R.id.imgtab1);
+		imgtab2 = (ImageView) findViewById(R.id.imgtab2);
+		imgtab3 = (ImageView) findViewById(R.id.imgtab3);
 		img1 = (ImageView) findViewById(R.id.imgduihua);
 		img2 = (ImageView) findViewById(R.id.imgguanzhu);
 		img3 = (ImageView) findViewById(R.id.imgyuyue);
@@ -92,22 +113,17 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenActivity.this));
 		setListViewHeightBasedOnChildren(lzuopin);
 		ldongtai.setOnClickListener(this);
-		imgpic.setOnClickListener(this);
+		imgpic1.setOnClickListener(this);
+		imgpic2.setOnClickListener(this);
+		imgpic3.setOnClickListener(this);
+		imgpic4.setOnClickListener(this);
+		imgpic5.setOnClickListener(this);
+		imgpic6.setOnClickListener(this);
+		imgpic7.setOnClickListener(this);
+		imgpic8.setOnClickListener(this);
 		img1.setOnClickListener(this);
 		img2.setOnClickListener(this);
 		img3.setOnClickListener(this);
-		TranslateAnimation translateAnimation = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, -1.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f);
-		translateAnimation.setDuration(1000);
-		TranslateAnimation translateAnimation2 = new TranslateAnimation(
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 1.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f,
-				Animation.RELATIVE_TO_PARENT, 0.0f);
-		translateAnimation2.setDuration(1000);
 //		vfpics.setInAnimation(translateAnimation);
 //		vfpics.setOutAnimation(translateAnimation2);
 //		vfpics.startFlipping();
@@ -144,7 +160,28 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		case R.id.main_top_left:
 			finish();
 			break;
-		case R.id.ImageView04:
+		case R.id.img1:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img2:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img3:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img4:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img5:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img6:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img7:
+			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
+			break;
+		case R.id.img8:
 			IntentUtil.intent(YirenActivity.this, PictureActivity.class);
 			break;
 		case R.id.lneardongtai:
@@ -239,19 +276,42 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 	 */
 	@Override
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
-			float velocityY) {  
+			float velocityY) {
         // TODO Auto-generated method stub  
-        if(e1.getX() > e2.getX() && Math.abs(e1.getY()-e2.getY())<200) {//向左滑动  
+        if(e1.getX() > e2.getX() && Math.abs(e1.getY())<450) {//向左滑动  
             vfpics.setInAnimation(getApplicationContext(), R.anim.push_left_in);     
             vfpics.setOutAnimation(getApplicationContext(), R.anim.push_left_out);     
             vfpics.showNext();
-       }else if(e1.getX() < e2.getX()&& Math.abs(e1.getY()-e2.getY())<200) {//向右滑动  
+            index++;
+       }else if(e1.getX() < e2.getX()&& Math.abs(e1.getY())<450) {//向右滑动  
     	   vfpics.setInAnimation(getApplicationContext(), R.anim.push_right_in);     
     	   vfpics.setOutAnimation(getApplicationContext(), R.anim.push_right_out);
     	   vfpics.showPrevious();
+    	   index--;
        }else {     
            return false;     
-       }     
+       }
+        switch (index%3) {
+		case 0:
+			imgtab1.setImageResource(R.drawable.f10_26);
+			imgtab2.setImageResource(R.drawable.f10_24);
+			imgtab3.setImageResource(R.drawable.f10_24);
+			break;
+		case 1:
+			imgtab1.setImageResource(R.drawable.f10_24);
+			imgtab2.setImageResource(R.drawable.f10_26);
+			imgtab3.setImageResource(R.drawable.f10_24);
+			break;
+		case 2:
+			imgtab1.setImageResource(R.drawable.f10_24);
+			imgtab2.setImageResource(R.drawable.f10_24);
+			imgtab3.setImageResource(R.drawable.f10_26);
+			break;
+		default:
+			break;
+		}
+        findView();
+		initView();
        return true;  }
 	
 	/* (non-Javadoc)

@@ -4,6 +4,8 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -32,13 +34,13 @@ import com.timetalent.common.util.UIUtils;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class MyhaoyouMainActivity extends TabActivity  implements OnClickListener {
+public class MyhaoyouMainActivity extends TabActivity  implements OnClickListener,GestureDetector.OnDoubleTapListener, android.view.GestureDetector.OnGestureListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	int index;
 	TabHost tabHost;
-
+	private GestureDetector mGestureDetector;
 	TabSpec spec1;
 	TabSpec spec2;
 	TabSpec spec3;
@@ -59,6 +61,7 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
+		mGestureDetector = new GestureDetector(this);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		main_top_right = (TextView) this.findViewById(R.id.main_top_right);
 		tabHost=getTabHost();
@@ -96,51 +99,20 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 //				tabHost.setCurrentTabByTag(tabId);
 //				updateTab(tabHost);
 				if(tabId.equals("好友")){
-		            Toast.makeText(MyhaoyouMainActivity.this, "好友分页", Toast.LENGTH_LONG).show();
-		            
+					index = 0;
 		        }
 				if(tabId.equals("推荐")){
-		            Toast.makeText(MyhaoyouMainActivity.this, "推荐分页", Toast.LENGTH_LONG).show();  
+					index = 1;
 		        }
 				if(tabId.equals("关注")){
-		            Toast.makeText(MyhaoyouMainActivity.this, "关注分页", Toast.LENGTH_LONG).show();  
+					index = 2;
 		        }
 				if(tabId.equals("粉丝")){
-		            Toast.makeText(MyhaoyouMainActivity.this, "粉丝分页", Toast.LENGTH_LONG).show();  
+					index = 3;
 		        }
 			}
 		});
 	}
-//	private void updateTab(final TabHost tabHost) {
-//        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
-//            View view = tabHost.getTabWidget().getChildAt(i);
-//            TextView tv;
-//            Log.i("test", i+"");
-//            switch (i) {
-//			case 0:
-//				tv= (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(R.id.textView1);
-//				break;
-//			case 1:
-//				tv= (TextView) tabHost.getTabWidget().getChildAt(1).findViewById(R.id.textView2);
-//				break;
-//			case 2:
-//				tv= (TextView) tabHost.getTabWidget().getChildAt(2).findViewById(R.id.textView3);
-//				break;
-//			case 3:
-//				tv= (TextView) tabHost.getTabWidget().getChildAt(3).findViewById(R.id.textView4);
-//				break;
-//			default:
-//				tv= (TextView) tabHost.getTabWidget().getChildAt(0).findViewById(R.id.textView1);
-//				break;
-//			}
-//            
-//            if (tabHost.getCurrentTab() == i) {//选中  
-//                tv.setTextColor(0XFFFF0000);
-//            } else {
-//            	tv.setTextColor(0XFF000000);
-//            } 
-//        } 
-//    } 
 	/**
 	 * 方法描述：TODO
 	 * 
@@ -165,12 +137,118 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 		case R.id.main_top_left:
 			finish();
 			break;
-		case R.id.main_top_right:
-			IntentUtil.intent(MyhaoyouMainActivity.this, SearchActivity.class);
-			break;
 		default:
 			break;
 		}
 	}
-
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onDown(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDown(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onFling(android.view.MotionEvent, android.view.MotionEvent, float, float)
+	 */
+	@Override
+	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
+			float velocityY) {
+        // TODO Auto-generated method stub  
+        if(e1.getX() > e2.getX() && Math.abs(e1.getX() - e2.getX())>200) {//向左滑动  
+            index++;
+       }else if(e1.getX() < e2.getX()&& Math.abs(e1.getX() - e2.getX())>200) {//向右滑动  
+    	   index--;
+       }else {     
+           return false;     
+       }
+        switch (index%4) {
+		case 0:
+			tabHost.setCurrentTabByTag("好友");
+			break;
+		case 1:
+			tabHost.setCurrentTabByTag("推荐");
+			break;
+		case 2:
+			tabHost.setCurrentTabByTag("关注");
+			break;
+		case 3:
+			tabHost.setCurrentTabByTag("粉丝");
+			break;
+		default:
+			break;
+		}
+       return true;  }
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onLongPress(android.view.MotionEvent)
+	 */
+	@Override
+	public void onLongPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onScroll(android.view.MotionEvent, android.view.MotionEvent, float, float)
+	 */
+	@Override
+	public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+			float distanceY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onShowPress(android.view.MotionEvent)
+	 */
+	@Override
+	public void onShowPress(MotionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnGestureListener#onSingleTapUp(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onSingleTapUp(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onDoubleTap(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDoubleTap(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onDoubleTapEvent(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onDoubleTapEvent(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.view.GestureDetector.OnDoubleTapListener#onSingleTapConfirmed(android.view.MotionEvent)
+	 */
+	@Override
+	public boolean onSingleTapConfirmed(MotionEvent e) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+            super.dispatchTouchEvent(ev);
+            return mGestureDetector.onTouchEvent(ev);
+    }
 }

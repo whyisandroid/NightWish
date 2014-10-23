@@ -364,10 +364,10 @@
                         android:id="@+id/imgrenzheng"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="5dp"
+                        android:layout_marginBottom="8dp"
                         android:layout_marginLeft="15dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="8dp"
                         android:layout_weight="8"
                         android:src="@drawable/mrenzheng_03" />
 
@@ -387,12 +387,6 @@
                         android:layout_marginRight="10dp"
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
-                </LinearLayout>
-                
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/spilt_line_color" >
                 </LinearLayout>
                 <LinearLayout
                     android:id="@+id/lheimingdan"
@@ -654,16 +648,13 @@
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
                 </LinearLayout>
-            </LinearLayout>
-        </ScrollView>
-
-        <LinearLayout
+                <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="5"
             android:background="@color/main_light_white" >
         </LinearLayout>
-        <LinearLayout
+<LinearLayout
                     android:id="@+id/lexit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -699,6 +690,8 @@
                         android:layout_weight="5"
                         android:src="@drawable/m19_13" />
                 </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 
 </LinearLayout>

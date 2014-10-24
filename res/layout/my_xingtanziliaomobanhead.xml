@@ -185,7 +185,7 @@
 
                 <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical" >
 
@@ -193,6 +193,8 @@
                         android:id="@+id/textView7"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_3"
+                    	android:textSize="@dimen/new_size_2"
                         android:text="人物诉求：温柔美丽音乐系高材生，喜欢K歌" />
 
                     <TextView
@@ -201,7 +203,8 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="北京"
-                        android:textColor="@color/color_4" />
+                        android:textColor="@color/color_4"
+                    	android:textSize="@dimen/new_size_1" />
                 </LinearLayout>
 
                 <ImageView

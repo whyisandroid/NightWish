@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -70,7 +71,7 @@ public class FansAdapter extends BaseAdapter {
 			holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
 			holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
 			holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
-			holder.bttianjia = (Button) convertView.findViewById(R.id.bttianjia);
+			holder.bttianjia = (ImageButton) convertView.findViewById(R.id.bttianjia);
 			convertView.setTag(holder);//绑定ViewHolder对象
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
@@ -85,7 +86,7 @@ public class FansAdapter extends BaseAdapter {
 	    public TextView tvage;
 	    public TextView tvzhiye;
 	    public TextView tvmiaoshu;
-	    public Button bttianjia;
+	    public ImageButton bttianjia;
 	    
 	    }
 

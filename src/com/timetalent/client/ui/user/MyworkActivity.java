@@ -17,9 +17,17 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
+import com.timetalent.client.ui.adapter.FansYaoqingAdapter;
 import com.timetalent.client.ui.adapter.WorkAdapter;
+import com.timetalent.client.ui.adapter.XingtanWorkAdapter;
+import com.timetalent.client.ui.adapter.XingtanYaoqingAdapter;
 import com.timetalent.client.ui.adapter.YaoqingAdapter;
+import com.timetalent.client.ui.adapter.YirenWorkAdapter;
+import com.timetalent.client.ui.adapter.YirenYaoqingAdapter;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
+import com.timetalent.client.ui.dialog.IOSStyleDialog;
+import com.timetalent.client.ui.dialog.IOSStyleListDialog;
+import com.timetalent.client.ui.dialog.WorkIOSStyleListDialog;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
@@ -72,11 +80,9 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lyaoqing = (ListView) findViewById(R.id.lyaoqing);
-		if(index != 2){
-			rb1 = (RadioButton) findViewById(R.id.radioButton1);
-			rb2 = (RadioButton) findViewById(R.id.radioButton2);
-			lwork = (ListView) findViewById(R.id.lwork);
-		}
+		rb1 = (RadioButton) findViewById(R.id.radioButton1);
+		rb2 = (RadioButton) findViewById(R.id.radioButton2);
+		lwork = (ListView) findViewById(R.id.lwork);
 		
 	}
 
@@ -92,25 +98,46 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
-		lyaoqing.setAdapter(new YaoqingAdapter(MyworkActivity.this));
-		if(index != 2){
-			rb1.setOnClickListener(this);
-			rb2.setOnClickListener(this);
-			lyaoqing.setVisibility(lyaoqing.GONE);
-			lwork.setAdapter(new WorkAdapter(MyworkActivity.this));
+		switch (index) {
+		case 0:
+			lyaoqing.setAdapter(new YirenYaoqingAdapter(MyworkActivity.this));
+			break;
+		case 1:
+			lyaoqing.setAdapter(new XingtanYaoqingAdapter(MyworkActivity.this));
+			break;
+		case 2:
+			lyaoqing.setAdapter(new FansYaoqingAdapter(MyworkActivity.this));
+			break;
+		default:
+			break;
+		}
+		
+		rb1.setOnClickListener(this);
+		rb2.setOnClickListener(this);
+		lyaoqing.setVisibility(lyaoqing.GONE);
+		
+		if(index == 0){
+			lwork.setAdapter(new YirenWorkAdapter(MyworkActivity.this));
 			lwork.setOnItemClickListener(new OnItemClickListener() {
-
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 						long arg3) {
 					IntentUtil.intent(MyworkActivity.this, OfferDetailActivity.class);
-					
 				}
 			});
+		}else if(index == 1){
+			lwork.setAdapter(new XingtanWorkAdapter(MyworkActivity.this));
+			lwork.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+						long arg3) {
+					final WorkIOSStyleListDialog dialog = new WorkIOSStyleListDialog(MyworkActivity.this, WorkIOSStyleListDialog.DIALOG_TWO);
+				}
+			});
+		}else{
+			lwork.setAdapter(new FansYaoqingAdapter(MyworkActivity.this));
 		}
-		
 	}
-	
 	
 	@Override
 	public void onClick(View v) {

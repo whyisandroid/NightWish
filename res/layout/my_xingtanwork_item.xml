@@ -41,10 +41,11 @@
                 android:gravity="bottom"
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
-                android:text="已拒绝"
+                android:text="完成交易"
                 android:padding="2dp"
-                android:textColor="@color/bt_light_red"
-                android:textSize="@dimen/new_size_3" />
+                android:background="@color/bt_light_red"
+                android:textColor="@color/white"
+                android:textSize="13dp" />
 
         </LinearLayout>
 

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_light_white"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
@@ -24,31 +25,37 @@
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="今年20岁杨坤演唱会"
             android:textColor="@color/bt_light_red"
-            android:text="今年20岁杨坤演唱会" />
+            android:textSize="@dimen/new_size_1" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/lworks"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
             android:text="报名截止日期:"
-            android:textColor="@color/color_4" />
+            android:textColor="@color/color_4"
+            android:textSize="@dimen/new_size_1" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="right"
             android:text="2014年12月16日"
-            android:textColor="@color/color_4" />
-
+            android:textColor="@color/color_4"
+            android:textSize="@dimen/new_size_1" />
     </LinearLayout>
 
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp" >
+
     </ListView>
 
 </LinearLayout>

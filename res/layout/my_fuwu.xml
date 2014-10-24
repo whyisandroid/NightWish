@@ -95,16 +95,17 @@
                 android:layout_marginTop="20dp"
                 android:numColumns="3" >
             </GridView>
+
             <RadioGroup
-                    android:id="@+id/radioGroup"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_marginTop="10dp"
-                    android:contentDescription="职位"
-                    android:orientation="horizontal" >
+                android:id="@+id/radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="20dp"
+                android:contentDescription="职位"
+                android:orientation="horizontal" >
 
                     <RadioButton
                         android:id="@+id/radioButton4"
@@ -126,16 +127,19 @@
                         android:checked="true"
                         android:textColor="@color/color_4"
                         android:textSize="@dimen/new_size_2" />
+
                 </RadioGroup>
+
+            <Button
+                android:id="@+id/btok"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/btn_red"
+                android:text="保存"
+                android:textColor="@color/white" />
+
         </LinearLayout>
     </ScrollView>
-
-    <Button
-        android:id="@+id/btok"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/btn_red"
-        android:text="保存"
-        android:textColor="@color/white" />
 
 </LinearLayout>

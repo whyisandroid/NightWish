@@ -191,6 +191,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_2"
                     android:text="人物诉求：温柔美丽音乐系高材生，喜欢K歌" />
 
                 <ImageView

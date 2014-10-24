@@ -8,6 +8,7 @@ import android.text.TextUtils;
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.login.LoginActivity;
+import com.timetalent.client.ui.login.RegisterFourActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ToastUtil;
@@ -152,5 +153,62 @@ public class AppController {
 	  */
 	public void setAlterHandler(Handler alterHandler) {
 		
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void code() {
+		try {
+			service.code();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午11:03:50
+	  */
+	public void validationCode(Handler mHandler) {
+		try {
+			service.validationCode();
+			mHandler.obtainMessage(0).sendToTarget();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午11:24:31
+	  */
+	public void register() {
+
+		try {
+			service.register();
+			handler.obtainMessage(HANDLER_TOAST, "注册成功").sendToTarget();
+			IntentUtil.intent(currentActivity, LoginActivity.class);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 	}
 }

@@ -25,7 +25,8 @@ public class Config {
 			.getAbsolutePath() + File.separator + "TimeTalent";
 
 	
-	public final static String HTTP_USER_MOBLIE_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
+	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
+	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
 
 	
 }

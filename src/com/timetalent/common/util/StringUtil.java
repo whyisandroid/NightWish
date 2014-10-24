@@ -122,4 +122,19 @@ public class StringUtil {
 		}
 		return validation;
 	}
+	
+	/**
+	 * 手机号码验证
+	 * @param s
+	 * @return
+	 */
+	public static String moblie(String s){
+		String validation = "";
+		if (TextUtils.isEmpty(s)) {
+			validation =  "请填写手机号码"; 
+		}else if (!RegExpUtil.isMobileNO(s)) {
+			validation =  "请填写正确的手机号码"; 
+		}
+		return validation;
+	}
 }

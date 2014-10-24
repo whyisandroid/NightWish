@@ -26,17 +26,21 @@
                 android:paddingLeft="20dp"
                 android:paddingTop="15dp" >
 
-                <AutoCompleteTextView
-                    android:id="@+id/AutoCompleteTextView01"
+                <EditText
+                    android:id="@+id/et_register_pwd1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@null"
                     android:drawablePadding="10dp"
                     android:ems="20"
+                    android:inputType="textPassword"
                     android:focusable="true"
                     android:hint="@string/register_four_hint1"
                     android:textColorHint="@color/color_4"
-                    android:textSize="@dimen/new_size_3" />
+                    android:textSize="@dimen/new_size_3" >
+                    
+                    <requestFocus />
+                </EditText>
 
 				<TextView
 				    android:layout_width="match_parent"
@@ -44,21 +48,20 @@
 				    android:layout_marginTop="10dp"
 				    android:background="@color/spilt_line_color" />
 
-                <AutoCompleteTextView
-                    android:id="@+id/et_username"
+                <EditText
+                    android:id="@+id/et_register_pwd2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:inputType="textPassword"
                     android:background="@null"
                     android:drawablePadding="10dp"
                     android:ems="20"
-                    android:focusable="true"
                     android:hint="@string/register_four_hint2"
                     android:textColorHint="@color/color_4"
                     android:textSize="@dimen/new_size_3" >
 
-                    <requestFocus />
-                </AutoCompleteTextView>
+                </EditText>
             </LinearLayout>
 
             <TextView

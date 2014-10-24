@@ -44,6 +44,9 @@ public class AppContext {
 	public Object getBusinessData(String key) {
 		return businessData.get(key);
 	}
+	public String getStringData(String key){
+		return (String)businessData.get(key);
+	}
 
 	public void addBusinessData(String name, Object value) {
 		businessData.put(name, value);

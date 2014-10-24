@@ -12,4 +12,10 @@ import com.timetalent.common.exception.BusinessException;
 public interface AppService {
 	/** 登陆 **/
 	public void login() throws BusinessException;
+	/**获取验证码**/
+	public void code() throws BusinessException;
+	/**验证 验证码***/
+	public void validationCode() throws BusinessException;
+	/**注册***/
+	public void register() throws BusinessException;
 }

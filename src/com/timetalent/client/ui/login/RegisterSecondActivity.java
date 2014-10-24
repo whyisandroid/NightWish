@@ -1,20 +1,24 @@
 package com.timetalent.client.ui.login;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Register;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 
 /******************************************
  * 类描述： 注册 第二步  个人资料
@@ -33,6 +37,10 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	private ImageView iv_register_head; // 头像
 	private RelativeLayout rl_register_data;//选择生日
 	private TextView tv_register_data; // 生日
+	
+	private RadioGroup rg_register_sex;
+	
+	private Register register;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +65,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		iv_register_head = (ImageView)findViewById(R.id.iv_register_head);
 		tv_register_data = (TextView)findViewById(R.id.tv_register_data);
 		rl_register_data = (RelativeLayout)findViewById(R.id.rl_register_data);
+		rg_register_sex = (RadioGroup)findViewById(R.id.rg_register_sex);
 	}
 
 	/**
@@ -75,6 +84,8 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		bt_register_second_3.setOnClickListener(this);
 		iv_register_head.setOnClickListener(this);
 		rl_register_data.setOnClickListener(this);
+		register = (Register)getIntent().getExtras().getSerializable("Register.register");
+		register.setType("fans");
 	}
 	
 	
@@ -82,19 +93,28 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.bt_register_second_next:
-			IntentUtil.intent(RegisterSecondActivity.this, RegisterThreeActivity.class);
+			if (invaild()) {
+				Bundle bundle = new Bundle();
+				register.setBirthday(tv_register_data.getText().toString().trim());
+				bundle.putSerializable("Register.register", register);
+				IntentUtil.intent(RegisterSecondActivity.this,bundle,RegisterThreeActivity.class,false);
+			}
+			
 			break;
 		case R.id.bt_register_second_1:
+			register.setType("fans");
 			bt_register_second_1.setChecked(true);
 			bt_register_second_2.setChecked(false);
 			bt_register_second_3.setChecked(false);
 			break;
 		case R.id.bt_register_second_2:
+			register.setType("scout");
 			bt_register_second_1.setChecked(false);
 			bt_register_second_2.setChecked(true);
 			bt_register_second_3.setChecked(false);
 			break;
 		case R.id.bt_register_second_3:
+			register.setType("star");
 			bt_register_second_1.setChecked(false);
 			bt_register_second_2.setChecked(false);
 			bt_register_second_3.setChecked(true);
@@ -108,5 +128,26 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		default:
 			break;
 		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:25:08
+	  */
+	private boolean invaild() {
+		String data = tv_register_data.getText().toString().trim();
+		if(TextUtils.isEmpty(data)){
+			ToastUtil.showToast(this, "请选择生日", ToastUtil.LENGTH_LONG);
+			return false;
+		} 
+		
+		 if(rg_register_sex.getCheckedRadioButtonId() == R.id.rb_register_man){
+			 register.setSex("1");
+		 }else{
+			 register.setSex("2");
+		 }
+		return true;
 	}
 }

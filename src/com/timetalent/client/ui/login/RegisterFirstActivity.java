@@ -88,10 +88,9 @@ public class RegisterFirstActivity extends BaseActivity implements OnClickListen
 	private boolean invaild() {
 
 		String account = et_register_username.getText().toString().trim();
-		String accountValidate = StringUtil.accountName(account);
-		if(!TextUtils.isEmpty(accountValidate)){
-			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
-			return true;
+		if(TextUtils.isEmpty(account)){
+			ToastUtil.showToast(this, "请输入用户名", ToastUtil.LENGTH_LONG);
+			return false;
 		} 
 		return true;
 		

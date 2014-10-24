@@ -71,7 +71,7 @@
                     android:background="@color/spilt_line_color" />
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/rg_register_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
@@ -81,7 +81,7 @@
                     android:orientation="horizontal" >
 
                     <RadioButton
-                        android:id="@+id/radioButton1"
+                        android:id="@+id/rb_register_man"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="男"
@@ -89,7 +89,7 @@
                         android:textSize="@dimen/new_size_2" />
 
                     <RadioButton
-                        android:id="@+id/radioButton2"
+                        android:id="@+id/rb_register_women"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="40dp"

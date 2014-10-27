@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.content.Context;
@@ -83,11 +84,11 @@ public class StringUtil {
 	  * @author: wanghy
 	  * @time: 2014-10-19 下午4:11:46
 	  */
-	public static void doGoToImg(Context mContext) {
+	public static void doGoToImg(Activity mContext) {
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_PICK);
 		intent.setType("image/*");
-		mContext.startActivity(intent);
+		mContext.startActivityForResult(intent, 0);
 	}
 	
 	

@@ -125,7 +125,6 @@ public class MessageChatActivity extends BaseActivity implements OnClickListener
 			send();
 			break;
 		case R.id.tv_chat_popup:
-			ToastUtil.showToast(MessageChatActivity.this, "表情", ToastUtil.LENGTH_LONG);
 			if( Integer.valueOf(gl_chat_popup.getTag().toString()) == 1){
 				gl_chat_popup.setTag("0");
 				tv_chat_popup.setImageResource(R.drawable.m18_06);

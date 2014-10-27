@@ -1,6 +1,14 @@
 package com.timetalent.client.ui.login;
 
+import java.io.File;
+
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.SystemClock;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,8 +23,9 @@ import com.timetalent.client.R;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
-import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.common.util.Config;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -28,6 +37,7 @@ import com.timetalent.common.util.ToastUtil;
  * @time: 2014-10-11 下午7:54:27 
  ******************************************/
 public class RegisterSecondActivity extends BaseActivity implements OnClickListener {
+	private String TAG = "RegisterSecondActivity";
 	private AppController controller;
 	private TextView main_top_right;
 	private Button bt_register_second_next;
@@ -41,6 +51,11 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	private RadioGroup rg_register_sex;
 	
 	private Register register;
+	
+	
+	 private int crop = 180; // 图片尺寸
+	 
+	 private File sdcardTempFile;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +101,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		rl_register_data.setOnClickListener(this);
 		register = (Register)getIntent().getExtras().getSerializable("Register.register");
 		register.setType("fans");
+		sdcardTempFile = new File("/mnt/sdcard/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
 	}
 	
 	
@@ -120,7 +136,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 			bt_register_second_3.setChecked(true);
 			break;
 		case R.id.iv_register_head:
-			StringUtil.doGoToImg(RegisterSecondActivity.this);
+			PictureUtil.headPic(RegisterSecondActivity.this, crop, sdcardTempFile);
 			break;
 		case R.id.rl_register_data:
 			StringUtil.getData(RegisterSecondActivity.this,tv_register_data);
@@ -130,6 +146,16 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		}
 	}
 	
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			Bitmap bmp = BitmapFactory.decodeFile(sdcardTempFile
+					.getAbsolutePath());
+			iv_register_head.setImageBitmap(bmp);
+			// 上传头像 处理
+		}
+	}
 	/**
 	  * 方法描述：TODO
 	  * @return

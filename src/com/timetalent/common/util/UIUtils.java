@@ -1,9 +1,14 @@
 package com.timetalent.common.util;
 
+import java.io.FileNotFoundException;
+
 import com.timetalent.client.R;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -56,4 +61,24 @@ public class UIUtils {
 		drawable.setBounds(0, 0, drawable.getMinimumWidth(), drawable.getMinimumHeight());
 		textView.setCompoundDrawables(drawable,null,null,null);
 	}
+	
+	/**
+	 * uri转成图片
+	 * 
+	 * @param context
+	 * @param uri
+	 * @return
+	 */
+	public static Bitmap decodeUriAsBitmap(Context context, Uri uri){ 
+	     Bitmap bitmap = null; 
+	     try { 
+	         bitmap = BitmapFactory.decodeStream(context.getContentResolver().openInputStream(uri)); 
+	     } catch (FileNotFoundException e) { 
+	         e.printStackTrace(); 
+	         return null; 
+	     } 
+	     return bitmap; 
+	 } 
+	
+	
 }

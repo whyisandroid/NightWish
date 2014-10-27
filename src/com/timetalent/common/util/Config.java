@@ -20,10 +20,13 @@ public class Config {
 	// 后台 测试
 	public final static String MY_SERVICE = "http://124.193.223.166/xingtan/index.php";
 	/** 临时文件保存路径. */
-	// 下载包保存路径
+	// 项目路径
 	public static final String PATH_SDCARD = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + File.separator + "TimeTalent";
 
+	//图片保存路径
+	public static final String PIC_PATH = "/mnt/sdcard/TimeTalent/picture/";
+	
 	
 	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口

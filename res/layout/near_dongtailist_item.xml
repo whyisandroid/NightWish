@@ -30,8 +30,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我在等你"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_3" />
 
             <ImageView
                 android:id="@+id/imgonline"
@@ -53,8 +53,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:text="21岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_3" />
 
             <TextView
                 android:id="@+id/tvonlinetime"
@@ -62,8 +62,8 @@
                 android:layout_height="wrap_content"
                 android:text="双子座"
                 android:gravity="right"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_3" />
         </LinearLayout>
 
         <TextView
@@ -72,8 +72,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="每一朵玫瑰都有刺，正如每个人的性格里都有你不能容忍的部分。爱护每一朵玫瑰，并不是要努力地把它的刺根除"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -92,14 +92,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="10分钟前"
-                android:textColor="@color/color_3" />
+                android:textColor="@color/color_3"
+                android:textSize="@dimen/new_size_2" />
 
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="121"
-                android:textColor="@color/color_3" />
+                android:textColor="@color/color_3"
+                android:textSize="@dimen/new_size_2" />
 
             <ImageView
                 android:id="@+id/imageView2"

@@ -26,6 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+                android:textSize="@dimen/new_size_3"
             android:text="平面模特" />
 
         <TextView
@@ -34,6 +36,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_white"
             android:text="1905电影网(薪酬5000/天)"
+                android:textSize="@dimen/new_size_3"
             android:textColor="@color/color_4" />
 
         <TextView
@@ -42,6 +45,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_white"
             android:text="北京  18-24岁  女"
+                android:textSize="@dimen/new_size_3"
             android:textColor="@color/color_4" />
 
     </LinearLayout>

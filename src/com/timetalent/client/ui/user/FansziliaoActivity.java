@@ -154,7 +154,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener,
 			finish();
 			break;
 		case R.id.main_top_right:
-			IntentUtil.intent(FansziliaoActivity.this, YirenziliaobianjiActivity.class);
+			IntentUtil.intent(FansziliaoActivity.this, FansziliaobianjiActivity.class);
 			break;
 		case R.id.img1:
 			IntentUtil.intent(FansziliaoActivity.this, PictureActivity.class);

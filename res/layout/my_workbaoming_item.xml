@@ -31,8 +31,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="吴沐熙vicky"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_2"
+                android:textSize="@dimen/new_size_3" />
         </LinearLayout>
 
         <LinearLayout
@@ -60,16 +60,16 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:text="21岁"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_3" />
 
             <TextView
                 android:id="@+id/tvzhiye"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="职业/模特、演员"
-                android:textColor="@color/texthui"
-                android:textSize="13dp" />
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_3" />
         </LinearLayout>
 
         <TextView
@@ -78,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:text="北京电影学院获奖作品《安慰》中女一号"
-            android:textColor="@color/black"
-            android:textSize="13dp" />
+            android:textColor="@color/color_4"
+            android:textSize="@dimen/new_size_3" />
 
     </LinearLayout>
 

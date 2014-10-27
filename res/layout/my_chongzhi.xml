@@ -43,6 +43,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="乱世飞尘"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -64,6 +65,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="星币余额"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -72,6 +74,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="56"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
                 </LinearLayout>
 

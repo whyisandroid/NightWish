@@ -26,6 +26,7 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.adapter.TonggaoBaseAdapter;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.Background3;
@@ -60,11 +61,10 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 	private GestureDetector mGestureDetector;
 	int index = 0;
 	private LinearLayout ldongtai;
-	private ListView lzuopin;
+	private ListView ltonggao;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	private LinearLayout lage;
-	private LinearLayout lsanwei;
 	private Button btok;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,12 +96,11 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		imgtab2 = (ImageView) findViewById(R.id.imgtab2);
 		imgtab3 = (ImageView) findViewById(R.id.imgtab3);
 		
-		lzuopin = (ListView) findViewById(R.id.lzuopin);
+		ltonggao = (ListView) findViewById(R.id.ltonggao);
 		ldongtai = (LinearLayout) findViewById(R.id.ldongtai);
 		main_top_right = (TextView)this.findViewById(R.id.main_top_right);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lage = (LinearLayout) findViewById(R.id.lage);
-		lsanwei = (LinearLayout) findViewById(R.id.lsanwei);
 		btok = (Button) findViewById(R.id.btok);
 		
 		imgpic1.setOnClickListener(this);
@@ -126,12 +125,11 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		this.findViewById(R.id.main_top_left).setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
-		lzuopin.setAdapter(new ZuopinBaseAdapter(XingtanziliaobianjiActivity.this));
-		setListViewHeightBasedOnChildren(lzuopin);
+		ltonggao.setAdapter(new TonggaoBaseAdapter(XingtanziliaobianjiActivity.this));
+		setListViewHeightBasedOnChildren(ltonggao);
 		ldongtai.setOnClickListener(this);
 		imgpic1.setOnClickListener(this);
 		lage.setOnClickListener(this);
-		lsanwei.setOnClickListener(this);
 		btok.setOnClickListener(this);
 		
 		imgpic8.setImageResource(R.drawable.d11_03);
@@ -183,9 +181,6 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 			break;
 		case R.id.lage:
 			IntentUtil.intent(XingtanziliaobianjiActivity.this, MyageActivity.class);
-			break;
-		case R.id.lsanwei:
-			IntentUtil.intent(XingtanziliaobianjiActivity.this, MysanweiActivity.class);
 			break;
 		case R.id.btok:
 			finish();

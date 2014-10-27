@@ -32,7 +32,7 @@
                 android:layout_weight="1"
                 android:text="工作内容1"
                 android:textColor="@color/black"
-                android:textSize="13dp" />
+                android:textSize="@dimen/new_size_3" />
 
             <TextView
                 android:id="@+id/tvstatus"
@@ -45,7 +45,7 @@
                 android:padding="2dp"
                 android:background="@color/bt_light_red"
                 android:textColor="@color/white"
-                android:textSize="13dp" />
+                android:textSize="@dimen/new_size_3" />
 
         </LinearLayout>
 
@@ -68,6 +68,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="结算方式:"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
                 <TextView
@@ -77,6 +78,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="日结"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
                 <TextView
@@ -86,6 +88,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:text="价格:"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
                 <TextView
@@ -95,6 +98,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="100"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
             </LinearLayout>
@@ -111,6 +115,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="北京"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
                 <TextView
@@ -121,6 +126,7 @@
                     android:layout_marginLeft="15dp"
                     android:layout_marginTop="5dp"
                     android:text="工作日期:"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
                 <TextView
@@ -131,6 +137,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="5dp"
                     android:text="2014-9-10"
+            android:textSize="@dimen/new_size_3"
                     android:textColor="@color/color_3" />
 
             </LinearLayout>

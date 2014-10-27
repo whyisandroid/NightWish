@@ -79,6 +79,8 @@
                         android:id="@+id/textView3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="吴沐熙vicky" />
                 </LinearLayout>
             </LinearLayout>
@@ -103,6 +105,8 @@
                         android:id="@+id/textView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="真实姓名:" />
 
                     <EditText
@@ -127,6 +131,8 @@
                         android:id="@+id/textView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="身份证件:" />
 
                     <EditText
@@ -160,6 +166,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                     android:text="参加项目全称:" />
 
                 <EditText
@@ -169,6 +177,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="3"
                     android:background="@null"
+                    android:textColor="@color/color_4"
+            			android:textSize="@dimen/new_size_3"
                     android:hint="必填" />
             </LinearLayout>
 
@@ -182,6 +192,8 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2"
+                    android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                     android:text="T台照片/片场照片:" />
 
                 <EditText
@@ -191,6 +203,8 @@
                     android:layout_marginLeft="10dp"
                     android:layout_weight="3"
                     android:background="@null"
+                    android:textColor="@color/color_4"
+            			android:textSize="@dimen/new_size_3"
                     android:hint="必填" />
             </LinearLayout>
 
@@ -235,6 +249,8 @@
                 android:layout_marginTop="20dp"
                 android:drawableLeft="@drawable/acc_add"
                 android:gravity="center"
+                android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                 android:text="添加更多" />
 
         </LinearLayout>
@@ -253,6 +269,8 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                 android:text="恭喜吴沐熙vicky" />
 
             <TextView
@@ -263,6 +281,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginRight="30dp"
                 android:layout_marginTop="10dp"
+            			android:textSize="@dimen/new_size_3"
                 android:text="        您已经完成基本信息录入，我们会以最快的速度完成审核敬请关注个人信息变化！"
                 android:textColor="@color/bt_light_red" />
 

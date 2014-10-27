@@ -54,6 +54,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="乱世飞尘"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
 
                 </LinearLayout>
@@ -75,6 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="星币余额"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
 
                     <TextView
@@ -83,6 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="56"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -106,6 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
                     android:text="乱世飞尘" />
 
@@ -114,6 +118,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
                     android:text="客户编号:" />
 
@@ -123,6 +128,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_weight="1"
+                    android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
                     android:text="12345" />
 
@@ -131,6 +137,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
                     android:text="支付100元" />
             </LinearLayout>
@@ -174,6 +181,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
+                    android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
                     android:text="支付宝支付" />
 
                 <TextView
@@ -181,6 +190,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/color_4"
+            android:textSize="@dimen/new_size_3"
                     android:text="仅支持宝支付" />
             </LinearLayout>
 
@@ -233,6 +243,8 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginTop="20dp"
+                        android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
                         android:text="本次充值星币:" />
 
                     <TextView
@@ -240,6 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="100"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/bt_light_red" />
                 </LinearLayout>
 
@@ -256,6 +269,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="10dp"
                         android:text="温馨提示"
+            android:textSize="@dimen/new_size_3"
                         android:textColor="@color/new_color_6" />
 
                     <TextView
@@ -265,6 +279,7 @@
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginTop="8dp"
+            android:textSize="@dimen/new_size_3"
                         android:text="确认充值后请查询您的星币余额\n如有问题请及时联系客服"
                         android:textColor="@color/color_4" />
                 </LinearLayout>

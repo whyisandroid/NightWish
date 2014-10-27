@@ -17,7 +17,7 @@
     android:gravity="right"
     android:text="1/16"
     android:textColor="@color/color_3"
-    android:textSize="20sp" />
+    android:textSize="@dimen/new_size_3" />
 
 <ViewFlipper
     android:id="@+id/viewFlipper1"

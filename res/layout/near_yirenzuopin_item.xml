@@ -26,6 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="片名:" />
 
         <TextView
@@ -33,6 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="角色:" />
 
         <TextView
@@ -40,6 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="时间:" />
     </LinearLayout>
 
@@ -55,6 +61,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="一夜惊喜" />
 
         <TextView
@@ -62,6 +70,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="米雪" />
 
         <TextView
@@ -69,6 +79,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
+            android:textColor="@color/color_2"
+            android:textSize="@dimen/new_size_3"
             android:text="2013年8月9日" />
 
     </LinearLayout>

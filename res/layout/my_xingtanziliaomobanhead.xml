@@ -96,6 +96,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:text="21"
+                        android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
                 </LinearLayout>
 
@@ -105,6 +106,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                     android:text="双子座" />
 
                 <ImageView
@@ -117,6 +120,8 @@
                     android:id="@+id/textView3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                     android:text="北京" />
 
                 <ImageView
@@ -131,6 +136,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
+                    android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                     android:text="8分钟前" />
             </LinearLayout>
 
@@ -164,6 +171,8 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="3dp"
                         android:layout_weight="1"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="我的动态" />
 
                     <TextView
@@ -172,6 +181,7 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text="317"
+                        android:textSize="@dimen/new_size_2"
                         android:textColor="@color/bt_red" />
                 </LinearLayout>
 
@@ -241,6 +251,8 @@
                         android:id="@+id/TextView19"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="姓名" />
 
                     <LinearLayout
@@ -252,8 +264,7 @@
 
                         <TextView
                             android:id="@+id/TextView20"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="吴沐熙" />
 
                         <LinearLayout
@@ -277,6 +288,8 @@
                         android:id="@+id/TextView17"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="昵称" />
 
                     <LinearLayout
@@ -288,8 +301,7 @@
 
                         <TextView
                             android:id="@+id/TextView18"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="Vicky" />
 
                         <LinearLayout
@@ -313,6 +325,8 @@
                         android:id="@+id/TextView15"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="年龄" />
 
                     <LinearLayout
@@ -324,8 +338,7 @@
 
                         <TextView
                             android:id="@+id/TextView16"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="25" />
 
                         <LinearLayout
@@ -349,6 +362,8 @@
                         android:id="@+id/TextView13"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="星座" />
 
                     <LinearLayout
@@ -360,8 +375,7 @@
 
                         <TextView
                             android:id="@+id/TextView14"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="双子座" />
 
                         <LinearLayout
@@ -385,6 +399,8 @@
                         android:id="@+id/TextView11"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="职业" />
 
                     <LinearLayout
@@ -396,8 +412,7 @@
 
                         <TextView
                             android:id="@+id/TextView12"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="演员" />
 
                         <LinearLayout
@@ -421,6 +436,8 @@
                         android:id="@+id/TextView09"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="家乡" />
 
                     <LinearLayout
@@ -432,8 +449,7 @@
 
                         <TextView
                             android:id="@+id/TextView10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="湖南省阮江市" />
 
                         <LinearLayout
@@ -457,6 +473,8 @@
                         android:id="@+id/TextView07"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="身高" />
 
                     <LinearLayout
@@ -468,45 +486,8 @@
 
                         <TextView
                             android:id="@+id/TextView08"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/main_color3_style"
                             android:text="172cm" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginTop="5dp"
-                            android:background="@color/spilt_line_color"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="5dp"
-                    android:layout_marginTop="5dp" >
-
-                    <TextView
-                        android:id="@+id/TextView05"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="三围" />
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical" >
-
-                        <TextView
-                            android:id="@+id/TextView06"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="89,60,95" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -530,6 +511,8 @@
                         android:id="@+id/TextView22"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="@dimen/new_size_3"
+                        android:textColor="@color/color_2"
                         android:text="发布的通告" />
 
                     <LinearLayout

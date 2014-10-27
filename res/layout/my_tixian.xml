@@ -34,6 +34,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="账号" />
 
                     <EditText
@@ -42,6 +44,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:background="@color/white"
+                        android:textColor="@color/color_4"
+            			android:textSize="@dimen/new_size_3"
                         android:hint="支付宝账号/手机号码"
                         android:singleLine="true" >
                     </EditText>
@@ -61,6 +65,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="校验全名" />
 
                     <EditText
@@ -69,6 +75,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:background="@color/white"
+                        android:textColor="@color/color_4"
+            			android:textSize="@dimen/new_size_3"
                         android:hint="收款人姓名"
                         android:singleLine="true" />
 
@@ -85,6 +93,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="15dp"
+                        android:textColor="@color/color_2"
+            			android:textSize="@dimen/new_size_3"
                         android:text="星币" />
 
                     <EditText
@@ -94,6 +104,8 @@
                         android:layout_marginLeft="10dp"
                         android:background="@color/white"
                         android:hint="提现星币"
+                        android:textColor="@color/color_4"
+            			android:textSize="@dimen/new_size_3"
                         android:inputType="number"
                         android:singleLine="true" />
 

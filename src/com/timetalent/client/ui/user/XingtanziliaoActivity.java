@@ -159,7 +159,7 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 			finish();
 			break;
 		case R.id.main_top_right:
-			IntentUtil.intent(XingtanziliaoActivity.this, YirenziliaobianjiActivity.class);
+			IntentUtil.intent(XingtanziliaoActivity.this, XingtanziliaobianjiActivity.class);
 			break;
 		case R.id.img1:
 			IntentUtil.intent(XingtanziliaoActivity.this, PictureActivity.class);

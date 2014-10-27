@@ -20,6 +20,7 @@ import com.timetalent.client.ui.dialog.ExitIOSStyleListDialog;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.near.SearchActivity;
+import com.timetalent.client.ui.user.FansziliaoActivity;
 import com.timetalent.client.ui.user.MyDongtaiActivity;
 import com.timetalent.client.ui.user.MyfansActivity;
 import com.timetalent.client.ui.user.MyfuwuActivity;
@@ -30,6 +31,7 @@ import com.timetalent.client.ui.user.MyqianbaoActivity;
 import com.timetalent.client.ui.user.MyrenzhengActivity;
 import com.timetalent.client.ui.user.MytuijianActivity;
 import com.timetalent.client.ui.user.MyworkActivity;
+import com.timetalent.client.ui.user.XingtanziliaoActivity;
 import com.timetalent.client.ui.user.YirenziliaoActivity;
 import com.timetalent.common.util.IntentUtil;
 
@@ -175,7 +177,19 @@ public class UserFragment extends Fragment implements OnClickListener {
 //			finish();
 			break;
 		case R.id.lmydongtai:
-			IntentUtil.intent(this.mContext, YirenziliaoActivity.class);
+			switch (r) {
+			case 0:
+				IntentUtil.intent(this.mContext, YirenziliaoActivity.class);
+				break;
+case 1:
+	IntentUtil.intent(this.mContext, XingtanziliaoActivity.class);
+				break;
+case 2:
+	IntentUtil.intent(this.mContext, FansziliaoActivity.class);
+	break;
+			default:
+				break;
+			}
 			break;
 		case R.id.lmyhaoyou:
 			Bundle bundle0 = new Bundle();

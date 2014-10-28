@@ -2,10 +2,12 @@ package com.timetalent.client.ui.near;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -51,13 +53,18 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	private LinearLayout ldongtai;
 	private LinearLayout img1;
 	private LinearLayout img2;
-	
+	public int screenw = 0;
+	public float density = 1.0f;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.near_fansxiangqing);
 		controller = AppController.getController(this);
+		DisplayMetrics dm = new DisplayMetrics();
+		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		screenw = dm.widthPixels;
+		density = dm.density;
 		findView();
 		initView();
 	}
@@ -112,6 +119,37 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 		imgpic6.setOnClickListener(this);
 		imgpic7.setOnClickListener(this);
 		imgpic8.setOnClickListener(this);
+		LayoutParams  p1 = imgpic1.getLayoutParams();
+		p1.height = (int)(screenw/4-8*density);
+		imgpic1.setLayoutParams(p1);
+		
+		LayoutParams  p2 = imgpic2.getLayoutParams();
+		p2.height = (int)(screenw/4-8*density);
+		imgpic2.setLayoutParams(p2);
+		
+		LayoutParams  p3 = imgpic3.getLayoutParams();
+		p3.height = (int)(screenw/4-8*density);
+		imgpic3.setLayoutParams(p3);
+		
+		LayoutParams  p4 = imgpic4.getLayoutParams();
+		p4.height = (int)(screenw/4-8*density);
+		imgpic4.setLayoutParams(p4);
+		
+		LayoutParams  p5 = imgpic5.getLayoutParams();
+		p5.height = (int)(screenw/4-8*density);
+		imgpic5.setLayoutParams(p5);
+		
+		LayoutParams  p6 = imgpic6.getLayoutParams();
+		p6.height = (int)(screenw/4-8*density);
+		imgpic6.setLayoutParams(p6);
+		
+		LayoutParams  p7 = imgpic7.getLayoutParams();
+		p7.height = (int)(screenw/4-8*density);
+		imgpic7.setLayoutParams(p7);
+		
+		LayoutParams  p8 = imgpic8.getLayoutParams();
+		p8.height = (int)(screenw/4-8*density);
+		imgpic8.setLayoutParams(p8);
 	}
 	
 	

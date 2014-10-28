@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="片名:" />
 
@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="角色:" />
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="时间:" />
     </LinearLayout>
@@ -61,7 +61,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="一夜惊喜" />
 
@@ -70,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="米雪" />
 
@@ -79,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:textColor="@color/color_2"
+            android:textColor="@color/color_3"
             android:textSize="@dimen/new_size_3"
             android:text="2013年8月9日" />
 

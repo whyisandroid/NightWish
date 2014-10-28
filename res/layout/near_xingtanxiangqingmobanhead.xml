@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:textColor="@color/color_2"
+                    android:textColor="@color/color_3"
             		android:textSize="@dimen/new_size_3"
                     android:text="双子座" />
 
@@ -123,8 +123,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="北京"
-                    android:textColor="@color/color_2"
-            		android:textSize="@dimen/new_size_3" />
+                    android:textColor="@color/color_4"
+            		android:textSize="@dimen/new_size_2" />
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -139,8 +139,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:text="8分钟前"
-                    android:textColor="@color/color_2"
-            		android:textSize="@dimen/new_size_3" />
+                    android:textColor="@color/color_4"
+            		android:textSize="@dimen/new_size_2" />
             </LinearLayout>
 
             <LinearLayout

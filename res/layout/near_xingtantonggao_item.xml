@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_white"
             android:textColor="@color/color_2"
-            android:textSize="@dimen/new_size_3"
+            android:textSize="@dimen/new_size_4"
             android:text="平面模特" />
 
         <TextView

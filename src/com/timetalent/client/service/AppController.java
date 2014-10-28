@@ -198,7 +198,6 @@ public class AppController {
 	  * @time: 2014-10-23 下午11:24:31
 	  */
 	public void register() {
-
 		try {
 			service.register();
 			handler.obtainMessage(HANDLER_TOAST, "注册成功").sendToTarget();

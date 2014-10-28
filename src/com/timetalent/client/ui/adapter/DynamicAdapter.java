@@ -1,12 +1,15 @@
 package com.timetalent.client.ui.adapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,6 +17,7 @@ import android.widget.TextView;
 import com.timetalent.client.R;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.PictureActivity;
+import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -24,9 +28,11 @@ import com.timetalent.common.util.IntentUtil;
  * @author: wanghy
  * @time: 2014-10-12 下午7:58:51 
  ******************************************/
+@SuppressLint("NewApi")
 public class DynamicAdapter extends BaseAdapter{
 	
 	private Context mContext;
+	private LayoutInflater inflater;
 	
 	/**
 	 * 类的构造方法
@@ -35,6 +41,8 @@ public class DynamicAdapter extends BaseAdapter{
 	 */
 	public DynamicAdapter(Context mContext) {
 		this.mContext = mContext;
+		inflater = LayoutInflater.from(mContext);
+		
 	}
 	
 	@Override
@@ -59,18 +67,26 @@ public class DynamicAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.dynamic_list_item, null);
+			convertView = inflater.inflate(R.layout.dynamic_list_item, null);
 		}
 		
 		ImageView iv_dynamic_head = (ImageView)convertView.findViewById(R.id.iv_dynamic_head);
-		ImageView iv_dynamic_1 = (ImageView)convertView.findViewById(R.id.iv_dynamic_1);
-		ImageView iv_dynamic_2 = (ImageView)convertView.findViewById(R.id.iv_dynamic_2);
-		ImageView iv_dynamic_3 = (ImageView)convertView.findViewById(R.id.iv_dynamic_3);
 		ImageView iv_dynamic_good = (ImageView)convertView.findViewById(R.id.iv_dynamic_good);
 		final TextView tv_dynamic_add_1 = (TextView)convertView.findViewById(R.id.tv_dynamic_add_1);
 		
 		ImageView iv_dynamic_message = (ImageView)convertView.findViewById(R.id.iv_dynamic_message);
 		final LinearLayout ll_dynamic_message = (LinearLayout)convertView.findViewById(R.id.ll_dynamic_message);
+		
+		// 处理图片
+		HorizontalListView hl_dynamic = (HorizontalListView)convertView.findViewById(R.id.hl_dynamic);
+		
+		List<String> list = new ArrayList<String>();
+		list.add("afahf");
+		list.add("242rwerw");
+		hl_dynamic.setAdapter(new DynamicPicAdapter(mContext,list)); // 为viewpager设置adapter  
+		
+
+		
 		
 		
 		iv_dynamic_head.setOnClickListener(new OnClickListener() {
@@ -81,9 +97,6 @@ public class DynamicAdapter extends BaseAdapter{
 		});
 		
 		
-		iv_dynamic_1.setOnClickListener(ivListener);
-		iv_dynamic_2.setOnClickListener(ivListener);
-		iv_dynamic_3.setOnClickListener(ivListener);
 		iv_dynamic_good.setOnClickListener(new  OnClickListener() {
 			
 				@Override

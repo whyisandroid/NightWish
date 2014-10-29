@@ -208,6 +208,119 @@ public class AppController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 	
+	public void chanceAdd() {
+		try {
+			service.chanceAdd();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void chanceLists() {
+		try {
+			service.chanceLists();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void chanceDetails() {
+		try {
+			service.chanceDetails();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void chanceApply() {
+		try {
+			service.chanceApply();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void dynamicAdd() {
+		try {
+			service.dynamicAdd();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dynamicIndex() {
+		try {
+			service.dynamicIndex();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dynamicRepaly() {
+		try {
+			service.dynamicRepaly();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void dynamicWho() {
+		try {
+			service.dynamicWho();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void dynamicFavour() {
+		try {
+			service.dynamicFavour();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void dynamicMy() {
+		try {
+			service.dynamicMy();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

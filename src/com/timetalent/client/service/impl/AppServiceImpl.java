@@ -105,4 +105,221 @@ public class AppServiceImpl implements AppService {
 		}
 	
 	}
+
+	
+	@Override
+	public void chanceAdd() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	@Override
+	public void chanceLists() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHANCE_LIST);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	@Override
+	public void chanceDetails() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHANCE_DETAIL);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	@Override
+	public void chanceApply() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHANCE_APPLY);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	@Override
+	public void dynamicIndex() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicWho()
+	 */
+	@Override
+	public void dynamicWho() throws BusinessException {
+
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicMy()
+	 */
+	@Override
+	public void dynamicMy() throws BusinessException {
+
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicAdd()
+	 */
+	@Override
+	public void dynamicAdd() throws BusinessException {
+
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_ADD);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicRepaly()
+	 */
+	@Override
+	public void dynamicRepaly() throws BusinessException {
+
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_REPALY);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicFavour()
+	 */
+	@Override
+	public void dynamicFavour() throws BusinessException {
+
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_FAVOUR);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+	
+	
 }

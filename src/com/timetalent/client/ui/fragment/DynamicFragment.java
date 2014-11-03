@@ -17,6 +17,7 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -29,7 +30,6 @@ import com.timetalent.common.util.UIUtils;
  ******************************************/
 public class DynamicFragment extends Fragment implements OnClickListener {
 	private View view;
-	private Context mContext;
 	private AppController controller;
 	private TextView main_top_right;
 	private TextView main_top_left2;
@@ -40,7 +40,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
 		view = inflater.inflate(R.layout.dynamic_fragment, container, false);
-		mContext = getActivity();
+		getActivity();
 		findView();
 		initView();
 		return view;
@@ -75,6 +75,30 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		
 		DynamicAdapter adapter = new DynamicAdapter(getActivity());
 		lv_dynamic.setAdapter(adapter);
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see android.support.v4.app.Fragment#onResume()
+	 */
+	@Override
+	public void onResume() {
+		super.onResume();
+		
+		
+		/**
+		  * 方法描述：TODO
+		  * @author: why
+		  * @time: 2014-10-21 上午11:17:14
+		  */
+			ProgressDialogUtil.showProgressDialog(getActivity(), "登录中…", false);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					controller.dynamicMy();
+					ProgressDialogUtil.closeProgressDialog();
+				}
+			}).start();
 	}
 	
 	@Override

@@ -5,8 +5,8 @@ import java.io.File;
 import android.os.Environment;
 
 /**
- * **************************************** 类描述： 配置信息类 类名称：Config
- * 
+ * **************************************** 
+ * 类描述： 配置信息类 类名称：Config
  * @version: 1.0
  * @author: why
  * @time: 2014-2-14 下午3:32:29

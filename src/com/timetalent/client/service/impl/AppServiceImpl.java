@@ -61,6 +61,7 @@ public class AppServiceImpl implements AppService {
 			// 登录成功 存储 账户
 			if (resp.getData() != null) {
 				context.addBusinessData("loginData", resp.getData());
+				context.addBusinessData("_session_id", resp.getData().getSession_id());
 			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
@@ -109,9 +110,10 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void chanceAdd() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
 		request.setR_calzz(BaseResp.class);
@@ -227,11 +229,12 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void dynamicMy() throws BusinessException {
-
-
+		String _session_id = context.getStringData("_session_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("page", "1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "10"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
 		request.setR_calzz(BaseResp.class);

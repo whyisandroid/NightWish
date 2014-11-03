@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.timetalent.client.R;
 
 
@@ -59,7 +60,11 @@ public class DynamicPicAdapter extends  BaseAdapter{
 			convertView = LayoutInflater.from(mContext).inflate(R.layout.dynamic_pic_item, null);
 		}
 		ImageView iv_dynamic_pic = (ImageView)convertView.findViewById(R.id.iv_dynamic_pic);
-		iv_dynamic_pic.setImageResource(R.drawable.d3_56);
+		
+		// 加载网络图片
+		BitmapUtils bitmapUtils = new BitmapUtils(mContext);
+		bitmapUtils.display(iv_dynamic_pic, "http://c.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494ee4a92ed232ef5e0fe99257e5c.jpg");
+		//iv_dynamic_pic.setImageResource(R.drawable.d3_56);
 		return convertView;
 	}
 

@@ -8,7 +8,7 @@ package com.timetalent.client.entities;
  * @time: 2014-2-20 下午3:30:21 
  ******************************************/
 public class LoginData {   
-	private String	session_id; //会话ID，用来验证是否登陆
+	private String	_session_id; //会话ID，用来验证是否登陆
 	private String	id; //用户编号
 	private String	username; //用户名
 	private String	phone; //手机号
@@ -36,13 +36,13 @@ public class LoginData {
 	 * @return session_id : return the property session_id.
 	 */
 	public String getSession_id() {
-		return session_id;
+		return _session_id;
 	}
 	/**
 	 * @param session_id : set the property session_id.
 	 */
 	public void setSession_id(String session_id) {
-		this.session_id = session_id;
+		this._session_id = session_id;
 	}
 	/**
 	 * @return id : return the property id.

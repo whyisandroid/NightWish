@@ -17,6 +17,7 @@ public class Request<T> implements java.io.Serializable {
 
 	/**Afinal  数据 key**/
 	public static final String  AJAXPARAMS = "AjaxParams";
+	public static final String  PICTURE = "pictureParams";
 
 	private static final long serialVersionUID = 2013415890997784131L;
 

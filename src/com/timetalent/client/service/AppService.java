@@ -18,6 +18,9 @@ public interface AppService {
 	public void validationCode() throws BusinessException;
 	/**注册***/
 	public void register() throws BusinessException;
+	/**注册-上传图片**/
+	public void register_avatar() throws BusinessException;
+	
 	
 	/**发布 机会***/
 	public void chanceAdd() throws BusinessException;

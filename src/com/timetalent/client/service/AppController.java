@@ -210,6 +210,26 @@ public class AppController {
 		}
 	}
 	
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午11:24:31
+	  */
+	public void register_avatar() {
+		try {
+			service.register_avatar();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
 	public void chanceAdd() {
 		try {
 			service.chanceAdd();

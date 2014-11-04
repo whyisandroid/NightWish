@@ -63,7 +63,8 @@ public class DynamicPicAdapter extends  BaseAdapter{
 		
 		// 加载网络图片
 		BitmapUtils bitmapUtils = new BitmapUtils(mContext);
-		bitmapUtils.display(iv_dynamic_pic, "http://c.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494ee4a92ed232ef5e0fe99257e5c.jpg");
+		String pic = "http://124.193.223.166/xingtan/Uploads/avatar/201411/5458cf090dbd9.jpg";
+		bitmapUtils.display(iv_dynamic_pic,pic);
 		//iv_dynamic_pic.setImageResource(R.drawable.d3_56);
 		return convertView;
 	}

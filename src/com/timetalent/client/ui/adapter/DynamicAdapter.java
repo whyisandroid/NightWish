@@ -91,7 +91,9 @@ public class DynamicAdapter extends BaseAdapter{
 		ImageView iv_dynamic_test = (ImageView)convertView.findViewById(R.id.iv_dynamic_test);
 		
 		BitmapUtils bitmapUtils = new BitmapUtils(mContext);
-		bitmapUtils.display(iv_dynamic_test, "http://c.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494ee4a92ed232ef5e0fe99257e5c.jpg");
+		String pic = "http://124.193.223.166/xingtan/Uploads/avatar/201411/5458cf090dbd9.jpg";
+		bitmapUtils.display(iv_dynamic_test,pic);
+		
 		
 		
 		iv_dynamic_head.setOnClickListener(new OnClickListener() {

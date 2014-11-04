@@ -20,6 +20,16 @@ public interface AppSocketInterface {
 	  * @time: 2013-10-11 上午11:53:01
 	 */
 	public <T>T  shortConnect(Request<T> request) throws BusinessException;
+	
+	/**
+	  * 方法描述：上传图片
+	  * @param request
+	  * @return
+	  * @throws BusinessException
+	  * @author: why
+	  * @time: 2014-11-4 下午6:11:42
+	 */
+	public <T>T  imageLoad(Request<T> request) throws BusinessException;
 	/**
 	 * 
 	  * 方法描述 ：长连接

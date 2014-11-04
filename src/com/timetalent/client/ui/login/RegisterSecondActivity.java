@@ -1,6 +1,8 @@
 package com.timetalent.client.ui.login;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,12 +22,14 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.common.util.Config;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -154,6 +158,15 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 					.getAbsolutePath());
 			iv_register_head.setImageBitmap(bmp);
 			// 上传头像 处理
+			List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
+			picValuePair.add(new PicValuePair("avatar", sdcardTempFile));
+			controller.getContext().addBusinessData("Register.avatar", picValuePair);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					controller.register_avatar();
+				}
+			}).start();
 		}
 	}
 	/**

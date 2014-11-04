@@ -1,5 +1,6 @@
 package com.timetalent.client.service.impl;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,6 +8,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
 import com.timetalent.client.TimeTalentApplication;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.LoginResp;
@@ -105,6 +107,25 @@ public class AppServiceImpl implements AppService {
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
+	}
+	
+	
+	@Override
+	public void register_avatar() throws BusinessException {
+		String  user_id = (String)context.getBusinessData("User.user_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("user_id", "7"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		List<PicValuePair> picValuePair =  (List<PicValuePair>)context.getBusinessData("Register.avatar");
+		request.addParameter(Request.PICTURE, picValuePair);
+		request.setUrl(Config.HTTP_USER_REGISTER_AVATAR);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
 	}
 
 	

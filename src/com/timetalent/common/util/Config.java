@@ -31,6 +31,7 @@ public class Config {
 	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
 	
+	public final static String HTTP_USER_REGISTER_AVATAR = MY_SERVICE+ "/Reg/avatar_upload"; // 注册接口 上传图片
 	// 机会
 	public final static String HTTP_USER_CHANCE_ADD = MY_SERVICE+ "/Task/add"; // 添加机会
 	public final static String HTTP_USER_CHANCE_LIST = MY_SERVICE+ "/Task/lists"; //机会列表

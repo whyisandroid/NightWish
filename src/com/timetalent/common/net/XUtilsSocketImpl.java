@@ -1,9 +1,11 @@
 package com.timetalent.common.net;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -13,11 +15,13 @@ import com.lidroid.xutils.http.RequestParams;
 import com.lidroid.xutils.http.ResponseStream;
 import com.lidroid.xutils.http.client.HttpRequest;
 import com.lidroid.xutils.util.CookieUtils;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.service.AppController;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.util.Json_U;
 import com.timetalent.common.util.LogUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.aes.MD5Test;
 
 /******************************************
@@ -72,6 +76,52 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 		}
 		return Json_U.parseJsonToObj(value, request.getR_calzz());
 	}
+	
+	
+	@Override
+	public <T> T imageLoad(Request<T> request) throws BusinessException {
+
+
+		if (!NetWorkHelper.isNetworkAvailable(AppController.getController().getCurrentActivity())) {
+			throw new BusinessException(new ErrorMessage("网络无法连接"));
+		}
+		String value = "";
+		HttpUtils httpUtils = new HttpUtils();
+		
+		
+		try {
+			RequestParams params = new RequestParams();
+			List<NameValuePair> nameValuePairs = (List<NameValuePair>) request.getParameter(Request.AJAXPARAMS);
+			if (nameValuePairs == null) {
+				nameValuePairs = new ArrayList<NameValuePair>();
+			}
+			params.addBodyParameter(nameValuePairs);
+			String sing = md5Sign(nameValuePairs); 
+			nameValuePairs.add(new BasicNameValuePair("_sign",sing));
+			List<PicValuePair> picFiles = (List<PicValuePair>) request.getParameter(Request.PICTURE);
+			for (int i = 0; i < picFiles.size(); i++) {
+				params.addBodyParameter(picFiles.get(i).getKey(),picFiles.get(i).getPicFile());
+			}
+			LogUtil.Log("sendHttp", request.getUrl() + nameValuePairs.toString() + "图片个数:  "+picFiles.size() +"  " + picFiles.iterator().next().getKey());
+			ResponseStream responseStream = httpUtils.sendSync(HttpRequest.HttpMethod.POST,
+					request.getUrl(), params);
+
+			value = responseStream.readString();  
+			LogUtil.Log("XUtilsSocketImpl", value);
+		} catch (com.lidroid.xutils.exception.HttpException e) {
+			e.printStackTrace();
+			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+		}
+
+		if (value == null) {
+			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+		}
+		return Json_U.parseJsonToObj(value, request.getR_calzz());
+	
+	}
 
 
 	
@@ -109,4 +159,7 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 		}
 		return httpUtils;
 	}
+	
+	
+	
 }

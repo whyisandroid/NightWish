@@ -13,16 +13,14 @@ import java.util.List;
  ******************************************/
 public class Searchlist {
 	public Searchlist(){
-		users = new ArrayList<Searchpackage>();
 	}
-	List<Searchpackage> users = null;
+	List<Searchpackage> lists = null;
+	public List<Searchpackage> getLists() {
+		return lists;
+	}
+	public void setLists(List<Searchpackage> lists) {
+		this.lists = lists;
+	}
 
-	public List<Searchpackage> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Searchpackage> users) {
-		this.users = users;
-	}
 
 }

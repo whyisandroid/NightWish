@@ -13,16 +13,14 @@ import java.util.List;
  ******************************************/
 public class Friendlist {
 	public Friendlist(){
-		users = new ArrayList<Friendpackage>();
 	}
-	List<Friendpackage> users = null;
+	List<Friendpackage> lists = null;
+	public List<Friendpackage> getLists() {
+		return lists;
+	}
+	public void setLists(List<Friendpackage> lists) {
+		this.lists = lists;
+	}
 
-	public List<Friendpackage> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Friendpackage> users) {
-		this.users = users;
-	}
 
 }

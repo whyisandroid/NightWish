@@ -189,9 +189,10 @@
                     android:id="@+id/textView12"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="仅支持&quot;支付宝&quot;支付"
                     android:textColor="@color/color_4"
-            android:textSize="@dimen/new_size_3"
-                    android:text="仅支持宝支付" />
+                    android:textSize="@dimen/new_size_3" />
+
             </LinearLayout>
 
             <ImageView

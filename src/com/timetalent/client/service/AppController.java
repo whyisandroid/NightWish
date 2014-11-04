@@ -323,4 +323,213 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 搜索附近
+	  * 方法描述：TODO
+	  * @author: Administrator
+	  * @time: 2014-11-2 下午12:18:42
+	 */
+	public void search() {
+		try {
+			service.search();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**附近的人Zone/near***/
+	public void near() {
+		try {
+			service.near();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**获取我的好友列表Zone/friend***/
+	public void myfriend() {
+		try {
+			service.myfriend();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**获取我的关注列表Zone/following***/
+	public void myfollowing() {
+		try {
+			service.myfollowing();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**获取关注我的人列表,即粉丝Zone/followed***/
+	public void myfollowed() {
+		try {
+			service.myfollowed();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**获取推荐用户列表Zone/pushuser***/
+	public void mypushuser() {
+		try {
+			service.mypushuser();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**获取黑名单列表Zone/black***/
+	public void myblack() {
+		try {
+			service.myblack();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**充值订单Wallet/charge_order***/
+	public void mycharge_order() {
+		try {
+			service.mycharge_order();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**充值完成Wallet/complete_order***/
+	public void mycomplete_order() {
+		try {
+			service.mycomplete_order();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**取消订单Wallet/cancel_order***/
+	public void mycancel_order() {
+		try {
+			service.mycancel_order();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**提现Wallet/withdraw***/
+	public void mywithdraw() {
+		try {
+			service.mywithdraw();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**提现记录Wallet/withdraw_lists***/
+	public void mywithdeaw_lists() {
+		try {
+			service.mywithdeaw_lists();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**星探、粉丝邀约某明星Invite/add***/
+	public void myinvite_add() {
+		try {
+			service.myinvite_add();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**我的邀约记录 星探或粉丝邀约明星的记录Invite/appoint***/
+	public void myinvite_appoint() {
+		try {
+			service.myinvite_appoint();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**邀约我的记录 明星被邀约的记录Invite/offer***/
+	public void myinvite_offer() {
+		try {
+			service.myinvite_offer();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**接受邀约Invite/accept***/
+	public void myinvite_accept() {
+		try {
+			service.myinvite_accept();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment***/
+	public void myinvite_payment() {
+		try {
+			service.myinvite_payment();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

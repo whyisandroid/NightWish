@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -54,6 +56,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 	private TextView tvtitle;
 	private TextView btsearch;
 	private ImageButton btback;
+	NearBaseAdapter adapter = null;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -79,7 +82,13 @@ public class NearFragment extends Fragment implements OnClickListener {
 		btshaixuan.setText("筛选");
 		btsearch.setText("");
 		UIUtils.setDrawableLeft(getActivity(),btsearch,R.drawable.f9_06);
-		list.setAdapter(new NearBaseAdapter(getActivity()));
+		setvalue();
+		new Thread(){
+			public void run() {
+				controller.near();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 		list.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -99,6 +108,18 @@ public class NearFragment extends Fragment implements OnClickListener {
 		btshaixuan.setOnClickListener(this);
 		btsearch.setOnClickListener(this);
 		showMessageTwo(mContext, "现在去完善个人信息", "完成");
+	}
+	public void setvalue(){
+		controller.getContext().addBusinessData("near.page",1);
+		controller.getContext().addBusinessData("near.page_per",100);
+		controller.getContext().addBusinessData("near.search","");
+		controller.getContext().addBusinessData("near.lat","116.293102");
+		controller.getContext().addBusinessData("near.lng","39.817923");
+		controller.getContext().addBusinessData("near.sex",1);
+		controller.getContext().addBusinessData("near.age_min",1);
+		controller.getContext().addBusinessData("near.age_max",80);
+		controller.getContext().addBusinessData("near.type","start");
+		controller.getContext().addBusinessData("near.major","model");
 	}
 	private void showMessageTwo(final Context context,String message,final String toast) {
 		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
@@ -172,4 +193,17 @@ public class NearFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // super.handleMessage(msg);
+            switch (msg.what) {
+            case 1:
+            	adapter = new NearBaseAdapter(getActivity());
+        		list.setAdapter(adapter);
+            	adapter.notifyDataSetChanged();
+                break;
+            }
+        }
+    };
 }

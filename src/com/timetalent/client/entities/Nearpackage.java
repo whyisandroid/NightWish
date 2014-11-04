@@ -19,10 +19,10 @@ public class Nearpackage {
 	String city = "";
 	String type = "";
 	String sort = "0";
+	String status = "1";
 	String lat = "";
 	String lng = "";
 	String distance = "";
-	String status = "1";
 	public String getUsername() {
 		return username;
 	}

@@ -44,4 +44,27 @@ public class Config {
 	public final static String HTTP_USER_DYNAMIC_ADD = MY_SERVICE+ "/Feed/addfeed"; //发布动态Feed/addfeed
 	public final static String HTTP_USER_DYNAMIC_REPALY = MY_SERVICE+ "/Feed/add_reply"; // 评论某动态Feed/add_reply
 	public final static String HTTP_USER_DYNAMIC_FAVOUR = MY_SERVICE+ "/Feed/favour"; // 点赞Feed/favour
+	
+	//附近
+	public final static String HTTP_NEAR_ZONE_SEARCH = MY_SERVICE+ "/Zone/search"; // 搜索用户Zone/search
+	public final static String HTTP_NEAR_ZONE_NEAR = MY_SERVICE+ "/Zone/near"; // 附近的人Zone/near
+	
+	//我的
+	public final static String HTTP_MY_ZONE_FRIEND = MY_SERVICE+ "/Zone/friend"; // 获取我的好友列表Zone/friend
+	public final static String HTTP_MY_ZONE_FOLLOWING = MY_SERVICE+ "/Zone/following"; // 获取我的关注列表Zone/following
+	public final static String HTTP_MY_ZONE_FOLLOWED = MY_SERVICE+ "/Zone/followed"; // 获取关注我的人列表,即粉丝Zone/followed
+	public final static String HTTP_MY_ZONE_PUSHUSER = MY_SERVICE+ "/Zone/pushuser"; // 获取推荐用户列表Zone/pushuser
+	public final static String HTTP_MY_ZONE_BLACK = MY_SERVICE+ "/Zone/black"; // 获取黑名单列表Zone/black
+	public final static String HTTP_MY_WALLET_CHARGEORDER = MY_SERVICE+ "/Wallet/charge_order"; // 充值订单Wallet/charge_order
+	public final static String HTTP_MY_WALLET_COMPLETEORDER = MY_SERVICE+ "/Wallet/complete_order"; // 充值完成Wallet/complete_order
+	public final static String HTTP_MY_WALLET_CANCELORDER = MY_SERVICE+ "/Wallet/cancel_order"; // 取消订单Wallet/cancel_order
+	public final static String HTTP_MY_WALLET_WITHDRAW = MY_SERVICE+ "/Wallet/withdraw"; // 提现Wallet/withdraw
+	public final static String HTTP_MY_WALLET_WITHDRAWLISTS = MY_SERVICE+ "/Wallet/withdraw_lists"; // 提现记录Wallet/withdraw_lists
+	public final static String HTTP_MY_INVITE_ADD = MY_SERVICE+ "/Invite/add"; // 星探、粉丝邀约某明星Invite/add
+	public final static String HTTP_MY_INVITE_APPOINT = MY_SERVICE+ "/Invite/appoint"; // 我的邀约记录 星探或粉丝邀约明星的记录Invite/appoint
+	public final static String HTTP_MY_INVITE_OFFER = MY_SERVICE+ "/Invite/offer"; // 邀约我的记录 明星被邀约的记录Invite/offer
+	public final static String HTTP_MY_INVITE_ACCEPT = MY_SERVICE+ "/Invite/accept"; // 接受邀约Invite/accept
+	public final static String HTTP_MY_INVITE_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
+	
+	
 }

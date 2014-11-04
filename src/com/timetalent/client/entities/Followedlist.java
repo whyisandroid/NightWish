@@ -13,16 +13,14 @@ import java.util.List;
  ******************************************/
 public class Followedlist {
 	public Followedlist(){
-		users = new ArrayList<Followedpackage>();
 	}
-	List<Followedpackage> users = null;
+	List<Followedpackage> lists = null;
+	public List<Followedpackage> getLists() {
+		return lists;
+	}
+	public void setLists(List<Followedpackage> lists) {
+		this.lists = lists;
+	}
 
-	public List<Followedpackage> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Followedpackage> users) {
-		this.users = users;
-	}
 
 }

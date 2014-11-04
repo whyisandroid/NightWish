@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
@@ -15,7 +17,9 @@ import com.timetalent.client.entities.BlankName;
 import com.timetalent.client.entities.MessageItem;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
+import com.timetalent.client.ui.adapter.GuanzhuAdapter;
 import com.timetalent.client.ui.adapter.HeimingdanAdapter;
+import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.client.ui.view.ListViewCompat;
 
 
@@ -33,7 +37,7 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 	private ListViewCompat lheimingdan;
 	
 	private List<BlankName> mBlankItems;
-	
+	HeimingdanAdapter adapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,9 +77,17 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 		mBlankItems.add(new BlankName());
 		mBlankItems.add(new BlankName());
 		mBlankItems.add(new BlankName());
-		lheimingdan.setAdapter(new HeimingdanAdapter(MyheimingdanActivity.this,mBlankItems,lheimingdan));
+		setvalue();
+		new Thread(){
+			public void run() {
+				controller.myblack();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 	}
-	
+	public void setvalue(){
+//		controller.getContext().addBusinessData("search.search",main_top_title.getText().toString());
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -87,5 +99,17 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 			break;
 		}
 	}
-
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // super.handleMessage(msg);
+            switch (msg.what) {
+            case 1:
+            	adapter = new HeimingdanAdapter(MyheimingdanActivity.this,mBlankItems,lheimingdan);
+            	lheimingdan.setAdapter(adapter);
+            	adapter.notifyDataSetChanged();
+                break;
+            }
+        }
+    };
 }

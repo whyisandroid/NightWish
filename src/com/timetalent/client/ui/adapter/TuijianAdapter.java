@@ -1,7 +1,11 @@
 package com.timetalent.client.ui.adapter;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Followedlist;
+import com.timetalent.client.entities.Pushuserlist;
+import com.timetalent.client.service.AppController;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,15 +27,19 @@ import android.widget.TextView;
 public class TuijianAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-
+	Pushuserlist data = null;
 	public TuijianAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
-
+		data = (Pushuserlist) AppController.getController(((Activity)context)).getContext().getBusinessData("PushuserData");
 	}
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 5;//
+		if(data != null){
+			return data.getLists().size();
+		}else{
+			return 0;	
+		}
+		//
 	}
 
 	
@@ -60,19 +68,22 @@ public class TuijianAdapter extends BaseAdapter {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		ViewHolder holder = new ViewHolder();
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.my_haoyou_item,
-				    null);
-			holder = new ViewHolder();
-			holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
-			holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
-			holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
-			holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
-			holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
-			holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
-			holder.bttianjia = (ImageButton) convertView.findViewById(R.id.bttianjia);
-			convertView.setTag(holder);//绑定ViewHolder对象
+			if(data!= null && data.getLists().size() > position){
+				convertView = mInflater.inflate(R.layout.my_haoyou_item,
+					    null);
+				
+				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
+				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
+				holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
+				holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
+				holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
+				holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
+				holder.bttianjia = (ImageButton) convertView.findViewById(R.id.bttianjia);
+				convertView.setTag(holder);//绑定ViewHolder对象
+			}
+			
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }

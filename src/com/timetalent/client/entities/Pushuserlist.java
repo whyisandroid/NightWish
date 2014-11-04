@@ -13,16 +13,14 @@ import java.util.List;
  ******************************************/
 public class Pushuserlist {
 	public Pushuserlist(){
-		users = new ArrayList<Pushuserpackage>();
 	}
-	List<Pushuserpackage> users = null;
+	List<Pushuserpackage> lists = null;
+	public List<Pushuserpackage> getLists() {
+		return lists;
+	}
+	public void setLists(List<Pushuserpackage> lists) {
+		this.lists = lists;
+	}
 
-	public List<Pushuserpackage> getUsers() {
-		return users;
-	}
-
-	public void setUsers(List<Pushuserpackage> users) {
-		this.users = users;
-	}
 
 }

@@ -52,4 +52,55 @@ public interface AppService {
 	/**点赞Feed/favour***/
 	public void dynamicFavour() throws BusinessException;
 	
+	/**搜索用户Zone/search***/
+	public void search() throws BusinessException;
+	
+	/**附近的人Zone/near***/
+	public void near() throws BusinessException;
+	
+	/**获取我的好友列表Zone/friend***/
+	public void myfriend() throws BusinessException;
+	
+	/**获取我的关注列表Zone/following***/
+	public void myfollowing() throws BusinessException;
+	
+	/**获取关注我的人列表,即粉丝Zone/followed***/
+	public void myfollowed() throws BusinessException;
+	
+	/**获取推荐用户列表Zone/pushuser***/
+	public void mypushuser() throws BusinessException;
+	
+	/**获取黑名单列表Zone/black***/
+	public void myblack() throws BusinessException;
+	
+	/**充值订单Wallet/charge_order***/
+	public void mycharge_order() throws BusinessException;
+	
+	/**充值完成Wallet/complete_order***/
+	public void mycomplete_order() throws BusinessException;
+	
+	/**取消订单Wallet/cancel_order***/
+	public void mycancel_order() throws BusinessException;
+	
+	/**提现Wallet/withdraw***/
+	public void mywithdraw() throws BusinessException;
+	
+	/**提现记录Wallet/withdraw_lists***/
+	public void mywithdeaw_lists() throws BusinessException;
+	
+	/**星探、粉丝邀约某明星Invite/add***/
+	public void myinvite_add() throws BusinessException;
+	
+	/**我的邀约记录 星探或粉丝邀约明星的记录Invite/appoint***/
+	public void myinvite_appoint() throws BusinessException;
+	
+	/**邀约我的记录 明星被邀约的记录Invite/offer***/
+	public void myinvite_offer	() throws BusinessException;
+	
+	/**接受邀约Invite/accept***/
+	public void myinvite_accept() throws BusinessException;
+	
+	/**支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment***/
+	public void myinvite_payment() throws BusinessException;
+	
 }

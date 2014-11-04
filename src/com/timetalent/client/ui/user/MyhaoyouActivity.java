@@ -1,6 +1,8 @@
 package com.timetalent.client.ui.user;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -14,7 +16,9 @@ import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
+import com.timetalent.client.ui.adapter.GuanzhuAdapter;
 import com.timetalent.client.ui.adapter.HaoyouAdapter;
+import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.near.FansActivity;
@@ -34,7 +38,7 @@ public class MyhaoyouActivity extends BaseActivity implements OnClickListener {
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	private ListView lhaoyou;
-	
+	HaoyouAdapter adapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -61,7 +65,6 @@ public class MyhaoyouActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		lhaoyou.setAdapter(new HaoyouAdapter(MyhaoyouActivity.this));
 		lhaoyou.setOnItemClickListener(new OnItemClickListener() {
 
 			@Override
@@ -70,8 +73,17 @@ public class MyhaoyouActivity extends BaseActivity implements OnClickListener {
 				IntentUtil.intent(MyhaoyouActivity.this, MessageChatActivity.class);
 			}
 		});
+		setvalue();
+		new Thread(){
+			public void run() {
+				controller.myfriend();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 	}
-	
+	public void setvalue(){
+//		controller.getContext().addBusinessData("search.search",main_top_title.getText().toString());
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -83,5 +95,17 @@ public class MyhaoyouActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
-
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // super.handleMessage(msg);
+            switch (msg.what) {
+            case 1:
+            	adapter = new HaoyouAdapter(MyhaoyouActivity.this);
+            	lhaoyou.setAdapter(adapter);
+            	adapter.notifyDataSetChanged();
+                break;
+            }
+        }
+    };
 }

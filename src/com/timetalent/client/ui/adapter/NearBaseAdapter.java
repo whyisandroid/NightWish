@@ -1,8 +1,15 @@
 package com.timetalent.client.ui.adapter;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.service.AppContext;
+import com.timetalent.client.service.AppController;
 
+import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,15 +28,19 @@ import android.widget.TextView;
 public class NearBaseAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
-
+	Nearlist data = null;
 	public NearBaseAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
-
+		data = (Nearlist) AppController.getController(((Activity)context)).getContext().getBusinessData("NearData");
 	}
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		return 5;//
+		if(data != null){
+			return data.getLists().size();
+		}else{
+			return 0;	
+		}
+		//
 	}
 
 	
@@ -58,23 +69,28 @@ public class NearBaseAdapter extends BaseAdapter {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		ViewHolder holder = new ViewHolder();;
 		if (convertView == null) {
-			convertView = mInflater.inflate(R.layout.near_list_item,
-				    null);
-			holder = new ViewHolder();
-			holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
-			holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
-			holder.imgonline = (ImageView) convertView.findViewById(R.id.imgonline);
-			holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
-			holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
-			holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvname);
-			holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
-			convertView.setTag(holder);//绑定ViewHolder对象
+			if(data!= null && data.getLists().size() > position){
+				convertView = mInflater.inflate(R.layout.near_list_item, null);
+				
+				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
+				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
+				holder.imgonline = (ImageView) convertView.findViewById(R.id.imgonline);
+				holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
+				holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
+				holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
+				holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
+				
+//				holder.tvmiaoshu.setText(data.getUsers().get(position).get);
+				convertView.setTag(holder);//绑定ViewHolder对象
+			}
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
-
+		holder.tvname.setText(data.getLists().get(position).getUsername());
+		holder.tvage.setText(data.getLists().get(position).getBirthday());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getProvince());
 		return convertView;
 	}
 	class ViewHolder{
@@ -87,5 +103,4 @@ public class NearBaseAdapter extends BaseAdapter {
 	    public TextView tvzhiye;
 	    public TextView tvmiaoshu;
 	    }
-
 }

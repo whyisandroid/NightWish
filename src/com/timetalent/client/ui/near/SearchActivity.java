@@ -2,6 +2,8 @@ package com.timetalent.client.ui.near;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +24,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
+import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.common.util.IntentUtil;
 
 
@@ -35,8 +39,9 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	
+	private EditText main_top_title;
 	private ListView list;
+	SearchBaseAdapter adapter = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -54,6 +59,7 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		main_top_title = (EditText) this.findViewById(R.id.main_top_title);
 		list = (ListView) findViewById(R.id.listView1);
 		main_top_right = (TextView) findViewById(R.id.main_top_right);
 	
@@ -67,7 +73,6 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void initView() {
 
-		list.setAdapter(new NearBaseAdapter(SearchActivity.this));
 		list.setVisibility(list.INVISIBLE);
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -91,13 +96,21 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 		main_top_left.setOnClickListener(this);
 	
 	}
-	
+	public void setvalue(){
+		controller.getContext().addBusinessData("search.search",main_top_title.getText().toString());
+	}
 	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_top_right:
-			list.setVisibility(list.VISIBLE);
+			new Thread(){
+				public void run() {
+					controller.search();
+					handler.sendEmptyMessage(1);
+				
+				};
+			}.start();
 			break;
 		case R.id.main_top_left:
 			finish();
@@ -106,5 +119,19 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
-
+	private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            // super.handleMessage(msg);
+            switch (msg.what) {
+            case 1:
+            	list.setVisibility(list.VISIBLE);
+            	adapter = new SearchBaseAdapter(SearchActivity.this);
+            	setvalue();
+        		list.setAdapter(adapter);
+            	adapter.notifyDataSetChanged();
+                break;
+            }
+        }
+    };
 }

@@ -2,6 +2,7 @@ package com.timetalent.client.ui.adapter;
 
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,8 +13,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Blacklist;
 import com.timetalent.client.entities.BlankName;
+import com.timetalent.client.entities.Followedlist;
 import com.timetalent.client.entities.MessageItem;
+import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.view.ListViewCompat;
 import com.timetalent.client.ui.view.SlideView;
 import com.timetalent.client.ui.view.SlideView.OnSlideListener;
@@ -32,12 +36,13 @@ public class HeimingdanAdapter extends BaseAdapter {
 	private Context mContext;
 	private List<BlankName> mBlankNameItems;
 	private ListViewCompat mListview;
-
+	Blacklist data = null;
 	public HeimingdanAdapter(Context context,List<BlankName> mBlankNameItems,ListViewCompat mListview) {
 		this.mInflater = LayoutInflater.from(context);
 		this.mContext = context;
 		this.mBlankNameItems = mBlankNameItems;
 		this.mListview = mListview;
+		data = (Blacklist) AppController.getController(((Activity)context)).getContext().getBusinessData("BlackData");
 	}
 
 	@Override
@@ -76,17 +81,18 @@ public class HeimingdanAdapter extends BaseAdapter {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder;
+		
 		SlideView slideView = (SlideView) convertView;
-
+		ViewHolder holder = new ViewHolder(slideView);
 		if (slideView == null) {
-			View itemView = mInflater.inflate(R.layout.near_list_item, null);
-
-			slideView = new SlideView(mContext);
-			slideView.setContentView(itemView);
-			holder = new ViewHolder(slideView);
-			slideView.setOnSlideListener(slideListener);
-			slideView.setTag(holder);
+			if(data!= null && data.getLists().size() > position){
+				View itemView = mInflater.inflate(R.layout.near_list_item, null);
+				slideView = new SlideView(mContext);
+				slideView.setContentView(itemView);
+				slideView.setOnSlideListener(slideListener);
+				slideView.setTag(holder);
+			}
+			
 		} else {
 			 holder = (ViewHolder) slideView.getTag();// 取出ViewHolder对象
 		}

@@ -9,6 +9,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.FeedData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -66,8 +67,11 @@ public class MyDongtaiActivity extends BaseActivity implements OnClickListener {
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_right.setOnClickListener(this);
 		
-		DynamicAdapter adapter = new DynamicAdapter(this);
-		lv_dynamic.setAdapter(adapter);
+		FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
+		if(data != null){
+			DynamicAdapter adapter = new DynamicAdapter(this,data.getLists());
+			lv_dynamic.setAdapter(adapter);
+		}
 	
 	}
 	

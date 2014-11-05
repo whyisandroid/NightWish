@@ -2,8 +2,6 @@ package com.timetalent.common.util;
 
 import java.io.FileNotFoundException;
 
-import com.timetalent.client.R;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.timetalent.client.ui.view.HorizontalListView;
 
 
 /******************************************
@@ -44,6 +44,29 @@ public class UIUtils {
 		ViewGroup.LayoutParams lp = lv.getLayoutParams();
 		lp.height = h + (lv.getDividerHeight() * (cnt - 1));
 		lv.setLayoutParams(lp);
+	}
+	
+	
+	/**
+	  * 方法描述：设置listView 的宽 等于所有元素相加
+	  * @param lv
+	  * @param la
+	  * @author: why
+	  * @time: 2014-5-7 下午4:51:40
+	 */
+	public static void setListViewWight(HorizontalListView hlv, BaseAdapter la) {
+		// calculate height of all items.
+		int h = 0;
+		final int cnt = la.getCount();
+		for (int i = 0; i < cnt; i++) {
+			View item = la.getView(i, null, hlv);
+			item.measure(0, 0);
+			h += item.getMeasuredWidth();
+		}
+		// reset ListView height
+		ViewGroup.LayoutParams lp = hlv.getLayoutParams();
+		lp.width = h + (hlv.getMeasuredWidth() * (cnt - 1));
+		hlv.setLayoutParams(lp);
 	}
 
 	

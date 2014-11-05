@@ -161,12 +161,6 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 			List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
 			picValuePair.add(new PicValuePair("avatar", sdcardTempFile));
 			controller.getContext().addBusinessData("Register.avatar", picValuePair);
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					controller.register_avatar();
-				}
-			}).start();
 		}
 	}
 	/**

@@ -55,7 +55,7 @@ public interface AppService {
 	/**搜索用户Zone/search***/
 	public void search() throws BusinessException;
 	
-	/**附近的人Zone/near***/
+	/**附近的人Zone/near***/ 
 	public void near() throws BusinessException;
 	
 	/**获取我的好友列表Zone/friend***/

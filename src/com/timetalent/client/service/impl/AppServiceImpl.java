@@ -18,6 +18,7 @@ import com.timetalent.client.entities.json.FriendResp;
 import com.timetalent.client.entities.json.LoginResp;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
+import com.timetalent.client.entities.json.RegisterResp;
 import com.timetalent.client.entities.json.SearchResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppService;
@@ -95,7 +96,7 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void register() throws BusinessException {
 		Register register = (Register)context.getBusinessData("Register.register");
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<RegisterResp> request = new Request<RegisterResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		
 		nameValuePairs.add(new BasicNameValuePair("username", register.getUsername()));
@@ -107,9 +108,10 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("email", "1@qq.com"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_REGISTER);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(RegisterResp.class);
+		RegisterResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			context.addBusinessData("Register.user_id", resp.getData().getUser_id());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -119,10 +121,10 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void register_avatar() throws BusinessException {
-		String  user_id = (String)context.getBusinessData("User.user_id");
+		String  user_id = context.getStringData("Register.user_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("user_id", "7"));
+		nameValuePairs.add(new BasicNameValuePair("user_id",user_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		List<PicValuePair> picValuePair =  (List<PicValuePair>)context.getBusinessData("Register.avatar");
 		request.addParameter(Request.PICTURE, picValuePair);

@@ -200,6 +200,7 @@ public class AppController {
 	public void register() {
 		try {
 			service.register();
+			service.register_avatar();
 			handler.obtainMessage(HANDLER_TOAST, "注册成功").sendToTarget();
 			IntentUtil.intent(currentActivity, LoginActivity.class);
 		} catch (BusinessException e) {

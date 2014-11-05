@@ -10,8 +10,11 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.GridView;
+import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lidroid.xutils.BitmapUtils;
@@ -20,6 +23,7 @@ import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -79,22 +83,22 @@ public class DynamicAdapter extends BaseAdapter{
 		final LinearLayout ll_dynamic_message = (LinearLayout)convertView.findViewById(R.id.ll_dynamic_message);
 		
 		// 处理图片
-		HorizontalListView hl_dynamic = (HorizontalListView)convertView.findViewById(R.id.hl_dynamic);
+		HorizontalListView lv_dynamic_pic = (HorizontalListView)convertView.findViewById(R.id.hlv_dynamic_pic);
 		
 		List<String> list = new ArrayList<String>();
-		list.add("afahf");
-		list.add("242rwerw");
-		hl_dynamic.setAdapter(new DynamicPicAdapter(mContext,list)); // 为viewpager设置adapter  
+		list.add("http://e.hiphotos.baidu.com/image/pic/item/bba1cd11728b4710d5f390f6c0cec3fdfc03232f.jpg");
+		list.add("http://d.hiphotos.baidu.com/image/pic/item/810a19d8bc3eb1356040da81a51ea8d3fd1f4400.jpg");
+		list.add("http://b.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494eec9b562232ef5e0fe99257e70.jpg");
+		list.add("http://f.hiphotos.baidu.com/image/pic/item/5fdf8db1cb1349544c89855e554e9258d1094a70.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		
-
-		
-		ImageView iv_dynamic_test = (ImageView)convertView.findViewById(R.id.iv_dynamic_test);
-		
-		BitmapUtils bitmapUtils = new BitmapUtils(mContext);
-		String pic = "http://124.193.223.166/xingtan/Uploads/avatar/201411/5458cf090dbd9.jpg";
-		bitmapUtils.display(iv_dynamic_test,pic);
-		
-		
+		DynamicPicAdapter adapter = new DynamicPicAdapter(mContext,list);
+		lv_dynamic_pic.setAdapter(adapter); 
 		
 		iv_dynamic_head.setOnClickListener(new OnClickListener() {
 			@Override

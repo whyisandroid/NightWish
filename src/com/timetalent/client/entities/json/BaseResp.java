@@ -12,6 +12,7 @@ public class BaseResp {
 	
 	private String status;
 	private String text;
+	
 	/**
 	 * @return status : return the property status.
 	 */

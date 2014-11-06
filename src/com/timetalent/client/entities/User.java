@@ -17,15 +17,41 @@ package com.timetalent.client.entities;
 	 * @time: 2014-11-4 上午8:25:20 
 ******************************************/
 public class User {
-	private String	username; // "star",
-	private String	sex; // "0",
-	private String	nickname; // "小王",
-	private String	birthday; // "0",
-	private String	avatar; // "",
-	private String	constella; // "摩羯",
+	private String	username; // "super",
+	private String	sex; // "1",
+	private String	nickname; // "落舞者",
+	private String	birthday; // "946659661",
+	private String	phone; // "13800138001",
+	private String	avatar; // "201411/5458d19bd4a43.jpg",
+	private String	constella; // "摩羯座",
 	private String	type; // "star",
 	private String	major; // "",
-	private String	age; // ""
+	private String	loyal_pass; // "0",
+	private String	age; // "15"
+	/**
+	 * @return phone : return the property phone.
+	 */
+	public String getPhone() {
+		return phone;
+	}
+	/**
+	 * @param phone : set the property phone.
+	 */
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	/**
+	 * @return loyal_pass : return the property loyal_pass.
+	 */
+	public String getLoyal_pass() {
+		return loyal_pass;
+	}
+	/**
+	 * @param loyal_pass : set the property loyal_pass.
+	 */
+	public void setLoyal_pass(String loyal_pass) {
+		this.loyal_pass = loyal_pass;
+	}
 	/**
 	 * @return username : return the property username.
 	 */

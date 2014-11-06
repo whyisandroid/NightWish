@@ -12,6 +12,8 @@ import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BlackResp;
+import com.timetalent.client.entities.json.FeedADDResp;
+import com.timetalent.client.entities.json.FeedResp;
 import com.timetalent.client.entities.json.FollowedResp;
 import com.timetalent.client.entities.json.FollowingResp;
 import com.timetalent.client.entities.json.FriendResp;
@@ -141,15 +143,17 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void chanceAdd() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
-		Request<BaseResp> request = new Request<BaseResp>();
+		String dynamic_add = context.getStringData("dynamic_add");
+		Request<FeedADDResp> request = new Request<FeedADDResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("contents", dynamic_add));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_ADD);
+		request.setR_calzz(FeedADDResp.class);
+		FeedADDResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Dynamic_ADD_Feed_id", resp.getData().getFeed_id());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -260,17 +264,17 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void dynamicMy() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<FeedResp> request = new Request<FeedResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		nameValuePairs.add(new BasicNameValuePair("page", "1"));
 		nameValuePairs.add(new BasicNameValuePair("page_per", "10"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(FeedResp.class);
+		FeedResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Dynamic_Data", resp.getData());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

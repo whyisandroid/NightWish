@@ -1,21 +1,19 @@
 package com.timetalent.client.ui.dynamic;
 
-import android.content.Context;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Feed;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
-import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -61,8 +59,8 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 		((TextView)findViewById(R.id.main_top_title)).setText("动态");
 		UIUtils.setDrawableLeft(DynamicMyActivity.this,main_top_right,R.drawable.d3_06);
 		main_top_right.setOnClickListener(this);
-		
-		DynamicAdapter adapter = new DynamicAdapter(this);
+		List<Feed> lists = new  ArrayList<Feed>();
+		DynamicAdapter adapter = new DynamicAdapter(this,lists);
 		lv_dynamic.setAdapter(adapter);
 	}
 	

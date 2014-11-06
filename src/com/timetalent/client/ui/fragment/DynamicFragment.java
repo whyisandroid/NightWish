@@ -1,7 +1,7 @@
 package com.timetalent.client.ui.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +12,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.FeedData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
@@ -35,6 +36,25 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	private TextView main_top_left2;
 	private ImageButton main_top_left;
 	private ListView lv_dynamic;
+	
+	private Handler mHandler = new  Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
+				if(data != null){
+					DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());
+					lv_dynamic.setAdapter(adapter);
+				}
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
+	
+	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -72,9 +92,12 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		main_top_right.setOnClickListener(this);
 		main_top_left.setOnClickListener(this);
 		main_top_left2.setOnClickListener(this);
+		FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
 		
-		DynamicAdapter adapter = new DynamicAdapter(getActivity());
-		lv_dynamic.setAdapter(adapter);
+		if(data != null){
+			DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());
+			lv_dynamic.setAdapter(adapter);
+		}
 	}
 	
 	
@@ -84,8 +107,15 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onResume() {
 		super.onResume();
-		
-		
+		myDynamic();
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-11-5 下午9:55:14
+	  */
+	private void myDynamic() {
 		/**
 		  * 方法描述：TODO
 		  * @author: why
@@ -95,7 +125,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					controller.dynamicMy();
+					controller.dynamicMy(mHandler);
 					ProgressDialogUtil.closeProgressDialog();
 				}
 			}).start();

@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.client.ui.login.RegisterFourActivity;
 import com.timetalent.common.exception.BusinessException;
@@ -234,6 +235,8 @@ public class AppController {
 	public void chanceAdd() {
 		try {
 			service.chanceAdd();
+			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
+			currentActivity.finish();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -334,9 +337,10 @@ public class AppController {
 	}
 	
 	
-	public void dynamicMy() {
+	public void dynamicMy(Handler mHandler) {
 		try {
 			service.dynamicMy();
+			mHandler.obtainMessage(0).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

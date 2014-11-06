@@ -18,7 +18,7 @@
                 android:paddingTop="15dp" >
 
                 <EditText
-                    android:id="@+id/et_username"
+                    android:id="@+id/et_dynamic_add_content"
                     android:layout_width="match_parent"
                     android:layout_height="100dp"
                     android:background="@null"

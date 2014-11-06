@@ -10,20 +10,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.GridView;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import com.lidroid.xutils.BitmapUtils;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Feed;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
-import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -35,7 +31,7 @@ import com.timetalent.common.util.UIUtils;
  ******************************************/
 @SuppressLint("NewApi")
 public class DynamicAdapter extends BaseAdapter{
-	
+	private List<Feed> lists;
 	private Context mContext;
 	private LayoutInflater inflater;
 	
@@ -44,8 +40,9 @@ public class DynamicAdapter extends BaseAdapter{
 	 * 创建一个新的实例 DynamicAdapter.
 	 * @param 
 	 */
-	public DynamicAdapter(Context mContext) {
+	public DynamicAdapter(Context mContext,List<Feed> lists) {
 		this.mContext = mContext;
+		this.lists = lists;
 		inflater = LayoutInflater.from(mContext);
 		
 	}
@@ -53,13 +50,13 @@ public class DynamicAdapter extends BaseAdapter{
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 4;
+		return lists.size();
 	}
 
 	
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return lists.get(position);
 	}
 
 	
@@ -71,68 +68,109 @@ public class DynamicAdapter extends BaseAdapter{
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		final ViewHolder holder;
+		Feed feed = lists.get(position);
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.dynamic_list_item, null);
+			holder = new ViewHolder();
+			holder.findView(convertView);
+			convertView.setTag(holder);
+		}else{
+			holder=(ViewHolder)convertView.getTag();
 		}
 		
-		ImageView iv_dynamic_head = (ImageView)convertView.findViewById(R.id.iv_dynamic_head);
-		ImageView iv_dynamic_good = (ImageView)convertView.findViewById(R.id.iv_dynamic_good);
-		final TextView tv_dynamic_add_1 = (TextView)convertView.findViewById(R.id.tv_dynamic_add_1);
 		
-		ImageView iv_dynamic_message = (ImageView)convertView.findViewById(R.id.iv_dynamic_message);
-		final LinearLayout ll_dynamic_message = (LinearLayout)convertView.findViewById(R.id.ll_dynamic_message);
+		holder.tv_dynamic_name.setText(feed.getUser().getNickname());
+		feed.getUser().setLoyal_pass("1");
+		holder.iv_dynamic_pass.setSelected("1".equals(feed.getUser().getLoyal_pass()));
+		holder.iv_dynamic_sex.setSelected("1".equals(feed.getUser().getSex()));
+		holder.tv_dynamic_age.setText(feed.getUser().getAge());
+		holder.tv_dynamic_constella.setText(feed.getUser().getConstella());
+		holder.tv_dynamic_content.setText(feed.getContents());
+		holder.tv_dynamic_time.setText(feed.getTime_ago());
+		holder.iv_dynamic_good_num.setText(feed.getFavour_num());
+		holder.iv_dynamic_good.setSelected("N".equals(feed.getFavour_do()));
+		
+		
+		
+		
 		
 		// 处理图片
-		HorizontalListView lv_dynamic_pic = (HorizontalListView)convertView.findViewById(R.id.hlv_dynamic_pic);
 		
 		List<String> list = new ArrayList<String>();
-		list.add("http://e.hiphotos.baidu.com/image/pic/item/bba1cd11728b4710d5f390f6c0cec3fdfc03232f.jpg");
-		list.add("http://d.hiphotos.baidu.com/image/pic/item/810a19d8bc3eb1356040da81a51ea8d3fd1f4400.jpg");
-		list.add("http://b.hiphotos.baidu.com/image/pic/item/f2deb48f8c5494eec9b562232ef5e0fe99257e70.jpg");
 		list.add("http://f.hiphotos.baidu.com/image/pic/item/5fdf8db1cb1349544c89855e554e9258d1094a70.jpg");
-		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
-		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		
 		DynamicPicAdapter adapter = new DynamicPicAdapter(mContext,list);
-		lv_dynamic_pic.setAdapter(adapter); 
+		holder.lv_dynamic_pic.setAdapter(adapter); 
 		
-		iv_dynamic_head.setOnClickListener(new OnClickListener() {
+		
+		
+		
+		
+		
+		holder.iv_dynamic_head.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				IntentUtil.intent(mContext, DynamicMyActivity.class);
 			}
 		});
 		
-		
-		iv_dynamic_good.setOnClickListener(new  OnClickListener() {
+		holder.iv_dynamic_good.setOnClickListener(new  OnClickListener() {
 			
 				@Override
 				public void onClick(View v) {
-					tv_dynamic_add_1.setVisibility(View.VISIBLE);
-					tv_dynamic_add_1.animate().setDuration(2000);
-					tv_dynamic_add_1.animate().alpha(0);
+					holder.tv_dynamic_add_1.setVisibility(View.VISIBLE);
+					holder.tv_dynamic_add_1.animate().setDuration(2000);
+					holder.tv_dynamic_add_1.animate().alpha(0);
 				}
 			}
 		);
 		
-		iv_dynamic_message.setOnClickListener(new OnClickListener() {
-			
+		holder.iv_dynamic_message.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				ll_dynamic_message.setVisibility(View.VISIBLE);
+				holder.ll_dynamic_message.setVisibility(View.VISIBLE);
 			}
 		});
 		return convertView;
 	}
-	private OnClickListener ivListener= new OnClickListener() {
+	static class ViewHolder{
+		private ImageView iv_dynamic_head; 				
+		private TextView tv_dynamic_name;
+		private ImageView iv_dynamic_pass; 	             			
+		private ImageView iv_dynamic_sex; 	             			
+		private TextView tv_dynamic_age;		
+		private TextView tv_dynamic_constella;
+		private TextView tv_dynamic_content;
+		private TextView tv_dynamic_time;
 		
-		@Override
-		public void onClick(View v) {
-			IntentUtil.intent(mContext, PictureActivity.class);
+		private TextView iv_dynamic_good_num;
+		private ImageView iv_dynamic_good;
+		private TextView tv_dynamic_add_1;
+		private ImageView iv_dynamic_message;
+		private LinearLayout ll_dynamic_message;
+		private HorizontalListView lv_dynamic_pic ;
+		
+		private void findView(View view){
+			iv_dynamic_head = (ImageView)view.findViewById(R.id.iv_dynamic_head);
+			tv_dynamic_name = (TextView)view.findViewById(R.id.tv_dynamic_name);
+			iv_dynamic_pass = (ImageView)view.findViewById(R.id.iv_dynamic_pass);
+			iv_dynamic_sex = (ImageView)view.findViewById(R.id.iv_dynamic_sex);
+			tv_dynamic_age = (TextView)view.findViewById(R.id.tv_dynamic_age);
+			tv_dynamic_constella = (TextView)view.findViewById(R.id.tv_dynamic_constella);
+			tv_dynamic_content = (TextView)view.findViewById(R.id.tv_dynamic_content);
+			tv_dynamic_time = (TextView)view.findViewById(R.id.tv_dynamic_time);
+
+			iv_dynamic_good_num = (TextView)view.findViewById(R.id.iv_dynamic_good_num);
+			iv_dynamic_good = (ImageView)view.findViewById(R.id.iv_dynamic_good);
+			tv_dynamic_add_1 = (TextView)view.findViewById(R.id.tv_dynamic_add_1);
+			iv_dynamic_message = (ImageView)view.findViewById(R.id.iv_dynamic_message);
+		    ll_dynamic_message = (LinearLayout)view.findViewById(R.id.ll_dynamic_message);
+			lv_dynamic_pic = (HorizontalListView)view.findViewById(R.id.hlv_dynamic_pic);
 		}
-	};
+	}
 }

@@ -27,7 +27,7 @@
             android:layout_height="wrap_content" >
 
             <TextView
-                android:id="@+id/textView1"
+                android:id="@+id/tv_dynamic_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="我在等你"
@@ -35,22 +35,22 @@
                 android:textSize="@dimen/new_size_2" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/iv_dynamic_pass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/f3_13" />
+                android:src="@drawable/btn_image_dynamic_pass" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/iv_dynamic_sex"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
-                android:src="@drawable/f3_15" />
+                android:src="@drawable/btn_image_dynamic_sex" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tv_dynamic_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="5dp"
@@ -59,7 +59,7 @@
                 android:textSize="@dimen/new_size_1" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_dynamic_constella"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="双子座"
@@ -68,7 +68,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/tv_dynamic_content"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -76,12 +76,12 @@
             android:textColor="@color/color_2"
             android:textSize="@dimen/new_size_2" />
 
-
-        
          <com.timetalent.client.ui.view.HorizontalListView
-                    android:id="@+id/hlv_dynamic_pic"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp" >
+             android:id="@+id/hlv_dynamic_pic"
+             android:layout_width="match_parent"
+             android:layout_height="60dp"
+             android:layout_marginTop="6dp" >
+
                 </com.timetalent.client.ui.view.HorizontalListView>
         <RelativeLayout
             android:layout_width="match_parent"
@@ -125,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="2dp"
                     android:layout_toLeftOf="@+id/iv_dynamic_good"
-                    android:text="121"
+                    android:text="0"
                     android:textColor="@color/color_4"
                     android:textSize="@dimen/new_size_1" />
 
@@ -136,7 +136,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="20dp"
                     android:layout_toLeftOf="@+id/iv_dynamic_message"
-                    android:src="@drawable/d3_44" />
+                    android:src="@drawable/btn_image_dynamic_good" />
 
                 <ImageView
                     android:id="@+id/iv_dynamic_message"

@@ -15,7 +15,7 @@ public class Feed {
 	private String	user_id; // "2",
 	private String	contents; // "asdasd",
 	private String	time; // "1414985518",
-	private List<String>	photos; // [],
+	private List<Photo>	photos; // [],
 	private String	favour_num; // "0",
 	private String	favour_do; // "N",
 	private String	reply_num; // "0",
@@ -70,16 +70,19 @@ public class Feed {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
+	
+	
 	/**
 	 * @return photos : return the property photos.
 	 */
-	public List<String> getPhotos() {
+	public List<Photo> getPhotos() {
 		return photos;
 	}
 	/**
 	 * @param photos : set the property photos.
 	 */
-	public void setPhotos(List<String> photos) {
+	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
 	/**

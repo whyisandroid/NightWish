@@ -413,7 +413,30 @@ public class AppServiceImpl implements AppService {
 			
 			
 	}
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#userinfo()
+	 */
+	@Override
+	public void userinfo() throws BusinessException {
 
+		String user_id = (String)context.getBusinessData("near.user_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("user_id", user_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_INVITE_PAYMENT);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
 	
 	/* (non-Javadoc)
 	 * @see com.timetalent.client.service.AppService#myfriend()
@@ -795,6 +818,9 @@ public class AppServiceImpl implements AppService {
 			
 			
 	}
+
+	
+
 	
 	
 }

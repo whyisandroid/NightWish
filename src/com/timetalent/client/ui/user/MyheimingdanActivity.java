@@ -13,6 +13,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Blacklist;
+import com.timetalent.client.entities.Blackpackage;
 import com.timetalent.client.entities.BlankName;
 import com.timetalent.client.entities.MessageItem;
 import com.timetalent.client.service.AppController;
@@ -71,12 +73,6 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		
-		mBlankItems = new ArrayList<BlankName>();
-		mBlankItems.add(new BlankName());
-		mBlankItems.add(new BlankName());
-		mBlankItems.add(new BlankName());
-		mBlankItems.add(new BlankName());
-		mBlankItems.add(new BlankName());
 		setvalue();
 		new Thread(){
 			public void run() {
@@ -105,6 +101,12 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
             // super.handleMessage(msg);
             switch (msg.what) {
             case 1:
+            	mBlankItems = new ArrayList<BlankName>();
+            	
+            	Blacklist bl = (Blacklist) controller.getContext().getBusinessData("BlackData");
+            	for(Blackpackage b:bl.getLists()){
+            		mBlankItems.add(new BlankName());
+            	}
             	adapter = new HeimingdanAdapter(MyheimingdanActivity.this,mBlankItems,lheimingdan);
             	lheimingdan.setAdapter(adapter);
             	adapter.notifyDataSetChanged();

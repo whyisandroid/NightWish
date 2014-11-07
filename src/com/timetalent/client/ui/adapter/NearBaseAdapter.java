@@ -88,9 +88,9 @@ public class NearBaseAdapter extends BaseAdapter {
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
-		holder.tvname.setText(data.getLists().get(position).getUsername());
+		holder.tvname.setText(data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getBirthday());
-		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getProvince());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
 		return convertView;
 	}
 	class ViewHolder{

@@ -377,7 +377,22 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * 
+	  * 方法描述：TODO
+	  * @author: Administrator
+	  * @time: 2014-11-7 上午10:50:55
+	 */
+	public void userinfo(){
+		try {
+			service.userinfo();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	/**获取我的好友列表Zone/friend***/
 	public void myfriend() {
 		try {

@@ -57,6 +57,10 @@ public interface AppService {
 	
 	/**附近的人Zone/near***/ 
 	public void near() throws BusinessException;
+	/**
+	 * 某个用户的资料
+	 */
+	public void userinfo() throws BusinessException;
 	
 	/**获取我的好友列表Zone/friend***/
 	public void myfriend() throws BusinessException;

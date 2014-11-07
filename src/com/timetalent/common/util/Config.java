@@ -49,7 +49,7 @@ public class Config {
 	//附近
 	public final static String HTTP_NEAR_ZONE_SEARCH = MY_SERVICE+ "/Zone/search"; // 搜索用户Zone/search
 	public final static String HTTP_NEAR_ZONE_NEAR = MY_SERVICE+ "/Zone/near"; // 附近的人Zone/near
-	
+	public final static String HTTP_NEAR_ZONE_USERINFO = MY_SERVICE+ "Zone/userinfo";//某个用户的资料
 	//我的
 	public final static String HTTP_MY_ZONE_FRIEND = MY_SERVICE+ "/Zone/friend"; // 获取我的好友列表Zone/friend
 	public final static String HTTP_MY_ZONE_FOLLOWING = MY_SERVICE+ "/Zone/following"; // 获取我的关注列表Zone/following

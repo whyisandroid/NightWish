@@ -83,13 +83,14 @@ public class HeimingdanAdapter extends BaseAdapter {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		SlideView slideView = (SlideView) convertView;
-		ViewHolder holder = new ViewHolder(slideView);
+		ViewHolder holder = null;
 		if (slideView == null) {
 			if(data!= null && data.getLists().size() > position){
 				View itemView = mInflater.inflate(R.layout.near_list_item, null);
 				slideView = new SlideView(mContext);
 				slideView.setContentView(itemView);
 				slideView.setOnSlideListener(slideListener);
+				holder = new ViewHolder(slideView);
 				slideView.setTag(holder);
 			}
 			
@@ -100,8 +101,17 @@ public class HeimingdanAdapter extends BaseAdapter {
 		BlankName item = mBlankNameItems.get(position);
         item.slideView = slideView;
         item.slideView.shrink();
+		if(holder!=null){
+			holder.deleteHolder.setOnClickListener(deleteItemListener);
+		}
 		
-		 holder.deleteHolder.setOnClickListener(deleteItemListener);
+		holder.tvname.setText(data.getLists().get(position).getNickname());
+//		holder.tvonlinetime.setText(data.getLists().get(position).getUpdate_time());
+		holder.tvage.setText(data.getLists().get(position).getBirthday());
+		holder.tvzhiye.setText(data.getLists().get(position).getMajor());
+//		holder.tvmiaoshu.setText(data.getLists().get(position).getUpdate_time());
+		
+		
 		return slideView;
 	}
 	

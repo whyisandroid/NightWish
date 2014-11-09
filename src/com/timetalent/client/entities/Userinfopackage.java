@@ -12,17 +12,17 @@ public class Userinfopackage {
 	String username = "";
 	String sex = "";
 	String nickname = "";
-	String realname = "";
 	String birthday = "";
+	String phone = "";
+	String avatar = "";
 	String constella = "";
-	String province = "";
-	String city = "";
 	String type = "";
-	String sort = "0";
-	String status = "1";
-	String lat = "";
-	String lng = "";
-	String distance = "";
+	String major = "0";
+	String loyal_pass = "1";
+	String age = "";
+	String id = "";
+	Userinfomorepackage more = null;
+	Countpackage count = null;
 	public String getUsername() {
 		return username;
 	}
@@ -41,17 +41,23 @@ public class Userinfopackage {
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
-	public String getRealname() {
-		return realname;
-	}
-	public void setRealname(String realname) {
-		this.realname = realname;
-	}
 	public String getBirthday() {
 		return birthday;
 	}
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
 	}
 	public String getConstella() {
 		return constella;
@@ -59,53 +65,47 @@ public class Userinfopackage {
 	public void setConstella(String constella) {
 		this.constella = constella;
 	}
-	public String getProvince() {
-		return province;
-	}
-	public void setProvince(String province) {
-		this.province = province;
-	}
-	public String getCity() {
-		return city;
-	}
-	public void setCity(String city) {
-		this.city = city;
-	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getSort() {
-		return sort;
+	public String getMajor() {
+		return major;
 	}
-	public void setSort(String sort) {
-		this.sort = sort;
+	public void setMajor(String major) {
+		this.major = major;
 	}
-	public String getLat() {
-		return lat;
+	public String getLoyal_pass() {
+		return loyal_pass;
 	}
-	public void setLat(String lat) {
-		this.lat = lat;
+	public void setLoyal_pass(String loyal_pass) {
+		this.loyal_pass = loyal_pass;
 	}
-	public String getLng() {
-		return lng;
+	public String getAge() {
+		return age;
 	}
-	public void setLng(String lng) {
-		this.lng = lng;
+	public void setAge(String age) {
+		this.age = age;
 	}
-	public String getDistance() {
-		return distance;
+	public String getId() {
+		return id;
 	}
-	public void setDistance(String distance) {
-		this.distance = distance;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public String getStatus() {
-		return status;
+	public Userinfomorepackage getMore() {
+		return more;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setMore(Userinfomorepackage more) {
+		this.more = more;
+	}
+	public Countpackage getCount() {
+		return count;
+	}
+	public void setCount(Countpackage count) {
+		this.count = count;
 	}
 	
 }

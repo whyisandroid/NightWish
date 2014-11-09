@@ -22,6 +22,7 @@ import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
 import com.timetalent.client.entities.json.SearchResp;
+import com.timetalent.client.entities.json.UserinfoResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppService;
 import com.timetalent.common.exception.BusinessException;
@@ -369,7 +370,7 @@ public class AppServiceImpl implements AppService {
 		Request<SearchResp> request = new Request<SearchResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("search.search", (String)context.getBusinessData("search.search")));
+		nameValuePairs.add(new BasicNameValuePair("search", (String)context.getBusinessData("search.search")));
 		
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_NEAR_ZONE_SEARCH);
@@ -420,16 +421,18 @@ public class AppServiceImpl implements AppService {
 	public void userinfo() throws BusinessException {
 
 		String user_id = (String)context.getBusinessData("near.user_id");
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<UserinfoResp> request = new Request<UserinfoResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		nameValuePairs.add(new BasicNameValuePair("user_id", user_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_INVITE_PAYMENT);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(UserinfoResp.class);
+		UserinfoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			if (resp.getData() != null) {
+				context.addBusinessData("UserinfoData", resp.getData());
+			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

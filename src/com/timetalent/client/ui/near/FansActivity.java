@@ -2,6 +2,8 @@ package com.timetalent.client.ui.near;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,8 +18,11 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
+import com.timetalent.client.ui.adapter.NearBaseAdapter;
+import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
@@ -48,6 +53,7 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	private ImageView imgtab3;
 	private GestureDetector mGestureDetector;
 	int index = 0;
+	String userid = "1";
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	private LinearLayout ldongtai;
@@ -55,11 +61,21 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	private LinearLayout img2;
 	public int screenw = 0;
 	public float density = 1.0f;
+	TextView tvxingzuo;
+	TextView tvdizhi;
+	TextView tvname;
+	TextView tvnickname;
+	TextView tvage;
+	TextView tvxingzuo1;
+	TextView tvzhiye;
+	TextView tvjiaxiang;
+	TextView tvheight;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.near_fansxiangqing);
+		userid = getIntent().getStringExtra("userid");
 		controller = AppController.getController(this);
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -93,6 +109,15 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
 		img1 = (LinearLayout) findViewById(R.id.imgduihua);
 		img2 = (LinearLayout) findViewById(R.id.imgguanzhu);
+		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
+		 tvdizhi = (TextView) findViewById(R.id.tvdizhi);
+		 tvname = (TextView) findViewById(R.id.tvname);
+		 tvnickname = (TextView) findViewById(R.id.tvnickname);
+		 tvage = (TextView) findViewById(R.id.tvage);
+		 tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
+		 tvzhiye = (TextView) findViewById(R.id.tvzhiye);
+		 tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
+		 tvheight = (TextView) findViewById(R.id.tvheight);
 	}
 
 	/**
@@ -102,6 +127,13 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		setvalue();
+		new Thread(){
+			public void run() {
+				controller.userinfo();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
@@ -151,7 +183,9 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 		p8.height = (int)(screenw/4-8*density);
 		imgpic8.setLayoutParams(p8);
 	}
-	
+	public void setvalue(){
+		controller.getContext().addBusinessData("near.user_id", userid);
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -373,4 +407,26 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
             super.dispatchTouchEvent(ev);
             return mGestureDetector.onTouchEvent(ev);
     }
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				if(u != null){
+					tvxingzuo.setText(u.getConstella());
+					tvdizhi.setText(u.getAge());
+					 tvname.setText(u.getUsername());
+					 tvnickname.setText(u.getNickname());
+					 tvage.setText(u.getAge());
+					 tvxingzuo1.setText(u.getConstella());
+					 tvzhiye.setText(u.getMajor());
+					 tvjiaxiang.setText(u.getAge());
+					 tvheight.setText(u.getMore().getHeight()+"cm");
+				}
+				break;
+			}
+		}
+	};
 }

@@ -35,7 +35,7 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/radio0"
+                    android:id="@+id/rd1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -48,7 +48,7 @@
                     android:text="全部" />
 
                 <RadioButton
-                    android:id="@+id/radio1"
+                    android:id="@+id/rd2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -60,7 +60,7 @@
                     android:text="只看女" />
 
                 <RadioButton
-                    android:id="@+id/radio2"
+                    android:id="@+id/rd3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -103,7 +103,7 @@
                     android:layout_height="wrap_content" >
 
                     <RadioButton
-                        android:id="@+id/RadioButton08"
+                        android:id="@+id/rd4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -115,7 +115,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton10"
+                        android:id="@+id/rd5"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -128,7 +128,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton09"
+                        android:id="@+id/rd6"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -140,7 +140,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton11"
+                        android:id="@+id/rd7"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -157,7 +157,7 @@
                     android:layout_height="wrap_content" >
 
                     <RadioButton
-                        android:id="@+id/RadioButton12"
+                        android:id="@+id/rd8"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -169,7 +169,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton14"
+                        android:id="@+id/rd9"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -181,7 +181,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton13"
+                        android:id="@+id/rd10"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -193,7 +193,7 @@
                         android:textColor="@color/color_4" />
 
                     <RadioButton
-                        android:id="@+id/RadioButton15"
+                        android:id="@+id/rd11"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -237,7 +237,7 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/RadioButton04"
+                    android:id="@+id/rd12"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -249,7 +249,7 @@
                     android:textColor="@color/color_4" />
 
                 <RadioButton
-                    android:id="@+id/RadioButton03"
+                    android:id="@+id/rd13"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -262,7 +262,7 @@
                     android:textColor="@color/color_4" />
 
                 <RadioButton
-                    android:id="@+id/RadioButton01"
+                    android:id="@+id/rd14"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -274,7 +274,7 @@
                     android:textColor="@color/color_4" />
 
                 <RadioButton
-                    android:id="@+id/RadioButton02"
+                    android:id="@+id/rd15"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -304,7 +304,7 @@
                 android:orientation="horizontal" >
 
                 <RadioButton
-                    android:id="@+id/RadioButton07"
+                    android:id="@+id/rd16"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -317,7 +317,7 @@
                     android:textColor="@color/color_4" />
 
                 <RadioButton
-                    android:id="@+id/RadioButton05"
+                    android:id="@+id/rd17"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -329,7 +329,7 @@
                     android:textColor="@color/color_4" />
 
                 <RadioButton
-                    android:id="@+id/RadioButton06"
+                    android:id="@+id/rd18"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

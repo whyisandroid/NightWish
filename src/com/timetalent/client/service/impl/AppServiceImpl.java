@@ -25,6 +25,7 @@ import com.timetalent.client.entities.json.SearchResp;
 import com.timetalent.client.entities.json.TaskADDResp;
 import com.timetalent.client.entities.json.TaskResp;
 import com.timetalent.client.entities.json.TaskShowResp;
+import com.timetalent.client.entities.json.UserinfoResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppService;
 import com.timetalent.common.exception.BusinessException;
@@ -156,7 +157,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("cutoff_date", task.getCutoff_date()));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
-		request.setR_calzz(TaskADDResp.class);
+		request.setR_calzz(TaskADDResp.class);  
 		TaskADDResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
 			context.addBusinessData("Task_ADD_id", resp.getData().getTask_id());
@@ -387,7 +388,7 @@ public class AppServiceImpl implements AppService {
 		Request<SearchResp> request = new Request<SearchResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("search.search", (String)context.getBusinessData("search.search")));
+		nameValuePairs.add(new BasicNameValuePair("search", (String)context.getBusinessData("search.search")));
 		
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_NEAR_ZONE_SEARCH);
@@ -438,16 +439,18 @@ public class AppServiceImpl implements AppService {
 	public void userinfo() throws BusinessException {
 
 		String user_id = (String)context.getBusinessData("near.user_id");
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<UserinfoResp> request = new Request<UserinfoResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		nameValuePairs.add(new BasicNameValuePair("user_id", user_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_INVITE_PAYMENT);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(UserinfoResp.class);
+		UserinfoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			if (resp.getData() != null) {
+				context.addBusinessData("UserinfoData", resp.getData());
+			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

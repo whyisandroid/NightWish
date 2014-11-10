@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppManager;
 import com.timetalent.client.ui.dialog.DialogUtil;
@@ -63,23 +64,36 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lbangzhu;
 	private LinearLayout lqinglitupian;
 	private LinearLayout lexit;
+	TextView tvnickname;
+	TextView tvmoney;
+	TextView tvcounthaoyou;
+	TextView tvcountpushuser;
+	TextView tvcountguanzhu;
+	TextView tvcountfans;
 	int r = 0;
+	LoginData user;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
-		r = (int)(3*Math.random());
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
+		
+		String type = user.getType();
+		if(type.equalsIgnoreCase("star")){
+			r = 0;
+		}else if(type.equalsIgnoreCase("scout")){
+			r = 1;
+		}else if(type.equalsIgnoreCase("fans")){
+			r = 2;
+		}
 		switch (r) {
 		case 0:
-			Toast.makeText(getActivity(), "艺人身份", 1000).show();
 			view = inflater.inflate(R.layout.my_main_mingxing, container, false);
 			break;
 		case 1:
-			Toast.makeText(getActivity(), "星探身份", 1000).show();
 			view = inflater.inflate(R.layout.my_main_xingtan, container, false);
 			break;
 		case 2:
-			Toast.makeText(getActivity(), "粉丝身份", 1000).show();
 			view = inflater.inflate(R.layout.my_main_fans, container, false);
 			break;
 		default:
@@ -131,6 +145,12 @@ public class UserFragment extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
+		 tvnickname.setText(user.getNickname());
+		 tvmoney.setText(user.getMoney());
+		 tvcounthaoyou.setText(user.getNickname());
+		 tvcountpushuser.setText(user.getNickname());
+		 tvcountguanzhu.setText(user.getNickname());
+		 tvcountfans.setText(user.getNickname());
 	}
 
 	/**
@@ -168,6 +188,13 @@ public class UserFragment extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
+		
+		 tvnickname = (TextView) view.findViewById(R.id.tvnickname);
+		 tvmoney = (TextView) view.findViewById(R.id.tvmoney);
+		 tvcounthaoyou = (TextView) view.findViewById(R.id.tvcounthaoyou);
+		 tvcountpushuser = (TextView) view.findViewById(R.id.tvcountpushuser);
+		 tvcountguanzhu = (TextView) view.findViewById(R.id.tvcountguanzhu);
+		 tvcountfans = (TextView) view.findViewById(R.id.tvcountfans);
 	}
 
 	@Override

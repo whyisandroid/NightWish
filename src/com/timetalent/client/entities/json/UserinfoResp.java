@@ -1,6 +1,6 @@
 package com.timetalent.client.entities.json;
 
-import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.Userinfopackage;
 
 
 /******************************************
@@ -10,19 +10,19 @@ import com.timetalent.client.entities.Nearlist;
  * @time: 2014-2-20 下午3:29:26 
  ******************************************/
 public class UserinfoResp extends BaseResp {
-	private Nearlist data;
+	private Userinfopackage data;
 
 	/**
 	 * @return data : return the property data.
 	 */
-	public Nearlist getData() {
+	public Userinfopackage getData() {
 		return data;
 	}
 
 	/**
 	 * @param data : set the property data.
 	 */
-	public void setData(Nearlist data) {
+	public void setData(Userinfopackage data) {
 		this.data = data;
 	}
 	

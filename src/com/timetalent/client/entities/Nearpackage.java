@@ -9,6 +9,7 @@ package com.timetalent.client.entities;
  * @time: 2014-11-3 上午10:58:20 
  ******************************************/
 public class Nearpackage {
+	String id = "";
 	String username = "";
 	String sex = "";
 	String nickname = "";
@@ -23,6 +24,13 @@ public class Nearpackage {
 	String lat = "";
 	String lng = "";
 	String distance = "";
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return username;
 	}

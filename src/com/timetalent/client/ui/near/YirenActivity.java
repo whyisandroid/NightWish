@@ -2,6 +2,8 @@ package com.timetalent.client.ui.near;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
@@ -23,8 +25,10 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
+import com.timetalent.client.ui.adapter.NearBaseAdapter;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
@@ -45,6 +49,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 	private LinearLayout ldongtai;
 	private ViewFlipper vfpics;
 	private ListView lzuopin;
+	ZuopinBaseAdapter adapter;
 	private ImageView imgpic1;
 	private ImageView imgpic2;
 	private ImageView imgpic3;
@@ -62,8 +67,18 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 	private ImageView imgtab2;
 	private ImageView imgtab3;
 	private GestureDetector mGestureDetector;
+	TextView tvxingzuo;
+	TextView tvdizhi;
+	TextView tvname;
+	TextView tvnickname;
+	TextView tvage;
+	TextView tvxingzuo1;
+	TextView tvzhiye;
+	TextView tvjiaxiang;
+	TextView tvheight;
+	TextView tvsanwei;
 	int index = 0;
-	
+	String userid = "1";
 	public int screenw = 0;
 	public float density = 1.0f;
 	@Override
@@ -71,6 +86,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.near_yirenxiangqing);
+		userid = getIntent().getStringExtra("userid");
 		controller = AppController.getController(this);
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
@@ -105,6 +121,17 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		img1 = (ImageView) findViewById(R.id.imgduihua);
 		img2 = (ImageView) findViewById(R.id.imgguanzhu);
 		img3 = (ImageView) findViewById(R.id.imgyuyue);
+		
+		 tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
+		 tvdizhi = (TextView) findViewById(R.id.tvdizhi);
+		 tvname = (TextView) findViewById(R.id.tvname);
+		 tvnickname = (TextView) findViewById(R.id.tvnickname);
+		 tvage = (TextView) findViewById(R.id.tvage);
+		 tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
+		 tvzhiye = (TextView) findViewById(R.id.tvzhiye);
+		 tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
+		 tvheight = (TextView) findViewById(R.id.tvheight);
+		 tvsanwei = (TextView) findViewById(R.id.tvsanwei);
 	}
 
 	/**
@@ -114,6 +141,13 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		setvalue();
+		new Thread(){
+			public void run() {
+				controller.userinfo();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
@@ -164,11 +198,11 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 		img1.setOnClickListener(this);
 		img2.setOnClickListener(this);
 		img3.setOnClickListener(this);
-//		vfpics.setInAnimation(translateAnimation);
-//		vfpics.setOutAnimation(translateAnimation2);
-//		vfpics.startFlipping();
 	}
 	
+	public void setvalue(){
+		controller.getContext().addBusinessData("near.user_id", userid);
+	}
 	/**
 	 * 重新计算listview高度
 	  * 方法描述：TODO
@@ -422,4 +456,30 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
             super.dispatchTouchEvent(ev);
             return mGestureDetector.onTouchEvent(ev);
     }
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				if(u != null){
+					tvxingzuo.setText(u.getConstella());
+					tvdizhi.setText(u.getAge());
+					 tvname.setText(u.getUsername());
+					 tvnickname.setText(u.getNickname());
+					 tvage.setText(u.getAge());
+					 tvxingzuo1.setText(u.getConstella());
+					 tvzhiye.setText(u.getMajor());
+					 tvjiaxiang.setText(u.getAge());
+					 tvheight.setText(u.getMore().getHeight()+"cm");
+					 tvsanwei.setText(u.getMore().getBust()+u.getMore().getWaist()+u.getMore().getHip());
+					adapter = new ZuopinBaseAdapter(YirenActivity.this);
+					lzuopin.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+				}
+				break;
+			}
+		}
+	};
 }

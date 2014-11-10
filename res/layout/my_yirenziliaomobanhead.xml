@@ -88,7 +88,7 @@
                         android:src="@drawable/f_05" />
 
                     <TextView
-                        android:id="@+id/textView1"
+                        android:id="@+id/tvage1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
@@ -99,7 +99,7 @@
                 </LinearLayout>
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvxingzuo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
@@ -115,7 +115,7 @@
                     android:src="@drawable/f10_33" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/tvdizhi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/new_size_2"
@@ -130,7 +130,7 @@
                     android:src="@drawable/f10_36" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/tvtime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
@@ -242,7 +242,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView20"
+                            android:id="@+id/tvname"
                             style="@style/main_color3_style"
                             android:text="吴沐熙" />
 
@@ -279,7 +279,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView18"
+                            android:id="@+id/tvnickname"
                             style="@style/main_color3_style"
                             android:text="Vicky" />
 
@@ -316,7 +316,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView16"
+                            android:id="@+id/tvage"
                             style="@style/main_color3_style"
                             android:text="25" />
 
@@ -353,7 +353,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView14"
+                            android:id="@+id/tvxingzuo1"
                             style="@style/main_color3_style"
                             android:text="双子座" />
 
@@ -390,7 +390,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView12"
+                            android:id="@+id/tvzhiye"
                             style="@style/main_color3_style"
                             android:text="演员" />
 
@@ -427,7 +427,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView10"
+                            android:id="@+id/tvjiaxiang"
                            style="@style/main_color3_style"
                             android:text="湖南省阮江市" />
 
@@ -464,7 +464,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView08"
+                            android:id="@+id/tvheight"
                             style="@style/main_color3_style"
                             android:text="172cm" />
 
@@ -501,7 +501,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView06"
+                            android:id="@+id/tvsanwei"
                             style="@style/main_color3_style"
                             android:text="89,60,95" />
 

@@ -12,6 +12,10 @@ import com.timetalent.common.exception.BusinessException;
 public interface AppService {
 	/** 登陆 **/
 	public void login() throws BusinessException;
+	/**
+	 * exit
+	 */
+	public void logout() throws BusinessException;
 	/**获取验证码**/
 	public void code() throws BusinessException;
 	/**验证 验证码***/
@@ -107,4 +111,9 @@ public interface AppService {
 	/**支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment***/
 	public void myinvite_payment() throws BusinessException;
 	
+	public void myapp_version() throws BusinessException;
+	
+	public void mybaseinfo() throws BusinessException;
+	
+	public void mybaseinfoupdate() throws BusinessException;
 }

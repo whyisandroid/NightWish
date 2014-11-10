@@ -260,10 +260,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView20"
-                            style="@style/main_color3_style"
-                            android:text="吴沐熙" />
+                        <EditText
+                            android:id="@+id/etname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -297,10 +302,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView18"
-                            style="@style/main_color3_style"
-                            android:text="Vicky" />
+                        <EditText
+                            android:id="@+id/etnickname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -336,7 +346,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView16"
+                            android:id="@+id/tvage"
                             style="@style/main_color3_style"
                             android:text="25" />
 
@@ -373,7 +383,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView14"
+                            android:id="@+id/tvxingzuo1"
                             style="@style/main_color3_style"
                             android:text="双子座" />
 
@@ -409,10 +419,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView12"
-                            style="@style/main_color3_style"
-                            android:text="演员" />
+                        <EditText
+                            android:id="@+id/etzhiye"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -446,10 +461,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView10"
-                            style="@style/main_color3_style"
-                            android:text="湖南省阮江市" />
+                        <EditText
+                            android:id="@+id/etjiaxiang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -483,10 +503,15 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <TextView
-                            android:id="@+id/TextView08"
-                            style="@style/main_color3_style"
-                            android:text="172cm" />
+                        <EditText
+                            android:id="@+id/etheight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@null"
+                            android:ems="10"
+                            android:textColor="@color/color_2"
+                            android:textColorHint="@color/color_4"
+                            android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

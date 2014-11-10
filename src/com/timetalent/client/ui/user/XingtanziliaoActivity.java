@@ -2,6 +2,8 @@ package com.timetalent.client.ui.user;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.GestureDetector;
@@ -21,6 +23,8 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -54,6 +58,17 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 	private ImageView imgtab1;
 	private ImageView imgtab2;
 	private ImageView imgtab3;
+	TextView tvage1;
+	TextView tvxingzuo;
+	TextView tvdizhi;
+	TextView tvtime;
+	TextView tvname;
+	TextView tvnickname;
+	TextView tvage;
+	TextView tvxingzuo1;
+	TextView tvzhiye;
+	TextView tvjiaxiang;
+	TextView tvheight;
 	private GestureDetector mGestureDetector;
 	int index = 0;
 	private LinearLayout ldongtai;
@@ -62,6 +77,7 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 	private ImageButton main_top_left;
 	public int screenw = 0;
 	public float density = 1.0f;
+	Baseinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -73,7 +89,12 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 		screenw = dm.widthPixels;
 		density = dm.density;
 		findView();
-		initView();
+		new Thread(){
+			public void run() {
+				controller.mybaseinfo();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 	}
 	/**
 	 * 方法描述：TODO
@@ -100,6 +121,17 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
 		main_top_right = (TextView)this.findViewById(R.id.main_top_right);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		tvage1 = (TextView)this.findViewById(R.id.tvage1);
+		 tvxingzuo = (TextView)this.findViewById(R.id.tvxingzuo);
+		 tvdizhi = (TextView)this.findViewById(R.id.tvdizhi);
+		 tvtime = (TextView)this.findViewById(R.id.tvtime);
+		 tvname = (TextView)this.findViewById(R.id.tvname);
+		 tvnickname = (TextView)this.findViewById(R.id.tvnickname);
+		 tvage = (TextView)this.findViewById(R.id.tvage);
+		 tvxingzuo1 = (TextView)this.findViewById(R.id.tvxingzuo1);
+		 tvzhiye = (TextView)this.findViewById(R.id.tvzhiye);
+		 tvjiaxiang = (TextView)this.findViewById(R.id.tvjiaxiang);
+		 tvheight = (TextView)this.findViewById(R.id.tvheight);
 	}
 
 	/**
@@ -109,6 +141,7 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		setvalue();
 		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
 		((TextView)this.findViewById(R.id.main_top_right)).setText("编辑");
 		main_top_right.setVisibility(main_top_right.VISIBLE);
@@ -159,8 +192,21 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 		LayoutParams  p8 = imgpic8.getLayoutParams();
 		p8.height = (int)(screenw/4-8*density);
 		imgpic8.setLayoutParams(p8);
+		tvage1.setText(u.getAge());
+		 tvxingzuo.setText(u.getConstella());
+		 tvdizhi.setText(u.getProvince());
+		 tvtime.setText(u.getLast_time());
+		 tvname.setText(u.getRealname());
+		 tvnickname.setText(u.getNickname());
+		 tvage.setText(u.getAge());
+		 tvxingzuo1.setText(u.getConstella());
+		 tvzhiye.setText(u.getMajor());
+		 tvjiaxiang.setText(u.getProvince());
+		 tvheight.setText(u.getAge());
 	}
-	
+void setvalue(){
+		
+	}
 	/**
 	 * 重新计算listview高度
 	  * 方法描述：TODO
@@ -349,4 +395,18 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
             super.dispatchTouchEvent(ev);
             return mGestureDetector.onTouchEvent(ev);
     }
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				 u = (Baseinfopackage) controller.getContext().getBusinessData("BaseinfoData");
+				if(u != null){
+					initView();
+				}
+				break;
+			}
+		}
+	};
 }

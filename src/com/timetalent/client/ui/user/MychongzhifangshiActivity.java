@@ -65,7 +65,9 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 		main_top_left.setOnClickListener(this);
 		btok.setOnClickListener(this);
 	}
-	
+	void setvalue(){
+		controller.getContext().addBusinessData("wallet.type", "alipay");
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -74,8 +76,14 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 			finish();
 			break;
 		case R.id.btok:
+			setvalue();
+			new Thread(){
+				public void run() {
+					controller.mycharge_order();
+					controller.mycomplete_order();
+				};
+			}.start();
 			finish();
-			Toast.makeText(MychongzhifangshiActivity.this, "充值成功", 1000).show();
 			break;
 		default:
 			break;

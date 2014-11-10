@@ -30,6 +30,8 @@ public class Config {
 	//
 	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
+	public final static String HTTP_USER_LOGOUT = MY_SERVICE+ "/Login/logout"; // 注册接口
+	
 	
 	public final static String HTTP_USER_REGISTER_AVATAR = MY_SERVICE+ "/Reg/avatar_upload"; // 注册接口 上传图片
 	// 机会
@@ -49,8 +51,10 @@ public class Config {
 	//附近
 	public final static String HTTP_NEAR_ZONE_SEARCH = MY_SERVICE+ "/Zone/search"; // 搜索用户Zone/search
 	public final static String HTTP_NEAR_ZONE_NEAR = MY_SERVICE+ "/Zone/near"; // 附近的人Zone/near
-	public final static String HTTP_NEAR_ZONE_USERINFO = MY_SERVICE+ "Zone/userinfo";//某个用户的资料
+	public final static String HTTP_NEAR_ZONE_USERINFO = MY_SERVICE+ "/Zone/userinfo";//某个用户的资料
 	//我的
+	public final static String HTTP_MY_BASEINFO = MY_SERVICE+ "/User/baseinfo";
+	
 	public final static String HTTP_MY_ZONE_FRIEND = MY_SERVICE+ "/Zone/friend"; // 获取我的好友列表Zone/friend
 	public final static String HTTP_MY_ZONE_FOLLOWING = MY_SERVICE+ "/Zone/following"; // 获取我的关注列表Zone/following
 	public final static String HTTP_MY_ZONE_FOLLOWED = MY_SERVICE+ "/Zone/followed"; // 获取关注我的人列表,即粉丝Zone/followed
@@ -66,6 +70,8 @@ public class Config {
 	public final static String HTTP_MY_INVITE_OFFER = MY_SERVICE+ "/Invite/offer"; // 邀约我的记录 明星被邀约的记录Invite/offer
 	public final static String HTTP_MY_INVITE_ACCEPT = MY_SERVICE+ "/Invite/accept"; // 接受邀约Invite/accept
 	public final static String HTTP_MY_INVITE_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
+	public final static String HTTP_MY_APP_VERSION = MY_SERVICE+ "/App/version";
+	public final static String HTTP_MY_BASEINFOUPDATE = MY_SERVICE+ "/User/baseinfo_update";
 	
 	
 }

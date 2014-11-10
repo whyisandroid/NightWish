@@ -31,7 +31,7 @@ public class TimeTalentApplication extends Application {
 
 	public int curVersionCode; // 版本号
 	public String curVersionName; // 版本名字
-
+	public String systemVersion;
 	public String deviceID; // 设备ID
 
 	private boolean login;// 登录情况
@@ -119,6 +119,7 @@ public class TimeTalentApplication extends Application {
 			PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
 			curVersionName = info.versionName;
 			curVersionCode = info.versionCode;
+			systemVersion = android.os.Build.VERSION.SDK;
 		} catch (NameNotFoundException e) {
 			e.printStackTrace(System.err);
 		}

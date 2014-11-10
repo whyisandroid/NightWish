@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	Button btchongzhifangshi;
+	EditText etmoney;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -47,6 +49,7 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		btchongzhifangshi = (Button) findViewById(R.id.btchongzhifangshi);
+		etmoney = (EditText) findViewById(R.id.etmoney);
 	}
 
 	/**
@@ -63,7 +66,10 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 		main_top_left.setOnClickListener(this);
 		btchongzhifangshi.setOnClickListener(this);
 	}
-	
+	void setvalue(){
+		controller.getContext().addBusinessData("wallet.money", etmoney.getText()+"");
+		controller.getContext().addBusinessData("wallet.type", "alipay");
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -72,6 +78,7 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.btchongzhifangshi:
+			setvalue();
 			IntentUtil.intent(MychongzhiActivity.this, MychongzhifangshiActivity.class);
 			break;
 		default:

@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -33,13 +34,16 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 	private ImageButton main_top_left;
 	private Button btchongzhi;
 	private Button bttixian;
-	
+	TextView tvnickname;
+	TextView tvmoney;
+	LoginData user;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_wallet);
 		controller = AppController.getController(this);
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		findView();
 		initView();
 	}
@@ -54,6 +58,8 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 		main_top_right = (TextView) this.findViewById(R.id.main_top_right);
 		btchongzhi = (Button) findViewById(R.id.btchongzhi);
 		bttixian = (Button) findViewById(R.id.bttixian);
+		tvnickname = (TextView) findViewById(R.id.tvnickname);
+		tvmoney = (TextView) findViewById(R.id.tvmoney);
 	}
 
 	/**
@@ -68,6 +74,8 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 		main_top_left.setVisibility(View.VISIBLE);
 		main_top_right.setVisibility(View.VISIBLE);
 		main_top_right.setText("账单");
+		tvnickname.setText(user.getNickname());
+		tvmoney.setText(user.getMoney());
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		main_top_right.setOnClickListener(this);

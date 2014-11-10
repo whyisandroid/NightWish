@@ -144,7 +144,18 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-
+	public void logout(){
+		try {
+			service.logout();
+			IntentUtil.intent(currentActivity, MainFragmentActivity.class);
+			handler.obtainMessage(HANDLER_TOAST, "注销成功").sendToTarget();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	/**
 	  * 方法描述：TODO
@@ -571,6 +582,36 @@ public class AppController {
 	public void myinvite_payment() {
 		try {
 			service.myinvite_payment();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myapp_version(){
+		try {
+			service.myapp_version();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void mybaseinfo(){
+		try {
+			service.mybaseinfo();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void mybaseinfoupdate(){
+		try {
+			service.mybaseinfoupdate();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

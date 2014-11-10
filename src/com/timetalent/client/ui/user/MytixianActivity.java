@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,7 +31,9 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	Button bttixian;
-	
+	EditText etaccount_num;
+	EditText etaccount_name;
+	EditText etmoney;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -49,8 +52,17 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		bttixian = (Button) this.findViewById(R.id.bttixian);
+		etaccount_num = (EditText) this.findViewById(R.id.etaccount_num);
+		etaccount_name = (EditText) this.findViewById(R.id.etaccount_name);
+		etmoney = (EditText) this.findViewById(R.id.etmoney);
 	}
-
+	void setvalue(){
+		controller.getContext().addBusinessData("tixian.money", etmoney.getText()+"");
+		controller.getContext().addBusinessData("tixian.account_num", etaccount_num.getText()+"");
+		controller.getContext().addBusinessData("tixian.account_name", etaccount_name.getText()+"");
+		controller.getContext().addBusinessData("tixian.type", "alipay");
+		controller.getContext().addBusinessData("tixian.account_vender", "ALIBABA");
+	}
 	/**
 	 * 方法描述：TODO
 	 * 
@@ -74,8 +86,13 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.bttixian:
+			setvalue();
+			new Thread(){
+				public void run() {
+					controller.mywithdraw();
+				};
+			}.start();
 			finish();
-			Toast.makeText(MytixianActivity.this, "提现成功", 1000).show();
 			break;
 		default:
 			break;

@@ -10,7 +10,9 @@ import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.entities.TaskAdd;
+import com.timetalent.client.entities.Walletorderpackage;
 import com.timetalent.client.entities.json.BaseResp;
+import com.timetalent.client.entities.json.BaseinfoResp;
 import com.timetalent.client.entities.json.BlackResp;
 import com.timetalent.client.entities.json.FeedADDResp;
 import com.timetalent.client.entities.json.FeedResp;
@@ -26,12 +28,15 @@ import com.timetalent.client.entities.json.TaskADDResp;
 import com.timetalent.client.entities.json.TaskResp;
 import com.timetalent.client.entities.json.TaskShowResp;
 import com.timetalent.client.entities.json.UserinfoResp;
+import com.timetalent.client.entities.json.WalletorderResp;
 import com.timetalent.client.service.AppContext;
+import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppService;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.net.Request;
 import com.timetalent.common.util.Config;
+import com.timetalent.common.util.ToastUtil;
 
 /******************************************
  * 类描述： 业务实现类 类名称：ServiceImpl
@@ -83,7 +88,27 @@ public class AppServiceImpl implements AppService {
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#logout()
+	 */
+	@Override
+	public void logout() throws BusinessException {
 
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_LOGOUT);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
 	
 	@Override
 	public void code() throws BusinessException {
@@ -598,15 +623,19 @@ public class AppServiceImpl implements AppService {
 	public void mycharge_order() throws BusinessException {
 
 
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<WalletorderResp> request = new Request<WalletorderResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("money", (String)context.getBusinessData("wallet.money")));
+		nameValuePairs.add(new BasicNameValuePair("type", (String)context.getBusinessData("wallet.type")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_WALLET_CHARGEORDER);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(WalletorderResp.class);
+		WalletorderResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			if (resp.getData() != null) {
+				context.addBusinessData("orderData", resp.getData());
+			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -626,12 +655,13 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("id", ((Walletorderpackage)context.getBusinessData("orderData")).getId()+""));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_WALLET_COMPLETEORDER);
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -656,7 +686,7 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -676,12 +706,17 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("money", (String)context.getBusinessData("tixian.money")));
+		nameValuePairs.add(new BasicNameValuePair("account_num", (String)context.getBusinessData("tixian.account_num")));
+		nameValuePairs.add(new BasicNameValuePair("account_name", (String)context.getBusinessData("tixian.account_name")));
+		nameValuePairs.add(new BasicNameValuePair("type", (String)context.getBusinessData("tixian.type")));
+		nameValuePairs.add(new BasicNameValuePair("account_vender", (String)context.getBusinessData("tixian.account_vender")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_WALLET_WITHDRAW);
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -841,7 +876,87 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myapp_version()
+	 */
+	@Override
+	public void myapp_version() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("number",""+TimeTalentApplication.getInstance().curVersionName));
+		nameValuePairs.add(new BasicNameValuePair("system", ""+TimeTalentApplication.getInstance().systemVersion));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_APP_VERSION);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
 
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mybaseinfo()
+	 */
+	@Override
+	public void mybaseinfo() throws BusinessException {
+		Request<BaseinfoResp> request = new Request<BaseinfoResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_BASEINFO);
+		request.setR_calzz(BaseinfoResp.class);
+		BaseinfoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("BaseinfoData", resp.getData());
+			}
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mybaseinfoupdate()
+	 */
+	@Override
+	public void mybaseinfoupdate() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("username", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("phone", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("email", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("sex", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("nickname", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("realname", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("birthday", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("constella", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("certificate", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("province", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("city", (String)context.getBusinessData("_session_id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_BASEINFO);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
 	
 	
 }

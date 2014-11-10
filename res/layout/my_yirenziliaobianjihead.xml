@@ -247,7 +247,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/et_chance_title"
+                            android:id="@+id/etname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -289,7 +289,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/et1"
+                            android:id="@+id/etnickname"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -332,7 +332,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView16"
+                            android:id="@+id/tvage"
                             style="@style/main_color3_style"
                             android:text="25" />
 
@@ -369,7 +369,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView14"
+                            android:id="@+id/tvxingzuo1"
                             style="@style/main_color3_style"
                             android:text="双子座" />
 
@@ -406,7 +406,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/et2"
+                            android:id="@+id/etzhiye"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -448,7 +448,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/et3"
+                            android:id="@+id/etjiaxiang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -490,7 +490,7 @@
                         android:orientation="vertical" >
 
                         <EditText
-                            android:id="@+id/et4"
+                            android:id="@+id/etheight"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@null"
@@ -533,7 +533,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView06"
+                            android:id="@+id/tvsanwei"
                             style="@style/main_color3_style"
                             android:text="89,60,95" />
 

@@ -256,7 +256,13 @@ case 2:
 			IntentUtil.intent(this.mContext, MyheimingdanActivity.class);
 			break;
 		case R.id.lgengxin:
-			DialogUtil.showMessage(getActivity(), "已经是最新版本!");
+			new Thread(){
+				public void run() {
+					controller.myapp_version();
+				};
+			}.start();
+
+//			DialogUtil.showMessage(getActivity(), "已经是最新版本!");
 			break;
 		case R.id.lbangzhu:
 			DialogUtil.showMessage(getActivity(), "谢谢您的反馈!");
@@ -278,6 +284,11 @@ case 2:
 				@Override
 				public void onClick(View v) {
 					dialog.closeDialog();
+					new Thread(){
+						public void run() {
+							controller.logout();
+						};
+					}.start();
 					System.exit(0);
 					
 				}

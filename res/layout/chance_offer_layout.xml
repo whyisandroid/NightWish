@@ -13,7 +13,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical" >
 
             <FrameLayout
@@ -21,10 +21,11 @@
                 android:layout_height="wrap_content" >
 
                 <ImageView
-                    android:id="@+id/imageView1"
+                    android:id="@+id/iv_chance_add_head"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/c11_02" />
+                    android:src="@drawable/c11_02"
+                    android:scaleType="fitXY" />
 
                 <Button
                     android:id="@+id/bt_chance_offer_picture"
@@ -58,7 +59,7 @@
                         android:text="@string/chance_text1" />
 
                     <EditText
-                        android:id="@+id/et_chance_title"
+                        android:id="@+id/et_chance_add_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -113,6 +114,7 @@
                     android:background="@color/spilt_line_color" />
 
                 <RelativeLayout
+                    android:id="@+id/rl_chance_add_place"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -120,13 +122,12 @@
                     android:layout_marginTop="13dp" >
 
                     <TextView
-                        android:id="@+id/textView2"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:text="@string/chance_text4" />
 
                     <TextView
-                        android:id="@+id/textView3"
+                        android:id="@+id/tv_chance_add_place"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="10dp"

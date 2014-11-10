@@ -13,6 +13,8 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
+import com.timetalent.client.entities.Job;
+
 
 public class StringUtil {
 	/** 

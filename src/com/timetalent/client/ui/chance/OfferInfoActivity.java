@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -31,8 +32,6 @@ public class OfferInfoActivity extends BaseActivity implements OnClickListener {
 	private TextView main_top_right;
 	private LinearLayout ll_chance_offer_message; //发布者私聊
 	private LinearLayout ll_chance_offer_apply; //我要报名
-	
-	
 	private Handler mhandle = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			

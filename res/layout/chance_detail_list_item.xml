@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="10dp"
+    android:paddingBottom="5dp"
     android:orientation="vertical" >
     
                <!--   <TextView
@@ -19,12 +19,25 @@
                  android:background="@drawable/c15_10" >
 
                     <TextView
-                        android:id="@+id/tv_offer_detail_d"
+                        android:id="@+id/tv_offer_detail_work"
                         style="@style/chance_offer_text_style"
                         android:layout_centerVertical="true"
                         android:layout_marginBottom="10dp"
                         android:text="现场活动"
                         android:textSize="@dimen/new_size_3" />
+                    
+                    <TextView
+                        android:id="@+id/tv_offer_detail_work_time"
+                        style="@style/chance_offer_text_style"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/tv_offer_detail_work"
+                        android:layout_toLeftOf="@+id/tv_offer_detail_qpply"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center"
+                        android:singleLine="true"
+                        android:hint="2014年12月16日-2014年12月19日"
+                        android:textSize="@dimen/new_size_1" />
 
                     <ImageView
                         android:id="@+id/tv_offer_detail_qpply"
@@ -38,11 +51,12 @@
                 </RelativeLayout>
              
              <TextView
-                 android:id="@+id/tv_offer_detail_d"
+                 android:id="@+id/tv_offer_detail_message"
                  style="@style/chance_offer_text_style"
                  android:layout_centerVertical="true"
                  android:layout_marginLeft="20dp"
                  android:layout_marginRight="20dp"
+                 android:paddingBottom="10dp"
                  android:text="@string/chance_text15"
                  android:textSize="@dimen/new_size_2" />
     

@@ -121,7 +121,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		  * @author: why
 		  * @time: 2014-10-21 上午11:17:14
 		  */
-			ProgressDialogUtil.showProgressDialog(getActivity(), "登录中…", false);
+			ProgressDialogUtil.showProgressDialog(getActivity(), "稍等…", false);
 			new Thread(new Runnable() {
 				@Override
 				public void run() {

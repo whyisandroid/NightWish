@@ -63,7 +63,7 @@ public class DialogUtil {
 	public static void showMessage(Context context,
 			String message) {
 		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-		dialog.setmTitle("提示").setMessage(message);
+		dialog.setMessage(message);
 		dialog.setOne("确认",new OnClickListener() {
 			@Override
 			public void onClick(View v) {

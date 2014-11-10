@@ -1,6 +1,5 @@
 package com.timetalent.client.service.impl;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +9,7 @@ import org.apache.http.message.BasicNameValuePair;
 import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
+import com.timetalent.client.entities.TaskAdd;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BlackResp;
 import com.timetalent.client.entities.json.FeedADDResp;
@@ -22,6 +22,9 @@ import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
 import com.timetalent.client.entities.json.SearchResp;
+import com.timetalent.client.entities.json.TaskADDResp;
+import com.timetalent.client.entities.json.TaskResp;
+import com.timetalent.client.entities.json.TaskShowResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppService;
 import com.timetalent.common.exception.BusinessException;
@@ -143,17 +146,20 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void chanceAdd() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
-		String dynamic_add = context.getStringData("dynamic_add");
-		Request<FeedADDResp> request = new Request<FeedADDResp>();
+		TaskAdd task = (TaskAdd)context.getBusinessData("Task_ADD");
+		Request<TaskADDResp> request = new Request<TaskADDResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
-		nameValuePairs.add(new BasicNameValuePair("contents", dynamic_add));
+		nameValuePairs.add(new BasicNameValuePair("title", task.getTitle()));
+		nameValuePairs.add(new BasicNameValuePair("place", task.getPlace()));
+		nameValuePairs.add(new BasicNameValuePair("job_lists_json", task.getJob_lists_json()));
+		nameValuePairs.add(new BasicNameValuePair("cutoff_date", task.getCutoff_date()));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_USER_DYNAMIC_ADD);
-		request.setR_calzz(FeedADDResp.class);
-		FeedADDResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
+		request.setR_calzz(TaskADDResp.class);
+		TaskADDResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			context.addBusinessData("Dynamic_ADD_Feed_id", resp.getData().getFeed_id());
+			context.addBusinessData("Task_ADD_id", resp.getData().getTask_id());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -162,15 +168,20 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void chanceLists() throws BusinessException {
-		Request<BaseResp> request = new Request<BaseResp>();
+		String _session_id = context.getStringData("_session_id");
+		String order = context.getStringData("chance_order");
+		Request<TaskResp> request = new Request<TaskResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		nameValuePairs.add(new BasicNameValuePair("page","1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per","100"));
+		nameValuePairs.add(new BasicNameValuePair("order",order));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_LIST);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(TaskResp.class);
+		TaskResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Task_lists_data", resp.getData());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -180,15 +191,18 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void chanceDetails() throws BusinessException {
-		Request<BaseResp> request = new Request<BaseResp>();
+		String _session_id = context.getStringData("_session_id");
+		String chance_detail_id = context.getStringData("chance_detail_id");
+		Request<TaskShowResp> request = new Request<TaskShowResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("id", chance_detail_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_DETAIL);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(TaskShowResp.class);
+		TaskShowResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Task_lists_detail", resp.getData());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -197,9 +211,15 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void chanceApply() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		String chance_Job_id = context.getStringData("Chance_Job_id");
+		String chance_Task_id = context.getStringData("Chance_Task_id");
+		
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		nameValuePairs.add(new BasicNameValuePair("task_id",chance_Task_id));
+		nameValuePairs.add(new BasicNameValuePair("task_job_id",chance_Job_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_APPLY);
 		request.setR_calzz(BaseResp.class);
@@ -289,23 +309,21 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void dynamicAdd() throws BusinessException {
-
-
-		Request<BaseResp> request = new Request<BaseResp>();
+		String _session_id = context.getStringData("_session_id");
+		String dynamic_add = context.getStringData("dynamic_add");
+		Request<FeedADDResp> request = new Request<FeedADDResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("contents", dynamic_add));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_ADD);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(FeedADDResp.class);
+		FeedADDResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Dynamic_ADD_Feed_id", resp.getData().getFeed_id());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
-	
-			
-			
 	}
 
 	

@@ -19,21 +19,21 @@
         android:orientation="horizontal" >
 
         <RadioButton
-            android:id="@+id/radioButton1"
+            android:id="@+id/rb_chance_hot"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_chance_new"
             android:button="@null"
+            android:checked="true"
             android:textColor="@color/color_4"
             android:textSize="@dimen/new_size_2" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/rb_chance_new"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_chance_hot"
             android:button="@null"
-            android:checked="true"
             android:textColor="@color/color_4"
             android:textSize="@dimen/new_size_2" />
     </RadioGroup>

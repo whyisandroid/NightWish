@@ -1,22 +1,22 @@
 package com.timetalent.client.ui.chance;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.ShareMessage;
+import com.timetalent.client.entities.TaskShowData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ShareUtil;
-import com.timetalent.common.util.ToastUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -31,6 +31,14 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	private TextView main_top_right;
 	private ListView lv_chance_detail;
 	private TextView bt_chance_offer;
+	
+	
+	private ImageView iv_chance_banner;
+	private TextView tv_chance_title;
+	private TextView tv_chance_time;
+	private TextView tv_offer_detail_address;
+	
+	private TaskShowData data;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,11 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		main_top_right = (TextView)findViewById(R.id.main_top_right);
 		lv_chance_detail = (ListView)findViewById(R.id.lv_chance_detail);
 		bt_chance_offer = (TextView)findViewById(R.id.bt_chance_offer);
+		
+		iv_chance_banner = (ImageView)findViewById(R.id.iv_chance_banner);
+		tv_chance_title = (TextView)findViewById(R.id.tv_chance_title);
+		tv_chance_time = (TextView)findViewById(R.id.tv_chance_time);
+		tv_offer_detail_address = (TextView)findViewById(R.id.tv_offer_detail_address);
 	}
 	/**
 	 * 方法描述：TODO
@@ -63,8 +76,22 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		main_top_right.setText("分享");
 		main_top_right.setOnClickListener(this);
 		bt_chance_offer.setOnClickListener(this);
-		ChanceDetailAdapter adapter  = new  ChanceDetailAdapter(this);
+		setData();
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-11-8 下午6:26:06
+	  */
+	private void setData() {
+		data = (TaskShowData)controller.getContext().getBusinessData("Task_lists_detail");
+		tv_chance_title.setText(data.getTitle());
+		tv_chance_time.setText("报名截止日期："+data.getCutoff_date());
+		tv_offer_detail_address.setText(data.getPlace());
+		ChanceDetailAdapter adapter  = new  ChanceDetailAdapter(this,data.getJobs());
 		lv_chance_detail.setAdapter(adapter);
+		UIUtils.setListViewHeight(lv_chance_detail, adapter);
 	}
 	
 	
@@ -74,7 +101,6 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		case R.id.main_top_right:
 			ShareMessage share = new  ShareMessage("今年杨坤20岁演唱会报名开始");
 			ShareUtil.showShare(OfferDetailActivity.this, share);
-			//ToastUtil.showToast(OfferDetailActivity.this, "分享有钱赚", ToastUtil.LENGTH_LONG);
 			break;
 		case R.id.bt_chance_offer:
 			IntentUtil.intent(OfferDetailActivity.this, MessageChatActivity.class);

@@ -109,7 +109,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				controller.chanceAdd();
+				controller.dynamicAdd();
 				ProgressDialogUtil.closeProgressDialog();
 			}
 		}).start();

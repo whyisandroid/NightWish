@@ -7,9 +7,9 @@ import android.text.TextUtils;
 
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
-import com.timetalent.client.ui.dynamic.DynamicAddActivity;
+import com.timetalent.client.ui.chance.OfferDetailActivity;
+import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.login.LoginActivity;
-import com.timetalent.client.ui.login.RegisterFourActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ToastUtil;
@@ -113,7 +113,7 @@ public class AppController {
 			
 			case HANDLER_DIALOG:
 				if(!TextUtils.isEmpty(msg.obj.toString())){
-					//DialogUtil.showError(currentActivity,msg.obj.toString());
+					DialogUtil.showMessage(currentActivity,msg.obj.toString());
 				}
 			case HANDLER_TOAST:
 				if(!TextUtils.isEmpty(msg.obj.toString())){
@@ -245,9 +245,10 @@ public class AppController {
 		}
 	}
 	
-	public void chanceLists() {
+	public void chanceLists(Handler mHandler) {
 		try {
 			service.chanceLists();
+			mHandler.obtainMessage(0).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -259,6 +260,7 @@ public class AppController {
 	public void chanceDetails() {
 		try {
 			service.chanceDetails();
+			IntentUtil.intent(currentActivity, OfferDetailActivity.class);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -267,9 +269,11 @@ public class AppController {
 		}
 	}
 	
-	public void chanceApply() {
+	public void chanceApply(String job) {
 		try {
 			service.chanceApply();
+			handler.obtainMessage(HANDLER_DIALOG,"您已经报名了："+job).sendToTarget();
+			//IntentUtil.intent(currentActivity, MainFragmentActivity.class);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -282,6 +286,8 @@ public class AppController {
 	public void dynamicAdd() {
 		try {
 			service.dynamicAdd();
+			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
+			currentActivity.finish();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

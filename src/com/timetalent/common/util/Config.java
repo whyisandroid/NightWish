@@ -23,6 +23,9 @@ public class Config {
 	// 项目路径
 	public static final String PATH_SDCARD = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + File.separator + "TimeTalent";
+	
+////缩略图
+	public static final String PATH_PIC_THUMB = PATH_SDCARD + File.separator +"thumb";
 
 	//图片保存路径
 	public static final String PIC_PATH = "/mnt/sdcard/TimeTalent/picture/";

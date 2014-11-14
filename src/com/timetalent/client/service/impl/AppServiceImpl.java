@@ -384,10 +384,12 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void dynamicFavour() throws BusinessException {
 
-
+		String _session_id = context.getStringData("_session_id");
+		String dynamic_feed_id = context.getStringData("dynamic_feed_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("feed_id", dynamic_feed_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_FAVOUR);
 		request.setR_calzz(BaseResp.class);

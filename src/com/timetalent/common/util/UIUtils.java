@@ -46,6 +46,18 @@ public class UIUtils {
 		lv.setLayoutParams(lp);
 	}
 	
+	/**
+	 * dip转px
+	 * 
+	 * @param context
+	 * @param dipValue
+	 * @return
+	 */
+	public static int dip2px(Context context, float dipValue) {
+		return (int) (dipValue
+				* context.getResources().getDisplayMetrics().density + 0.5f);
+	}
+	
 	
 	/**
 	  * 方法描述：设置listView 的宽 等于所有元素相加

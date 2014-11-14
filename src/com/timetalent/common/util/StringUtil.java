@@ -13,8 +13,6 @@ import android.text.TextUtils;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.timetalent.client.entities.Job;
-
 
 public class StringUtil {
 	/** 
@@ -86,11 +84,11 @@ public class StringUtil {
 	  * @author: wanghy
 	  * @time: 2014-10-19 下午4:11:46
 	  */
-	public static void doGoToImg(Activity mContext) {
+	public static void doGoToImg(Context mContext) {
 		Intent intent = new Intent();
 		intent.setAction(Intent.ACTION_PICK);
 		intent.setType("image/*");
-		mContext.startActivityForResult(intent, 0);
+		((Activity)mContext).startActivityForResult(intent, 0);
 	}
 	
 	

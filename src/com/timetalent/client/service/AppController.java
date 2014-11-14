@@ -342,14 +342,15 @@ public class AppController {
 	}
 	
 	
-	public void dynamicFavour() {
+	public boolean dynamicFavour() {
 		try {
 			service.dynamicFavour();
+			return true;
 		} catch (BusinessException e) {
-			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+			return false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
 		}
 	}
 	

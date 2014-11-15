@@ -159,7 +159,4 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 		}
 		return httpUtils;
 	}
-	
-	
-	
 }

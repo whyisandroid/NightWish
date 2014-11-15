@@ -213,7 +213,6 @@ public class AppServiceImpl implements AppService {
 		}
 	
 	}
-
 	
 	@Override
 	public void chanceDetails() throws BusinessException {

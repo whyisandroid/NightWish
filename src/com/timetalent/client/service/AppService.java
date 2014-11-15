@@ -116,4 +116,13 @@ public interface AppService {
 	public void mybaseinfo() throws BusinessException;
 	
 	public void mybaseinfoupdate() throws BusinessException;
+	// 充值订单
+	public void walletOrder() throws BusinessException;
+	// 确认支付
+	public void walletPay() throws BusinessException;
+	// 提现
+	public void walletWithdraw() throws BusinessException;
+	// 提现记录
+	public void walletWithdrawList() throws BusinessException;
+	
 }

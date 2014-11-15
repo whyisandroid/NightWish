@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Feed;
+import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
@@ -34,6 +36,21 @@ public class DynamicAdapter extends BaseAdapter{
 	private List<Feed> lists;
 	private Context mContext;
 	private LayoutInflater inflater;
+	private AppController controller;
+	
+	private Handler handler  = new  Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				
+				break;
+
+			default:
+				break;
+			}
+			
+		};
+	};
 	
 	/**
 	 * 类的构造方法
@@ -44,7 +61,7 @@ public class DynamicAdapter extends BaseAdapter{
 		this.mContext = mContext;
 		this.lists = lists;
 		inflater = LayoutInflater.from(mContext);
-		
+		controller = AppController.getController();
 	}
 	
 	@Override
@@ -69,7 +86,7 @@ public class DynamicAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		final ViewHolder holder;
-		Feed feed = lists.get(position);
+		final Feed feed = lists.get(position);
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.dynamic_list_item, null);
 			holder = new ViewHolder();
@@ -98,19 +115,18 @@ public class DynamicAdapter extends BaseAdapter{
 		// 处理图片
 		
 		List<String> list = new ArrayList<String>();
-		list.add("http://f.hiphotos.baidu.com/image/pic/item/5fdf8db1cb1349544c89855e554e9258d1094a70.jpg");
+		/*list.add("http://f.hiphotos.baidu.com/image/pic/item/5fdf8db1cb1349544c89855e554e9258d1094a70.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
-		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
-		
-		DynamicPicAdapter adapter = new DynamicPicAdapter(mContext,list);
-		holder.lv_dynamic_pic.setAdapter(adapter); 
-		
-		
-		
-		
-		
+		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");*/
+		if(list.size() != 0){
+			holder.lv_dynamic_pic.setVisibility(View.VISIBLE);
+			DynamicPicAdapter adapter = new DynamicPicAdapter(mContext,list);
+			holder.lv_dynamic_pic.setAdapter(adapter); 
+		}else{
+			holder.lv_dynamic_pic.setVisibility(View.GONE);
+		}
 		
 		holder.iv_dynamic_head.setOnClickListener(new OnClickListener() {
 			@Override
@@ -123,9 +139,18 @@ public class DynamicAdapter extends BaseAdapter{
 			
 				@Override
 				public void onClick(View v) {
-					holder.tv_dynamic_add_1.setVisibility(View.VISIBLE);
-					holder.tv_dynamic_add_1.animate().setDuration(2000);
-					holder.tv_dynamic_add_1.animate().alpha(0);
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
+							if(controller.dynamicFavour()){
+								holder.tv_dynamic_add_1.setVisibility(View.VISIBLE);
+								holder.tv_dynamic_add_1.animate().setDuration(2000);
+								holder.tv_dynamic_add_1.animate().alpha(0);
+								holder.iv_dynamic_good_num.setText(Integer.valueOf(holder.iv_dynamic_good_num.getText().toString())+1+"");
+							}
+						};
+					}.start();
+					
 				}
 			}
 		);

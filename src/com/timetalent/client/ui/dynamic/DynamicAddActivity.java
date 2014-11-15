@@ -1,21 +1,31 @@
 package com.timetalent.client.ui.dynamic;
 
+import java.util.ArrayList;
+
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Thumbnails;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Picture;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAddAdapter;
-import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.LogUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
-import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
 
@@ -30,9 +40,25 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	private AppController controller;
 	private TextView main_top_right;
 	private TextView main_top_left2;
-	private ImageView iv_dynamic_add;//动态
 	private EditText et_dynamic_add_content;
 	private GridView gv_dynamic_add;
+	private DynamicAddAdapter adapter;
+	
+	// 原图列表
+	ArrayList<Picture> imgList = new ArrayList<Picture>();
+	
+	private Handler mHandler = new  Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				
+				break;
+
+			default:
+				break;
+			}
+		};
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +77,6 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	private void findView() {
 		main_top_right = (TextView)findViewById(R.id.main_top_right);
 		main_top_left2 = (TextView)findViewById(R.id.main_top_left2);
-		iv_dynamic_add = (ImageView)findViewById(R.id.iv_dynamic_add);
 		et_dynamic_add_content =(EditText)findViewById(R.id.et_dynamic_add_content);
 		gv_dynamic_add = (GridView)findViewById(R.id.gv_dynamic_add);
 	}
@@ -72,9 +97,47 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		main_top_left2.setText("取消");
 		main_top_right.setOnClickListener(this);
 		main_top_left2.setOnClickListener(this);
-		iv_dynamic_add.setOnClickListener(this);
-		DynamicAddAdapter adapter = new  DynamicAddAdapter(this);
+		adapter = new  DynamicAddAdapter(this,mHandler,imgList);
 		gv_dynamic_add.setAdapter(adapter);
+	}
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			if (data != null) {
+				Uri uri = data.getData();
+				if (!TextUtils.isEmpty(uri.getAuthority())) {
+					Cursor cursor = getContentResolver().query(uri,
+							new String[] { MediaStore.Images.Media._ID,MediaStore.Images.Media.DATA },
+							null, null, null);
+					if (null == cursor) {
+						ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
+						return;
+					}
+					cursor.moveToFirst();
+					String id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+					String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+					cursor.close();
+					LogUtil.Log("path=" + path);
+					if (PictureUtil.isPicture(path)) {
+							// 添加
+						Picture pic = new Picture(Integer.valueOf(id),path);
+							if (!imgList.contains(pic)) {
+								imgList.add(pic);
+							} else {
+								ToastUtil.showToast(this, "您已添加此图片！",
+										ToastUtil.LENGTH_SHORT);
+							}
+							adapter.notifyDataSetChanged();
+					} else {
+						Toast.makeText(
+								this,
+								"请选择png或者jpg格式的图片",
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+				adapter.notifyDataSetChanged();
+				}
+			}
 	}
 	
 	
@@ -87,10 +150,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			}
 			break;
 		case R.id.main_top_left2:
-			IntentUtil.intent(DynamicAddActivity.this, DynamicMyActivity.class);
-			break;
-		case R.id.iv_dynamic_add:
-			StringUtil.doGoToImg(DynamicAddActivity.this);
+			this.finish();
 			break;
 		default:
 			break;

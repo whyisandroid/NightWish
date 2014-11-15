@@ -23,17 +23,22 @@ public class Config {
 	// 项目路径
 	public static final String PATH_SDCARD = Environment.getExternalStorageDirectory()
 			.getAbsolutePath() + File.separator + "TimeTalent";
+	
+////缩略图
+	public static final String PATH_PIC_THUMB = PATH_SDCARD + File.separator +"thumb";
 
 	//图片保存路径
 	public static final String PIC_PATH = "/mnt/sdcard/TimeTalent/picture/";
 	
-	//
+	//登录
 	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
 	public final static String HTTP_USER_LOGOUT = MY_SERVICE+ "/Login/logout"; // 注册接口
-	
-	
 	public final static String HTTP_USER_REGISTER_AVATAR = MY_SERVICE+ "/Reg/avatar_upload"; // 注册接口 上传图片
+	
+	//获取验证码
+	public final static String HTTP_USER_PHONE_CODE = MY_SERVICE+ "Sms/send_verify"; //获取验证码
+	
 	// 机会
 	public final static String HTTP_USER_CHANCE_ADD = MY_SERVICE+ "/Task/add"; // 添加机会
 	public final static String HTTP_USER_CHANCE_LIST = MY_SERVICE+ "/Task/lists"; //机会列表
@@ -72,6 +77,12 @@ public class Config {
 	public final static String HTTP_MY_INVITE_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
 	public final static String HTTP_MY_APP_VERSION = MY_SERVICE+ "/App/version";
 	public final static String HTTP_MY_BASEINFOUPDATE = MY_SERVICE+ "/User/baseinfo_update";
+	
+	// 充值 支付
+	public final static String HTTP_USER_WALLET_ORDER= MY_SERVICE+ "/Wallet/charge_order"; // 充值订单
+	public final static String HTTP_USER_WALLET_ORDER_OK= MY_SERVICE+ "/Wallet/complete_order"; // 确认支付
+	public final static String HTTP_USER_WALLET_WITHDRAW= MY_SERVICE+ "/Wallet/withdraw"; // 提现
+	public final static String HTTP_USER_WALLET_WITHDRAW_LIST= MY_SERVICE+ "/Wallet/withdraw_lists"; // 提现记录
 	
 	
 }

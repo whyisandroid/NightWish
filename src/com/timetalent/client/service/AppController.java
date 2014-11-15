@@ -173,16 +173,15 @@ public class AppController {
 	  * @author: wanghy
 	  * @time: 2014-10-23 下午10:54:28
 	  */
-	public void code() {
+	public void code(Handler mHandler) {
 		try {
 			service.code();
+			mHandler.obtainMessage(10).sendToTarget();
 		} catch (BusinessException e) {
-			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
 	}
 
 	
@@ -342,14 +341,15 @@ public class AppController {
 	}
 	
 	
-	public void dynamicFavour() {
+	public boolean dynamicFavour() {
 		try {
 			service.dynamicFavour();
+			return true;
 		} catch (BusinessException e) {
-			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+			return false;
 		} catch (Exception e) {
-			e.printStackTrace();
+			return false;
 		}
 	}
 	
@@ -619,4 +619,65 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void walletOrder() {
+		try {
+			service.walletOrder();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void walletPay() {
+		try {
+			service.walletPay();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void walletWithdraw() {
+		try {
+			service.walletWithdraw();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void walletWithdrawList() {
+		try {
+			service.walletWithdrawList();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 }

@@ -11,6 +11,8 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Thumbnails;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Picture;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.CommonData;
 import com.timetalent.common.util.Config;
@@ -42,7 +45,7 @@ public class DynamicAddAdapter extends BaseAdapter{
     public static final long ADD_TAG= 1;
 	private Context mContext;
 	// 图片
-	private ArrayList<String> mData = new  ArrayList<String>();
+	private ArrayList<Picture> mData = new  ArrayList<Picture>();
 	private HashMap<String, SoftReference<Bitmap>> cache = new HashMap<String, SoftReference<Bitmap>>();
 	//单一View的高
 		private int view_wh = 0 ;
@@ -51,7 +54,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 	 * 创建一个新的实例 DynamicAdapter.
 	 * @param 
 	 */
-	public DynamicAddAdapter(Context mContext,Handler mHandler,ArrayList<String> mData) {
+	public DynamicAddAdapter(Context mContext,Handler mHandler,ArrayList<Picture> mData) {
 		this.mContext = mContext;
 		this.mData = mData;
 	}
@@ -64,7 +67,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 	
 	@Override
 	public Object getItem(int position) {
-		return position;
+		return mData.get(position);
 	}
 
 	
@@ -96,6 +99,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 		if (position == mData.size()) {
 			//最后一个图片
 			holder.position = mData.size();
+			holder.mImage.setImageDrawable(null); 
 			holder.mImage.setBackgroundResource(R.drawable.btn_dynamic_add_pic);
 			holder.mImageContainer.getLayoutParams().height = view_wh;
 			holder.mImage.setScaleType(ImageView.ScaleType.CENTER);
@@ -109,31 +113,31 @@ public class DynamicAddAdapter extends BaseAdapter{
 			holder.mImage.setOnClickListener(mGridViewItemListener);
 		} else {
 			//非最后一个图片
-			String path = mData.get(position);  
+			Picture pic = mData.get(position);  
 			holder.position = position;
 			
-			//Bitmap bitmap = PictureUtil.toRoundCorner(PictureUtil.decodeSampledBitmapFromFile(path, 200, 200), 0);
-			//holder.mImage.setImageBitmap(bitmap);
-			if (cache.get(path) != null && cache.get(path).get() != null) {
+			/** 通过ID 获取缩略图*/
+		//	Bitmap bitmap = MediaStore.Images.Thumbnails.getThumbnail(mContext.getContentResolver(), pic.getId(), Thumbnails.MICRO_KIND, null);
+			Bitmap bitmap = PictureUtil.toRoundCorner(PictureUtil.decodeSampledBitmapFromFile(pic.getPath(), 200, 200), 0);
+			holder.mImage.setImageBitmap(bitmap);
+		/*	if (cache.get(path) != null && cache.get(path).get() != null) {
 				holder.mImage.setImageBitmap(cache.get(path).get());
 			} else {
 				holder.mImage.setImageResource(R.color.main_grey);
 				new LoadImageTask().execute(holder, position, path);
-			}
+			}*/
 			
 			holder.mImage.setBackgroundResource(android.R.color.white);
-			holder.mImageContainer.getLayoutParams().height = view_wh;
+		/*	holder.mImageContainer.getLayoutParams().height = view_wh;
 			holder.mImage.setScaleType(ImageView.ScaleType.FIT_XY);
-			holder.mImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;
+			holder.mImage.getLayoutParams().width = ViewGroup.LayoutParams.MATCH_PARENT;*/
 			OnClickMessage onClickMessage = new OnClickMessage();
 			onClickMessage.position = position;
 			onClickMessage.tag = SELECT_TAG;
 			holder.mImage.setTag(onClickMessage);
 			holder.mImageIcon.setVisibility(View.VISIBLE);  
-			holder.mImage.setOnClickListener(mGridViewItemListener);
+			holder.mImage.setOnClickListener(mGridViewItemCloseListener);
 		}
-		
-		
 		return convertView;
 	}
 	
@@ -164,7 +168,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 				StringUtil.doGoToImg(mContext);
 			}else if (onClickMessage.tag == SELECT_TAG){
 				 LogUtil.Log("点击图片路径："+mData.get(onClickMessage.position));
-				 String value = mData.get(onClickMessage.position);
+				 String value = mData.get(onClickMessage.position).getPath();
 				 //下方是是通过Intent调用系统的图片查看器的关键代码
 				 File file = new File(value);
 				 Intent intent = new Intent();
@@ -174,6 +178,21 @@ public class DynamicAddAdapter extends BaseAdapter{
 			}
 		}
 	};
+	
+	
+	
+	private View.OnClickListener mGridViewItemCloseListener = new View.OnClickListener() {
+
+		@Override
+		public void onClick(View v) {
+			OnClickMessage onClickMessage = (OnClickMessage) v.getTag();
+			LogUtil.Log("删除图片路径：" + mData.get(onClickMessage.position));
+			Picture value = mData.get(onClickMessage.position);
+			mData.remove(value);
+			notifyDataSetChanged();
+		}
+	};
+	
 	
 	private final class LoadImageTask extends AsyncTask<Object, Integer, Uri> {
 		private ViewHolder holder;
@@ -193,7 +212,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 				}
 				File f = new File(filePath, PictureUtil.getMD5(path)+".png");
 				if(!f.exists()){
-					Bitmap bitmap = PictureUtil.toRoundCorner(PictureUtil.decodeSampledBitmapFromFile(path, 180, 180), 0);
+					Bitmap bitmap = PictureUtil.toRoundCorner(PictureUtil.decodeSampledBitmapFromFile(path, 100, 100), 0);
 					PictureUtil.saveBitmapToFile(bitmap, f.getAbsolutePath());
 				}
 				return Uri.fromFile(f);

@@ -98,7 +98,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	  */
 	private void login() {
 		setValue();
-		ProgressDialogUtil.showProgressDialog(this, "登录中…", false);
+		ProgressDialogUtil.showProgressDialog(this, "通信中…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -131,13 +131,13 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 		String password = et_login_password.getText().toString().trim();
 		String accountValidate = StringUtil.accountName(account);
 		if(!TextUtils.isEmpty(accountValidate)){
-			//ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
+			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return true;
 		} 
 		String passwordValidate = StringUtil.pwd(password);
 		if (!TextUtils.isEmpty(passwordValidate)) {
-			//ToastUtil.showToast(this, passwordValidate, ToastUtil.LENGTH_LONG);
-			return true;
+			ToastUtil.showToast(this, passwordValidate, ToastUtil.LENGTH_LONG);
+			return false;
 		}
 		return true;
 		

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
+import android.provider.MediaStore.Images.Thumbnails;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Picture;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAddAdapter;
@@ -42,7 +45,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	private DynamicAddAdapter adapter;
 	
 	// 原图列表
-	ArrayList<String> imgList = new ArrayList<String>();
+	ArrayList<Picture> imgList = new ArrayList<Picture>();
 	
 	private Handler mHandler = new  Handler(){
 		public void handleMessage(android.os.Message msg) {
@@ -104,21 +107,22 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 				Uri uri = data.getData();
 				if (!TextUtils.isEmpty(uri.getAuthority())) {
 					Cursor cursor = getContentResolver().query(uri,
-							new String[] { MediaStore.Images.Media.DATA },
+							new String[] { MediaStore.Images.Media._ID,MediaStore.Images.Media.DATA },
 							null, null, null);
 					if (null == cursor) {
 						ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
 						return;
 					}
 					cursor.moveToFirst();
-					String path = cursor.getString(cursor
-							.getColumnIndex(MediaStore.Images.Media.DATA));
+					String id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+					String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
 					cursor.close();
 					LogUtil.Log("path=" + path);
 					if (PictureUtil.isPicture(path)) {
 							// 添加
-							if (!imgList.contains(path)) {
-								imgList.add(path);
+						Picture pic = new Picture(Integer.valueOf(id),path);
+							if (!imgList.contains(pic)) {
+								imgList.add(pic);
 							} else {
 								ToastUtil.showToast(this, "您已添加此图片！",
 										ToastUtil.LENGTH_SHORT);

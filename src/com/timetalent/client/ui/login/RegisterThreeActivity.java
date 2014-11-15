@@ -43,7 +43,9 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 				bundle.putSerializable("Register.register", register);
 				IntentUtil.intent(RegisterThreeActivity.this,bundle,RegisterFourActivity.class,false);
 				break;
-
+			case 10:
+				//获取验证码 成功
+				break;
 			default:
 				break;
 			}
@@ -118,7 +120,7 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				controller.code();
+				controller.code(mHandler);
 				ProgressDialogUtil.closeProgressDialog();
 			}
 		}).start();

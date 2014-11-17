@@ -60,6 +60,7 @@ public class Config {
 	public final static String HTTP_NEAR_ZONE_USERINFO = MY_SERVICE+ "/Zone/userinfo";//某个用户的资料
 	//我的
 	public final static String HTTP_MY_BASEINFO = MY_SERVICE+ "/User/baseinfo";
+	public final static String HTTP_MY_LOCATION_UPDATE = MY_SERVICE+ "/User/location_update";//更新坐标
 	
 	public final static String HTTP_MY_ZONE_FRIEND = MY_SERVICE+ "/Zone/friend"; // 获取我的好友列表Zone/friend
 	public final static String HTTP_MY_ZONE_FOLLOWING = MY_SERVICE+ "/Zone/following"; // 获取我的关注列表Zone/following
@@ -76,6 +77,14 @@ public class Config {
 	public final static String HTTP_MY_INVITE_OFFER = MY_SERVICE+ "/Invite/offer"; // 邀约我的记录 明星被邀约的记录Invite/offer
 	public final static String HTTP_MY_INVITE_ACCEPT = MY_SERVICE+ "/Invite/accept"; // 接受邀约Invite/accept
 	public final static String HTTP_MY_INVITE_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
+	public final static String HTTP_MY_USER_SERVICE = MY_SERVICE+ "/User/service"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
+	public final static String HTTP_MY_USER_ADDSERVICE = MY_SERVICE+ "/User/add_service"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
+	public final static String HTTP_MY_USER_SERVICE_LIST = MY_SERVICE+ "/System/service_list";
+	public final static String HTTP_MY_USER_LOYAL = MY_SERVICE+ "/User/loyal";
+	public final static String HTTP_MY_USER_LOYAL_ITEM = MY_SERVICE+ "/User/loyal_item";
+	
+	
+	
 	public final static String HTTP_MY_APP_VERSION = MY_SERVICE+ "/App/version";
 	public final static String HTTP_MY_BASEINFOUPDATE = MY_SERVICE+ "/User/baseinfo_update";
 	

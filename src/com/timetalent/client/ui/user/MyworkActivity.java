@@ -86,6 +86,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		
 	}
 
+
 	/**
 	 * 方法描述：TODO
 	 * 
@@ -100,7 +101,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		main_top_left.setOnClickListener(this);
 		switch (index) {
 		case 0:
-			lyaoqing.setAdapter(new YirenYaoqingAdapter(MyworkActivity.this));
+			lyaoqing.setAdapter(new YirenYaoqingAdapter(MyworkActivity.this,controller));
 			break;
 		case 1:
 			lyaoqing.setAdapter(new XingtanYaoqingAdapter(MyworkActivity.this));
@@ -146,10 +147,36 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.radioButton1:
+			switch (index) {
+			case 0:
+				
+				break;
+			case 1:
+				
+				break;
+	case 2:
+	
+		break;
+			default:
+				break;
+			}
 			lwork.setVisibility(lwork.GONE);
 			lyaoqing.setVisibility(lyaoqing.VISIBLE);
 			break;
 		case R.id.radioButton2:
+			switch (index) {
+			case 0:
+				
+				break;
+			case 1:
+				
+				break;
+			case 2:
+	
+				break;
+			default:
+				break;
+			}
 			lwork.setVisibility(lwork.VISIBLE);
 			lyaoqing.setVisibility(lyaoqing.GONE);
 			break;

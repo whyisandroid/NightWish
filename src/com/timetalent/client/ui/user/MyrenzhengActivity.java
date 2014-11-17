@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +41,8 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 	ImageView img1,img2,img3;
 	LinearLayout l1,l2,l3;
 	private Button btnext;
+	EditText etrealname;
+	EditText etshenfenzheng;
 	int index = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		l1 =(LinearLayout) findViewById(R.id.l1);
 		l2 =(LinearLayout) findViewById(R.id.l2);
 		l3 =(LinearLayout) findViewById(R.id.l3);
+		etrealname = (EditText) findViewById(R.id.etrealname);
+		etshenfenzheng = (EditText) findViewById(R.id.etshenfenzheng);
 	}
 
 	/**
@@ -87,6 +92,12 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		l2.setVisibility(View.GONE);
 		l3.setVisibility(View.GONE);
 	}
+	public void setvalue(){
+		controller.getContext().addBusinessData("loyal.realname", etrealname.getText().toString());
+		controller.getContext().addBusinessData("loyal.certificate", etshenfenzheng.getText().toString());
+		
+		
+	}
 	
 	@Override
 	public void onClick(View v) {
@@ -95,9 +106,20 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.btnext:
+			setvalue();
+			new Thread(){
+				public void run() {
+					controller.myuser_loyal();
+				};
+			}.start();
 			index++;
 			switch (index) {
 			case 1:
+				new Thread(){
+					public void run() {
+						controller.myuser_loyal_item();
+					};
+				}.start();
 				img1.setImageResource(R.drawable.m22_07);
 				img2.setImageResource(R.drawable.m22_04);
 				img3.setImageResource(R.drawable.m22_09);

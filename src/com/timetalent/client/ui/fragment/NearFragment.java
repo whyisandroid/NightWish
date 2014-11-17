@@ -98,6 +98,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 		setvalue();
 		new Thread() {
 			public void run() {
+				controller.mylocation_update();//更新本人经纬度
 				controller.near();
 				handler.sendEmptyMessage(1);
 			};

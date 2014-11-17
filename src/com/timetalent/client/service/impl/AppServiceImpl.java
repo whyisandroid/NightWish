@@ -6,6 +6,11 @@ import java.util.List;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
+
 import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
@@ -24,6 +29,7 @@ import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
 import com.timetalent.client.entities.json.SearchResp;
+import com.timetalent.client.entities.json.ServiceResp;
 import com.timetalent.client.entities.json.TaskADDResp;
 import com.timetalent.client.entities.json.TaskResp;
 import com.timetalent.client.entities.json.TaskShowResp;
@@ -494,7 +500,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		nameValuePairs.add(new BasicNameValuePair("user_id", user_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_MY_INVITE_PAYMENT);
+		request.setUrl(Config.HTTP_NEAR_ZONE_USERINFO);
 		request.setR_calzz(UserinfoResp.class);
 		UserinfoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
@@ -836,6 +842,8 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("page", "1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "1000"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_INVITE_OFFER);
 		request.setR_calzz(BaseResp.class);
@@ -968,7 +976,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("province", (String)context.getBusinessData("_session_id")));
 		nameValuePairs.add(new BasicNameValuePair("city", (String)context.getBusinessData("_session_id")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_MY_BASEINFO);
+		request.setUrl(Config.HTTP_MY_BASEINFOUPDATE);
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
@@ -1064,5 +1072,155 @@ public class AppServiceImpl implements AppService {
 	
 	
 		
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mylocation_update()
+	 */
+	@Override
+	public void mylocation_update() throws BusinessException {
+		String lat = context.getStringData("my.lat");
+		String lng = context.getStringData("my.lng");
+
+		String _session_id = context.getStringData("_session_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("lat", lat));
+		nameValuePairs.add(new BasicNameValuePair("lng", lng));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_LOCATION_UPDATE);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	
+		
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myuser_service()
+	 */
+	@Override
+	public void myuser_service() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_USER_SERVICE);
+		request.setR_calzz(BaseResp.class);  
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myuser_addservice()
+	 */
+	@Override
+	public void myuser_addservice() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_USER_ADDSERVICE);
+		request.setR_calzz(BaseResp.class);  
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myservice_list()
+	 */
+	@Override
+	public void myservice_list() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<ServiceResp> request = new Request<ServiceResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_USER_SERVICE_LIST);
+		request.setR_calzz(ServiceResp.class);
+		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myuser_loyal()
+	 */
+	@Override
+	public void myuser_loyal() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		String realname = context.getStringData("loyal.realname");
+		String certificate = context.getStringData("loyal.certificate");
+		Request<ServiceResp> request = new Request<ServiceResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("realname", realname));
+		nameValuePairs.add(new BasicNameValuePair("certificate", certificate));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_USER_LOYAL);
+		request.setR_calzz(ServiceResp.class);
+		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myuser_loyal_item()
+	 */
+	@Override
+	public void myuser_loyal_item() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		String item = context.getStringData("loyal.item");
+		int count = Integer.parseInt(context.getStringData("loyal.count"));
+		Request<ServiceResp> request = new Request<ServiceResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("item", item));
+		for(int i = 0;i < count;i++){
+			nameValuePairs.add(new BasicNameValuePair("photo"+(i+1), context.getBusinessData("loyal."+"photo"+(i+1)).toString()));
+		}
+		
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_USER_LOYAL_ITEM);
+		request.setR_calzz(ServiceResp.class);
+		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
 	}
 }

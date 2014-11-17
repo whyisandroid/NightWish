@@ -110,7 +110,7 @@
                         android:text="真实姓名:" />
 
                     <EditText
-                        android:id="@+id/editText3"
+                        android:id="@+id/etrealname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
@@ -136,7 +136,7 @@
                         android:text="身份证件:" />
 
                     <EditText
-                        android:id="@+id/editText4"
+                        android:id="@+id/etshenfenzheng"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"

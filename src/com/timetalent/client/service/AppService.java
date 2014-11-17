@@ -130,5 +130,14 @@ public interface AppService {
 	public void walletWithdraw() throws BusinessException;
 	// 提现记录
 	public void walletWithdrawList() throws BusinessException;
-	
+	// 提现记录
+	public void mylocation_update() throws BusinessException;
+	//
+	public void myuser_service() throws BusinessException;
+	//
+	public void myuser_addservice() throws BusinessException;
+	//
+	public void myservice_list() throws BusinessException;
+	public void myuser_loyal() throws BusinessException;
+	public void myuser_loyal_item() throws BusinessException;
 }

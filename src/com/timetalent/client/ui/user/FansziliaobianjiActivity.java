@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -38,8 +39,8 @@ import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
- * 类描述： 登录界面
- * 类名称：LoginActivity  
+ * 类描述： fans编辑页面
+ * 类名称：FansziliaobianjiActivity  
  * @version: 1.0
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
@@ -58,6 +59,14 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	private ImageView imgtab1;
 	private ImageView imgtab2;
 	private ImageView imgtab3;
+	
+	EditText etname ;
+	EditText etnickname ;
+	EditText etzhiye ;
+	EditText etjiaxiang ;
+//	EditText et ;
+//	EditText et ;
+//	EditText et ;
 	private GestureDetector mGestureDetector;
 	int index = 0;
 	private LinearLayout ldongtai;
@@ -201,6 +210,19 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
         listView.setLayoutParams(params);  
     }
+	public void setvalue(){
+		controller.getContext().addBusinessData("fans.bianji.username", "");
+		controller.getContext().addBusinessData("fans.bianji.phone", "");
+		controller.getContext().addBusinessData("fans.bianji.email", "");
+		controller.getContext().addBusinessData("fans.bianji.sex", "");
+		controller.getContext().addBusinessData("fans.bianji.nickname", "");
+		controller.getContext().addBusinessData("fans.bianji.realname", "");
+		controller.getContext().addBusinessData("fans.bianji.birthday", "");
+		controller.getContext().addBusinessData("fans.bianji.constella", "");
+		controller.getContext().addBusinessData("fans.bianji.certificate", "");
+		controller.getContext().addBusinessData("fans.bianji.certificate", "");
+		controller.getContext().addBusinessData("fans.bianji.city", "");
+	}
 	@Override
 	public void onClick(final View vclick) {
 		switch (vclick.getId()) {
@@ -219,6 +241,8 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 			IntentUtil.intent(FansziliaobianjiActivity.this, MysanweiActivity.class);
 			break;
 		case R.id.btok:
+			setvalue();
+			controller.mybaseinfoupdate();
 			finish();
 			break;
 		case R.id.img1:

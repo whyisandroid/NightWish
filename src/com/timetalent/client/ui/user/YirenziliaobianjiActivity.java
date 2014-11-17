@@ -208,6 +208,19 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
         params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));  
         listView.setLayoutParams(params);  
     }
+	public void setvalue(){
+		controller.getContext().addBusinessData("fans.bianji.username", "");
+		controller.getContext().addBusinessData("fans.bianji.phone", "");
+		controller.getContext().addBusinessData("fans.bianji.email", "");
+		controller.getContext().addBusinessData("fans.bianji.sex", "");
+		controller.getContext().addBusinessData("fans.bianji.nickname", "");
+		controller.getContext().addBusinessData("fans.bianji.realname", "");
+		controller.getContext().addBusinessData("fans.bianji.birthday", "");
+		controller.getContext().addBusinessData("fans.bianji.constella", "");
+		controller.getContext().addBusinessData("fans.bianji.certificate", "");
+		controller.getContext().addBusinessData("fans.bianji.certificate", "");
+		controller.getContext().addBusinessData("fans.bianji.city", "");
+	}
 	@Override
 	public void onClick(final View vclick) {
 		switch (vclick.getId()) {
@@ -226,6 +239,8 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 			IntentUtil.intent(YirenziliaobianjiActivity.this, MysanweiActivity.class);
 			break;
 		case R.id.btok:
+			setvalue();
+			controller.mybaseinfoupdate();
 			finish();
 			break;
 		case R.id.img1:

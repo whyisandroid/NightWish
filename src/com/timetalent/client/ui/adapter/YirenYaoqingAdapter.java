@@ -1,6 +1,8 @@
 package com.timetalent.client.ui.adapter;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter.ViewHolder;
 import com.timetalent.client.ui.chance.OfferInfoActivity;
@@ -30,16 +34,24 @@ import com.timetalent.common.util.IntentUtil;
  ******************************************/
 public class YirenYaoqingAdapter extends BaseAdapter{
 	
-	private Context mContext;
+	public Context mContext;
 	private LayoutInflater mInflater;
+	AppController controller;
 	/**
 	 * 类的构造方法
 	 * 创建一个新的实例 DynamicAdapter.
 	 * @param 
 	 */
-	public YirenYaoqingAdapter(Context mContext) {
+	public YirenYaoqingAdapter(Context mContext,AppController c) {
 		this.mContext = mContext;
 		this.mInflater = LayoutInflater.from(mContext);
+		controller = c;
+		new Thread(){
+			public void run() {
+				controller.myinvite_offer();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 	}
 	
 	@Override
@@ -146,4 +158,15 @@ public class YirenYaoqingAdapter extends BaseAdapter{
 	    public TextView tvzhiye;
 	    public TextView tvmiaoshu;
 	    }
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+					YirenYaoqingAdapter.this.notifyDataSetChanged();
+				break;
+			}
+		}
+	};
 }

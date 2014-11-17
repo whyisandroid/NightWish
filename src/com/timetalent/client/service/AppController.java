@@ -3,6 +3,10 @@ package com.timetalent.client.service;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
@@ -698,6 +702,97 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void mylocation_update() {
+		String lat = "";
+		String lng = "";
+		LocationManager loctionManager;
+		String contextService = Context.LOCATION_SERVICE;
+		// 通过系统服务，取得LocationManager对象
+
+		loctionManager = (LocationManager) currentActivity.getSystemService(contextService);
+
+		// /////////////////////////////////
+		Criteria criteria = new Criteria();
+		criteria.setAccuracy(Criteria.ACCURACY_FINE);// 高精度
+		criteria.setAltitudeRequired(false);// 不要求海拔
+		criteria.setBearingRequired(false);// 不要求方位
+		criteria.setCostAllowed(true);// 允许有花费
+		criteria.setPowerRequirement(Criteria.POWER_LOW);// 低功耗
+		// 从可用的位置提供器中，匹配以上标准的最佳提供器
+		String provider = loctionManager.getBestProvider(criteria, true);
+		if(provider == null){
+			lat = "";
+			lng = "";
+		}else{
+			// 获得最后一次变化的位置
+			Location location = loctionManager.getLastKnownLocation(provider);
+			// //////////////////////////////////
+			if (location != null) {
+				lat = ""+location.getLatitude();
+				lng = ""+location
+						.getLongitude();
+			}
+				else {
+					lat = "";
+					lng = "";
+				}
+		}
+		context.addBusinessData("my.lat", lat);
+		context.addBusinessData("my.lng", lng);
+		try {
+			service.mylocation_update();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	/**
+	 * 我的服务
+	  * 方法描述：TODO
+	  * @author: Administrator
+	  * @time: 2014-11-17 下午1:38:22
+	 */
+	public void myuser_service() {
+		try {
+			service.myuser_service();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myuser_addservice() {
+		try {
+			service.myuser_addservice();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myuser_loyal() {
+		try {
+			service.myuser_loyal();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myuser_loyal_item() {
+		try {
+			service.myuser_loyal_item();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 }

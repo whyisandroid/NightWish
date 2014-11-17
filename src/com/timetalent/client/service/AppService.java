@@ -1,5 +1,8 @@
 package com.timetalent.client.service;
 
+import java.util.List;
+
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.common.exception.BusinessException;
 
 /******************************************
@@ -49,6 +52,9 @@ public interface AppService {
 	
 	/**发布动态Feed/addfeed**/
 	public void dynamicAdd() throws BusinessException;
+	/**上传动态照片Feed/add_photo**/
+	public void dynamicAdd_pic(List<PicValuePair> picValuePair) throws BusinessException;
+	
 	
 	/**评论某动态Feed/add_reply***/
 	public void dynamicRepaly() throws BusinessException;

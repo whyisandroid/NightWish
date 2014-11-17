@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.TaskShow;
 import com.timetalent.client.service.AppController;
@@ -77,7 +78,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 		show = lists.get(position);
 		
 		holder.tv_offer_detail_work.setText(show.getJob());
-		holder.tv_offer_detail_work_time.setText("2014年12月16日-2014年12月19日");
+		holder.tv_offer_detail_work_time.setText(show.getWork_date_start()+"-"+show.getWork_date_end());
 		holder.tv_offer_detail_message.setText(show.getDescription());
 		holder.tv_offer_detail_qpply.setOnClickListener(applyListener);
 		return convertView;

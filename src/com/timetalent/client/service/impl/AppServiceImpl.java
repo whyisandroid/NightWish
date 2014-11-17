@@ -271,48 +271,24 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void dynamicIndex() throws BusinessException {
-
-		Request<BaseResp> request = new Request<BaseResp>();
+		String _session_id = context.getStringData("_session_id");
+		Request<FeedResp> request = new Request<FeedResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("page", "1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(FeedResp.class);
+		FeedResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			context.addBusinessData("Dynamic_Data", resp.getData());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
-			
 	}
-
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#dynamicWho()
-	 */
-	@Override
-	public void dynamicWho() throws BusinessException {
-
-
-		Request<BaseResp> request = new Request<BaseResp>();
-		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
-		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
-		if ("1".equals(resp.getStatus())) {
-			
-		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
-		}
-	
-			
-			
-	}
-
 	
 	/* (non-Javadoc)
 	 * @see com.timetalent.client.service.AppService#dynamicMy()
@@ -324,25 +300,43 @@ public class AppServiceImpl implements AppService {
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		nameValuePairs.add(new BasicNameValuePair("page", "1"));
-		nameValuePairs.add(new BasicNameValuePair("page_per", "10"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_MY);
+		request.setR_calzz(FeedResp.class);
+		FeedResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			context.addBusinessData("Dynamic_MyData", resp.getData());
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicWho()
+	 */
+	@Override
+	public void dynamicWho() throws BusinessException {
+
+		String _session_id = context.getStringData("_session_id");
+		String other_id = context.getStringData("other_id");
+		Request<FeedResp> request = new Request<FeedResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("page", "1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
+		nameValuePairs.add(new BasicNameValuePair("user_id", other_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
 		request.setR_calzz(FeedResp.class);
 		FeedResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			context.addBusinessData("Dynamic_Data", resp.getData());
+			context.addBusinessData("Dynamic_OtherData", resp.getData());
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
-	
-			
-			
 	}
-
-	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#dynamicAdd()
-	 */
 	@Override
 	public void dynamicAdd() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -361,7 +355,26 @@ public class AppServiceImpl implements AppService {
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
-
+	
+	@Override
+	public void dynamicAdd_pic(List<PicValuePair> picValuePair) throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		String feed_add = context.getStringData("Dynamic_ADD_Feed_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		nameValuePairs.add(new BasicNameValuePair("feed_id",feed_add));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.addParameter(Request.PICTURE, picValuePair);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_ADD_PIC);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
 	
 	/* (non-Javadoc)
 	 * @see com.timetalent.client.service.AppService#dynamicRepaly()

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Task;
 import com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder;
@@ -74,6 +75,8 @@ public class ChanceAdapter extends BaseAdapter{
 		Task task = lists.get(position);
 		holder.tv_chance_title.setText(task.getTitle());
 		holder.tv_chance_time.setText("报名截止时间："+task.getCutoff_date());
+		// 处理图片
+		ImageLoader.getInstance().displayImage(task.getBanner(),holder.iv_chance_banner);
 		return convertView;
 	}
 	

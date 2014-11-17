@@ -1,7 +1,5 @@
 package com.timetalent.client.ui.dynamic;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,35 +9,31 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
-import com.timetalent.client.entities.Feed;
 import com.timetalent.client.entities.FeedData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
-import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
-import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
- * 类描述： 我的动态
+ * 类描述： 其他人的动态
  * 类名称：DynamicMyActivity  
  * @version: 1.0
  * @author: why
  * @time: 2014-10-10 下午6:31:03 
  ******************************************/
-public class DynamicMyActivity extends BaseActivity implements OnClickListener {
+public class DynamicOtherActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
-	private TextView main_top_right;
 	private ListView lv_dynamic;
 	
 	private Handler mHandler = new  Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 0:
-				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_MyData");
+				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_OtherData");
 				if(data != null){
-					DynamicAdapter adapter = new DynamicAdapter(DynamicMyActivity.this,data.getLists());
+					DynamicAdapter adapter = new DynamicAdapter(DynamicOtherActivity.this,data.getLists());
 					lv_dynamic.setAdapter(adapter);
 				}
 				break;
@@ -66,7 +60,6 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
-		main_top_right = (TextView)findViewById(R.id.main_top_right);
 	}
 
 	/**
@@ -76,12 +69,11 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		((TextView)findViewById(R.id.main_top_title)).setText("我的动态");
-		UIUtils.setDrawableLeft(DynamicMyActivity.this,main_top_right,R.drawable.d3_06);
-		main_top_right.setOnClickListener(this);
+		String name = getIntent().getExtras().getString("userName");
+		((TextView)findViewById(R.id.main_top_title)).setText(name+"的动态");
 	}
 	
-
+	
 	@Override
 	public void onResume() {
 		super.onResume();
@@ -98,7 +90,7 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					controller.dynamicMy(mHandler);
+					controller.dynamicWho(mHandler);
 					ProgressDialogUtil.closeProgressDialog();
 				}
 			}).start();
@@ -107,9 +99,6 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.main_top_right:
-			IntentUtil.intent(DynamicMyActivity.this, DynamicAddActivity.class);
-			break;
 		default:
 			break;
 		}

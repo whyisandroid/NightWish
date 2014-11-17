@@ -1,10 +1,10 @@
 package com.timetalent.client.ui.adapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,11 +15,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Feed;
+import com.timetalent.client.entities.Photo;
 import com.timetalent.client.service.AppController;
-import com.timetalent.client.ui.dynamic.DynamicMyActivity;
-import com.timetalent.client.ui.near.PictureActivity;
+import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 
@@ -44,7 +45,6 @@ public class DynamicAdapter extends BaseAdapter{
 			case 0:
 				
 				break;
-
 			default:
 				break;
 			}
@@ -109,12 +109,14 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_good.setSelected("N".equals(feed.getFavour_do()));
 		
 		
+		// 处理头像
+		//BitmapUtils bitmapUtils = new BitmapUtils(mContext);
+		//bitmapUtils.display(holder.iv_dynamic_head,feed.getUser().getAvatar());
 		
-		
-		
+		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head);
 		// 处理图片
 		
-		List<String> list = new ArrayList<String>();
+		List<Photo> list = feed.getPhotos();
 		/*list.add("http://f.hiphotos.baidu.com/image/pic/item/5fdf8db1cb1349544c89855e554e9258d1094a70.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
 		list.add("http://a.hiphotos.baidu.com/image/pic/item/0d338744ebf81a4ca1a7833ad52a6059242da6a8.jpg");
@@ -131,7 +133,10 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_head.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				IntentUtil.intent(mContext, DynamicMyActivity.class);
+				Bundle bundle = new Bundle();
+				bundle.putString("userName", feed.getUser().getNickname());
+				controller.getContext().addBusinessData("other_id",feed.getUser_id());
+				IntentUtil.intent(mContext,bundle,DynamicOtherActivity.class,false);
 			}
 		});
 		

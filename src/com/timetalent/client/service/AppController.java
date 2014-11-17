@@ -1,10 +1,13 @@
 package com.timetalent.client.service;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
@@ -293,9 +296,23 @@ public class AppController {
 	}
 	
 	
-	public void dynamicAdd() {
+	public void dynamicAdd(Handler mHandler) {
 		try {
 			service.dynamicAdd();
+			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
+			mHandler.obtainMessage(0).sendToTarget();
+			currentActivity.finish();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void dynamicAddPic(List<PicValuePair> picValuePair) {
+		try {
+			service.dynamicAdd_pic(picValuePair);
 			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
 			currentActivity.finish();
 		} catch (BusinessException e) {
@@ -306,15 +323,17 @@ public class AppController {
 		}
 	}
 	
-	public void dynamicIndex() {
-		try {
-			service.dynamicIndex();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+	public void dynamicIndex(Handler mHandler) {
+			try {
+				service.dynamicIndex();
+				mHandler.obtainMessage(0).sendToTarget();
+			} catch (BusinessException e) {
+				e.printStackTrace();
+				handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		
 	}
 	
 	public void dynamicRepaly() {
@@ -329,9 +348,10 @@ public class AppController {
 	}
 	
 	
-	public void dynamicWho() {
+	public void dynamicWho(Handler mHandler) {
 		try {
 			service.dynamicWho();
+			mHandler.obtainMessage(0).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

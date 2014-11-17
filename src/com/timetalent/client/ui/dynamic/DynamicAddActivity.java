@@ -1,15 +1,16 @@
 package com.timetalent.client.ui.dynamic;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
-import android.provider.MediaStore.Images.Thumbnails;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -18,7 +19,9 @@ import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.lidroid.xutils.BitmapUtils;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Picture;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
@@ -48,16 +51,19 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	ArrayList<Picture> imgList = new ArrayList<Picture>();
 	
 	private Handler mHandler = new  Handler(){
-		public void handleMessage(android.os.Message msg) {
+		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case 0:
-				
+				//发送图片 
+				for (int i = 0; i < imgList.size(); i++) {
+					File file = new File(imgList.get(i).getPath());
+					sendPic(file);
+				}
 				break;
-
 			default:
 				break;
 			}
-		};
+		}
 	};
 	
 	@Override
@@ -121,7 +127,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 					if (PictureUtil.isPicture(path)) {
 							// 添加
 						Picture pic = new Picture(Integer.valueOf(id),path);
-							if (!imgList.contains(pic)) {
+							if (!containsPic(pic)) {
 								imgList.add(pic);
 							} else {
 								ToastUtil.showToast(this, "您已添加此图片！",
@@ -140,7 +146,21 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			}
 	}
 	
-	
+	/**
+	  * 方法描述：TODO
+	  * @param pic
+	  * @return
+	  * @author: wanghy
+	  * @time: 2014-11-16 下午6:29:12
+	  */
+	private boolean containsPic(Picture pic) {
+		for (Picture picture : imgList) {
+			if(picture.getId() == pic.getId()){
+				return true;
+			}
+		}
+		return false;
+	}
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -157,8 +177,6 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		}
 	}
 	
-	
-	
 	/**
 	  * 方法描述：TODO
 	  * @author: why
@@ -169,11 +187,25 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				controller.dynamicAdd();
+				controller.dynamicAdd(mHandler);
 				ProgressDialogUtil.closeProgressDialog();
 			}
 		}).start();
 	}
+	
+
+	private void sendPic(final File file) {
+		
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
+				picValuePair.add(new PicValuePair("photo", file));
+				controller.dynamicAddPic(picValuePair);
+			}
+		}).start();
+		
+	};
 	
 	/**
 	  * 方法描述：TODO

@@ -18,6 +18,20 @@ public class Task {
 	private String	view_num; // "0",
 	private String	sort; // "0",
 	private String	add_time; // "0"
+	private String  description;
+	
+	/**
+	 * @return description : return the property description.
+	 */
+	public String getDescription() {
+		return description;
+	}
+	/**
+	 * @param description : set the property description.
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	/**
 	 * @return id : return the property id.
 	 */

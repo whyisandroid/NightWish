@@ -3,14 +3,19 @@ package com.timetalent.client.ui.adapter;
 import java.util.List;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.lidroid.xutils.BitmapUtils;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Photo;
 
 
 /******************************************
@@ -23,14 +28,14 @@ import com.timetalent.client.R;
 public class DynamicPicAdapter extends  BaseAdapter{
 	
 	private Context mContext;
-	private List<String> list;
+	private List<Photo> list;
 	
 	/**
 	 * 类的构造方法
 	 * 创建一个新的实例 DynamicAdapter.
 	 * @param 
 	 */
-	public DynamicPicAdapter(Context mContext ,List<String> list) {
+	public DynamicPicAdapter(Context mContext ,List<Photo> list) {
 		this.mContext = mContext;
 		this.list = list;
 	}
@@ -55,18 +60,27 @@ public class DynamicPicAdapter extends  BaseAdapter{
 
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext).inflate(R.layout.dynamic_pic_item, null);
 		}
 		ImageView iv_dynamic_pic = (ImageView)convertView.findViewById(R.id.iv_dynamic_pic);
-		
 		// 加载网络图片
-		BitmapUtils bitmapUtils = new BitmapUtils(mContext);
-		String pic = "http://124.193.223.166/xingtan/Uploads/avatar/201411/5458cf090dbd9.jpg";
-		bitmapUtils.display(iv_dynamic_pic,list.get(position));
+		ImageLoader.getInstance().displayImage(list.get(position).getUrl(),iv_dynamic_pic);
+		iv_dynamic_pic.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 Intent intent = new Intent();
+				 intent.setAction(android.content.Intent.ACTION_VIEW);
+				 intent.setDataAndType(Uri.parse(list.get(position).getUrl()), "image/*");
+				 mContext.startActivity(intent);
+			}
+		});
+		//BitmapUtils bitmapUtils = new BitmapUtils(mContext);
+		//String pic = "http://124.193.223.166/xingtan/Uploads/avatar/201411/5458cf090dbd9.jpg";
+		//bitmapUtils.display(iv_dynamic_pic,list.get(position).getUrl());
 		//iv_dynamic_pic.setImageResource(R.drawable.d3_56);
 		return convertView;
 	}
-
 }

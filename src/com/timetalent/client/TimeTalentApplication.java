@@ -2,17 +2,21 @@ package com.timetalent.client;
 
 import android.app.Application;
 import android.content.Context;
-import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
-import android.content.pm.ServiceInfo;
+import android.graphics.Bitmap;
+import android.graphics.Bitmap.CompressFormat;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 import com.timetalent.common.net.AppSocketInterface;
 import com.timetalent.common.net.XUtilsSocketImpl;
-import com.timetalent.common.util.LogUtil;
 
 /******************************************
  * 类描述： 程序入口类 类名称：TimeTalentApplication
@@ -52,7 +56,32 @@ public class TimeTalentApplication extends Application {
 		instance = this;
 		appSocket = new XUtilsSocketImpl();
 		getCurrentVersion();
+		initImageLoad();
 		//getDeviceID();
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-11-16 下午11:27:48
+	  */
+	private void initImageLoad() {
+		DisplayImageOptions options = new DisplayImageOptions.Builder()
+		.cacheInMemory(true)
+		.imageScaleType(ImageScaleType.IN_SAMPLE_INT) 
+		.bitmapConfig(Bitmap.Config.RGB_565)// 防止内存溢出的，图片太多就这这个。还有其他设置
+		.displayer(new RoundedBitmapDisplayer(5))  //圆角，不需要请删除
+		                           .build();  
+		
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+				this)
+				.memoryCacheExtraOptions(480, 800)// 缓存在内存的图片的宽和高度
+				.memoryCache(new WeakMemoryCache()) 
+				.memoryCacheSize(2 * 1024 * 1024) //缓存到内存的最大数据
+				.defaultDisplayImageOptions(options).  //上面的options对象，一些属性配置
+				build();
+		ImageLoader.getInstance().init(config); //初始化
 	}
 
 	/**

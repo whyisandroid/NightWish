@@ -11,8 +11,6 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.provider.MediaStore;
-import android.provider.MediaStore.Images.Thumbnails;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -135,8 +133,10 @@ public class DynamicAddAdapter extends BaseAdapter{
 			onClickMessage.position = position;
 			onClickMessage.tag = SELECT_TAG;
 			holder.mImage.setTag(onClickMessage);
-			holder.mImageIcon.setVisibility(View.VISIBLE);  
-			holder.mImage.setOnClickListener(mGridViewItemCloseListener);
+			holder.mImage.setOnClickListener(mGridViewItemListener);
+			holder.mImageIcon.setVisibility(View.VISIBLE); 
+			holder.mImageIcon.setTag(onClickMessage);
+			holder.mImageIcon.setOnClickListener(mGridViewItemCloseListener);
 		}
 		return convertView;
 	}

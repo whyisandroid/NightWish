@@ -42,7 +42,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/editText2"
+                        android:id="@+id/tv_chance_detail_des"
                         style="@style/chance_offer_text_style"
                         android:layout_width="match_parent"
                         android:layout_marginRight="10dp"
@@ -50,7 +50,7 @@
                         android:background="@drawable/c11_14"
                         android:paddingLeft="5dp"
                         android:paddingRight="5dp"
-                        android:text="@string/chance_text11" />
+                         />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -74,7 +74,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_toRightOf="@+id/tv_offer_detail_d"
-                        android:text="北京-海淀"
                         android:textColor="@color/main_red"
                         android:textSize="@dimen/new_size_3" />
                 </RelativeLayout>
@@ -92,6 +91,7 @@
                 </ListView>
 
                 <LinearLayout
+                    android:id="@+id/ll_chance_offer_message"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:background="@drawable/btn_red"

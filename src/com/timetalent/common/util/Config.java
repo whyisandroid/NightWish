@@ -50,6 +50,7 @@ public class Config {
 	public final static String HTTP_USER_DYNAMIC_WHO = MY_SERVICE+ "/Feed/whofeed"; // 获取某个用户的动态列表
 	public final static String HTTP_USER_DYNAMIC_MY = MY_SERVICE+ "/Feed/myfeed"; // 获取当前用户自己的动态列表
 	public final static String HTTP_USER_DYNAMIC_ADD = MY_SERVICE+ "/Feed/addfeed"; //发布动态Feed/addfeed
+	public final static String HTTP_USER_DYNAMIC_ADD_PIC = MY_SERVICE+ "/Feed/add_photo"; //发布动态 图片
 	public final static String HTTP_USER_DYNAMIC_REPALY = MY_SERVICE+ "/Feed/add_reply"; // 评论某动态Feed/add_reply
 	public final static String HTTP_USER_DYNAMIC_FAVOUR = MY_SERVICE+ "/Feed/favour"; // 点赞Feed/favour
 	

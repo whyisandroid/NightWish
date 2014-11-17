@@ -9,13 +9,29 @@ package com.timetalent.client.entities;
  * @time: 2014-11-5 下午10:04:38 
  ******************************************/
 public class Photo {
-	private String	id; // "4",
-	private String	feed_id; // "26",
-	private String	user_id; // "1",
+	private String	id; // "20",
+	private String	feed_id; // "38",
+	private String	user_id; // "7",
 	private String	savepath; // "./Uploads/feed/",
-	private String	savename; // "201411/545a2084c80df.jpeg",
-	private String	extension; // "jpeg",
-	private String	add_time; // "1415192708"
+	private String	savename; // "201411/546881ac06427.jpg",
+	private String	extension; // "jpg",
+	private String	add_time; // "1416135084",
+	private String	url; // "http://124.193.223.166//xingtan/Uploads/feed/201411/546881ac06427.jpg"
+	
+	
+	/**
+	 * @param url : set the property url.
+	 */
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	/**
+	 * @return url : return the property url.
+	 */
+	public String getUrl() {
+		return url;
+	}
 	/**
 	 * @return id : return the property id.
 	 */

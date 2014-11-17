@@ -14,6 +14,8 @@ public class Nearpackage {
 	String sex = "";
 	String nickname = "";
 	String realname = "";
+	String avatar = "";
+	String loyal_pass = "";
 	String birthday = "";
 	String constella = "";
 	String province = "";
@@ -24,7 +26,26 @@ public class Nearpackage {
 	String lat = "";
 	String lng = "";
 	String distance = "";
+	String age = "";
 	
+	public String getAvatar() {
+		return avatar;
+	}
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	public String getLoyal_pass() {
+		return loyal_pass;
+	}
+	public void setLoyal_pass(String loyal_pass) {
+		this.loyal_pass = loyal_pass;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	public String getId() {
 		return id;
 	}

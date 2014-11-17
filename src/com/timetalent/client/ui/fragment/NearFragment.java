@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Nearlist;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
@@ -38,6 +39,8 @@ import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.client.ui.user.FansziliaobianjiActivity;
+import com.timetalent.client.ui.user.XingtanziliaobianjiActivity;
 import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
@@ -69,13 +72,24 @@ public class NearFragment extends Fragment implements OnClickListener {
 	public String age_max = "80";
 	public String type = "star";
 	public String major = "singer";
-
+	LoginData user;
+	int r = 0;
+	boolean showupdate = true;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
 		view = inflater.inflate(R.layout.near_fragment, container, false);
 		mContext = getActivity();
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
+		String type = user.getType();
+		if(type.equalsIgnoreCase("star")){
+			r = 0;
+		}else if(type.equalsIgnoreCase("scout")){
+			r = 1;
+		}else if(type.equalsIgnoreCase("fans")){
+			r = 2;
+		}
 		findView();
 		initView();
 		return view;
@@ -101,6 +115,15 @@ public class NearFragment extends Fragment implements OnClickListener {
 				controller.mylocation_update();//更新本人经纬度
 				controller.near();
 				handler.sendEmptyMessage(1);
+				for(int y = 0;y < 30;y++){
+						try {
+							sleep(3000);
+						} catch (InterruptedException e) {
+						}
+						if(adapter != null){
+						handler.sendEmptyMessage(2);
+					}
+				}
 			};
 		}.start();
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -126,7 +149,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 		});
 		btshaixuan.setOnClickListener(this);
 		btsearch.setOnClickListener(this);
-		showMessageTwo(mContext, "现在去完善个人信息", "完成");
+		if(showupdate){
+			if(!user.getUserinfo_percent().equals("100%")){
+				showMessageTwo(mContext, "现在去完善个人信息", "完成");
+				showupdate = false;
+			}
+		}
 	}
 
 	public void setvalue() {
@@ -160,7 +188,20 @@ public class NearFragment extends Fragment implements OnClickListener {
 			@Override
 			public void onClick(View v) {
 				dialog.closeDialog();
-				IntentUtil.intent(mContext, YirenziliaobianjiActivity.class);
+				switch (r) {
+				case 0:
+					IntentUtil.intent(mContext, YirenziliaobianjiActivity.class);
+					break;
+				case 1:
+					IntentUtil.intent(mContext, XingtanziliaobianjiActivity.class);
+					break;
+				case 2:
+					IntentUtil.intent(mContext, FansziliaobianjiActivity.class);
+					break;
+				default:
+					break;
+				}
+				
 			}
 		});
 	}
@@ -396,6 +437,9 @@ public class NearFragment extends Fragment implements OnClickListener {
 			case 1:
 				adapter = new NearBaseAdapter(getActivity());
 				list.setAdapter(adapter);
+				adapter.notifyDataSetChanged();
+				break;
+			case 2:
 				adapter.notifyDataSetChanged();
 				break;
 			}

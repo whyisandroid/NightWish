@@ -32,6 +32,8 @@ public class LoginData {
 	private String	sort; //排序
 	private String	status; //状态 正常1
 	private String	age; //年龄
+	private String	loyal_pass; //是否认证
+	private String	userinfo_percent; //信息完整度
 	/**
 	 * @return session_id : return the property session_id.
 	 */
@@ -320,4 +322,17 @@ public class LoginData {
 	public void setAge(String age) {
 		this.age = age;
 	}
+	public String getLoyal_pass() {
+		return loyal_pass;
+	}
+	public void setLoyal_pass(String loyal_pass) {
+		this.loyal_pass = loyal_pass;
+	}
+	public String getUserinfo_percent() {
+		return userinfo_percent;
+	}
+	public void setUserinfo_percent(String userinfo_percent) {
+		this.userinfo_percent = userinfo_percent;
+	}
+	
 }

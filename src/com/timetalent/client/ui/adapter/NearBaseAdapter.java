@@ -1,5 +1,6 @@
 package com.timetalent.client.ui.adapter;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Nearlist;
 import com.timetalent.client.service.AppContext;
@@ -15,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 
@@ -69,7 +71,7 @@ public class NearBaseAdapter extends BaseAdapter {
 	 */
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		ViewHolder holder = new ViewHolder();;
+		ViewHolder holder = new ViewHolder();
 		if (convertView == null) {
 			if(data!= null && data.getLists().size() > position){
 				convertView = mInflater.inflate(R.layout.near_list_item, null);
@@ -88,6 +90,10 @@ public class NearBaseAdapter extends BaseAdapter {
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
+		ImageLoader.getInstance().displayImage(data.getLists().get(position).getAvatar(), holder.imghead);
+		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
+		pa.height = holder.imghead.getWidth();
+//		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getBirthday());
 		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());

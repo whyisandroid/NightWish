@@ -103,9 +103,11 @@ public class StringUtil {
 		String validation = "";
 		if (TextUtils.isEmpty(s)) {
 			validation ="请输入账号"; 
-		}else if (!RegExpUtil.isMobileNO(s) && !RegExpUtil.emailValidation(s)) {
-			validation = "请输入正确账号"; 
 		}
+		
+	/*	else if (!RegExpUtil.isMobileNO(s) && !RegExpUtil.emailValidation(s)) {
+			validation = "请输入正确账号"; 
+		}*/
 		return validation;
 	}
 	

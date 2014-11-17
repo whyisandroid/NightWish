@@ -30,6 +30,7 @@ import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ToastUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************

@@ -70,6 +70,7 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 	TextView tvzhiye;
 	TextView tvjiaxiang;
 	TextView tvheight;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

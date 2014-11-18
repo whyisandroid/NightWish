@@ -73,6 +73,7 @@ public interface AppService {
 	 * 某个用户的资料
 	 */
 	public void userinfo() throws BusinessException;
+	public void moreinfo() throws BusinessException;
 	
 	/**获取我的好友列表Zone/friend***/
 	public void myfriend() throws BusinessException;
@@ -142,4 +143,10 @@ public interface AppService {
 	public void myservice_list() throws BusinessException;
 	public void myuser_loyal() throws BusinessException;
 	public void myuser_loyal_item() throws BusinessException;
+	public void mydo_social() throws BusinessException;
+	public void myreport() throws BusinessException;
+	public void myphoto() throws BusinessException;
+	public void myphotodel() throws BusinessException;
+	public void myavatarupdate() throws BusinessException;
+	public void myavatardel() throws BusinessException;
 }

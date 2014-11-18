@@ -1246,4 +1246,158 @@ public class AppServiceImpl implements AppService {
 		}
 	
 	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#moreinfo()
+	 */
+	@Override
+	public void moreinfo() throws BusinessException {
+		Request<UserinfoResp> request = new Request<UserinfoResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_MOREINFO);
+		request.setR_calzz(UserinfoResp.class);
+		UserinfoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("MoreinfoData", resp.getData());
+			}
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mydo_social()
+	 */
+	@Override
+	public void mydo_social() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("do", (String)context.getBusinessData("my.do")));
+		nameValuePairs.add(new BasicNameValuePair("target_id", (String)context.getBusinessData("my.target_id")));
+		
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_DO_SOCIAL);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myreport()
+	 */
+	@Override
+	public void myreport() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("target_id", (String)context.getBusinessData("report.target_id")));
+		nameValuePairs.add(new BasicNameValuePair("type", (String)context.getBusinessData("report.type")));
+		nameValuePairs.add(new BasicNameValuePair("msg", (String)context.getBusinessData("report.msg")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_REPORT);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myphoto()
+	 */
+	@Override
+	public void myphoto() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_PHOTO);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myphotodel()
+	 */
+	@Override
+	public void myphotodel() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("id", (String)context.getBusinessData("photo.id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_PHOTO_DEL);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myavatarupdate()
+	 */
+	@Override
+	public void myavatarupdate() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("id", (String)context.getBusinessData("photo.id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_AVATAR_UPDATE);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myavatardel()
+	 */
+	@Override
+	public void myavatardel() throws BusinessException {
+
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("id", (String)context.getBusinessData("photo.id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_AVATAR_DEL);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
 }

@@ -75,7 +75,6 @@ public class NearBaseAdapter extends BaseAdapter {
 		if (convertView == null) {
 			if(data!= null && data.getLists().size() > position){
 				convertView = mInflater.inflate(R.layout.near_list_item, null);
-				
 				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
 				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 				holder.imgonline = (ImageView) convertView.findViewById(R.id.imgonline);

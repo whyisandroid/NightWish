@@ -811,5 +811,67 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-	
+	public void moreinfo() {
+		try {
+			service.moreinfo();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void mydo_social() {
+		try {
+			service.mydo_social();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myreport() {
+		try {
+			service.myreport();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myphoto() {
+		try {
+			service.myphoto();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myphotodel() {
+		try {
+			service.myphotodel();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myavatarupdate() {
+		try {
+			service.myavatarupdate();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myavatardel() {
+		try {
+			service.myavatardel();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

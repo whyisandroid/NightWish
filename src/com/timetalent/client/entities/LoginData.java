@@ -305,7 +305,6 @@ public class LoginData {
 		return status;
 	}
 	/**
-	 * @param status : set the property status.
 	 */
 	public void setStatus(String status) {
 		this.status = status;

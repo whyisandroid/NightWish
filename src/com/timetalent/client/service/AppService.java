@@ -19,6 +19,8 @@ public interface AppService {
 	 * exit
 	 */
 	public void logout() throws BusinessException;
+	/**修改密码**/
+	public void resetPwd()throws BusinessException;
 	/**获取验证码**/
 	public void code() throws BusinessException;
 	/**验证 验证码***/

@@ -35,9 +35,10 @@ public class Config {
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
 	public final static String HTTP_USER_LOGOUT = MY_SERVICE+ "/Login/logout"; // 注册接口
 	public final static String HTTP_USER_REGISTER_AVATAR = MY_SERVICE+ "/Reg/avatar_upload"; // 注册接口 上传图片
+	public final static String HTTP_USER_RESET_PWD = MY_SERVICE+ "/System/password_reset"; // 修改密码
 	
 	//获取验证码
-	public final static String HTTP_USER_PHONE_CODE = MY_SERVICE+ "Sms/send_verify"; //获取验证码
+	public final static String HTTP_USER_PHONE_CODE = MY_SERVICE+ "/Sms/send_verify"; //获取验证码
 	
 	// 机会
 	public final static String HTTP_USER_CHANCE_ADD = MY_SERVICE+ "/Task/add"; // 添加机会

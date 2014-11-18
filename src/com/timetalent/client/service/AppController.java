@@ -16,6 +16,7 @@ import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.client.ui.login.FindpwdSecondActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
@@ -172,6 +173,22 @@ public class AppController {
 	  */
 	public void setAlterHandler(Handler alterHandler) {
 		
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: wanghy
+	  * @time: 2014-10-23 下午10:54:28
+	  */
+	public void resetPwd() {
+		try {
+			service.resetPwd();
+			IntentUtil.intent(currentActivity, LoginActivity.class);
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	

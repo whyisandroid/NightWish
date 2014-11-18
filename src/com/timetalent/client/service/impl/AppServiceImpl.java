@@ -111,9 +111,32 @@ public class AppServiceImpl implements AppService {
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
+	}
 	
-			
-			
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#resetPwd()
+	 */
+	@Override
+	public void resetPwd() throws BusinessException {
+		String phone = context.getStringData("find.phone");
+		String assess = context.getStringData("find.code");
+		String new_password = context.getStringData("find.pwd");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("phone", phone));
+		nameValuePairs.add(new BasicNameValuePair("assess", assess));
+		nameValuePairs.add(new BasicNameValuePair("new_password", new_password));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_RESET_PWD);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())){
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+		
 	}
 	
 	@Override

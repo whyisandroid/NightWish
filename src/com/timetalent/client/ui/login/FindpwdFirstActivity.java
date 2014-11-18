@@ -87,7 +87,6 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 			if(invaildNext()){
 				next();
 			}
-			IntentUtil.intent(FindpwdFirstActivity.this, FindpwdSecondActivity.class);
 			break;
 		case R.id.bt_register_pwd_code:
 			if(invaild()){
@@ -107,7 +106,7 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 	  * @time: 2014-11-15 上午11:48:33
 	  */
 	private void next() {
-		
+		IntentUtil.intent(FindpwdFirstActivity.this, FindpwdSecondActivity.class);
 	}
 	/**
 	  * 方法描述：TODO
@@ -121,7 +120,9 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 		if(!TextUtils.isEmpty(accountValidate)){
 			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return false;
-		} 
+		}else{
+			controller.getContext().addBusinessData("phone", phone);
+		}
 		return true;
 	}
 	
@@ -137,13 +138,17 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 		if(!TextUtils.isEmpty(accountValidate)){
 			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return false;
+		}else{
+			controller.getContext().addBusinessData("find.phone", phone);
 		} 
 		
 		String code = et_find_pwd_code.getText().toString().trim();
-		if(!TextUtils.isEmpty(code)){
+		if(TextUtils.isEmpty(code)){
 			ToastUtil.showToast(this, "验证码不能为空", ToastUtil.LENGTH_LONG);
 			return false;
-		} 
+		}else{
+			controller.getContext().addBusinessData("find.code", code);
+		}
 		return true;
 	}
 	/**

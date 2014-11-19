@@ -103,6 +103,8 @@ public class Config {
 	public final static String HTTP_USER_WALLET_ORDER_OK= MY_SERVICE+ "/Wallet/complete_order"; // 确认支付
 	public final static String HTTP_USER_WALLET_WITHDRAW= MY_SERVICE+ "/Wallet/withdraw"; // 提现
 	public final static String HTTP_USER_WALLET_WITHDRAW_LIST= MY_SERVICE+ "/Wallet/withdraw_lists"; // 提现记录
+	public final static String HTTP_YSYTEM_DICTIONARY= MY_SERVICE+ "/System/dictionary_list"; //字典列表
+	
 	
 	
 }

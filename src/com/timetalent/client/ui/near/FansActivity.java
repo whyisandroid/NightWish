@@ -244,9 +244,17 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 			
 			@Override
 			public void onClick(View v) {
+				final Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				dialog.closeDialog();
 				switch (dialog.index) {
 				case 0:
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("my.do", "follow");
+							controller.getContext().addBusinessData("my.target_id", u.getId());
+							controller.mydo_social();
+						};
+					}.start();
 					final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
 					dialog.setMessage("您关注了此人");
 					dialog.setOne("确认",new OnClickListener() {
@@ -258,6 +266,13 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 					});
 					break;
 				case 1:
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("my.do", "black");
+							controller.getContext().addBusinessData("my.target_id", u.getId());
+							controller.mydo_social();
+						};
+					}.start();
 					final IOSStyleDialog dialog1 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
 					dialog1.setMessage("您拉黑了此人");
 					dialog1.setOne("确认",new OnClickListener() {
@@ -269,6 +284,15 @@ public class FansActivity extends BaseActivity implements OnClickListener,Gestur
 					});
 					break;
 				case 2:
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("report.type", "black");
+							controller.getContext().addBusinessData("report.target_id", u.getId());
+							controller.getContext().addBusinessData("report.msg", "black");
+							controller.myreport();
+						};
+					}.start();
+					
 					final IOSStyleDialog dialog2 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
 					dialog2.setMessage("您举报了此人");
 					dialog2.setOne("确认",new OnClickListener() {

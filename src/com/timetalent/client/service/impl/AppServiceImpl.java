@@ -19,6 +19,7 @@ import com.timetalent.client.entities.Walletorderpackage;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BaseinfoResp;
 import com.timetalent.client.entities.json.BlackResp;
+import com.timetalent.client.entities.json.DictionaryResp;
 import com.timetalent.client.entities.json.FeedADDResp;
 import com.timetalent.client.entities.json.FeedResp;
 import com.timetalent.client.entities.json.FollowedResp;
@@ -502,13 +503,28 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void near() throws BusinessException {
 
+		String search = (String)context.getBusinessData("near.search");
 		String lat = (String)context.getBusinessData("near.lat");
 		String lng = (String)context.getBusinessData("near.lng");
+		String sex = (String)context.getBusinessData("near.sex");
+		String age_min = (String)context.getBusinessData("near.age_min");
+		String age_max = (String)context.getBusinessData("near.age_max");
+		String type = (String)context.getBusinessData("near.type");
+		String major = (String)context.getBusinessData("near.major");
+		
 		Request<NearResp> request = new Request<NearResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("page", "1"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
+		nameValuePairs.add(new BasicNameValuePair("search", search));
 		nameValuePairs.add(new BasicNameValuePair("lat", lat));
 		nameValuePairs.add(new BasicNameValuePair("lng", lng));
+		nameValuePairs.add(new BasicNameValuePair("sex", sex));
+		nameValuePairs.add(new BasicNameValuePair("age_min", age_min));
+		nameValuePairs.add(new BasicNameValuePair("age_max", age_max));
+		nameValuePairs.add(new BasicNameValuePair("type", type));
+		nameValuePairs.add(new BasicNameValuePair("major", major));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_NEAR_ZONE_NEAR);
 		request.setR_calzz(NearResp.class);
@@ -1314,7 +1330,6 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void myreport() throws BusinessException {
-
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
@@ -1326,6 +1341,7 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
@@ -1409,6 +1425,31 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dictionary()
+	 */
+	@Override
+	public void dictionary() throws BusinessException {
+
+		Request<DictionaryResp> request = new Request<DictionaryResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("type", (String)context.getBusinessData("dictionary.type")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_YSYTEM_DICTIONARY);
+		request.setR_calzz(DictionaryResp.class);
+		DictionaryResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("DictionaryData", resp.getData());
+			}
+		
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

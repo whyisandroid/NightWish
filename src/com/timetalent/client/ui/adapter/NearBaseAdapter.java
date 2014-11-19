@@ -37,7 +37,7 @@ public class NearBaseAdapter extends BaseAdapter {
 	}
 	@Override
 	public int getCount() {
-		if(data != null){
+		if(data != null && data.getLists()!= null){
 			return data.getLists().size();
 		}else{
 			return 0;	

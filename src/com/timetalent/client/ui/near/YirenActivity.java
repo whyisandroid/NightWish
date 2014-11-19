@@ -33,6 +33,7 @@ import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
+import com.timetalent.client.ui.dialog.ReportIOSStyleDialog;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.common.util.IntentUtil;
 
@@ -287,9 +288,17 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 			
 			@Override
 			public void onClick(View v) {
+				final Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				dialog.closeDialog();
 				switch (dialog.index) {
 				case 0:
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("my.do", "follow");
+							controller.getContext().addBusinessData("my.target_id", u.getId());
+							controller.mydo_social();
+						};
+					}.start();
 					final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
 					dialog.setMessage("您关注了此人");
 					dialog.setOne("确认",new OnClickListener() {
@@ -301,6 +310,13 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 					});
 					break;
 				case 1:
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("my.do", "black");
+							controller.getContext().addBusinessData("my.target_id", u.getId());
+							controller.mydo_social();
+						};
+					}.start();
 					final IOSStyleDialog dialog1 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
 					dialog1.setMessage("您拉黑了此人");
 					dialog1.setOne("确认",new OnClickListener() {
@@ -312,15 +328,8 @@ public class YirenActivity extends BaseActivity implements OnClickListener,Gestu
 					});
 					break;
 				case 2:
-					final IOSStyleDialog dialog2 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog2.setMessage("您举报了此人");
-					dialog2.setOne("确认",new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							IntentUtil.intent(mContext, MainFragmentActivity.class);
-							dialog2.closeDialog();
-						}
-					});
+					
+					final ReportIOSStyleDialog dialog2 = new ReportIOSStyleDialog(context,controller ,IOSStyleDialog.DIALOG_TWO);
 					break;
 				default:
 					break;

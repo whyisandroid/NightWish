@@ -27,6 +27,7 @@ import android.widget.TextView;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
@@ -385,8 +386,8 @@ public class NearFragment extends Fragment implements OnClickListener {
 				}
 			});
 			search = "";
-			lat = "";
-			lng = "";
+			lat = "116.287128";
+			lng = "39.830486";
 			sex = "";
 			age_min = "";
 			age_max = "";
@@ -401,6 +402,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 					new Thread() {
 						public void run() {
 							setvalue();
+							controller.getContext().addBusinessData("NearData", new Nearlist());
 							controller.near();
 							handler.sendEmptyMessage(1);
 						};
@@ -415,14 +417,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					pop.dismiss();
-
 				}
 			});
 			pop.showAsDropDown(v);
 			break;
 		case R.id.main_top_right:
 			IntentUtil.intent(this.mContext, SearchActivity.class);
-
 			break;
 		default:
 			break;

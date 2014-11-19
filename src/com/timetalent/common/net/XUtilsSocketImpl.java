@@ -1,11 +1,10 @@
 package com.timetalent.common.net;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.TimeoutException;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -21,7 +20,6 @@ import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.util.Json_U;
 import com.timetalent.common.util.LogUtil;
-import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.aes.MD5Test;
 
 /******************************************
@@ -33,7 +31,7 @@ import com.timetalent.common.util.aes.MD5Test;
  ******************************************/
 public class XUtilsSocketImpl implements AppSocketInterface {
 	private static HttpUtils httpUtils;
-	public final static int TIMEOUT_SOCKET = 30 * 1000; // 超时时间，默认10秒
+	public final static int TIMEOUT_SOCKET = 50 * 1000; // 超时时间，默认10秒
 	public final static int RETRY_TIME = 3;// 重试次数
 	public final static String CHARSET = "UTF-8";
 	private CookieUtils cookieUtils;
@@ -65,14 +63,14 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			LogUtil.Log("XUtilsSocketImpl", value);
 		} catch (com.lidroid.xutils.exception.HttpException e) {
 			e.printStackTrace();
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("服务器连接错误"));
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("网络连接错误，请您稍后再试"));
 		}
 
 		if (value == null) {
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("网络连接错误，请您稍后再试"));
 		}
 		return Json_U.parseJsonToObj(value, request.getR_calzz());
 	}
@@ -110,14 +108,14 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			LogUtil.Log("XUtilsSocketImpl", value);
 		} catch (com.lidroid.xutils.exception.HttpException e) {
 			e.printStackTrace();
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("服务器连接错误"));
 		} catch (IOException e) {
 			e.printStackTrace();
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("网络连接错误，请您稍后再试"));
 		}
 
 		if (value == null) {
-			throw new BusinessException(new ErrorMessage("网络故障，请您稍后再试"));
+			throw new BusinessException(new ErrorMessage("网络连接错误，请您稍后再试"));
 		}
 		return Json_U.parseJsonToObj(value, request.getR_calzz());
 	

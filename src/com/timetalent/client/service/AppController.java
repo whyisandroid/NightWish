@@ -200,7 +200,7 @@ public class AppController {
 	public void code(Handler mHandler) {
 		try {
 			service.code();
-			mHandler.obtainMessage(10).sendToTarget();
+			handler.obtainMessage(HANDLER_DIALOG,"验证码已经发送到您的手机").sendToTarget();
 		} catch (BusinessException e) {
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {

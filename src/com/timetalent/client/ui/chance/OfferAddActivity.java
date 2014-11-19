@@ -187,13 +187,6 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	  */
 	private boolean invaild() {
 		TaskAdd task = new TaskAdd();
-		try {
-			LogUtil.Log("发布成功",Json_U.objToJsonStr(adapter.getList()));
-		} catch (BusinessException e) {
-			e.printStackTrace();
-		}
-		
-		
 		if(!pictureFlag){
 			ToastUtil.showToast(this, "图片不能为空", ToastUtil.LENGTH_LONG);
 			return false;
@@ -224,6 +217,33 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 			return false;
 		}else{
 			task.setPlace(palce);
+		}
+		
+		
+		for (Job job : list) {
+			if(TextUtils.isEmpty(job.getJob())){
+				ToastUtil.showToast(this, "职位名称不能为空", ToastUtil.LENGTH_LONG);
+				return false;
+			}
+			if(TextUtils.isEmpty(job.getDescription())){
+				ToastUtil.showToast(this, "职位描述 不能为空", ToastUtil.LENGTH_LONG);
+				return false;
+			}
+			if(TextUtils.isEmpty(job.getWork_date_start())){
+				ToastUtil.showToast(this, "工作开始时间不能为空", ToastUtil.LENGTH_LONG);
+				return false;
+			}
+			if(TextUtils.isEmpty(job.getWork_date_end())){
+				ToastUtil.showToast(this, "工作结束时间不能为空", ToastUtil.LENGTH_LONG);
+				return false;
+			}
+		}
+		try {
+			String job_json = Json_U.objToJsonStr(adapter.getList());
+			LogUtil.Log("发布成功",job_json);
+			task.setJob_lists_json(job_json);
+		} catch (BusinessException e) {
+			e.printStackTrace();
 		}
 		
 		controller.getContext().addBusinessData("Task_ADD", task);

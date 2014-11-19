@@ -89,6 +89,7 @@ public class AppServiceImpl implements AppService {
 			if (resp.getData() != null) {
 				context.addBusinessData("loginData", resp.getData());
 				context.addBusinessData("_session_id", resp.getData().getSession_id());
+				context.addBusinessData("Login.type", resp.getData().getType());
 			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
@@ -158,8 +159,20 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void validationCode() throws BusinessException {
-		String phone = context.getStringData("register.phone");
-		String code = context.getStringData("register.code");
+		String phone = context.getStringData("phone");
+		String code = context.getStringData("code");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("phone", phone));
+		nameValuePairs.add(new BasicNameValuePair("code", code));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CODE_VERIFY);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
 		
 	}
 	

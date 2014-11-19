@@ -39,6 +39,7 @@ public class Config {
 	
 	//获取验证码
 	public final static String HTTP_USER_PHONE_CODE = MY_SERVICE+ "/Sms/send_verify"; //获取验证码
+	public final static String HTTP_USER_CODE_VERIFY = MY_SERVICE+ "/Sms/verify"; //验证验证码
 	
 	// 机会
 	public final static String HTTP_USER_CHANCE_ADD = MY_SERVICE+ "/Task/add"; // 添加机会

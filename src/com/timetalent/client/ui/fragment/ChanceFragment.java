@@ -139,6 +139,13 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	  * @time: 2014-11-8 下午3:43:32
 	  */
 	private void update() {
+		String type = controller.getContext().getStringData("Login.type");
+		if("star".equals(type)){
+			main_top_find_right.setVisibility(View.VISIBLE);
+		}else{
+			main_top_find_right.setVisibility(View.INVISIBLE);
+		}
+		
 		data = (TaskData)controller.getContext().getBusinessData("Task_lists_data");
 		if(data != null){
 			ChanceAdapter adapter = new ChanceAdapter(getActivity(),data.getLists());

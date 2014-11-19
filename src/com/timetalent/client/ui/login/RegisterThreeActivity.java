@@ -43,9 +43,6 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 				bundle.putSerializable("Register.register", register);
 				IntentUtil.intent(RegisterThreeActivity.this,bundle,RegisterFourActivity.class,false);
 				break;
-			case 10:
-				//获取验证码 成功
-				break;
 			default:
 				break;
 			}
@@ -101,7 +98,9 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 			}
 			break;
 		case R.id.bt_register_three_code:
-			getCode();
+			if(invaildPhone()){
+				getCode();
+			}
 			break;
 		default:
 			break;
@@ -110,6 +109,27 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 	
 	
 	
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: wanghy
+	  * @time: 2014-11-18 下午9:44:48
+	  */
+	private boolean invaildPhone() {
+
+
+		String phone = et_register_phone.getText().toString().trim();
+		String accountValidate = StringUtil.moblie(phone);
+		if(!TextUtils.isEmpty(accountValidate)){
+			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			controller.getContext().addBusinessData("phone", phone);
+			register.setPhone(phone);
+		}
+		return true;
+	}
 	/**
 	  * 方法描述：TODO
 	  * @author: wanghy
@@ -141,14 +161,14 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return false;
 		}else{
-			controller.getContext().addBusinessData("register.phone", phone);
+			controller.getContext().addBusinessData("phone", phone);
 			register.setPhone(phone);
 		}
 		if (TextUtils.isEmpty(code)) {
 			ToastUtil.showToast(this, "请输入验证码", ToastUtil.LENGTH_LONG);
 			return false;
 		}else{
-			controller.getContext().addBusinessData("register.code", code);
+			controller.getContext().addBusinessData("code", code);
 		}
 		return true;
 		
@@ -160,7 +180,7 @@ public class RegisterThreeActivity extends BaseActivity implements OnClickListen
 	  * @time: 2014-10-23 下午10:52:33
 	  */
 	private void next() {
-		ProgressDialogUtil.showProgressDialog(this, "获取验证码…", false);
+		ProgressDialogUtil.showProgressDialog(this, "通信中…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

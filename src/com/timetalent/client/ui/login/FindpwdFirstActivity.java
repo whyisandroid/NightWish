@@ -36,8 +36,9 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 	private Handler mHandler = new Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
-			case 10:
-				DialogUtil.showMessage(FindpwdFirstActivity.this, "验证码已经发送到您的手机");
+			
+			case 0:
+				IntentUtil.intent(FindpwdFirstActivity.this, FindpwdSecondActivity.class);
 				break;
 			default:
 				break;
@@ -106,7 +107,15 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 	  * @time: 2014-11-15 上午11:48:33
 	  */
 	private void next() {
-		IntentUtil.intent(FindpwdFirstActivity.this, FindpwdSecondActivity.class);
+		ProgressDialogUtil.showProgressDialog(this, "通信中…", false);
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				controller.validationCode(mHandler);
+				ProgressDialogUtil.closeProgressDialog();
+			}
+		}).start();
+	
 	}
 	/**
 	  * 方法描述：TODO
@@ -139,7 +148,7 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 			ToastUtil.showToast(this, accountValidate, ToastUtil.LENGTH_LONG);
 			return false;
 		}else{
-			controller.getContext().addBusinessData("find.phone", phone);
+			controller.getContext().addBusinessData("phone", phone);
 		} 
 		
 		String code = et_find_pwd_code.getText().toString().trim();
@@ -147,7 +156,7 @@ public class FindpwdFirstActivity extends BaseActivity implements OnClickListene
 			ToastUtil.showToast(this, "验证码不能为空", ToastUtil.LENGTH_LONG);
 			return false;
 		}else{
-			controller.getContext().addBusinessData("find.code", code);
+			controller.getContext().addBusinessData("code", code);
 		}
 		return true;
 	}

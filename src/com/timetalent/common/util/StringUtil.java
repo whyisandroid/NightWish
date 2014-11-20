@@ -140,4 +140,19 @@ public class StringUtil {
 		}
 		return validation;
 	}
+	/**
+	 * 验证内容非空
+	  * 方法描述：TODO
+	  * @param s
+	  * @return
+	  * @author: Administrator
+	  * @time: 2014-11-20 上午9:54:21
+	 */
+	public static String notnull(String s){
+		String validation = "";
+		if (TextUtils.isEmpty(s)) {
+			validation = "内容不能为空"; 
+		}
+		return validation;
+	}
 }

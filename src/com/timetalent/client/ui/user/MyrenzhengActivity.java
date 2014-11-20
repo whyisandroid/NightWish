@@ -3,6 +3,7 @@ package com.timetalent.client.ui.user;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,8 @@ import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
@@ -106,6 +109,18 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.btnext:
+			String realname = etrealname.getText().toString().trim();
+			String shenfenzheng = etshenfenzheng.getText().toString().trim();
+			String Validate1 = StringUtil.accountName(realname);
+			String Validate2 = StringUtil.accountName(shenfenzheng);
+			if(!TextUtils.isEmpty(Validate1)){
+				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
+				return;
+			}
+			if(!TextUtils.isEmpty(Validate2)){
+				ToastUtil.showToast(this, Validate2, ToastUtil.LENGTH_LONG);
+				return;
+			}
 			setvalue();
 			new Thread(){
 				public void run() {

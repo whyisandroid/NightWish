@@ -2,10 +2,11 @@ package com.timetalent.client;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
+import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
@@ -27,6 +28,7 @@ import com.timetalent.common.net.XUtilsSocketImpl;
  ******************************************/
 public class TimeTalentApplication extends Application {
 	private String TAG = "TimeTalentApplication";
+	public static Context applicationContext;
 
 	/** 实例化 **/
 	private static TimeTalentApplication instance;
@@ -35,8 +37,12 @@ public class TimeTalentApplication extends Application {
 
 	public int curVersionCode; // 版本号
 	public String curVersionName; // 版本名字
-	public String systemVersion;
+	public String systemVersion; 
 	public String deviceID; // 设备ID
+	
+	// login user name
+	public final String PREF_USERNAME = "username";
+	private String userName = null;
 
 	private boolean login;// 登录情况
 
@@ -53,11 +59,24 @@ public class TimeTalentApplication extends Application {
 	 * @time: 2014-2-14 下午3:46:04
 	 */
 	private void init() {
+		applicationContext = this;
 		instance = this;
 		appSocket = new XUtilsSocketImpl();
 		getCurrentVersion();
 		initImageLoad();
 		//getDeviceID();
+	}
+	/**
+	 * 获取当前登陆用户名
+	 *
+	 * @return
+	 */
+	public String getUserName() {
+		if (userName == null) {
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+			userName = preferences.getString(PREF_USERNAME, null);
+		}
+		return userName;
 	}
 
 	

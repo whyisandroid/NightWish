@@ -41,4 +41,12 @@
 	  <color name = "login_bt_color_press">#B6E173</color> <!-- 浅绿 -->
 	  <color name="share_back">#FFF2F2F2</color>
 	<color name="share_text">#aaaaaa</color>
+	
+	<!-- huanxin  -->
+	 <color name="common_bg">#fcfcfc</color>
+	  <color name="top_bar_normal_bg">#4ebcd3</color>
+	  <color name="error_item_color">#F6EBE6</color>
+	  <color name="gray_pressed">#b5b5b6</color>
+     <color name="gray_normal">#666667</color>
+     <color name="btn_gray_normal">#c0c0c0</color>
     </resources>

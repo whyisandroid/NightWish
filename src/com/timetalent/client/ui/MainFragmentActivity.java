@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.timetalent.client.R;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppManager;
+import com.timetalent.client.ui.esaemob.ChatAllHistoryFragment;
 import com.timetalent.client.ui.fragment.ChanceFragment;
 import com.timetalent.client.ui.fragment.DynamicFragment;
 import com.timetalent.client.ui.fragment.MessageFragment;
@@ -36,7 +37,7 @@ public class MainFragmentActivity extends BaseFragmentActivity {
 	private FragmentTabHost fTabHost;
 	private RadioGroup tabRg;
 	// fragments
-	private Class<?>[] fragments = { NearFragment.class,DynamicFragment.class,ChanceFragment.class,MessageFragment.class,UserFragment.class };
+	private Class<?>[] fragments = { NearFragment.class,DynamicFragment.class,ChanceFragment.class,ChatAllHistoryFragment.class,UserFragment.class };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

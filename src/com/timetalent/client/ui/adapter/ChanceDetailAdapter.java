@@ -34,7 +34,6 @@ public class ChanceDetailAdapter extends BaseAdapter{
 	
 	private List<TaskShow> lists;
 	private Context mContext;
-	private TaskShow show;
 	
 	/**
 	 * 类的构造方法
@@ -75,23 +74,19 @@ public class ChanceDetailAdapter extends BaseAdapter{
 		}else{
 			holder = (ViewHolder)convertView.getTag();
 		}
-		show = lists.get(position);
+		final TaskShow show = lists.get(position);
 		
 		holder.tv_offer_detail_work.setText(show.getJob());
 		holder.tv_offer_detail_work_time.setText(show.getWork_date_start()+"-"+show.getWork_date_end());
 		holder.tv_offer_detail_message.setText(show.getDescription());
-		holder.tv_offer_detail_qpply.setOnClickListener(applyListener);
+		holder.tv_offer_detail_qpply.setOnClickListener(new  OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				showMessageTwo(mContext, "您要报名:"+show.getJob()+"?",show);
+			}
+		});
 		return convertView;
 	}
-	
-	private OnClickListener applyListener = new  OnClickListener() {
-		
-		@Override
-		public void onClick(View v) {
-			showMessageTwo(mContext, "您要报名:"+show.getJob()+"?");
-		}
-	};
-	
 	
 	/**
 	  * 方法描述：左右两个按钮
@@ -99,7 +94,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 	  * @author: why
 	  * @time: 2014-8-13 下午7:43:12
 	  */
-	private void showMessageTwo(final Context context,String message) {
+	private void showMessageTwo(final Context context,String message,final TaskShow show) {
 		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
 		dialog.setMessage(message);
 		dialog.setLeft("取消", new OnClickListener() {
@@ -113,7 +108,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 			
 			@Override
 			public void onClick(View v) {
-				apply();
+				apply(show);
 				dialog.closeDialog();
 			}
 		});
@@ -124,7 +119,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 	  * @author: why
 	  * @time: 2014-10-21 上午11:17:14
 	  */
-	private void apply() {
+	private void apply(final TaskShow show) {
 		ProgressDialogUtil.showProgressDialog(mContext, "稍等…", false);
 		new Thread(new Runnable() {
 			@Override

@@ -49,7 +49,10 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 					lv_dynamic.setAdapter(adapter);
 				}
 				break;
-
+			case 1:
+				Bitmap bmp = ImageLoader.getInstance().loadImageSync(msg.obj.toString());
+				main_top_left.setImageBitmap(bmp);
+				break;
 			default:
 				break;
 			}

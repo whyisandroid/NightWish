@@ -123,6 +123,7 @@ public class AppController {
 				if(!TextUtils.isEmpty(msg.obj.toString())){
 					DialogUtil.showMessage(currentActivity,msg.obj.toString());
 				}
+				break;
 			case HANDLER_TOAST:
 				if(!TextUtils.isEmpty(msg.obj.toString())){
 					ToastUtil.showToast(currentActivity, msg.obj.toString(), ToastUtil.LENGTH_LONG);

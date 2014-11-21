@@ -81,7 +81,7 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	 */
 	private void initView() {
 		((TextView)findViewById(R.id.main_top_title)).setText("职位详情");
-		main_top_right.setVisibility(View.VISIBLE);
+		main_top_right.setVisibility(View.GONE);
 		main_top_right.setText("分享");
 		main_top_right.setOnClickListener(this);
 		bt_chance_offer.setOnClickListener(this);

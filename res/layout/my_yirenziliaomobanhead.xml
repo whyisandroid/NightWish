@@ -318,6 +318,7 @@
                         <TextView
                             android:id="@+id/tvage"
                             style="@style/main_color3_style"
+                            android:layout_width="match_parent"
                             android:text="25" />
 
                         <LinearLayout

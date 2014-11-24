@@ -22,16 +22,19 @@ import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.user.FansziliaoActivity;
+import com.timetalent.client.ui.user.MyAboutActivity;
 import com.timetalent.client.ui.user.MyDongtaiActivity;
 import com.timetalent.client.ui.user.MyfansActivity;
 import com.timetalent.client.ui.user.MyfuwuActivity;
 import com.timetalent.client.ui.user.MyguanzhuActivity;
 import com.timetalent.client.ui.user.MyhaoyouMainActivity;
 import com.timetalent.client.ui.user.MyheimingdanActivity;
+import com.timetalent.client.ui.user.MylianxiActivity;
 import com.timetalent.client.ui.user.MyqianbaoActivity;
 import com.timetalent.client.ui.user.MyrenzhengActivity;
 import com.timetalent.client.ui.user.MytuijianActivity;
 import com.timetalent.client.ui.user.MyworkActivity;
+import com.timetalent.client.ui.user.MyxieyiActivity;
 import com.timetalent.client.ui.user.XingtanziliaoActivity;
 import com.timetalent.client.ui.user.YirenziliaoActivity;
 import com.timetalent.common.util.IntentUtil;
@@ -64,6 +67,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lbangzhu;
 	private LinearLayout lqinglitupian;
 	private LinearLayout lexit;
+	private LinearLayout labout;
+	private LinearLayout lkefu;
+	private LinearLayout lxieyi;
 	TextView tvnickname;
 	TextView tvmoney;
 	TextView tvcounthaoyou;
@@ -131,6 +137,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lbangzhu.setOnClickListener(this);
 		lqinglitupian.setOnClickListener(this);
 		lexit.setOnClickListener(this);
+		labout.setOnClickListener(this);
+		lkefu.setOnClickListener(this);
+		lxieyi.setOnClickListener(this);
 		switch (r) {
 		case 0:
 			lmyfuwu.setOnClickListener(this);
@@ -174,6 +183,9 @@ public class UserFragment extends Fragment implements OnClickListener {
 		lbangzhu = (LinearLayout) view.findViewById(R.id.lbangzhu);
 		lqinglitupian = (LinearLayout) view.findViewById(R.id.lqinglitupian);
 		lexit = (LinearLayout) view.findViewById(R.id.lexit);
+		labout = (LinearLayout) view.findViewById(R.id.labout);
+		lxieyi = (LinearLayout) view.findViewById(R.id.lxieyi);
+		lkefu = (LinearLayout) view.findViewById(R.id.lkefu);
 		switch (r) {
 		case 0:
 			lmyfuwu = (LinearLayout) view.findViewById(R.id.lmyfuwu);
@@ -202,6 +214,15 @@ public class UserFragment extends Fragment implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_left:
 //			finish();
+			break;
+		case R.id.labout:
+			IntentUtil.intent(this.mContext, MyAboutActivity.class);
+			break;
+		case R.id.lkefu:
+			IntentUtil.intent(this.mContext, MylianxiActivity.class);
+			break;
+		case R.id.lxieyi:
+			IntentUtil.intent(this.mContext, MyxieyiActivity.class);
 			break;
 		case R.id.lmydongtai:
 			switch (r) {

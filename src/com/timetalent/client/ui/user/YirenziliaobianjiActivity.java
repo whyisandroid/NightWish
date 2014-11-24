@@ -28,6 +28,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.addresscheck.City_cnActivity;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.Background3;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
@@ -58,6 +59,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	private ImageView imgtab1;
 	private ImageView imgtab2;
 	private ImageView imgtab3;
+	TextView tvjiaxiang;
 	private GestureDetector mGestureDetector;
 	int index = 0;
 	private LinearLayout ldongtai;
@@ -150,6 +152,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		LayoutParams  p8 = imgpic8.getLayoutParams();
 		p8.height = (int)(screenw/4-8*density);
 		imgpic8.setLayoutParams(p8);
+		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 	}
 
 	/**
@@ -181,6 +184,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		imgpic6.setOnClickListener(this);
 		imgpic7.setOnClickListener(this);
 		imgpic8.setOnClickListener(this);
+		tvjiaxiang.setOnClickListener(this);
 	}
 	
 	/**
@@ -224,6 +228,9 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	@Override
 	public void onClick(final View vclick) {
 		switch (vclick.getId()) {
+		case R.id.tvjiaxiang:
+			IntentUtil.intent(YirenziliaobianjiActivity.this, City_cnActivity.class);
+			break;
 		case R.id.bt_login_next:
 			break;
 		case R.id.lneardongtai:

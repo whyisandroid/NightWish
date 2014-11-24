@@ -29,6 +29,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.addresscheck.City_cnActivity;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.Background3;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
@@ -63,7 +64,8 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	EditText etname ;
 	EditText etnickname ;
 	EditText etzhiye ;
-	EditText etjiaxiang ;
+//	EditText etjiaxiang ;
+	TextView tvjiaxiang;
 //	EditText et ;
 //	EditText et ;
 //	EditText et ;
@@ -155,6 +157,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		LayoutParams  p8 = imgpic8.getLayoutParams();
 		p8.height = (int)(screenw/4-8*density);
 		imgpic8.setLayoutParams(p8);
+		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 	}
 
 	/**
@@ -183,6 +186,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		imgpic6.setOnClickListener(this);
 		imgpic7.setOnClickListener(this);
 		imgpic8.setOnClickListener(this);
+		tvjiaxiang.setOnClickListener(this);
 	}
 	
 	/**
@@ -226,6 +230,9 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	@Override
 	public void onClick(final View vclick) {
 		switch (vclick.getId()) {
+		case R.id.tvjiaxiang:
+			IntentUtil.intent(FansziliaobianjiActivity.this, City_cnActivity.class);
+			break;
 		case R.id.bt_login_next:
 			break;
 		case R.id.lneardongtai:

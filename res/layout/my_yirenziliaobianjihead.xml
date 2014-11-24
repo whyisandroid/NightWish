@@ -334,6 +334,7 @@
                         <TextView
                             android:id="@+id/tvage"
                             style="@style/main_color3_style"
+                            android:layout_width="match_parent"
                             android:text="25" />
 
                         <LinearLayout
@@ -447,14 +448,11 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <EditText
-                            android:id="@+id/etjiaxiang"
+                        <TextView
+                            android:id="@+id/tvjiaxiang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:ems="10"
                             android:textColor="@color/color_2"
-                            android:textColorHint="@color/color_4"
                             android:textSize="@dimen/new_size_2" />
 
                         <LinearLayout

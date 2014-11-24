@@ -1127,9 +1127,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#mylocation_update()
-	 */
 	@Override
 	public void mylocation_update() throws BusinessException {
 		String lat = context.getStringData("my.lat");
@@ -1156,9 +1153,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myuser_service()
-	 */
 	@Override
 	public void myuser_service() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -1178,9 +1172,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myuser_addservice()
-	 */
 	@Override
 	public void myuser_addservice() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -1200,9 +1191,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myservice_list()
-	 */
 	@Override
 	public void myservice_list() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -1222,9 +1210,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myuser_loyal()
-	 */
 	@Override
 	public void myuser_loyal() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -1248,9 +1233,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myuser_loyal_item()
-	 */
 	@Override
 	public void myuser_loyal_item() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
@@ -1277,9 +1259,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#moreinfo()
-	 */
 	@Override
 	public void moreinfo() throws BusinessException {
 		Request<UserinfoResp> request = new Request<UserinfoResp>();
@@ -1302,9 +1281,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#mydo_social()
-	 */
 	@Override
 	public void mydo_social() throws BusinessException {
 
@@ -1325,9 +1301,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myreport()
-	 */
 	@Override
 	public void myreport() throws BusinessException {
 		Request<BaseResp> request = new Request<BaseResp>();
@@ -1348,9 +1321,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myphoto()
-	 */
 	@Override
 	public void myphoto() throws BusinessException {
 
@@ -1368,9 +1338,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myphotodel()
-	 */
 	@Override
 	public void myphotodel() throws BusinessException {
 
@@ -1389,9 +1356,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myavatarupdate()
-	 */
 	@Override
 	public void myavatarupdate() throws BusinessException {
 
@@ -1410,9 +1374,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#myavatardel()
-	 */
 	@Override
 	public void myavatardel() throws BusinessException {
 
@@ -1431,9 +1392,6 @@ public class AppServiceImpl implements AppService {
 	}
 
 	
-	/* (non-Javadoc)
-	 * @see com.timetalent.client.service.AppService#dictionary()
-	 */
 	@Override
 	public void dictionary() throws BusinessException {
 

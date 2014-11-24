@@ -10,6 +10,9 @@
         android:layout_height="wrap_content" 
         android:background="@drawable/c_03"
         android:layout_marginLeft="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/main_top_find_right"
+        android:layout_marginRight="5dp"
         >
 
         <ImageView
@@ -21,11 +24,13 @@
             android:src="@drawable/f9_06" />
         
         <EditText
-            android:id="@+id/main_top_find_title"
+            android:id="@+id/main_top_find_message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ems="10"
             android:singleLine="true"
+            android:background="@null"
+            android:layout_gravity="center"
             android:textColor="@color/color_1"
             android:textSize="@dimen/new_size_3" >
             <requestFocus />

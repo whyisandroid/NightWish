@@ -251,12 +251,14 @@ public class AppServiceImpl implements AppService {
 	public void chanceLists() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
 		String order = context.getStringData("chance_order");
+		String search = context.getStringData("chance_search");
 		Request<TaskResp> request = new Request<TaskResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
 		nameValuePairs.add(new BasicNameValuePair("page","1"));
 		nameValuePairs.add(new BasicNameValuePair("page_per","100"));
 		nameValuePairs.add(new BasicNameValuePair("order",order));
+		nameValuePairs.add(new BasicNameValuePair("search",search));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_LIST);
 		request.setR_calzz(TaskResp.class);

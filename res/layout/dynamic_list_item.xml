@@ -149,29 +149,38 @@
             </RelativeLayout>
         </RelativeLayout>
 
+        <ListView
+            android:id="@+id/lv_dynamic_replay"
+            android:layout_width="match_parent"
+            android:background="@color/main_grey"
+            android:layout_height="wrap_content" >
+        </ListView>
+
         <LinearLayout
             android:id="@+id/ll_dynamic_message"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:background="@color/main_grey"
-            android:orientation="vertical"
-            android:visibility="visible" >
+            android:orientation="horizontal"
+            android:visibility="gone"
+            android:padding="8dp"
+             >
 
-            <ListView
-                android:id="@+id/lv_dynamic_replay"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </ListView>
+            <TextView
+                android:id="@+id/tv_dynamic_replayname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/color_5"
+                android:textSize="@dimen/new_size_1"
+                android:text="我在等你: "
+                 />
 
             <EditText
                 android:id="@+id/et_dynamic_message"
                 android:layout_width="252dp"
                 android:layout_height="wrap_content"
-                android:background="@null"
                 android:ems="10"
                 android:padding="8dp"
-                android:text="我在等你: "
                 android:textColor="@color/color_5"
                 android:textSize="@dimen/new_size_1" >
                 <requestFocus />

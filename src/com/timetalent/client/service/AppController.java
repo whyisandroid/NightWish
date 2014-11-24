@@ -383,15 +383,13 @@ public class AppController {
 	}
 	
 	
-	public boolean dynamicFavour() {
+	public void dynamicFavour(Handler mHandler,com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder holder) {
 		try {
 			service.dynamicFavour();
-			return true;
+			mHandler.obtainMessage(0, holder).sendToTarget();
 		} catch (BusinessException e) {
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
-			return false;
 		} catch (Exception e) {
-			return false;
 		}
 	}
 	

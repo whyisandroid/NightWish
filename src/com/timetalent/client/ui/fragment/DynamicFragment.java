@@ -95,7 +95,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 			ImageLoader.getInstance().displayImage(loginData.getAvatar(), main_top_left,PictureUtil.getCircleOption());
 		}
 		main_top_left.setOnClickListener(this);
-	//	UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
+		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
 		FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
 		if(data != null){
 			DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());

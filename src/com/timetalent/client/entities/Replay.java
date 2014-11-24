@@ -9,32 +9,82 @@ package com.timetalent.client.entities;
  * @time: 2014-11-4 上午8:27:04 
  ******************************************/
 public class Replay {
-	private String name;
-	private String content;
+	private String id;
+	private String feed_id;
+	private String user_id;
+	private String contents;
+	private String time;
+	private User user;
 	/**
-	 * @return name : return the property name.
+	 * @return id : return the property id.
 	 */
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 	/**
-	 * @param name : set the property name.
+	 * @param id : set the property id.
 	 */
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 	/**
-	 * @return content : return the property content.
+	 * @return feed_id : return the property feed_id.
 	 */
-	public String getContent() {
-		return content;
+	public String getFeed_id() {
+		return feed_id;
 	}
 	/**
-	 * @param content : set the property content.
+	 * @param feed_id : set the property feed_id.
 	 */
-	public void setContent(String content) {
-		this.content = content;
+	public void setFeed_id(String feed_id) {
+		this.feed_id = feed_id;
 	}
-	
-	
+	/**
+	 * @return user_id : return the property user_id.
+	 */
+	public String getUser_id() {
+		return user_id;
+	}
+	/**
+	 * @param user_id : set the property user_id.
+	 */
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	/**
+	 * @return contents : return the property contents.
+	 */
+	public String getContents() {
+		return contents;
+	}
+	/**
+	 * @param contents : set the property contents.
+	 */
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	/**
+	 * @return time : return the property time.
+	 */
+	public String getTime() {
+		return time;
+	}
+	/**
+	 * @param time : set the property time.
+	 */
+	public void setTime(String time) {
+		this.time = time;
+	}
+	/**
+	 * @return user : return the property user.
+	 */
+	public User getUser() {
+		return user;
+	}
+	/**
+	 * @param user : set the property user.
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 }

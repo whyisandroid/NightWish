@@ -68,7 +68,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 	public String search = "";
 	public String lat = "116.287128";
 	public String lng = "39.830486";
-	public String sex = "0";
+	public String sex = "2";
 	public String age_min = "0";
 	public String age_max = "80";
 	public String type = "star";

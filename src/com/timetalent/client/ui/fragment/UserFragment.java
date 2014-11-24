@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.service.AppController;
@@ -38,6 +40,7 @@ import com.timetalent.client.ui.user.MyxieyiActivity;
 import com.timetalent.client.ui.user.XingtanziliaoActivity;
 import com.timetalent.client.ui.user.YirenziliaoActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 
 
 /******************************************
@@ -70,6 +73,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout labout;
 	private LinearLayout lkefu;
 	private LinearLayout lxieyi;
+	ImageView imghead;
 	TextView tvnickname;
 	TextView tvmoney;
 	TextView tvcounthaoyou;
@@ -154,6 +158,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
+		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
 		 tvnickname.setText(user.getNickname());
 		 tvmoney.setText(user.getMoney());
 		 tvcounthaoyou.setText(user.getNickname());
@@ -170,6 +175,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)view.findViewById(R.id.main_top_left);
+		imghead = (ImageView) view.findViewById(R.id.imghead);
 		lmydongtai = (LinearLayout) view.findViewById(R.id.lmydongtai);
 		lmyhaoyou = (LinearLayout) view.findViewById(R.id.lmyhaoyou);
 		lmytuijian = (LinearLayout) view.findViewById(R.id.lmytuijian);

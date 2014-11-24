@@ -1,5 +1,7 @@
 package com.timetalent.client.entities;
 
+import android.util.Log;
+
 
 /******************************************
  * 类描述： 登录信息
@@ -146,6 +148,7 @@ public class LoginData {
 	 * @return avatar : return the property avatar.
 	 */
 	public String getAvatar() {
+		Log.i("touxiangdizhi", avatar);
 		return avatar;
 	}
 	/**

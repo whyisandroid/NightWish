@@ -156,7 +156,13 @@
             android:layout_marginTop="10dp"
             android:background="@color/main_grey"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="visible" >
+
+            <ListView
+                android:id="@+id/lv_dynamic_replay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+            </ListView>
 
             <EditText
                 android:id="@+id/et_dynamic_message"
@@ -168,7 +174,6 @@
                 android:text="我在等你: "
                 android:textColor="@color/color_5"
                 android:textSize="@dimen/new_size_1" >
-
                 <requestFocus />
             </EditText>
         </LinearLayout>

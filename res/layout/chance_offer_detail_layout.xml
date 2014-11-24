@@ -6,13 +6,16 @@
 
     <include layout="@layout/main_top_layout" />
 
-
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true" >
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" 
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -49,8 +52,7 @@
                         android:layout_marginTop="5dp"
                         android:background="@drawable/c11_14"
                         android:paddingLeft="5dp"
-                        android:paddingRight="5dp"
-                         />
+                        android:paddingRight="5dp" />
                 </LinearLayout>
 
                 <RelativeLayout
@@ -86,29 +88,32 @@
                 <ListView
                     android:id="@+id/lv_chance_detail"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    >
+                    android:layout_height="wrap_content" >
                 </ListView>
-
-                <LinearLayout
-                    android:id="@+id/ll_chance_offer_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/btn_red"
-                    android:gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/bt_chance_offer"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:drawableLeft="@drawable/c14_13"
-                        android:text="@string/chance_text16"
-                        android:textColor="@color/main_white"
-                        android:textSize="@dimen/new_size_4" />
-                </LinearLayout>
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_chance_offer_message"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/btn_red"
+                android:gravity="center"
+                android:layout_gravity="bottom"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/bt_chance_offer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableLeft="@drawable/c14_13"
+                    android:text="@string/chance_text16"
+                    android:textColor="@color/main_white"
+                    android:textSize="@dimen/new_size_4" />
+            </LinearLayout>
+
+        </FrameLayout>
     </ScrollView>
+
 </LinearLayout>

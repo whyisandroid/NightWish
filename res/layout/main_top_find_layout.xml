@@ -5,29 +5,41 @@
     android:background="@color/main_red"
     android:gravity="center_vertical" >
 
-    <EditText
-        android:id="@+id/main_top_find_title"
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="5dp"
-        android:layout_toLeftOf="@+id/main_top_find_right"
+        android:layout_height="wrap_content" 
         android:background="@drawable/c_03"
-        android:drawableLeft="@drawable/f9_06"
-        android:drawablePadding="5dp"
-        android:paddingLeft="10dp"
-        android:singleLine="true"
-        android:textColor="@color/color_1"
-        android:textSize="@dimen/new_size_3" />
+        android:layout_marginLeft="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/main_top_find_query"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:padding="5dp"
+            android:src="@drawable/f9_06" />
+        
+        <EditText
+            android:id="@+id/main_top_find_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:singleLine="true"
+            android:textColor="@color/color_1"
+            android:textSize="@dimen/new_size_3" >
+            <requestFocus />
+        </EditText>
+    </LinearLayout>
+
 
     <ImageView
         android:id="@+id/main_top_find_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="false"
         android:layout_marginRight="5dp"
         android:gravity="center"
         android:src="@drawable/c_05" />

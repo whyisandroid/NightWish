@@ -39,6 +39,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	
 	private RadioButton rb_chance_hot;
 	private RadioButton rb_chance_new;
+	private ImageView main_top_find_query;
 	
 	private ListView lv_chance;
 	private TaskData data;
@@ -83,6 +84,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		main_top_find_right = (ImageView)view.findViewById(R.id.main_top_find_right);
 		rb_chance_hot = (RadioButton)view.findViewById(R.id.rb_chance_hot);
 		rb_chance_new = (RadioButton)view.findViewById(R.id.rb_chance_new);
+		main_top_find_query = (ImageView)view.findViewById(R.id.main_top_find_query);
 	}
 	/**
 	 * 方法描述：TODO
@@ -94,6 +96,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		rb_chance_hot.setOnClickListener(this);
 		rb_chance_new.setOnClickListener(this);
 		main_top_find_right.setOnClickListener(this);
+		main_top_find_query.setOnClickListener(this);
 		update();
 	}
 	
@@ -116,6 +119,9 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_find_query:
+			
+			break;
 		case R.id.rb_chance_hot:
 			controller.getContext().addBusinessData("chance_order", "hot");
 			getData();

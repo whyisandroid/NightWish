@@ -108,6 +108,8 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_good_num.setText(feed.getFavour_num());
 		holder.iv_dynamic_good.setSelected("N".equals(feed.getFavour_do()));
 		
+		// 处理 回复
+		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
 		
 		// 处理头像
 		//BitmapUtils bitmapUtils = new BitmapUtils(mContext);

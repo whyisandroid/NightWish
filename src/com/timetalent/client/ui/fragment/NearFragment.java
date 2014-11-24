@@ -348,6 +348,14 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "star";
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("dictionary.type", type);
+							controller.dictionary();
+							handler.sendEmptyMessage(3);
+						};
+					}.start();
+					
 				}
 			});
 			rd14.setOnClickListener(new OnClickListener() {
@@ -355,6 +363,13 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "scout";
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("dictionary.type", type);
+							controller.dictionary();
+							handler.sendEmptyMessage(3);
+						};
+					}.start();
 				}
 			});
 			rd15.setOnClickListener(new OnClickListener() {
@@ -362,8 +377,24 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "fans";
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("dictionary.type", type);
+							controller.dictionary();
+							handler.sendEmptyMessage(3);
+						};
+					}.start();
 				}
 			});
+			if(type.equals("star")){
+				
+			}
+			if(type.equals("scout")){
+	
+			}
+			if(type.equals("fans")){
+				
+			}
 			rd16.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -440,6 +471,9 @@ public class NearFragment extends Fragment implements OnClickListener {
 				adapter.notifyDataSetChanged();
 				break;
 			case 2:
+				adapter.notifyDataSetChanged();
+				break;
+			case 3:
 				adapter.notifyDataSetChanged();
 				break;
 			}

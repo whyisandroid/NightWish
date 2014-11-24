@@ -26,6 +26,7 @@ import com.timetalent.client.entities.json.FollowedResp;
 import com.timetalent.client.entities.json.FollowingResp;
 import com.timetalent.client.entities.json.FriendResp;
 import com.timetalent.client.entities.json.LoginResp;
+import com.timetalent.client.entities.json.MyphotoResp;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
@@ -1324,14 +1325,17 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void myphoto() throws BusinessException {
 
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<MyphotoResp> request = new Request<MyphotoResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_PHOTO);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(MyphotoResp.class);
+		MyphotoResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("MyphotoData", resp.getData());
+			}
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

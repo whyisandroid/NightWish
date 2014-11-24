@@ -1,7 +1,10 @@
 package com.timetalent.client.ui.user;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -17,7 +20,10 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -26,6 +32,7 @@ import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -44,15 +51,20 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 	ImageView img1,img2,img3;
 	LinearLayout l1,l2,l3;
 	private Button btnext;
+	ImageView imghead;
+	TextView tvname;
 	EditText etrealname;
 	EditText etshenfenzheng;
 	int index = 0;
+	LoginData user;
+	Bitmap bmp;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_renzheng);
 		controller = AppController.getController(this);
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		findView();
 		initView();
 	}
@@ -71,6 +83,8 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		l1 =(LinearLayout) findViewById(R.id.l1);
 		l2 =(LinearLayout) findViewById(R.id.l2);
 		l3 =(LinearLayout) findViewById(R.id.l3);
+		imghead = (ImageView) findViewById(R.id.imghead);
+		tvname = (TextView) findViewById(R.id.tvname);
 		etrealname = (EditText) findViewById(R.id.etrealname);
 		etshenfenzheng = (EditText) findViewById(R.id.etshenfenzheng);
 	}
@@ -87,6 +101,16 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
+//		new Thread(){
+//			public void run() {
+//		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
+//				bmp = ImageLoader.getInstance().loadImageSync(user.getAvatar());
+//				handler.sendEmptyMessage(1);
+//			};
+//		}.start();
+		
+		imghead.setImageBitmap(bmp);
+		tvname.setText(user.getNickname());
 		btnext.setOnClickListener(this);
 		img1.setImageResource(R.drawable.m22_10);
 		img2.setImageResource(R.drawable.m22_03);
@@ -163,5 +187,15 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			break;
 		}
 	}
-
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				imghead.setImageBitmap(bmp);
+				break;
+			}
+		}
+	};
 }

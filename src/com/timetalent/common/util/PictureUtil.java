@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.timetalent.client.ui.view.CircleBitmapDisplayer;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -225,6 +228,15 @@ public class PictureUtil {
         return output;  
     }
     
+    
+    /**
+     * 
+      * 方法描述：TODO
+      * @param bitmap
+      * @return
+      * @author: why
+      * @time: 2014-11-24 上午11:32:38
+     */
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
 
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
@@ -258,4 +270,20 @@ public class PictureUtil {
         canvas.drawBitmap(bitmap, rect, rect, paint);
         return output;
     }
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-11-24 上午11:33:27
+	  */
+	public static DisplayImageOptions getCircleOption() {
+	    DisplayImageOptions options = new DisplayImageOptions.Builder()
+	    .cacheInMemory(true)
+	    .cacheOnDisk(true)
+	    .displayer(new CircleBitmapDisplayer())
+	    .build();
+		return options;
+	}
 }

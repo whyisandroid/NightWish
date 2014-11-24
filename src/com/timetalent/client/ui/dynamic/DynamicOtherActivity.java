@@ -3,6 +3,7 @@ package com.timetalent.client.ui.dynamic;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ListView;
@@ -70,7 +71,11 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 	 */
 	private void initView() {
 		String name = getIntent().getExtras().getString("userName");
-		((TextView)findViewById(R.id.main_top_title)).setText(name+"的动态");
+		if(TextUtils.isEmpty(name)){
+			((TextView)findViewById(R.id.main_top_title)).setText("动态");
+		}else{
+			((TextView)findViewById(R.id.main_top_title)).setText(name+"的动态");
+		}
 	}
 	
 	

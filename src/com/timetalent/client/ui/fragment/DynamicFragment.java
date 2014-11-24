@@ -21,6 +21,7 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -48,10 +49,6 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 					DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());
 					lv_dynamic.setAdapter(adapter);
 				}
-				break;
-			case 1:
-				Bitmap bmp = ImageLoader.getInstance().loadImageSync(msg.obj.toString());
-				main_top_left.setImageBitmap(bmp);
 				break;
 			default:
 				break;
@@ -95,12 +92,10 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		// 加载网络图片
 		LoginData loginData = (LoginData)controller.getContext().getBusinessData("loginData");
 		if(loginData != null){
-			Bitmap bmp = ImageLoader.getInstance().loadImageSync(loginData.getAvatar());
-			main_top_left.setImageBitmap(bmp);
+			ImageLoader.getInstance().displayImage(loginData.getAvatar(), main_top_left,PictureUtil.getCircleOption());
 		}
 		main_top_left.setOnClickListener(this);
-		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
-		
+	//	UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
 		FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
 		if(data != null){
 			DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());

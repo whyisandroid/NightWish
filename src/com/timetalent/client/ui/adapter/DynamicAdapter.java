@@ -15,14 +15,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Feed;
 import com.timetalent.client.entities.Photo;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
+import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 
 
 /******************************************
@@ -112,10 +115,7 @@ public class DynamicAdapter extends BaseAdapter{
 		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
 		
 		// 处理头像
-		//BitmapUtils bitmapUtils = new BitmapUtils(mContext);
-		//bitmapUtils.display(holder.iv_dynamic_head,feed.getUser().getAvatar());
-		
-		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head);
+		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head,PictureUtil.getCircleOption());
 		// 处理图片
 		
 		List<Photo> list = feed.getPhotos();

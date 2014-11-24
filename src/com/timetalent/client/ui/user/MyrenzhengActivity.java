@@ -103,13 +103,13 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		main_top_left.setOnClickListener(this);
 //		new Thread(){
 //			public void run() {
-//		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
+		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
 //				bmp = ImageLoader.getInstance().loadImageSync(user.getAvatar());
 //				handler.sendEmptyMessage(1);
 //			};
 //		}.start();
 		
-		imghead.setImageBitmap(bmp);
+//		imghead.setImageBitmap(bmp);
 		tvname.setText(user.getNickname());
 		btnext.setOnClickListener(this);
 		img1.setImageResource(R.drawable.m22_10);

@@ -9,7 +9,7 @@
         android:id="@+id/tv_dynamic_replay_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NO　ＤＡＴＡ：" />
+        android:text="NO DATA：" />
 
     <TextView
         android:id="@+id/tv_dynamic_replay_content"

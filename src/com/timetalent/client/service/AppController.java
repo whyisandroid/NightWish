@@ -16,7 +16,6 @@ import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
-import com.timetalent.client.ui.login.FindpwdSecondActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
@@ -358,9 +357,10 @@ public class AppController {
 		
 	}
 	
-	public void dynamicRepaly() {
+	public void dynamicRepaly(Handler mHandler,com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder holder) {
 		try {
 			service.dynamicRepaly();
+			mHandler.obtainMessage(1,holder).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

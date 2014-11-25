@@ -427,11 +427,15 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void dynamicRepaly() throws BusinessException {
-
+		String _session_id = context.getStringData("_session_id");
+		String feed_id = context.getStringData("dynamic_feed_id");
+		String contents = context.getStringData("dynamic_feed_replay_message");
 
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", "_session_id"));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("feed_id", feed_id));
+		nameValuePairs.add(new BasicNameValuePair("contents", contents));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_REPALY);
 		request.setR_calzz(BaseResp.class);

@@ -14,25 +14,21 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Feed;
 import com.timetalent.client.entities.Photo;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
-import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
-import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
-import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -59,6 +55,9 @@ public class DynamicAdapter extends BaseAdapter{
 				holder.tv_dynamic_add_1.animate().alpha(0);
 				holder.iv_dynamic_good.setSelected(false);
 				holder.iv_dynamic_good_num.setText(Integer.valueOf(holder.iv_dynamic_good_num.getText().toString())+1+"");
+				break;
+			case 1:
+				ViewHolder holder1 = (ViewHolder)msg.obj;
 				break;
 			default:
 				break;
@@ -173,7 +172,7 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_message.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				holder.ll_dynamic_message.setVisibility(View.VISIBLE ==holder.ll_dynamic_message.getVisibility()?View.GONE:View.VISIBLE );
+				holder.rl_dynamic_message.setVisibility(View.VISIBLE ==holder.rl_dynamic_message.getVisibility()?View.GONE:View.VISIBLE );
 			}
 		});
 		holder.tv_dynamic_send.setOnClickListener(new OnClickListener() {
@@ -189,6 +188,7 @@ public class DynamicAdapter extends BaseAdapter{
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
+						controller.dynamicRepaly(handler,holder);
 						ProgressDialogUtil.closeProgressDialog();
 					}
 				}).start();
@@ -198,6 +198,9 @@ public class DynamicAdapter extends BaseAdapter{
 				if (TextUtils.isEmpty(message)) {
 					ToastUtil.showToast(mContext, "回复不能为空", ToastUtil.LENGTH_LONG);
 					return false;
+				}else{
+					controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
+					controller.getContext().addBusinessData("dynamic_feed_replay_message",message);
 				}
 				return true;
 			}
@@ -218,7 +221,7 @@ public class DynamicAdapter extends BaseAdapter{
 		private ImageView iv_dynamic_good;
 		private TextView tv_dynamic_add_1;
 		private ImageView iv_dynamic_message;
-		private LinearLayout ll_dynamic_message;
+		private RelativeLayout rl_dynamic_message;
 		private HorizontalListView lv_dynamic_pic ;
 		private ListView lv_dynamic_replay;
 		private EditText et_dynamic_message;
@@ -239,7 +242,7 @@ public class DynamicAdapter extends BaseAdapter{
 			iv_dynamic_good = (ImageView)view.findViewById(R.id.iv_dynamic_good);
 			tv_dynamic_add_1 = (TextView)view.findViewById(R.id.tv_dynamic_add_1);
 			iv_dynamic_message = (ImageView)view.findViewById(R.id.iv_dynamic_message);
-		    ll_dynamic_message = (LinearLayout)view.findViewById(R.id.ll_dynamic_message);
+			rl_dynamic_message = (RelativeLayout)view.findViewById(R.id.rl_dynamic_message);
 			lv_dynamic_pic = (HorizontalListView)view.findViewById(R.id.hlv_dynamic_pic);
 			lv_dynamic_replay = (ListView)view.findViewById(R.id.lv_dynamic_replay);
 			et_dynamic_message = (EditText)view.findViewById(R.id.et_dynamic_message);

@@ -18,7 +18,7 @@ public class Config {
 	public final static boolean DEBUG = true;
 	
 	// 后台 测试
-	public final static String MY_SERVICE = "http://124.193.223.166/xingtan/index.php";
+	public final static String MY_SERVICE = "http://118.144.74.24/xingtan/index.php";
 	/** 临时文件保存路径. */
 	// 项目路径
 	public static final String PATH_SDCARD = Environment.getExternalStorageDirectory()

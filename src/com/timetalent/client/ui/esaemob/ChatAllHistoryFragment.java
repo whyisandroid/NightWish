@@ -66,7 +66,8 @@ public class ChatAllHistoryFragment extends Fragment {
 		inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
 		errorItem = (RelativeLayout) getView().findViewById(R.id.rl_error_item);
 		errorText = (TextView) errorItem.findViewById(R.id.tv_connect_errormsg);
-		
+		((TextView)getView().findViewById(R.id.main_top_title)).setText("消息");
+		getView().findViewById(R.id.main_top_left).setVisibility(View.GONE);
 		conversationList = loadConversationsWithRecentChat();
 		listView = (ListView) getView().findViewById(R.id.list);
 		adapter = new ChatAllHistoryAdapter(getActivity(), 1, conversationList);

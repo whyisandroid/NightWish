@@ -36,7 +36,9 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_chance_time"
                 android:text="今年杨坤20岁演唱会"
+                android:singleLine="true"
                 android:textColor="@color/main_red"
                 android:textSize="@dimen/new_size_2" />
 
@@ -45,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                  android:layout_centerVertical="true"
-                android:layout_alignParentLeft="false"
                 android:layout_alignParentRight="true"
                 android:text="报名截止时间：2104年12月6日"
                 android:textColor="@color/color_4"

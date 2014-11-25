@@ -6,13 +6,16 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -26,6 +29,10 @@ import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -46,7 +53,12 @@ public class DynamicAdapter extends BaseAdapter{
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
 			case 0:
-				
+				ViewHolder holder = (ViewHolder)msg.obj;
+				holder.tv_dynamic_add_1.setVisibility(View.VISIBLE);
+				holder.tv_dynamic_add_1.animate().setDuration(2000);
+				holder.tv_dynamic_add_1.animate().alpha(0);
+				holder.iv_dynamic_good.setSelected(false);
+				holder.iv_dynamic_good_num.setText(Integer.valueOf(holder.iv_dynamic_good_num.getText().toString())+1+"");
 				break;
 			default:
 				break;
@@ -113,7 +125,8 @@ public class DynamicAdapter extends BaseAdapter{
 		
 		// 处理 回复
 		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
-		
+		holder.lv_dynamic_replay.setAdapter(replayAdapter);
+		//UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
 		// 处理头像
 		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head,PictureUtil.getCircleOption());
 		// 处理图片
@@ -149,12 +162,7 @@ public class DynamicAdapter extends BaseAdapter{
 					new Thread(){
 						public void run() {
 							controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
-							if(controller.dynamicFavour()){
-								holder.tv_dynamic_add_1.setVisibility(View.VISIBLE);
-								holder.tv_dynamic_add_1.animate().setDuration(2000);
-								holder.tv_dynamic_add_1.animate().alpha(0);
-								holder.iv_dynamic_good_num.setText(Integer.valueOf(holder.iv_dynamic_good_num.getText().toString())+1+"");
-							}
+							controller.dynamicFavour(handler,holder);
 						};
 					}.start();
 					
@@ -165,12 +173,38 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_message.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				holder.ll_dynamic_message.setVisibility(View.VISIBLE);
+				holder.ll_dynamic_message.setVisibility(View.VISIBLE ==holder.ll_dynamic_message.getVisibility()?View.GONE:View.VISIBLE );
+			}
+		});
+		holder.tv_dynamic_send.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if(invaild()){
+					send();
+				}
+			}
+			private void send() {
+				ProgressDialogUtil.showProgressDialog(mContext, "发送中…", false);
+				new Thread(new Runnable() {
+					@Override
+					public void run() {
+						ProgressDialogUtil.closeProgressDialog();
+					}
+				}).start();
+			}
+			private boolean invaild() {
+				String message = holder.et_dynamic_message.getText().toString().trim();
+				if (TextUtils.isEmpty(message)) {
+					ToastUtil.showToast(mContext, "回复不能为空", ToastUtil.LENGTH_LONG);
+					return false;
+				}
+				return true;
 			}
 		});
 		return convertView;
 	}
-	static class ViewHolder{
+	public static class ViewHolder{
 		private ImageView iv_dynamic_head; 				
 		private TextView tv_dynamic_name;
 		private ImageView iv_dynamic_pass; 	             			
@@ -186,6 +220,9 @@ public class DynamicAdapter extends BaseAdapter{
 		private ImageView iv_dynamic_message;
 		private LinearLayout ll_dynamic_message;
 		private HorizontalListView lv_dynamic_pic ;
+		private ListView lv_dynamic_replay;
+		private EditText et_dynamic_message;
+		private TextView tv_dynamic_send;
 		
 		private void findView(View view){
 			iv_dynamic_head = (ImageView)view.findViewById(R.id.iv_dynamic_head);
@@ -196,6 +233,7 @@ public class DynamicAdapter extends BaseAdapter{
 			tv_dynamic_constella = (TextView)view.findViewById(R.id.tv_dynamic_constella);
 			tv_dynamic_content = (TextView)view.findViewById(R.id.tv_dynamic_content);
 			tv_dynamic_time = (TextView)view.findViewById(R.id.tv_dynamic_time);
+			tv_dynamic_send = (TextView)view.findViewById(R.id.tv_dynamic_send);
 
 			iv_dynamic_good_num = (TextView)view.findViewById(R.id.iv_dynamic_good_num);
 			iv_dynamic_good = (ImageView)view.findViewById(R.id.iv_dynamic_good);
@@ -203,6 +241,8 @@ public class DynamicAdapter extends BaseAdapter{
 			iv_dynamic_message = (ImageView)view.findViewById(R.id.iv_dynamic_message);
 		    ll_dynamic_message = (LinearLayout)view.findViewById(R.id.ll_dynamic_message);
 			lv_dynamic_pic = (HorizontalListView)view.findViewById(R.id.hlv_dynamic_pic);
+			lv_dynamic_replay = (ListView)view.findViewById(R.id.lv_dynamic_replay);
+			et_dynamic_message = (EditText)view.findViewById(R.id.et_dynamic_message);
 		}
 	}
 }

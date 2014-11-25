@@ -56,6 +56,6 @@
     <string name="work_input">输入数值</string>
     <string name="work_data">工作日期:</string>
     <string name="work_next">立即预约</string>
-    <string name="login_user_hint">请输入用户名或手机号</string>
+    <string name="login_user_hint">请输入手机号</string>
 
 </resources>

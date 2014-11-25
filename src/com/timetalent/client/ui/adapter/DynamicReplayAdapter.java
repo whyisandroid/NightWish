@@ -1,5 +1,6 @@
 package com.timetalent.client.ui.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -31,7 +32,7 @@ import com.timetalent.common.util.StringUtil;
 public class DynamicReplayAdapter extends BaseAdapter{
 	
 	private Context mContext;
-	private List<Replay> lists;
+	private List<Replay> lists = new  ArrayList<Replay>();
 	
 	/**
 	 * 类的构造方法
@@ -66,7 +67,7 @@ public class DynamicReplayAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
-			convertView = LayoutInflater.from(mContext).inflate(R.layout.chance_list_item, null);
+			convertView = LayoutInflater.from(mContext).inflate(R.layout.dynamic_reply_item, null);
 			holder = new ViewHolder();
 			holder.findView(convertView);
 			convertView.setTag(holder);
@@ -74,8 +75,10 @@ public class DynamicReplayAdapter extends BaseAdapter{
 			holder = (ViewHolder)convertView.getTag();
 		}
 		Replay replay = lists.get(position);
-		holder.tv_dynamic_replay_name.setText(replay.getName()+":");
-		holder.tv_dynamic_replay_content.setText(replay.getName());
+		if(replay != null){
+			holder.tv_dynamic_replay_name.setText(replay.getUser().getNickname()+":");
+			holder.tv_dynamic_replay_content.setText(replay.getContents());
+		}
 		return convertView;
 	}
 	
@@ -84,7 +87,7 @@ public class DynamicReplayAdapter extends BaseAdapter{
 		private TextView tv_dynamic_replay_content;
 		
 		public void findView(View convertView){
-			tv_dynamic_replay_name = (TextView)convertView.findViewById(R.id.tv_chance_title);
+			tv_dynamic_replay_name = (TextView)convertView.findViewById(R.id.tv_dynamic_replay_name);
 			tv_dynamic_replay_content = (TextView)convertView.findViewById(R.id.tv_dynamic_replay_content);
 		}
 	}

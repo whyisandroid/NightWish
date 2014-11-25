@@ -4,12 +4,14 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -22,6 +24,8 @@ import com.timetalent.client.ui.chance.OfferAddActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
@@ -40,6 +44,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private RadioButton rb_chance_hot;
 	private RadioButton rb_chance_new;
 	private ImageView main_top_find_query;
+	private EditText main_top_find_message;
 	
 	private ListView lv_chance;
 	private TaskData data;
@@ -85,6 +90,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		rb_chance_hot = (RadioButton)view.findViewById(R.id.rb_chance_hot);
 		rb_chance_new = (RadioButton)view.findViewById(R.id.rb_chance_new);
 		main_top_find_query = (ImageView)view.findViewById(R.id.main_top_find_query);
+		main_top_find_message = (EditText)view.findViewById(R.id.main_top_find_message);
 	}
 	/**
 	 * 方法描述：TODO
@@ -106,7 +112,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	  * @time: 2014-11-8 下午3:39:22
 	  */
 	private void getData() {
-		ProgressDialogUtil.showProgressDialog(getActivity(), "稍等…", false);
+		ProgressDialogUtil.showProgressDialog(getActivity(), "正在通信中…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -120,13 +126,17 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.main_top_find_query:
-			
+			if(invaild()){
+				query();
+			}
 			break;
 		case R.id.rb_chance_hot:
+			controller.getContext().addBusinessData("chance_search","");
 			controller.getContext().addBusinessData("chance_order", "hot");
 			getData();
 			break;
 		case R.id.rb_chance_new:
+			controller.getContext().addBusinessData("chance_search","");
 			controller.getContext().addBusinessData("chance_order", "new");
 			getData();
 			break;
@@ -137,8 +147,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 			break;
 		}
 	}
-	
-	
+
 	/**
 	  * 方法描述：TODO
 	  * @author: wanghy
@@ -169,7 +178,33 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 			show();
 		}
 	};
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-10-21 上午11:17:11
+	  */
+	private boolean invaild() {
+		String message = main_top_find_message.getText().toString().trim();
+		if(TextUtils.isEmpty(message)){
+			ToastUtil.showToast(getActivity(), "查询内容 不能为空", ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			controller.getContext().addBusinessData("chance_search",message);
+		}
+		return true;
+	}
 	
+	
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-11-24 下午3:49:08
+	  */
+	private void query() {
+		getData();
+	}
 
 	/**
 	  * 方法描述：TODO
@@ -177,13 +212,13 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	  * @time: 2014-11-8 下午3:39:22
 	  */
 	private void show() {
-		ProgressDialogUtil.showProgressDialog(getActivity(), "稍等…", false);
+		ProgressDialogUtil.showProgressDialog(getActivity(), "正在通信中…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				controller.chanceDetails();
 				ProgressDialogUtil.closeProgressDialog();
-			}
+			}  
 		}).start();
 	}
 	

@@ -1,13 +1,22 @@
 package com.timetalent.client.ui.adapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.Nearpackage;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.common.util.PictureUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -31,9 +40,35 @@ public class NearBaseAdapter extends BaseAdapter {
 
 	private LayoutInflater mInflater;
 	Nearlist data = null;
+	List<Drawable> icons = new ArrayList<Drawable>();
 	public NearBaseAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
 		data = (Nearlist) AppController.getController(((Activity)context)).getContext().getBusinessData("NearData");
+		if(icons == null){
+			icons = new ArrayList<Drawable>();
+		}else{
+			icons.clear();
+		}
+		for (int i = 0; i < data.getLists().size(); i++) {
+			icons.add(new Background1());
+		}
+		new Thread(){
+			public void run() {
+				for (int i = 0; i < data.getLists().size(); i++) {
+					BitmapDrawable bd = (BitmapDrawable) PictureUtil.getImage(data.getLists().get(i).getAvatar(), data.getLists().get(i).getId(), "head");
+					if(bd == null){
+						continue;
+					}
+					Bitmap temp = bd.getBitmap();
+					if(temp == null){
+						continue;
+					}
+					Bitmap bm = PictureUtil.getRoundedCornerBitmap(temp);
+					icons.set(i, new BitmapDrawable(bm));
+					handler.sendEmptyMessage(1);
+				}
+			}
+		}.start();
 	}
 	@Override
 	public int getCount() {
@@ -89,7 +124,9 @@ public class NearBaseAdapter extends BaseAdapter {
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
-		ImageLoader.getInstance().displayImage(data.getLists().get(position).getAvatar(), holder.imghead);
+//		ImageLoader.getInstance().displayImage(data.getLists().get(position).getAvatar(), holder.imghead);
+		holder.imghead.setImageDrawable(icons.get(position));
+		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.height = holder.imghead.getWidth();
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
@@ -108,4 +145,20 @@ public class NearBaseAdapter extends BaseAdapter {
 	    public TextView tvzhiye;
 	    public TextView tvmiaoshu;
 	    }
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				
+				NearBaseAdapter.this.notifyDataSetChanged();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+		}
+	};
 }

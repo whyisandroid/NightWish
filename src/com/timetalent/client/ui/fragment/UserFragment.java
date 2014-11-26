@@ -1,7 +1,12 @@
 package com.timetalent.client.ui.fragment;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +23,7 @@ import com.timetalent.client.R;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppManager;
+import com.timetalent.client.ui.adapter.NearBaseAdapter;
 import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.dialog.ExitIOSStyleListDialog;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
@@ -158,7 +164,14 @@ public class UserFragment extends Fragment implements OnClickListener {
 		default:
 			break;
 		}
-		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
+		new Thread(){
+			public void run() {
+				Message msg = new Message();
+				msg.what = 1;
+				msg.obj = PictureUtil.getImage(user.getAvatar(), user.getId(), "head");
+				handler.sendMessage(msg);
+			};
+		}.start();
 		 tvnickname.setText(user.getNickname());
 		 tvmoney.setText(user.getMoney());
 		 tvcounthaoyou.setText(user.getNickname());
@@ -295,7 +308,12 @@ case 2:
 			DialogUtil.showMessage(getActivity(), "谢谢您的反馈!");
 			break;
 		case R.id.lqinglitupian:
-			DialogUtil.showMessage(getActivity(), "本地缓存图片已清除,清理缓存200M");
+			long size = PictureUtil.deleteFile();
+			if(size == -1024){
+				DialogUtil.showMessage(getActivity(), "本地缓存图片清除失败，请检查SD卡");
+				break;
+			}
+			DialogUtil.showMessage(getActivity(), "本地缓存图片已清除,清理缓存"+size/1024+"K");
 			break;
 		case R.id.lexit:
 			final ExitIOSStyleListDialog dialog = new ExitIOSStyleListDialog(mContext, ExitIOSStyleListDialog.DIALOG_TWO);
@@ -326,4 +344,22 @@ case 2:
 		}
 	}
 
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				BitmapDrawable img = (BitmapDrawable) msg.obj;
+				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				imghead.setImageBitmap(bm);
+//				imghead.setPadding(10, 10, 10, 10);
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+		}
+	};
 }

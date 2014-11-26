@@ -13,6 +13,8 @@ import android.os.Environment;
  ***************************************** 
  */
 public class Config {
+	public static String DOWNLOADPATH = "/sdcard/timetalent/";
+	public static String IMAGEPATH = "/sdcard/timetalent/image/";
 
 	/** 是否调试. */
 	public final static boolean DEBUG = true;
@@ -70,8 +72,7 @@ public class Config {
 	public final static String HTTP_MY_PHOTO_DEL = MY_SERVICE+ "/User/photo_del";//更新坐标
 	public final static String HTTP_MY_AVATAR_UPDATE = MY_SERVICE+ "/User/avatar_upload";//更新坐标
 	public final static String HTTP_MY_AVATAR_DEL = MY_SERVICE+ "/User/avatar_del";//更新坐标
-	
-	
+
 	public final static String HTTP_MY_ZONE_FRIEND = MY_SERVICE+ "/Zone/friend"; // 获取我的好友列表Zone/friend
 	public final static String HTTP_MY_ZONE_FOLLOWING = MY_SERVICE+ "/Zone/following"; // 获取我的关注列表Zone/following
 	public final static String HTTP_MY_ZONE_FOLLOWED = MY_SERVICE+ "/Zone/followed"; // 获取关注我的人列表,即粉丝Zone/followed

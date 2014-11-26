@@ -5,10 +5,12 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 
 import android.app.Activity;
@@ -19,6 +21,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -285,5 +289,109 @@ public class PictureUtil {
 	    .displayer(new CircleBitmapDisplayer())
 	    .build();
 		return options;
+	}
+	/**
+	 * 获取网络图片
+	 * http://www.adarrive.com/Public/images/slide-6.png
+	 */
+	public static Drawable getImage(String Url, String userid, String pictureid) {
+		if (Url == null || Url.equals("")) {
+			return new Background1();
+		}
+		Drawable drawable = null;
+		// //////////此处判断目录中是否存在此图片文件，存在的话直接用这个图片，不存在的话下载图片并存到目录中///////////////
+		if (android.os.Environment.getExternalStorageState().equals(
+				android.os.Environment.MEDIA_MOUNTED)) {
+			int count = Url.split("\\.").length;
+			if (count > 0) {
+				// /处理文件
+				File imagefile = new File(Config.IMAGEPATH + userid + "_" + pictureid
+						+ "." + Url.split("\\.")[count - 1]);
+				if (imagefile.exists()) {
+					drawable = Drawable.createFromPath(Config.IMAGEPATH + userid + "_"
+							+ pictureid + "." + Url.split("\\.")[count - 1]);
+					return drawable;
+				}
+			}
+
+		}
+		// /////////////////////////////
+
+		try {
+			drawable = Drawable.createFromStream(new URL(Url).openStream(),
+					"image.png");
+			if(drawable == null){
+
+				return new Background1();
+			
+			}
+			// //////存图片到sd卡/////////////
+			BitmapDrawable bd = (BitmapDrawable) drawable;
+			Bitmap bm = bd.getBitmap();
+			if(bm == null){
+
+
+				return new Background1();
+			
+			
+			}
+			int count = Url.split("\\.").length;
+			if (count > 0) {
+				File file = new File(Config.IMAGEPATH + userid + "_" + pictureid + "."
+						+ Url.split("\\.")[count - 1]);
+				boolean sdCardExist = android.os.Environment
+						.getExternalStorageState().equals(
+								android.os.Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
+				if (sdCardExist) {
+					File imgpath = new File(Config.DOWNLOADPATH);
+					File ad = new File(Config.IMAGEPATH);
+					// 如果文件夹不存在
+					if (imgpath != null && !imgpath.exists()) {
+						// 按照指定的路径创建文件夹
+						imgpath.mkdir();
+						// 如果文件夹不存在
+					} else if (ad != null && !ad.exists()) {
+						// 按照指定的路径创建文件夹
+						ad.mkdir();
+					}
+					// 检查图片是否存在
+					if (file != null && !file.exists()) {
+						file.createNewFile();
+					}
+				}
+				BufferedOutputStream bos = new BufferedOutputStream(
+						new FileOutputStream(file));
+				if (Url.split("\\.")[count - 1].equals("png")
+						|| Url.split("\\.")[count - 1].equals("PNG")) {
+					bm.compress(Bitmap.CompressFormat.PNG, 100, bos);
+				} else {
+					bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+				}
+				bos.flush();
+				bos.close();
+			}
+			return drawable;
+		} catch (IOException e) {		
+		return drawable;
+	}
+	}
+	/**
+	 * 删除SD卡或者手机的缓存图片和目录
+	 */
+	public static long deleteFile() {
+		long size = 0;
+		File dirFile = new File(Config.IMAGEPATH);
+		if(! dirFile.exists()){
+			return -1024;
+		}
+		if (dirFile.isDirectory()) {
+			String[] children = dirFile.list();
+			for (int i = 0; i < children.length; i++) {
+				File temp = new File(dirFile, children[i]);
+				size+= temp.length();
+				temp.delete();
+			}
+		}
+		return size;
 	}
 }

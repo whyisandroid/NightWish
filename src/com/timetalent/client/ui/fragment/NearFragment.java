@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -25,6 +27,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.database.ContentEntry;
+import com.timetalent.client.database.SQLiteHelper;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Nearlist;
 import com.timetalent.client.entities.json.NearResp;
@@ -68,14 +72,14 @@ public class NearFragment extends Fragment implements OnClickListener {
 	public String search = "";
 	public String lat = "116.287128";
 	public String lng = "39.830486";
-	public String sex = "2";
+	public String sex = "";
 	public String age_min = "0";
 	public String age_max = "80";
 	public String type = "star";
-	public String major = "singer";
+	public String major = "";
 	LoginData user;
 	int r = 0;
-	boolean showupdate = true;
+	boolean showupdate = false;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -150,11 +154,51 @@ public class NearFragment extends Fragment implements OnClickListener {
 		});
 		btshaixuan.setOnClickListener(this);
 		btsearch.setOnClickListener(this);
+		
+		SQLiteHelper sqlHelper = new SQLiteHelper(
+				getActivity());
+		Cursor cursor = null;
+		cursor = sqlHelper.query(ContentEntry.TABLE_NAME,
+				ContentEntry.PROJECTION, ContentEntry.USER_ID+" = "+"\""+user.getId()+"\"", null, null);
+		if (cursor != null) {
+			if(cursor.getCount() == 0){
+				ContentValues cv = new ContentValues();
+				cv.put(ContentEntry.USER_ID,
+						user.getId());
+				cv.put(ContentEntry.SESSION_ID,
+						controller.getContext().getStringData("_session_id"));
+				cv.put(ContentEntry.UPDATE_STATE,
+						"1");
+				sqlHelper.insert(ContentEntry.TABLE_NAME, cv);
+				showupdate = true;
+			}else{
+				for (int i = 0; i < cursor.getCount(); i++) {
+					cursor.moveToPosition(i);
+					String state = cursor.getString(cursor
+							.getColumnIndex(ContentEntry.UPDATE_STATE));
+					if(state.equals("1")){
+						showupdate = true;
+					}
+				}
+			}
+		}
 		if(showupdate){
 			if(!user.getUserinfo_percent().equals("100%")){
 				showMessageTwo(mContext, "现在去完善个人信息", "完成");
 				showupdate = false;
 			}
+			ContentValues cv = new ContentValues();
+			cv.put(ContentEntry.UPDATE_STATE, "0");
+			String[] whereArgs = { String.valueOf(user.getId()) };
+			sqlHelper.update(ContentEntry.TABLE_NAME, ContentEntry.USER_ID  + "=?", whereArgs, cv);
+		}
+		if (cursor != null) {
+			cursor.close();
+			cursor = null;
+		}
+		if (sqlHelper != null) {
+			sqlHelper.close();
+			sqlHelper = null;
 		}
 	}
 

@@ -49,13 +49,21 @@ public class NearBaseAdapter extends BaseAdapter {
 		}else{
 			icons.clear();
 		}
+		if(data == null || data.getLists() == null){
+			return;
+		}
 		for (int i = 0; i < data.getLists().size(); i++) {
 			icons.add(new Background1());
 		}
 		new Thread(){
 			public void run() {
 				for (int i = 0; i < data.getLists().size(); i++) {
-					BitmapDrawable bd = (BitmapDrawable) PictureUtil.getImage(data.getLists().get(i).getAvatar(), data.getLists().get(i).getId(), "head");
+					Drawable bd1 = PictureUtil.getImage(data.getLists().get(i).getAvatar(), data.getLists().get(i).getId(), "head");
+					BitmapDrawable bd = null;
+					if(bd1 instanceof BitmapDrawable){
+						bd = (BitmapDrawable) bd1;
+					}
+					
 					if(bd == null){
 						continue;
 					}
@@ -130,9 +138,20 @@ public class NearBaseAdapter extends BaseAdapter {
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.height = holder.imghead.getWidth();
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
-		holder.tvname.setText(data.getLists().get(position).getNickname());
-		holder.tvage.setText(data.getLists().get(position).getBirthday());
+		holder.tvname.setText(""+data.getLists().get(position).getNickname());
+		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
 		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		if(data.getLists().get(position).getLoyal_pass().equals("0")){
+			holder.imgonline.setImageResource(R.drawable.f3_13);
+		}else{
+			holder.imgonline.setImageResource(R.drawable.f3_34);
+		}
+		if(data.getLists().get(position).getSex().equals("0")){
+			holder.imgsex.setImageResource(R.drawable.f3_15);
+		}else{
+			holder.imgsex.setImageResource(R.drawable.f3_31);
+		}
+		holder.tvmiaoshu.setText(""+data.getLists().get(position).getContent());
 		return convertView;
 	}
 	class ViewHolder{

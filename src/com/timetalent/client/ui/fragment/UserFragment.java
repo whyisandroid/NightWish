@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppManager;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
@@ -117,6 +118,13 @@ public class UserFragment extends Fragment implements OnClickListener {
 		}
 		
 		mContext = getActivity();
+		new Thread(){
+			public void run() {
+				controller.getContext().addBusinessData("near.user_id", user.getId());
+				controller.userinfo();
+				handler.sendEmptyMessage(2);
+			};
+		}.start();
 		findView();
 		initView();
 		return view;
@@ -172,12 +180,6 @@ public class UserFragment extends Fragment implements OnClickListener {
 				handler.sendMessage(msg);
 			};
 		}.start();
-		 tvnickname.setText(user.getNickname());
-		 tvmoney.setText(user.getMoney());
-		 tvcounthaoyou.setText(user.getNickname());
-		 tvcountpushuser.setText(user.getNickname());
-		 tvcountguanzhu.setText(user.getNickname());
-		 tvcountfans.setText(user.getNickname());
 	}
 
 	/**
@@ -356,6 +358,13 @@ case 2:
 //				imghead.setPadding(10, 10, 10, 10);
 				break;
 			case 2:
+				Userinfopackage info = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				tvnickname.setText(info.getNickname());
+				 tvmoney.setText(user.getMoney());
+				 tvcounthaoyou.setText(info.getCount().getFriend()+"");
+				 tvcountpushuser.setText(info.getCount().getFeed()+"");
+				 tvcountguanzhu.setText(info.getCount().getFollowing()+"");
+				 tvcountfans.setText(info.getCount().getFollowed()+"");
 				break;
 			case 3:
 				break;

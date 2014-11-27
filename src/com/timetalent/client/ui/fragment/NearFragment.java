@@ -299,7 +299,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					sex = "0";
+					sex = "";
 				}
 			});
 			rd2.setOnClickListener(new OnClickListener() {
@@ -384,7 +384,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
-					type = "all";
+					type = "";
 				}
 			});
 			rd13.setOnClickListener(new OnClickListener() {

@@ -106,6 +106,7 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
 		case R.id.main_top_right:
 			new Thread(){
 				public void run() {
+					setvalue();
 					controller.search();
 					handler.sendEmptyMessage(1);
 				
@@ -127,7 +128,6 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
             case 1:
             	list.setVisibility(list.VISIBLE);
             	adapter = new SearchBaseAdapter(SearchActivity.this);
-            	setvalue();
         		list.setAdapter(adapter);
             	adapter.notifyDataSetChanged();
                 break;

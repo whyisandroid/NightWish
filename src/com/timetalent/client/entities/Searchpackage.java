@@ -32,6 +32,28 @@ public class Searchpackage {
 	String update_time = "";
 	String sort = "";
 	String status = "";
+	String loyal_pass = "";
+	String age = "";
+	String content = "";
+	
+	public String getLoyal_pass() {
+		return loyal_pass;
+	}
+	public void setLoyal_pass(String loyal_pass) {
+		this.loyal_pass = loyal_pass;
+	}
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getId() {
 		return id;
 	}

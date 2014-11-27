@@ -997,7 +997,7 @@ public class AppServiceImpl implements AppService {
 		Request<BaseinfoResp> request = new Request<BaseinfoResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-
+		
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_BASEINFO);
 		request.setR_calzz(BaseinfoResp.class);

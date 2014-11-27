@@ -27,7 +27,14 @@ public class Nearpackage {
 	String lng = "";
 	String distance = "";
 	String age = "";
+	String content = "";
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public String getAvatar() {
 		return avatar;
 	}

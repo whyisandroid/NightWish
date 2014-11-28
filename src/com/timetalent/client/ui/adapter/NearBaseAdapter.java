@@ -141,7 +141,7 @@ public class NearBaseAdapter extends BaseAdapter {
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
 		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
-		if(data.getLists().get(position).getLoyal_pass().equals("0")){
+		if(data.getLists().get(position).getLoyal_pass().equals("1")){
 			holder.imgonline.setImageResource(R.drawable.f3_13);
 		}else{
 			holder.imgonline.setImageResource(R.drawable.f3_34);

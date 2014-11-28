@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
@@ -81,6 +83,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private LinearLayout lkefu;
 	private LinearLayout lxieyi;
 	ImageView imghead;
+	ImageView imgloyal_pass;
 	TextView tvnickname;
 	TextView tvmoney;
 	TextView tvcounthaoyou;
@@ -191,6 +194,7 @@ public class UserFragment extends Fragment implements OnClickListener {
 	private void findView() {
 		main_top_left = (ImageButton)view.findViewById(R.id.main_top_left);
 		imghead = (ImageView) view.findViewById(R.id.imghead);
+		imgloyal_pass = (ImageView) view.findViewById(R.id.imgloyal_pass);
 		lmydongtai = (LinearLayout) view.findViewById(R.id.lmydongtai);
 		lmyhaoyou = (LinearLayout) view.findViewById(R.id.lmyhaoyou);
 		lmytuijian = (LinearLayout) view.findViewById(R.id.lmytuijian);
@@ -355,16 +359,24 @@ case 2:
 				BitmapDrawable img = (BitmapDrawable) msg.obj;
 				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
 				imghead.setImageBitmap(bm);
-//				imghead.setPadding(10, 10, 10, 10);
+				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
+				pa.height = imghead.getWidth();
+//				imghead.setPadding(0, 20, 0, 20);
 				break;
 			case 2:
 				Userinfopackage info = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
-				tvnickname.setText(info.getNickname());
-				 tvmoney.setText(user.getMoney());
+				if(info.getLoyal_pass().equals("1")){
+					imgloyal_pass.setImageResource(R.drawable.f3_13);
+				}else{
+					imgloyal_pass.setImageResource(R.drawable.f3_34);
+				}
+				tvnickname.setText(info.getNickname()+"");
+				 tvmoney.setText(user.getMoney()+"");
 				 tvcounthaoyou.setText(info.getCount().getFriend()+"");
 				 tvcountpushuser.setText(info.getCount().getFeed()+"");
 				 tvcountguanzhu.setText(info.getCount().getFollowing()+"");
 				 tvcountfans.setText(info.getCount().getFollowed()+"");
+				 
 				break;
 			case 3:
 				break;

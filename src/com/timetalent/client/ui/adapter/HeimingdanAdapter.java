@@ -1,9 +1,15 @@
 package com.timetalent.client.ui.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -11,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Blacklist;
@@ -18,9 +25,11 @@ import com.timetalent.client.entities.BlankName;
 import com.timetalent.client.entities.Followedlist;
 import com.timetalent.client.entities.MessageItem;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.view.ListViewCompat;
 import com.timetalent.client.ui.view.SlideView;
 import com.timetalent.client.ui.view.SlideView.OnSlideListener;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ToastUtil;
 
 /******************************************
@@ -37,12 +46,46 @@ public class HeimingdanAdapter extends BaseAdapter {
 	private List<BlankName> mBlankNameItems;
 	private ListViewCompat mListview;
 	Blacklist data = null;
+	List<Drawable> icons = new ArrayList<Drawable>();
 	public HeimingdanAdapter(Context context,List<BlankName> mBlankNameItems,ListViewCompat mListview) {
 		this.mInflater = LayoutInflater.from(context);
 		this.mContext = context;
 		this.mBlankNameItems = mBlankNameItems;
 		this.mListview = mListview;
 		data = (Blacklist) AppController.getController(((Activity)context)).getContext().getBusinessData("BlackData");
+		if(icons == null){
+			icons = new ArrayList<Drawable>();
+		}else{
+			icons.clear();
+		}
+		if(data == null || data.getLists() == null){
+			return;
+		}
+		for (int i = 0; i < data.getLists().size(); i++) {
+			icons.add(new Background1());
+		}
+		new Thread(){
+			public void run() {
+				for (int i = 0; i < data.getLists().size(); i++) {
+					Drawable bd1 = PictureUtil.getImage(data.getLists().get(i).getAvatar(), data.getLists().get(i).getId(), "head");
+					BitmapDrawable bd = null;
+					if(bd1 instanceof BitmapDrawable){
+						bd = (BitmapDrawable) bd1;
+					}
+					
+					if(bd == null){
+						continue;
+					}
+					Bitmap temp = bd.getBitmap();
+					if(temp == null){
+						continue;
+					}
+					Bitmap bm = PictureUtil.getRoundedCornerBitmap(temp);
+					icons.set(i, new BitmapDrawable(bm));
+					handler.sendEmptyMessage(1);
+				}
+			}
+		}.start();
 	}
 
 	@Override
@@ -105,11 +148,25 @@ public class HeimingdanAdapter extends BaseAdapter {
 			holder.deleteHolder.setOnClickListener(deleteItemListener);
 		}
 		
-		holder.tvname.setText(data.getLists().get(position).getNickname());
-//		holder.tvonlinetime.setText(data.getLists().get(position).getUpdate_time());
-		holder.tvage.setText(data.getLists().get(position).getBirthday());
-		holder.tvzhiye.setText(data.getLists().get(position).getMajor());
-//		holder.tvmiaoshu.setText(data.getLists().get(position).getUpdate_time());
+		holder.imghead.setImageDrawable(icons.get(position));
+		holder.imghead.setPadding(10, 10, 10, 10);
+		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
+		pa.height = holder.imghead.getWidth();
+//		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
+		holder.tvname.setText(""+data.getLists().get(position).getNickname());
+		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		if(data.getLists().get(position).getLoyal_pass().equals("1")){
+			holder.imgonline.setImageResource(R.drawable.f3_13);
+		}else{
+			holder.imgonline.setImageResource(R.drawable.f3_34);
+		}
+		if(data.getLists().get(position).getSex().equals("0")){
+			holder.imgsex.setImageResource(R.drawable.f3_15);
+		}else{
+			holder.imgsex.setImageResource(R.drawable.f3_31);
+		}
+		holder.tvmiaoshu.setText(""+data.getLists().get(position).getContent());
 		
 		
 		return slideView;
@@ -178,5 +235,20 @@ public class HeimingdanAdapter extends BaseAdapter {
 			deleteHolder = (ViewGroup) convertView.findViewById(R.id.holder);
 		}
 	}
-
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				
+				HeimingdanAdapter.this.notifyDataSetChanged();
+				break;
+			case 2:
+				break;
+			case 3:
+				break;
+			}
+		}
+	};
 }

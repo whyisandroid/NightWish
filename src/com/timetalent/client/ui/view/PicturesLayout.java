@@ -18,13 +18,18 @@ import com.timetalent.common.util.PictureUtil;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
+import android.view.ViewGroup.LayoutParams;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -44,6 +49,8 @@ public class PicturesLayout extends LinearLayout implements
 	private LayoutInflater mInflater;
 	Context mcontext;
 	int index = 0;
+	public int screenw = 0;
+	public float density = 1.0f;
 	List<MyPhotopackage> list = null;
 	List<Drawable> pictures = null;
 	private GestureDetector mGestureDetector;
@@ -59,6 +66,9 @@ public class PicturesLayout extends LinearLayout implements
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
 		mcontext = context;
+		DisplayMetrics dm2 = getResources().getDisplayMetrics();
+		screenw = dm2.widthPixels;
+		density = dm2.density;
 		findView();
 	}
 
@@ -78,6 +88,9 @@ public class PicturesLayout extends LinearLayout implements
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
 		mcontext = context;
+		DisplayMetrics dm2 = getResources().getDisplayMetrics();
+		screenw = dm2.widthPixels;
+		density = dm2.density;
 		findView();
 	}
 
@@ -95,25 +108,45 @@ public class PicturesLayout extends LinearLayout implements
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
 		mcontext = context;
+		DisplayMetrics dm2 = getResources().getDisplayMetrics();
+		screenw = dm2.widthPixels;
+		density = dm2.density;
 		findView();
 	}
 
 	private void findView() {
 		mGestureDetector = new GestureDetector(this);
-		vfpics = (ViewFlipper) findViewById(R.id.vfpics);
-		ltabs = (LinearLayout) findViewById(R.id.ltabs);
+//		vfpics = (ViewFlipper) this.findViewById(R.id.vfpics1);
+//		vfpics = (ViewFlipper) LayoutInflater.from(PicturesLayout.this.getContext()).inflate(
+//				R.layout.pictures_item, null);
+		vfpics = new ViewFlipper(this.mcontext);
+		if(vfpics == null){
+			Log.i("sssasas", "vf");
+		}
+//		ltabs = (LinearLayout) this.findViewById(R.id.ltabs1);
+		ltabs = new LinearLayout(mcontext);
+		this.setOrientation(this.VERTICAL);
+		this.addView(vfpics);
+		this.addView(ltabs);
 	}
 
-	private void initView() {
+	public void initView() {
 		new Thread() {
 			public void run() {
 				controller.myphoto();
 				list = (List<MyPhotopackage>) controller.getContext()
 						.getBusinessData("MyphotoData");
 				pictures = new ArrayList<Drawable>();
-				for (MyPhotopackage p : list) {
-					pictures.add(PictureUtil.getImage(p.getUrl(),
-							p.getUser_id(), p.getId()));
+				if(list!= null){
+					for (MyPhotopackage p : list) {
+						Drawable db = PictureUtil.getImage(p.getUrl(),
+								p.getUser_id(), p.getId());
+						if(db instanceof BitmapDrawable){
+							pictures.add(new BitmapDrawable( PictureUtil.toRoundCorner(((BitmapDrawable) db).getBitmap(), (int)(4*density))));
+						}else{
+							pictures.add(db);
+						}
+					}	
 				}
 				handler.sendEmptyMessage(1);
 			};
@@ -129,33 +162,26 @@ public class PicturesLayout extends LinearLayout implements
 				if (list != null) {
 					int count = list.size();
 					for (int i = 0; i < count / 8 + 1; i++) {
-						LinearLayout child = new LinearLayout(
-								PicturesLayout.this.getContext());
-						LayoutInflater.from(child.getContext()).inflate(
+//						LinearLayout child = new LinearLayout(
+//								PicturesLayout.this.getContext());
+						LinearLayout child = (LinearLayout) LayoutInflater.from(PicturesLayout.this.getContext()).inflate(
 								R.layout.pictures_item, null);
 						ImageView imgpic1 = (ImageView) child
 								.findViewById(R.id.img1);
 						ImageView imgpic2 = (ImageView) child
 								.findViewById(R.id.img2);
-						;
 						ImageView imgpic3 = (ImageView) child
 								.findViewById(R.id.img3);
-						;
 						ImageView imgpic4 = (ImageView) child
 								.findViewById(R.id.img4);
-						;
 						ImageView imgpic5 = (ImageView) child
 								.findViewById(R.id.img5);
-						;
 						ImageView imgpic6 = (ImageView) child
 								.findViewById(R.id.img6);
-						;
 						ImageView imgpic7 = (ImageView) child
 								.findViewById(R.id.img7);
-						;
 						ImageView imgpic8 = (ImageView) child
 								.findViewById(R.id.img8);
-						;
 						imgpic1.setImageDrawable(new Background1());
 						imgpic2.setImageDrawable(new Background1());
 						imgpic3.setImageDrawable(new Background1());
@@ -164,6 +190,30 @@ public class PicturesLayout extends LinearLayout implements
 						imgpic6.setImageDrawable(new Background1());
 						imgpic7.setImageDrawable(new Background1());
 						imgpic8.setImageDrawable(new Background1());
+						LayoutParams  p1 = (LayoutParams) imgpic1.getLayoutParams();
+						p1.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p2 = (LayoutParams) imgpic2.getLayoutParams();
+						p2.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p3 = (LayoutParams) imgpic3.getLayoutParams();
+						p3.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p4 = (LayoutParams) imgpic4.getLayoutParams();
+						p4.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p5 = (LayoutParams) imgpic5.getLayoutParams();
+						p5.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p6 = (LayoutParams) imgpic6.getLayoutParams();
+						p6.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p7 = (LayoutParams) imgpic7.getLayoutParams();
+						p7.height = (int)(screenw/4-8*density);
+						
+						LayoutParams  p8 = (LayoutParams) imgpic8.getLayoutParams();
+						p8.height = (int)(screenw/4-8*density);
+						imgpic1.setLayoutParams(p1);
 						imgpic1.setOnClickListener(new OnClickListener() {
 							@Override
 							public void onClick(View v) {
@@ -224,43 +274,62 @@ public class PicturesLayout extends LinearLayout implements
 							switch (j) {
 							case 0:
 								if(j*i < pictures.size()){
-									imgpic1.setImageDrawable(pictures.get(i*8+j));
+									if(i*8+j < pictures.size()){
+										imgpic1.setImageDrawable(pictures.get(i*8+j));
+									}else{
+										imgpic1.setImageDrawable(new Background1());
+									}
+									
 								}
 								break;
 							case 1:
-								if(j*i < pictures.size()){
-								imgpic2.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic2.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic2.setImageDrawable(new Background1());
+								}}
 								break;
 							case 2:
-								if(j*i < pictures.size()){
-								imgpic3.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic3.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic3.setImageDrawable(new Background1());
+								}}
 								break;
 							case 3:
-								if(j*i < pictures.size()){
-								imgpic4.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic4.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic4.setImageDrawable(new Background1());
+								}}
 								break;
 							case 4:
-								if(j*i < pictures.size()){
-								imgpic5.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic5.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic5.setImageDrawable(new Background1());
+								}}
 								break;
 							case 5:
-								if(j*i < pictures.size()){
-								imgpic6.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic6.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic6.setImageDrawable(new Background1());
+								}}
 								break;
 							case 6:
-								if(j*i < pictures.size()){
-								imgpic7.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic7.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic7.setImageDrawable(new Background1());
+								}}
 								break;
 							case 7:
-								if(j*i < pictures.size()){
-								imgpic8.setImageDrawable(pictures.get(i*8+j));
-								}
+								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic8.setImageDrawable(pictures.get(i*8+j));
+								}else{
+									imgpic8.setImageDrawable(new Background1());
+								}}
 								break;
 							default:
 								break;
@@ -274,7 +343,7 @@ public class PicturesLayout extends LinearLayout implements
 							tab.setImageResource(R.drawable.f10_24);
 						}
 
-						ltabs.addView(child);
+						ltabs.addView(tab);
 					}
 				}
 				break;
@@ -303,6 +372,7 @@ public class PicturesLayout extends LinearLayout implements
 	@Override
 	public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX,
 			float velocityY) {
+		Log.i("huadong", "fly");
 		// TODO Auto-generated method stub
 		if (e1.getX() > e2.getX() && Math.abs(e1.getY()) < 450) {// 向左滑动
 			vfpics.setInAnimation(mcontext, R.anim.push_left_in);
@@ -420,8 +490,8 @@ public class PicturesLayout extends LinearLayout implements
 	}
 
 	@Override
-	public boolean dispatchTouchEvent(MotionEvent ev) {
-		super.dispatchTouchEvent(ev);
+	public boolean onTouchEvent(MotionEvent ev) {
+		super.onTouchEvent(ev);
 		return mGestureDetector.onTouchEvent(ev);
 	}
 }

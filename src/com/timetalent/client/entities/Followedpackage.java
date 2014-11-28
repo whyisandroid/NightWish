@@ -32,6 +32,14 @@ public class Followedpackage {
 	String update_time = "";
 	String sort = "";
 	String status = "";
+String age = "";
+	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
 	public String getId() {
 		return id;
 	}

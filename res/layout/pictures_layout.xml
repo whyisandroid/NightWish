@@ -8,19 +8,13 @@
                 android:orientation="vertical" >
 
                 <ViewFlipper
-                    android:id="@+id/vfpics"
+                    android:id="@+id/vfpics1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
-
-                    <include layout="@layout/pictures_item" />
-
-                    <include layout="@layout/pictures_item" />
-
-                    <include layout="@layout/pictures_item" />
                 </ViewFlipper>
 
                 <LinearLayout
-                    android:id="@+id/ltabs"
+                    android:id="@+id/ltabs1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="3dp"

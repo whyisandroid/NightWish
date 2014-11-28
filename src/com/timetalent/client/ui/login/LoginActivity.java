@@ -64,7 +64,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void initView() {
 		et_login_password.setText("123456");
-	    et_login_username.setText("18210145294");
+	    et_login_username.setText("18649083481");
 		((TextView)findViewById(R.id.main_top_title)).setText("用户登录");
 		main_top_right.setVisibility(View.VISIBLE);
 		main_top_right.setText("");

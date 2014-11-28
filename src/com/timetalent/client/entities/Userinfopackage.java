@@ -1,5 +1,7 @@
 package com.timetalent.client.entities;
 
+import java.util.List;
+
 
 /******************************************
  * 类描述： TODO
@@ -22,7 +24,15 @@ public class Userinfopackage {
 	String age = "";
 	String id = "";
 	Userinfomorepackage more = null;
+	 List<Photo> photos = null;
 	Countpackage count = null;
+	
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
 	public String getUsername() {
 		return username;
 	}

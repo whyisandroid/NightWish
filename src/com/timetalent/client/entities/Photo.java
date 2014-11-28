@@ -17,8 +17,25 @@ public class Photo {
 	private String	extension; // "jpg",
 	private String	add_time; // "1416135084",
 	private String	url; // "http://124.193.223.166//xingtan/Uploads/feed/201411/546881ac06427.jpg"
+	private String sort;
+	private String status;
 	
-	
+	public String getSort() {
+		return sort;
+	}
+
+	public void setSort(String sort) {
+		this.sort = sort;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	/**
 	 * @param url : set the property url.
 	 */

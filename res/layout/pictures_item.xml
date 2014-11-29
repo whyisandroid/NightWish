@@ -18,7 +18,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="8dp" >
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
             android:layout_marginRight="8dp"
             android:layout_marginTop="4dp" >
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img5"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -78,7 +78,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img7"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/f10_03" />
 
-            <ImageView
+            <com.timetalent.client.ui.view.PhotoImageView
                 android:id="@+id/img8"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -10,6 +10,7 @@ import android.content.Context;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
+import android.util.Log;
 
 import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
@@ -1294,6 +1295,8 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		Log.i("my.do", (String)context.getBusinessData("my.do"));
+		Log.i("my.target_id", (String)context.getBusinessData("my.target_id"));
 		nameValuePairs.add(new BasicNameValuePair("do", (String)context.getBusinessData("my.do")));
 		nameValuePairs.add(new BasicNameValuePair("target_id", (String)context.getBusinessData("my.target_id")));
 		
@@ -1302,6 +1305,7 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

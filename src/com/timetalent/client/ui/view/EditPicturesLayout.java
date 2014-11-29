@@ -10,10 +10,13 @@ import com.timetalent.client.entities.MyPhotopackage;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.fragment.util.Background3;
 import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.PictureActivity;
+import com.timetalent.client.ui.user.FansziliaobianjiActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -30,18 +33,21 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.OnGestureListener;
 import android.view.Gravity;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
+import android.widget.PopupWindow;
 import android.widget.Scroller;
 import android.widget.ViewFlipper;
 
-public class PicturesLayout extends LinearLayout implements
+public class EditPicturesLayout extends LinearLayout implements
 		GestureDetector.OnDoubleTapListener,
 		android.view.GestureDetector.OnGestureListener {
 	private AppController controller;
@@ -50,6 +56,7 @@ public class PicturesLayout extends LinearLayout implements
 	private LayoutInflater mInflater;
 	Context mcontext;
 	int index = 0;
+	int photoindex = 0;
 	public int screenw = 0;
 	public float density = 1.0f;
 	List<MyPhotopackage> list = null;
@@ -62,7 +69,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param
 	 * @param context
 	 */
-	public PicturesLayout(Context context) {
+	public EditPicturesLayout(Context context) {
 		super(context);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -84,7 +91,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param context
 	 * @param attrs
 	 */
-	public PicturesLayout(Context context, AttributeSet attrs) {
+	public EditPicturesLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -104,7 +111,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param defStyle
 	 */
 	@SuppressLint("NewApi")
-	public PicturesLayout(Context context, AttributeSet attrs, int defStyle) {
+	public EditPicturesLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -164,27 +171,28 @@ public class PicturesLayout extends LinearLayout implements
 			switch (msg.what) {
 			case 1:
 				if (list != null) {
+					vfpics.removeAllViews();
 					int count = list.size();
 					for (int i = 0; i < count / 8 + 1; i++) {
 //						LinearLayout child = new LinearLayout(
 //								PicturesLayout.this.getContext());
-						LinearLayout child = (LinearLayout) LayoutInflater.from(PicturesLayout.this.getContext()).inflate(
+						LinearLayout child = (LinearLayout) LayoutInflater.from(EditPicturesLayout.this.getContext()).inflate(
 								R.layout.pictures_item, null);
-						ImageView imgpic1 = (ImageView) child
+						PhotoImageView imgpic1 = (PhotoImageView) child
 								.findViewById(R.id.img1);
-						ImageView imgpic2 = (ImageView) child
+						PhotoImageView imgpic2 = (PhotoImageView) child
 								.findViewById(R.id.img2);
-						ImageView imgpic3 = (ImageView) child
+						PhotoImageView imgpic3 = (PhotoImageView) child
 								.findViewById(R.id.img3);
-						ImageView imgpic4 = (ImageView) child
+						PhotoImageView imgpic4 = (PhotoImageView) child
 								.findViewById(R.id.img4);
-						ImageView imgpic5 = (ImageView) child
+						PhotoImageView imgpic5 = (PhotoImageView) child
 								.findViewById(R.id.img5);
-						ImageView imgpic6 = (ImageView) child
+						PhotoImageView imgpic6 = (PhotoImageView) child
 								.findViewById(R.id.img6);
-						ImageView imgpic7 = (ImageView) child
+						PhotoImageView imgpic7 = (PhotoImageView) child
 								.findViewById(R.id.img7);
-						ImageView imgpic8 = (ImageView) child
+						PhotoImageView imgpic8 = (PhotoImageView) child
 								.findViewById(R.id.img8);
 						imgpic1.setImageDrawable(new Background1());
 						imgpic2.setImageDrawable(new Background1());
@@ -217,78 +225,66 @@ public class PicturesLayout extends LinearLayout implements
 						
 						LayoutParams  p8 = (LayoutParams) imgpic8.getLayoutParams();
 						p8.height = (int)(screenw/4-8*density);
-						imgpic1.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic2.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic3.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic4.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic5.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic6.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic7.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
-						imgpic8.setOnClickListener(new OnClickListener() {
-							@Override
-							public void onClick(View v) {
-								IntentUtil.intent(mcontext,
-										PictureActivity.class);
-							}
-						});
 						for (int j = 0; j < 8; j++) {
 							switch (j) {
 							case 0:
 								if(j*i < pictures.size()){
 									if(i*8+j < pictures.size()){
+										imgpic1.setindex(i*8+j);
 										imgpic1.setImageDrawable(pictures.get(i*8+j));
+										
+										imgpic1.setOnClickListener(new OnClickListener() {
+											@Override
+											public void onClick(View v) {
+												deletephoto((PhotoImageView) v);
+											}
+										});
+										
+									}else if(i*8+j == pictures.size()){
+										imgpic1.setImageResource(R.drawable.d11_03);
+										imgpic1.setOnClickListener(new OnClickListener() {
+											@Override
+											public void onClick(View v) {
+												StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											}
+										});
 									}else{
 										imgpic1.setImageDrawable(new Background1());
 										imgpic1.setOnClickListener(null);
 									}
 									
 								}
+								if(i == 0 && pictures.size() == 0){
+									imgpic1.setImageResource(R.drawable.d11_03);
+									imgpic1.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
+								}
 								break;
 							case 1:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic2.setindex(i*8+j);
 									imgpic2.setImageDrawable(pictures.get(i*8+j));
+									
+									imgpic2.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic2.setImageResource(R.drawable.d11_03);
+									imgpic2.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic2.setImageDrawable(new Background1());
 									imgpic2.setOnClickListener(null);
@@ -296,15 +292,52 @@ public class PicturesLayout extends LinearLayout implements
 								break;
 							case 2:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic3.setindex(i*8+j);
 									imgpic3.setImageDrawable(pictures.get(i*8+j));
+									
+									imgpic3.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic3.setImageResource(R.drawable.d11_03);
+									imgpic3.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic3.setImageDrawable(new Background1());
 									imgpic3.setOnClickListener(null);
+									
+									
 								}}
 								break;
 							case 3:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic4.setindex(i*8+j);
 									imgpic4.setImageDrawable(pictures.get(i*8+j));
+									
+									imgpic4.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic4.setImageResource(R.drawable.d11_03);
+									imgpic4.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
+									
 								}else{
 									imgpic4.setImageDrawable(new Background1());
 									imgpic4.setOnClickListener(null);
@@ -312,7 +345,24 @@ public class PicturesLayout extends LinearLayout implements
 								break;
 							case 4:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic5.setindex(i*8+j);
 									imgpic5.setImageDrawable(pictures.get(i*8+j));
+									
+									imgpic5.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic5.setImageResource(R.drawable.d11_03);
+									imgpic5.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic5.setImageDrawable(new Background1());
 									imgpic5.setOnClickListener(null);
@@ -320,7 +370,25 @@ public class PicturesLayout extends LinearLayout implements
 								break;
 							case 5:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic6.setindex(i*8+j);
 									imgpic6.setImageDrawable(pictures.get(i*8+j));
+									
+									imgpic6.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic6.setImageResource(R.drawable.d11_03);
+									imgpic6.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic6.setImageDrawable(new Background1());
 									imgpic6.setOnClickListener(null);
@@ -328,7 +396,24 @@ public class PicturesLayout extends LinearLayout implements
 								break;
 							case 6:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic7.setindex(i*8+j);
 									imgpic7.setImageDrawable(pictures.get(i*8+j));
+									imgpic7.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+									
+									
+								}else if(i*8+j == pictures.size()){
+									imgpic7.setImageResource(R.drawable.d11_03);
+									imgpic7.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic7.setImageDrawable(new Background1());
 									imgpic7.setOnClickListener(null);
@@ -336,7 +421,22 @@ public class PicturesLayout extends LinearLayout implements
 								break;
 							case 7:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
+									imgpic8.setindex(i*8+j);
 									imgpic8.setImageDrawable(pictures.get(i*8+j));
+									imgpic8.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											deletephoto((PhotoImageView) v);
+										}
+									});
+								}else if(i*8+j == pictures.size()){
+									imgpic8.setImageResource(R.drawable.d11_03);
+									imgpic8.setOnClickListener(new OnClickListener() {
+										@Override
+										public void onClick(View v) {
+											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+										}
+									});
 								}else{
 									imgpic8.setImageDrawable(new Background1());
 									imgpic8.setOnClickListener(null);
@@ -504,5 +604,28 @@ public class PicturesLayout extends LinearLayout implements
 	public boolean onTouchEvent(MotionEvent ev) {
 		super.onTouchEvent(ev);
 		return mGestureDetector.onTouchEvent(ev);
+	}
+	public void deletephoto(final PhotoImageView imgv){
+		LayoutInflater inflater = LayoutInflater.from(imgv.getContext());
+		View popview = inflater.inflate(R.layout.bianji_delete, null);
+		final PopupWindow pop = new PopupWindow(popview, LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, false);
+		pop.setBackgroundDrawable(new Background3());
+		pop.setOutsideTouchable(true);
+		pop.setFocusable(true);
+		Button btok = (Button) popview.findViewById(R.id.btok);
+		btok.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				list.remove(imgv.index);
+				pictures.remove(imgv.index);
+				((PhotoImageView) imgv).setImageResource(R.drawable.d11_03);
+				pop.dismiss();
+				handler.sendEmptyMessage(1);
+			}
+		});
+		int[] location = new int[2];  
+		imgv.getLocationOnScreen(location);
+		pop.showAtLocation(imgv, Gravity.NO_GRAVITY, location[0]-pop.getWidth()-19, location[1]-pop.getHeight()-19);
 	}
 }

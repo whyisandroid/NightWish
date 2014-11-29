@@ -20,6 +20,7 @@ import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -40,8 +41,10 @@ public class FansAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	Followedlist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
+	Context context;
 	public FansAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
+		this.context = context;
 		data = (Followedlist) AppController.getController(((Activity)context)).getContext().getBusinessData("FollowedData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -112,7 +115,7 @@ public class FansAdapter extends BaseAdapter {
 	 * @see android.widget.Adapter#getView(int, android.view.View, android.view.ViewGroup)
 	 */
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder = new ViewHolder();;
 		if (convertView == null) {
 			if(data!= null && data.getLists().size() > position){
@@ -144,6 +147,20 @@ public class FansAdapter extends BaseAdapter {
 			holder.imgsex.setImageResource(R.drawable.f3_31);
 		}
 		holder.tvmiaoshu.setText(""+data.getLists().get(position).getCity());
+		holder.bttianjia.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				new Thread(){
+					public void run() {
+						AppController.getController(((Activity)context)).getContext().addBusinessData("my.do", "follow");
+						AppController.getController(((Activity)context)).getContext().addBusinessData("my.target_id", ""+data.getLists().get(position).getId());
+						AppController.getController(((Activity)context)).mydo_social();
+					};
+				}.start();
+				
+			}
+		});
 		return convertView;
 	}
 	class ViewHolder{

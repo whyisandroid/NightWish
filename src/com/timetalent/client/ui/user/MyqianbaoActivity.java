@@ -1,16 +1,23 @@
 package com.timetalent.client.ui.user;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.LinearLayout.LayoutParams;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -18,6 +25,7 @@ import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -34,6 +42,7 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 	private ImageButton main_top_left;
 	private Button btchongzhi;
 	private Button bttixian;
+	ImageView imghead;
 	TextView tvnickname;
 	TextView tvmoney;
 	LoginData user;
@@ -58,6 +67,7 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 		main_top_right = (TextView) this.findViewById(R.id.main_top_right);
 		btchongzhi = (Button) findViewById(R.id.btchongzhi);
 		bttixian = (Button) findViewById(R.id.bttixian);
+		imghead = (ImageView) findViewById(R.id.imghead);
 		tvnickname = (TextView) findViewById(R.id.tvnickname);
 		tvmoney = (TextView) findViewById(R.id.tvmoney);
 	}
@@ -81,6 +91,14 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 		main_top_right.setOnClickListener(this);
 		btchongzhi.setOnClickListener(this);
 		bttixian.setOnClickListener(this);
+		new Thread(){
+			public void run() {
+				Message msg = new Message();
+				msg.what = 1;
+				msg.obj = PictureUtil.getImage(user.getAvatar(), user.getId(), "head");
+				handler.sendMessage(msg);
+			};
+		}.start();
 	}
 	
 	
@@ -103,5 +121,22 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
-
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				BitmapDrawable img = (BitmapDrawable) msg.obj;
+				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				imghead.setImageBitmap(bm);
+				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
+				pa.height = imghead.getWidth();
+//				imghead.setPadding(0, 20, 0, 20);
+				break;
+			case 3:
+				break;
+			}
+		}
+	};
 }

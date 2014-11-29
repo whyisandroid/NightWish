@@ -1,6 +1,8 @@
 package com.timetalent.client.ui.user;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -35,6 +37,7 @@ import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.view.PicturesLayout;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 
 
 /******************************************
@@ -64,6 +67,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 	private ImageButton main_top_left;
 	public int screenw = 0;
 	public float density = 1.0f;
+	ImageView imghead;
 	Baseinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +110,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 		 tvzhiye = (TextView)this.findViewById(R.id.tvzhiye);
 		 tvjiaxiang = (TextView)this.findViewById(R.id.tvjiaxiang);
 		 tvheight = (TextView)this.findViewById(R.id.tvheight);
+		 imghead = (ImageView)this.findViewById(R.id.imghead);
 	}
 
 	/**
@@ -219,7 +224,25 @@ void setvalue(){
 				 u = (Baseinfopackage) controller.getContext().getBusinessData("BaseinfoData");
 				if(u != null){
 					initView();
+					new Thread(){
+						public void run() {
+							Message msg = new Message();
+							msg.what = 2;
+							msg.obj = PictureUtil.getImage(u.getAvatar(), u.getId(), "head");
+							handler.sendMessage(msg);
+						};
+					}.start();
 				}
+				break;
+			case 2:
+				BitmapDrawable img = (BitmapDrawable) msg.obj;
+				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				imghead.setImageBitmap(bm);
+				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
+				pa.width = (int) (50*density);
+				pa.height = (int) (50*density);
+//				imghead.setPadding(0, (int) (20*density), 0, (int) (20*density));
+//				imghead.setPadding(0, 20, 0, 20);
 				break;
 			}
 		}

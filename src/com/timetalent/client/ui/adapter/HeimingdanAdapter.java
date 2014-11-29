@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
+import com.easemob.chat.StartServiceReceiver;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Blacklist;
 import com.timetalent.client.entities.BlankName;
@@ -198,10 +199,18 @@ public class HeimingdanAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View view) {
-				int position = mListview.getPositionForView(view);  
+				final int position = mListview.getPositionForView(view);  
 	            if (position != mListview.INVALID_POSITION) {  
 	            	mBlankNameItems.remove(position);  
-	                HeimingdanAdapter.this.notifyDataSetChanged();  
+	                HeimingdanAdapter.this.notifyDataSetChanged();
+	                new Thread(){
+						public void run() {
+							AppController.getController(((Activity)mContext)).getContext().addBusinessData("my.do", "unblack");
+							AppController.getController(((Activity)mContext)).getContext().addBusinessData("my.target_id", ""+data.getLists().get(position).getId());
+							AppController.getController(((Activity)mContext)).mydo_social();
+						};
+					}.start();
+	                
 	            }   
 			}
 		};

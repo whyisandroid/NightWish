@@ -104,9 +104,12 @@ public class MyheimingdanActivity extends BaseActivity implements OnClickListene
             	mBlankItems = new ArrayList<BlankName>();
             	
             	Blacklist bl = (Blacklist) controller.getContext().getBusinessData("BlackData");
-            	for(Blackpackage b:bl.getLists()){
-            		mBlankItems.add(new BlankName());
+            	if(bl != null && bl.getLists() != null){
+            		for(Blackpackage b:bl.getLists()){
+                		mBlankItems.add(new BlankName());
+                	}
             	}
+            	
             	adapter = new HeimingdanAdapter(MyheimingdanActivity.this,mBlankItems,lheimingdan);
             	lheimingdan.setAdapter(adapter);
             	adapter.notifyDataSetChanged();

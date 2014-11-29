@@ -34,7 +34,7 @@ public class Blackpackage {
 	String status = "";
 	String content = "";
 	String loyal_pass = "";
-String age = "";
+	String age = "";
 	
 	public String getContent() {
 	return content;

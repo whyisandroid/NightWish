@@ -69,6 +69,9 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	public int screenw = 0;
 	public float density = 1.0f;
 	ImageView imghead;
+	TextView tvage;
+	TextView tvxingzuo1;
+	TextView tvsanwei;
 	Baseinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +109,9 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		
 		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		imghead = (ImageView)this.findViewById(R.id.imghead);
+		tvage = (TextView) findViewById(R.id.tvage);
+		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
+		tvsanwei = (TextView) findViewById(R.id.tvsanwei);
 	}
 
 	/**
@@ -128,10 +134,23 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		lage.setOnClickListener(this);
 		lsanwei.setOnClickListener(this);
 		btok.setOnClickListener(this);
-		
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvjiaxiang.setOnClickListener(this);
 	}
-	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvsanwei.setText(controller.getContext().getStringData("edit.sanwei"));
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+	}
 	/**
 	 * 重新计算listview高度
 	  * 方法描述：TODO

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,6 +38,7 @@ public class MysanweiActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
+	EditText etxiongwei,etyaowei,ettunwei;
 	private Button btok;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,9 @@ public class MysanweiActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
+		etxiongwei = (EditText)this.findViewById(R.id.etxiongwei);
+		etyaowei = (EditText)this.findViewById(R.id.etyaowei);
+		ettunwei = (EditText)this.findViewById(R.id.ettunwei);
 		btok = (Button) findViewById(R.id.btok);
 	}
 
@@ -80,6 +85,7 @@ public class MysanweiActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.btok:
+			controller.getContext().addBusinessData("edit.sanwei", etxiongwei.getText().toString()+","+etyaowei.getText().toString()+","+ettunwei.getText().toString());
 			finish();
 		default:
 			break;

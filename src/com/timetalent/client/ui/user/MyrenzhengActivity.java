@@ -2,15 +2,18 @@ package com.timetalent.client.ui.user;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -57,7 +60,8 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 	EditText etshenfenzheng;
 	int index = 0;
 	LoginData user;
-	Bitmap bmp;
+	public int screenw = 0;
+	public float density = 1.0f;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -65,6 +69,10 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		setContentView(R.layout.my_renzheng);
 		controller = AppController.getController(this);
 		user = (LoginData) controller.getContext().getBusinessData("loginData");
+		DisplayMetrics dm = new DisplayMetrics();
+		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
+		screenw = dm.widthPixels;
+		density = dm.density;
 		findView();
 		initView();
 	}
@@ -103,7 +111,14 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		main_top_left.setOnClickListener(this);
 //		new Thread(){
 //			public void run() {
-		ImageLoader.getInstance().displayImage(user.getAvatar(), imghead,PictureUtil.getCircleOption());
+		new Thread(){
+			public void run() {
+				Message msg = new Message();
+				msg.what = 2;
+				msg.obj = PictureUtil.getImage(user.getAvatar(), user.getId(), "head");
+				handler.sendMessage(msg);
+			};
+		}.start();
 //				bmp = ImageLoader.getInstance().loadImageSync(user.getAvatar());
 //				handler.sendEmptyMessage(1);
 //			};
@@ -135,8 +150,8 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		case R.id.btnext:
 			String realname = etrealname.getText().toString().trim();
 			String shenfenzheng = etshenfenzheng.getText().toString().trim();
-			String Validate1 = StringUtil.accountName(realname);
-			String Validate2 = StringUtil.accountName(shenfenzheng);
+			String Validate1 = StringUtil.notnull(realname);
+			String Validate2 = StringUtil.notnull(shenfenzheng);
 			if(!TextUtils.isEmpty(Validate1)){
 				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
 				return;
@@ -193,7 +208,12 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				imghead.setImageBitmap(bmp);
+				BitmapDrawable img = (BitmapDrawable) msg.obj;
+				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				imghead.setImageBitmap(bm);
+				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
+				pa.width = (int) (50*density);
+				pa.height = (int) (50*density);
 				break;
 			}
 		}

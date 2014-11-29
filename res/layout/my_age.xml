@@ -35,7 +35,7 @@
                     android:textSize="@dimen/new_size_3" />
 
                 <TextView
-                    android:id="@+id/editText1"
+                    android:id="@+id/tvage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -71,7 +71,7 @@
                     android:textColor="@color/color_2" />
 
                 <TextView
-                    android:id="@+id/editText2"
+                    android:id="@+id/tvxingzuo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
@@ -97,7 +97,7 @@
                 android:textSize="@dimen/new_size_3" />
 
             <DatePicker
-                android:id="@+id/datePicker1"
+                android:id="@+id/dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:calendarViewShown="false" />

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Followinglist;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -22,6 +23,8 @@ import com.timetalent.client.ui.adapter.HaoyouAdapter;
 import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.client.ui.near.FansActivity;
+import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
@@ -71,7 +74,23 @@ public class MyguanzhuActivity extends BaseActivity implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 					long arg3) {
-				IntentUtil.intent(MyguanzhuActivity.this, YirenActivity.class);
+				Followinglist l = (Followinglist) controller.getContext().getBusinessData("FollowingData");
+				if(l != null && l.getLists() != null){
+					if(l.getLists().get(arg2).getType().equals("star")){
+						Bundle bundle1 = new Bundle();
+						bundle1.putString("userid", l.getLists().get(arg2).getId());
+						IntentUtil.intent(MyguanzhuActivity.this, bundle1,YirenActivity.class,false);
+					}else if(l.getLists().get(arg2).getType().equals("scout")){
+						Bundle bundle1 = new Bundle();
+						bundle1.putString("userid", l.getLists().get(arg2).getId());
+						IntentUtil.intent(MyguanzhuActivity.this, bundle1,XingtanActivity.class,false);
+					}else{
+						Bundle bundle1 = new Bundle();
+						bundle1.putString("userid", l.getLists().get(arg2).getId());
+						IntentUtil.intent(MyguanzhuActivity.this, bundle1,FansActivity.class,false);
+					}
+				}
+				
 			}
 		});
 		setvalue();

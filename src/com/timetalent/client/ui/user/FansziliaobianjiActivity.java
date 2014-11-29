@@ -60,11 +60,9 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	EditText etname ;
 	EditText etnickname ;
 	EditText etzhiye ;
-//	EditText etjiaxiang ;
 	TextView tvjiaxiang;
-//	EditText et ;
-//	EditText et ;
-//	EditText et ;
+	TextView tvage;
+	TextView tvxingzuo1;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private TextView main_top_right;
@@ -109,6 +107,8 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		btok = (Button) findViewById(R.id.btok);
 		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		imghead = (ImageView)this.findViewById(R.id.imghead);
+		tvage = (TextView) findViewById(R.id.tvage);
+		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
 	}
 
 	/**
@@ -130,8 +130,22 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		btok.setOnClickListener(this);
 		
 		tvjiaxiang.setOnClickListener(this);
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 	}
 	
+	@Override
+	protected void onStart() {
+		super.onStart();
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+	}
+	@Override
+	protected void onStop() {
+		super.onStop();
+		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+	}
 	/**
 	 * 重新计算listview高度
 	  * 方法描述：TODO

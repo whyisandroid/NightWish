@@ -5,6 +5,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -23,6 +24,8 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -107,6 +110,11 @@ public class MychongzhiActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.btchongzhifangshi:
+			String Validate1 = StringUtil.notnull(etmoney.getText().toString());
+			if(!TextUtils.isEmpty(Validate1)){
+				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
+				return;
+			}
 			setvalue();
 			IntentUtil.intent(MychongzhiActivity.this, MychongzhifangshiActivity.class);
 			break;

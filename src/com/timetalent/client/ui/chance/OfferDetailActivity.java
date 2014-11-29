@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
+import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
- * 类描述： 活动详情
+ * 类描述： 职位详情
  * 类名称：OfferDetailActivity  
  * @version: 1.0
  * @author: why
@@ -102,6 +103,7 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		tv_chance_detail_des.setText(data.getDescription());
 		// 处理图片
 		ImageLoader.getInstance().displayImage(data.getBanner(),iv_chance_banner);
+		iv_chance_banner.setScaleType(ScaleType.CENTER);
 		ChanceDetailAdapter adapter  = new  ChanceDetailAdapter(this,data.getJobs());
 		lv_chance_detail.setAdapter(adapter);
 		UIUtils.setListViewHeight(lv_chance_detail, adapter);

@@ -167,7 +167,7 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("phone", phone));
-		nameValuePairs.add(new BasicNameValuePair("code", code));
+		nameValuePairs.add(new BasicNameValuePair("assess", code));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CODE_VERIFY);
 		request.setR_calzz(BaseResp.class);

@@ -162,7 +162,7 @@
             android:layout_height="wrap_content"
             android:background="@color/main_grey"
             android:orientation="horizontal"
-            android:visibility="visible"
+            android:visibility="gone"
             android:padding="8dp"
              >
             <EditText
@@ -183,6 +183,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/main_light_white"
+                android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:padding="8dp"
                 android:text="发送"

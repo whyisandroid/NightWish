@@ -31,6 +31,7 @@ public class PictureActivity extends BaseActivity implements OnClickListener,Ges
 	private TextView tvindex;
 	private ViewFlipper vfpics;
 	private GestureDetector mGestureDetector;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub

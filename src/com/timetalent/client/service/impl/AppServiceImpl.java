@@ -28,6 +28,7 @@ import com.timetalent.client.entities.json.FollowingResp;
 import com.timetalent.client.entities.json.FriendResp;
 import com.timetalent.client.entities.json.LoginResp;
 import com.timetalent.client.entities.json.MyphotoResp;
+import com.timetalent.client.entities.json.MyserviceResp;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
@@ -1164,15 +1165,18 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void myuser_service() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<MyserviceResp> request = new Request<MyserviceResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_USER_SERVICE);
-		request.setR_calzz(BaseResp.class);  
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(MyserviceResp.class);  
+		MyserviceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			if (resp.getData() != null) {
+				context.addBusinessData("MyserviceData", resp.getData());
+			}
+		
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

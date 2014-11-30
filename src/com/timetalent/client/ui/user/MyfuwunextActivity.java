@@ -21,6 +21,7 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
 import com.timetalent.client.ui.adapter.fuwubodyAdapter;
 import com.timetalent.client.ui.adapter.fuwuheadAdapter;
+import com.timetalent.client.ui.adapter.fuwunextAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
@@ -33,29 +34,21 @@ import com.timetalent.common.util.UIUtils;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class MyfuwuActivity extends BaseActivity implements OnClickListener {
+public class MyfuwunextActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	fuwuheadAdapter headadapter;
-	fuwubodyAdapter bodyadapter;
+	ListView lvfuwu;
 	Button btok;
-	private GridView  gvhead;
-	private GridView  gvbody;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_fuwu);
+		setContentView(R.layout.my_fuwunext);
 		controller = AppController.getController(this);
 		findView();
-		new Thread(){
-			public void run() {
-				controller.myuser_service();
-				handler.sendEmptyMessage(1);
-			};
-		}.start();
+		initView();
 	}
 	/**
 	 * 方法描述：TODO
@@ -64,10 +57,9 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		gvhead = (GridView) findViewById(R.id.gvhead);
-		gvbody = (GridView) findViewById(R.id.gvbody);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		
+		lvfuwu = (ListView) findViewById(R.id.lvfuwu);
+		btok = (Button) findViewById(R.id.btok);
 	}
 
 	/**
@@ -77,19 +69,13 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		headadapter = new fuwuheadAdapter(MyfuwuActivity.this);
-		bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this);
-		gvhead.setAdapter(headadapter);
-		gvbody.setAdapter(bodyadapter);
-		setListViewHeightBasedOnChildren(gvhead);
-		setListViewHeightBasedOnChildren(gvbody);
-		btok = (Button) findViewById(R.id.btok);
 		((TextView)this.findViewById(R.id.main_top_title)).setText("我的服务");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		btok.setOnClickListener(this);
+		lvfuwu.setAdapter(new fuwunextAdapter(MyfuwunextActivity.this));
 	}
 	/**
 	 * 重新计算listview高度
@@ -125,7 +111,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.btok:
 			finish();
-			Toast.makeText(MyfuwuActivity.this, "baocun成功", 1000).show();
+			Toast.makeText(MyfuwunextActivity.this, "baocun成功", 1000).show();
 			break;
 		default:
 			break;

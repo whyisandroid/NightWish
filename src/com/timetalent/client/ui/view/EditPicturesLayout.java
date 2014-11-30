@@ -27,6 +27,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.preference.PreferenceManager.OnActivityResultListener;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -231,6 +232,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								if(j*i < pictures.size()){
 									if(i*8+j < pictures.size()){
 										imgpic1.setindex(i*8+j);
+										imgpic1.id = list.get(i*8+j).getId();
 										imgpic1.setImageDrawable(pictures.get(i*8+j));
 										
 										imgpic1.setOnClickListener(new OnClickListener() {
@@ -267,6 +269,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 1:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic2.setindex(i*8+j);
+									imgpic2.id = list.get(i*8+j).getId();
 									imgpic2.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic2.setOnClickListener(new OnClickListener() {
@@ -293,6 +296,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 2:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic3.setindex(i*8+j);
+									imgpic3.id = list.get(i*8+j).getId();
 									imgpic3.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic3.setOnClickListener(new OnClickListener() {
@@ -320,6 +324,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 3:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic4.setindex(i*8+j);
+									imgpic4.id = list.get(i*8+j).getId();
 									imgpic4.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic4.setOnClickListener(new OnClickListener() {
@@ -346,6 +351,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 4:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic5.setindex(i*8+j);
+									imgpic5.id = list.get(i*8+j).getId();
 									imgpic5.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic5.setOnClickListener(new OnClickListener() {
@@ -371,6 +377,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 5:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic6.setindex(i*8+j);
+									imgpic6.id = list.get(i*8+j).getId();
 									imgpic6.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic6.setOnClickListener(new OnClickListener() {
@@ -397,6 +404,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 6:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic7.setindex(i*8+j);
+									imgpic7.id = list.get(i*8+j).getId();
 									imgpic7.setImageDrawable(pictures.get(i*8+j));
 									imgpic7.setOnClickListener(new OnClickListener() {
 										@Override
@@ -422,6 +430,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 7:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic8.setindex(i*8+j);
+									imgpic8.id = list.get(i*8+j).getId();
 									imgpic8.setImageDrawable(pictures.get(i*8+j));
 									imgpic8.setOnClickListener(new OnClickListener() {
 										@Override
@@ -619,6 +628,12 @@ public class EditPicturesLayout extends LinearLayout implements
 			public void onClick(View v) {
 				list.remove(imgv.index);
 				pictures.remove(imgv.index);
+				new Thread(){
+					public void run() {
+						controller.getContext().addBusinessData("photo.id", imgv.id);
+						controller.myphotodel();
+					};
+				}.start();
 				((PhotoImageView) imgv).setImageResource(R.drawable.d11_03);
 				pop.dismiss();
 				handler.sendEmptyMessage(1);
@@ -628,4 +643,5 @@ public class EditPicturesLayout extends LinearLayout implements
 		imgv.getLocationOnScreen(location);
 		pop.showAtLocation(imgv, Gravity.NO_GRAVITY, location[0]-pop.getWidth()-19, location[1]-pop.getHeight()-19);
 	}
+	
 }

@@ -14,6 +14,7 @@ import android.widget.ImageView;
  ******************************************/
 public class PhotoImageView extends ImageView {
 	int index = 0;
+	String id = "";
 	/**
 	  * 类的构造方法
 	  * 创建一个新的实例 PhotoImageView.

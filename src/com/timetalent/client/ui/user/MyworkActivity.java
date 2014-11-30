@@ -154,7 +154,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 			case 1:
 				
 				break;
-	case 2:
+			case 2:
 	
 		break;
 			default:

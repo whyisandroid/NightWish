@@ -1,13 +1,19 @@
 package com.timetalent.client.ui.user;
 
+import java.io.IOException;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -278,5 +284,36 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 				break;
 			}
 		}
+	};
+	
+	protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+		  if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
+              Log.e("TAG->onresult","ActivityResult resultCode error");
+              return;
+          }
+		  if (requestCode == 0) {
+			  Uri originalUri = data.getData();
+			String[] proj = {MediaStore.Images.Media.DATA};
+
+			 
+
+			  //好像是android多媒体数据库的封装接口，具体的看Android文档
+
+			  Cursor cursor = managedQuery(originalUri, proj, null, null, null); 
+
+			  //按我个人理解 这个是获得用户选择的图片的索引值
+
+			  int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+
+			  //将光标移至开头 ，这个很重要，不小心很容易引起越界
+
+			  cursor.moveToFirst();
+
+			  //最后根据索引值获取图片路径
+
+			  String path = cursor.getString(column_index);
+			  
+			  Log.i("dayin path", path+"");
+		  }
 	};
 }

@@ -882,4 +882,14 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	public void myapp_config() {
+		try {
+			service.myapp_config();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -17,6 +17,7 @@ import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Register;
 import com.timetalent.client.entities.TaskAdd;
 import com.timetalent.client.entities.Walletorderpackage;
+import com.timetalent.client.entities.json.AppConfigResp;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BaseinfoResp;
 import com.timetalent.client.entities.json.BlackResp;
@@ -1424,6 +1425,31 @@ public class AppServiceImpl implements AppService {
 		if ("1".equals(resp.getStatus())) {
 			if (resp.getData() != null) {
 				context.addBusinessData("DictionaryData", resp.getData());
+			}
+		
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myapp_config()
+	 */
+	@Override
+	public void myapp_config() throws BusinessException {
+		String name = (String)context.getBusinessData("app.name");
+		Request<AppConfigResp> request = new Request<AppConfigResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("name", name));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_APP_CONFIG);
+		request.setR_calzz(AppConfigResp.class);
+		AppConfigResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("AppConfigdata", resp.getData());
 			}
 		
 		} else{

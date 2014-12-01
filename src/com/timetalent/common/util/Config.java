@@ -97,6 +97,8 @@ public class Config {
 	
 	
 	public final static String HTTP_MY_APP_VERSION = MY_SERVICE+ "/App/version";
+	public final static String HTTP_MY_APP_CONFIG = MY_SERVICE+ "/App/get_config";
+	
 	public final static String HTTP_MY_BASEINFOUPDATE = MY_SERVICE+ "/User/baseinfo_update";
 	
 	// 充值 支付

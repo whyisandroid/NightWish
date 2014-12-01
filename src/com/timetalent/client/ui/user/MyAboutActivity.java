@@ -1,16 +1,24 @@
 package com.timetalent.client.ui.user;
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.AppConfigPackage;
+import com.timetalent.client.entities.Baseinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -20,6 +28,7 @@ import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -34,6 +43,8 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
+	AppConfigPackage data;
+	WebView wb;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -51,6 +62,7 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void findView() {
 		main_top_left = (ImageButton) findViewById(R.id.main_top_left);
+		wb = (WebView) findViewById(R.id.wb);
 		}
 
 	/**
@@ -62,8 +74,15 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 	private void initView() {
 		main_top_left.setOnClickListener(this);
 		setvalue();
+		new Thread(){
+			public void run() {
+				controller.myapp_config();
+				handler.sendEmptyMessage(1);
+			};
+		}.start();
 		}
 	public void setvalue(){
+		controller.getContext().addBusinessData("app.name", "app_aboutus");
 	}
 	
 	@Override
@@ -76,4 +95,33 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 			break;
 		}
 	}
+	private Handler handler = new Handler() {
+		@Override
+		public void handleMessage(Message msg) {
+			// super.handleMessage(msg);
+			switch (msg.what) {
+			case 1:
+				data = (AppConfigPackage) controller.getContext().getBusinessData("AppConfigdata");
+				if(data != null){
+//					data.setUrl("http://www.163.com");
+			        WebSettings webSettings = wb.getSettings();
+			        webSettings.setUseWideViewPort(true); 
+			        webSettings.setLoadWithOverviewMode(true);
+			        wb.setWebViewClient
+			        (new WebViewClient(){
+			            public boolean shouldOverrideUrlLoading(WebView view, String url) {       
+			                view.loadUrl(url);
+			                return true;       
+			            }
+			            public void onProgressChanged(WebView view, int progress) {
+			       }
+			     });
+			         webSettings.setJavaScriptEnabled(true);
+					wb.loadUrl(data.getUrl());
+//			         wb.loadDataWithBaseURL(null,"<html><body><img src=\"http://wap.yomai.com/test1.gif\" /></body></html>", "text/html",  "utf-8", null);
+				}
+				break;
+			}
+		}
+	};
 }

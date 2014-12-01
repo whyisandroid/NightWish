@@ -20,12 +20,12 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
 
-                <com.timetalent.client.ui.view.PicturesLayout
+                <com.timetalent.client.ui.view.NearPicturesLayout
                     android:id="@+id/piclay"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
                     
-                </com.timetalent.client.ui.view.PicturesLayout>
+                </com.timetalent.client.ui.view.NearPicturesLayout>
 
             </LinearLayout>
 

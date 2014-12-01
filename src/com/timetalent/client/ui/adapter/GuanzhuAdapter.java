@@ -6,8 +6,13 @@ import java.util.List;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Followedlist;
 import com.timetalent.client.entities.Followinglist;
+import com.timetalent.client.entities.Followingpackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.near.FansActivity;
+import com.timetalent.client.ui.near.XingtanActivity;
+import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 
 import android.app.Activity;
@@ -15,10 +20,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
@@ -40,8 +47,10 @@ public class GuanzhuAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	Followinglist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
+	Context mcontext;
 	public GuanzhuAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
+		mcontext = context;
 		data = (Followinglist) AppController.getController(((Activity)context)).getContext().getBusinessData("FollowingData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -146,6 +155,7 @@ public class GuanzhuAdapter extends BaseAdapter {
 			holder.imgsex.setImageResource(R.drawable.f3_31);
 		}
 		holder.tvmiaoshu.setText(""+data.getLists().get(position).getCity());
+		holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 		return convertView;
 	}
 	class ViewHolder{
@@ -174,4 +184,28 @@ public class GuanzhuAdapter extends BaseAdapter {
 			}
 		}
 	};
+	class myOnClickListener implements OnClickListener{
+		Followingpackage data;
+		public myOnClickListener(Followingpackage d) {
+			data = d;
+		}
+		@Override
+		public void onClick(View v) {
+			if(data.getType().equals("star")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,YirenActivity.class,false);
+			}else if(data.getType().equals("scout")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,XingtanActivity.class,false);
+			}else if(data.getType().equals("fans")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,FansActivity.class,false);
+			}
+			
+		}
+		
+	}
 }

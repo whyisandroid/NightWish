@@ -1,5 +1,7 @@
 package com.timetalent.client.entities;
 
+import java.util.List;
+
 
 /******************************************
  * 类描述： TODO
@@ -15,6 +17,35 @@ public class Userinfomorepackage {
 	String hip = "";
 	String height = "";
 	String weight = "";
+	List<zuopinpackage> works = null;
+	List<awardpackage> award = null;
+	List<advocatuspackage> advocatus = null;
+	List<MyPhotopackage> photos = null;
+	
+	public List<zuopinpackage> getWorks() {
+		return works;
+	}
+	public void setWorks(List<zuopinpackage> works) {
+		this.works = works;
+	}
+	public List<awardpackage> getAward() {
+		return award;
+	}
+	public void setAward(List<awardpackage> award) {
+		this.award = award;
+	}
+	public List<advocatuspackage> getAdvocatus() {
+		return advocatus;
+	}
+	public void setAdvocatus(List<advocatuspackage> advocatus) {
+		this.advocatus = advocatus;
+	}
+	public List<MyPhotopackage> getPhotos() {
+		return photos;
+	}
+	public void setPhotos(List<MyPhotopackage> photos) {
+		this.photos = photos;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

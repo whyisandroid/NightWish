@@ -8,6 +8,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
@@ -22,14 +23,21 @@ import android.widget.LinearLayout.LayoutParams;
 import com.easemob.chat.StartServiceReceiver;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Blacklist;
+import com.timetalent.client.entities.Blackpackage;
 import com.timetalent.client.entities.BlankName;
 import com.timetalent.client.entities.Followedlist;
+import com.timetalent.client.entities.Followingpackage;
 import com.timetalent.client.entities.MessageItem;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.adapter.GuanzhuAdapter.myOnClickListener;
 import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.near.FansActivity;
+import com.timetalent.client.ui.near.XingtanActivity;
+import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.client.ui.view.ListViewCompat;
 import com.timetalent.client.ui.view.SlideView;
 import com.timetalent.client.ui.view.SlideView.OnSlideListener;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -153,6 +161,7 @@ public class HeimingdanAdapter extends BaseAdapter {
 		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.height = holder.imghead.getWidth();
+		holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
@@ -260,4 +269,28 @@ public class HeimingdanAdapter extends BaseAdapter {
 			}
 		}
 	};
+	class myOnClickListener implements OnClickListener{
+		Blackpackage data;
+		public myOnClickListener(Blackpackage blackpackage) {
+			data = blackpackage;
+		}
+		@Override
+		public void onClick(View v) {
+			if(data.getType().equals("star")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mContext, bundle1,YirenActivity.class,false);
+			}else if(data.getType().equals("scout")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mContext, bundle1,XingtanActivity.class,false);
+			}else if(data.getType().equals("fans")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mContext, bundle1,FansActivity.class,false);
+			}
+			
+		}
+		
+	}
 }

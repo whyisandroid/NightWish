@@ -5,9 +5,16 @@ import java.util.List;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Followedlist;
+import com.timetalent.client.entities.Followingpackage;
 import com.timetalent.client.entities.Friendlist;
+import com.timetalent.client.entities.Friendpackage;
 import com.timetalent.client.service.AppController;
+import com.timetalent.client.ui.adapter.GuanzhuAdapter.myOnClickListener;
 import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.near.FansActivity;
+import com.timetalent.client.ui.near.XingtanActivity;
+import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 
 import android.app.Activity;
@@ -15,11 +22,13 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -40,8 +49,10 @@ public class HaoyouAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	Friendlist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
+	Context mcontext;
 	public HaoyouAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
+		mcontext = context;
 		data = (Friendlist) AppController.getController(((Activity)context)).getContext().getBusinessData("FriendData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -137,6 +148,7 @@ public class HaoyouAdapter extends BaseAdapter {
 		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.height = holder.imghead.getWidth();
+		holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
@@ -175,4 +187,28 @@ public class HaoyouAdapter extends BaseAdapter {
 			}
 		}
 	};
+	class myOnClickListener implements OnClickListener{
+		Friendpackage data;
+		public myOnClickListener(Friendpackage friendpackage) {
+			data = friendpackage;
+		}
+		@Override
+		public void onClick(View v) {
+			if(data.getType().equals("star")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,YirenActivity.class,false);
+			}else if(data.getType().equals("scout")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,XingtanActivity.class,false);
+			}else if(data.getType().equals("fans")){
+				Bundle bundle1 = new Bundle();
+				bundle1.putString("userid", data.getId());
+				IntentUtil.intent(mcontext, bundle1,FansActivity.class,false);
+			}
+			
+		}
+		
+	}
 }

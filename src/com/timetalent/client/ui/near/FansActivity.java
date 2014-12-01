@@ -1,6 +1,8 @@
 package com.timetalent.client.ui.near;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -27,8 +29,10 @@ import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.client.ui.view.NearPicturesLayout;
 import com.timetalent.client.ui.view.PicturesLayout;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.PictureUtil;
 
 
 /******************************************
@@ -40,7 +44,7 @@ import com.timetalent.common.util.IntentUtil;
  ******************************************/
 public class FansActivity extends BaseActivity implements OnClickListener{
 	private AppController controller;
-	PicturesLayout piclay;
+	NearPicturesLayout piclay;
 	int index = 0;
 	String userid = "1";
 	private TextView main_top_right;
@@ -50,6 +54,7 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 	private LinearLayout img2;
 	public int screenw = 0;
 	public float density = 1.0f;
+	ImageView imghead;
 	TextView tvxingzuo;
 	TextView tvdizhi;
 	TextView tvname;
@@ -59,7 +64,7 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 	TextView tvzhiye;
 	TextView tvjiaxiang;
 	TextView tvheight;
-	
+	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -81,11 +86,12 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 	 * @time: 2014-10-10 下午6:36:00
 	 */
 	private void findView() {
-		piclay = (PicturesLayout) findViewById(R.id.piclay);
+		piclay = (NearPicturesLayout) findViewById(R.id.piclay);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
 		img1 = (LinearLayout) findViewById(R.id.imgduihua);
 		img2 = (LinearLayout) findViewById(R.id.imgguanzhu);
+		imghead = (ImageView) findViewById(R.id.imghead);
 		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
 		 tvdizhi = (TextView) findViewById(R.id.tvdizhi);
 		 tvname = (TextView) findViewById(R.id.tvname);
@@ -111,7 +117,7 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
-		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
+		((TextView)this.findViewById(R.id.main_top_title)).setText("");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
@@ -256,8 +262,17 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				if(u != null){
+					((TextView)FansActivity.this.findViewById(R.id.main_top_title)).setText(""+u.getNickname());
+					new Thread(){
+						public void run() {
+							Message msg = new Message();
+							msg.what = 2;
+							msg.obj = PictureUtil.getImage(u.getAvatar(), u.getId(), "head");
+							handler.sendMessage(msg);
+						};
+					}.start();
 					tvxingzuo.setText(u.getConstella());
 					tvdizhi.setText(u.getAge());
 					 tvname.setText(u.getUsername());
@@ -268,6 +283,14 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 					 tvjiaxiang.setText(u.getAge());
 					 tvheight.setText(u.getMore().getHeight()+"cm");
 				}
+				break;
+			case 2:
+				BitmapDrawable img = (BitmapDrawable) msg.obj;
+				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				imghead.setImageBitmap(bm);
+				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
+				pa.width = (int) (50*density);
+				pa.height = (int) (50*density);
 				break;
 			}
 		}

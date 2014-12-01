@@ -41,7 +41,7 @@ import android.widget.ListAdapter;
 import android.widget.Scroller;
 import android.widget.ViewFlipper;
 
-public class PicturesLayout extends LinearLayout implements
+public class NearPicturesLayout extends LinearLayout implements
 		GestureDetector.OnDoubleTapListener,
 		android.view.GestureDetector.OnGestureListener {
 	private AppController controller;
@@ -62,7 +62,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param
 	 * @param context
 	 */
-	public PicturesLayout(Context context) {
+	public NearPicturesLayout(Context context) {
 		super(context);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -84,7 +84,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param context
 	 * @param attrs
 	 */
-	public PicturesLayout(Context context, AttributeSet attrs) {
+	public NearPicturesLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -104,7 +104,7 @@ public class PicturesLayout extends LinearLayout implements
 	 * @param defStyle
 	 */
 	@SuppressLint("NewApi")
-	public PicturesLayout(Context context, AttributeSet attrs, int defStyle) {
+	public NearPicturesLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -136,9 +136,22 @@ public class PicturesLayout extends LinearLayout implements
 	public void initView() {
 		new Thread() {
 			public void run() {
-				controller.myphoto();
-				list = (List<MyPhotopackage>) controller.getContext()
-						.getBusinessData("MyphotoData");
+				Userinfopackage uu = null;
+				for(int i = 0; i < 100;i++){
+					try {
+						sleep(1000);
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					uu = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+					if(uu != null){
+						break;
+					}
+				}
+				if(uu != null && uu.getMore() != null){
+					list = uu.getMore().getPhotos();
+				}
 				pictures = new ArrayList<Drawable>();
 				if(list!= null){
 					for (MyPhotopackage p : list) {
@@ -168,7 +181,7 @@ public class PicturesLayout extends LinearLayout implements
 					for (int i = 0; i < count / 8 + 1; i++) {
 //						LinearLayout child = new LinearLayout(
 //								PicturesLayout.this.getContext());
-						LinearLayout child = (LinearLayout) LayoutInflater.from(PicturesLayout.this.getContext()).inflate(
+						LinearLayout child = (LinearLayout) LayoutInflater.from(NearPicturesLayout.this.getContext()).inflate(
 								R.layout.pictures_item, null);
 						ImageView imgpic1 = (ImageView) child
 								.findViewById(R.id.img1);

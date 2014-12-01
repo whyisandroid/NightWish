@@ -124,8 +124,8 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void resetPwd() throws BusinessException {
-		String phone = context.getStringData("find.phone");
-		String assess = context.getStringData("find.code");
+		String phone = context.getStringData("phone");
+		String assess = context.getStringData("code");
 		String new_password = context.getStringData("find.pwd");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
@@ -140,8 +140,6 @@ public class AppServiceImpl implements AppService {
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
-	
-		
 	}
 	
 	@Override

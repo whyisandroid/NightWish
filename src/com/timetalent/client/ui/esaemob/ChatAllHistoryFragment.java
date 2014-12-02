@@ -177,7 +177,7 @@ public class ChatAllHistoryFragment extends Fragment {
 		Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
 		List<EMConversation> list = new ArrayList<EMConversation>();
 		// 过滤掉messages seize为0的conversation
-		for (EMConversation conversation : conversations.values()) {
+		for (EMConversation conversation : conversations.values()) {  
 			if (conversation.getAllMessages().size() != 0)
 				list.add(conversation);
 		}

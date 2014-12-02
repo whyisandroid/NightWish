@@ -461,7 +461,7 @@
 
         <!-- Required. AppKey copied from Portal -->
         <meta-data
-            android:name="EASEMOB_APPKEY" android:value="YXA6npL90G4GEeSL1BUzfBPlIA" />
+            android:name="EASEMOB_APPKEY" android:value="xingtan#talent" />
         <!-- Required SDK核心功能 -->
         <service android:name="com.easemob.chat.EMChatService" />
     </application>

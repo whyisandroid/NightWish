@@ -11,6 +11,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
+import com.easemob.EMCallBack;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMContactManager;
+import com.easemob.exceptions.EaseMobException;
+import com.easemob.util.EMLog;
+import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
@@ -19,6 +25,7 @@ import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.ToastUtil;
 
 /******************************************

@@ -10,6 +10,9 @@ import android.preference.PreferenceManager;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 
+import com.easemob.chat.EMChat;
+import com.easemob.chat.EMChatManager;
+import com.easemob.chat.EMChatOptions;
 import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -65,6 +68,23 @@ public class TimeTalentApplication extends Application {
 		getCurrentVersion();
 		initImageLoad();
 		//getDeviceID();
+		// 初始化环信SDK,一定要先调用init()
+        setEmChat();
+	}
+
+	
+	/**
+	  * 方法描述：设置环信属性
+	  * @author: why
+	  * @time: 2014-12-2 下午2:24:42
+	  */
+	private void setEmChat() {
+		EMChat.getInstance().init(applicationContext);
+        EMChat.getInstance().setDebugMode(true);
+        // 获取到EMChatOptions对象
+        EMChatOptions options = EMChatManager.getInstance().getChatOptions();
+     // 默认环信是不维护好友关系列表的，如果app依赖环信的好友关系，把这个属性设置为true
+        options.setUseRoster(true);
 	}
 	/**
 	 * 获取当前登陆用户名
@@ -78,7 +98,20 @@ public class TimeTalentApplication extends Application {
 		}
 		return userName;
 	}
-
+	/**
+	 * 设置用户名
+	 *
+	 * @param user
+	 */
+	public void setUserName(String username) {
+		if (username != null) {
+			SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(applicationContext);
+			SharedPreferences.Editor editor = preferences.edit();
+			if (editor.putString(PREF_USERNAME, username).commit()) {
+				userName = username;
+			}
+		}
+	}
 	
 	/**
 	  * 方法描述：TODO

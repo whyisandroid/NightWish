@@ -22,6 +22,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.AppPackage;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
@@ -33,8 +34,10 @@ import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.user.FansziliaoActivity;
+import com.timetalent.client.ui.user.FansziliaobianjiActivity;
 import com.timetalent.client.ui.user.MyAboutActivity;
 import com.timetalent.client.ui.user.MyDongtaiActivity;
+import com.timetalent.client.ui.user.MyHelpActivity;
 import com.timetalent.client.ui.user.MyfansActivity;
 import com.timetalent.client.ui.user.MyfuwuActivity;
 import com.timetalent.client.ui.user.MyguanzhuActivity;
@@ -47,7 +50,10 @@ import com.timetalent.client.ui.user.MytuijianActivity;
 import com.timetalent.client.ui.user.MyworkActivity;
 import com.timetalent.client.ui.user.MyxieyiActivity;
 import com.timetalent.client.ui.user.XingtanziliaoActivity;
+import com.timetalent.client.ui.user.XingtanziliaobianjiActivity;
 import com.timetalent.client.ui.user.YirenziliaoActivity;
+import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
+import com.timetalent.common.util.Downloadapk;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 
@@ -305,13 +311,14 @@ case 2:
 			new Thread(){
 				public void run() {
 					controller.myapp_version();
+					handler.sendEmptyMessage(3);
 				};
 			}.start();
 
 //			DialogUtil.showMessage(getActivity(), "已经是最新版本!");
 			break;
 		case R.id.lbangzhu:
-			DialogUtil.showMessage(getActivity(), "谢谢您的反馈!");
+			IntentUtil.intent(this.mContext, MyHelpActivity.class);
 			break;
 		case R.id.lqinglitupian:
 			long size = PictureUtil.deleteFile();
@@ -379,6 +386,32 @@ case 2:
 				 
 				break;
 			case 3:
+				final AppPackage appdata = (AppPackage) controller.getContext().getBusinessData("AppData");
+				if(appdata != null){
+
+					final IOSStyleDialog dialog = new IOSStyleDialog(getActivity(),
+							IOSStyleDialog.DIALOG_TWO);
+					dialog.setmTitle("提示");
+					dialog.setMessage("是否升级星探？");
+					dialog.setLeft("取消", new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							dialog.closeDialog();
+						}
+					});
+					dialog.setRight("确认", new OnClickListener() {
+
+						@Override
+						public void onClick(View v) {
+							dialog.closeDialog();
+							new Downloadapk(getActivity()).downloadApk(appdata.getUpdate_url(), "星探", appdata.getName()+appdata.getNumber()+".apk");
+							
+						}
+					});
+				
+					}
+				
 				break;
 			}
 		}

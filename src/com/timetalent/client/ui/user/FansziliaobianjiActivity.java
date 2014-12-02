@@ -62,6 +62,9 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	EditText etzhiye ;
 	TextView tvjiaxiang;
 	TextView tvage;
+	TextView tvage1;
+	ImageView imgsex;
+	TextView tvxingzuo;
 	TextView tvxingzuo1;
 	int index = 0;
 	private LinearLayout ldongtai;
@@ -107,8 +110,11 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		btok = (Button) findViewById(R.id.btok);
 		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		imghead = (ImageView)this.findViewById(R.id.imghead);
+		tvage1 = (TextView)this.findViewById(R.id.tvage1);
 		tvage = (TextView) findViewById(R.id.tvage);
 		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
+		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
+		imgsex = (ImageView)this.findViewById(R.id.imgsex);
 	}
 
 	/**
@@ -130,15 +136,25 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		btok.setOnClickListener(this);
 		
 		tvjiaxiang.setOnClickListener(this);
+		tvage1.setText(controller.getContext().getStringData("edit.age"));
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
+		if(u.getSex().equals("1")){
+			imgsex.setImageResource(R.drawable.f_05);
+		}else{
+			imgsex.setImageResource(R.drawable.f_03);
+		}
 	}
 	
 	@Override
 	protected void onStart() {
 		super.onStart();
+		tvage1.setText(controller.getContext().getStringData("edit.age"));
 		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvjiaxiang.setText(controller.getContext().getStringData("edit.jiaxiang"));
 	}
 	@Override
 	protected void onStop() {
@@ -268,7 +284,6 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
 				pa.width = (int) (50*density);
 				pa.height = (int) (50*density);
-				
 //				imghead.setPadding(0, (int) (20*density), 0, (int) (20*density));
 				break;
 			}

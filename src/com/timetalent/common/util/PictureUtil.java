@@ -298,7 +298,7 @@ public class PictureUtil {
 		if (Url == null || Url.equals("")) {
 			return new Background1();
 		}
-		Drawable drawable = null;
+		Drawable drawable = new Background1();
 		// //////////此处判断目录中是否存在此图片文件，存在的话直接用这个图片，不存在的话下载图片并存到目录中///////////////
 		if (android.os.Environment.getExternalStorageState().equals(
 				android.os.Environment.MEDIA_MOUNTED)) {

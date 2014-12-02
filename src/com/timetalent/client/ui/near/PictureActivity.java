@@ -60,8 +60,8 @@ public class PictureActivity extends BaseActivity implements OnClickListener,Ges
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		mGestureDetector = new GestureDetector(this); 
-		((TextView)this.findViewById(R.id.main_top_title)).setText("吴沐熙vicky");
+		mGestureDetector = new GestureDetector(this);
+		((TextView)this.findViewById(R.id.main_top_title)).setText("照片");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
@@ -74,9 +74,6 @@ public class PictureActivity extends BaseActivity implements OnClickListener,Ges
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
-			break;
-		case R.id.lneardongtai:
-			IntentUtil.intent(PictureActivity.this, NearDongtaiActivity.class);
 			break;
 		default:
 			break;

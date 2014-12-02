@@ -3,6 +3,7 @@ package com.timetalent.client.ui.near;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,7 +41,7 @@ import com.timetalent.client.ui.view.NearPicturesLayout;
 import com.timetalent.client.ui.view.PicturesLayout;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
-
+import com.timetalent.client.ui.fragment.util.Background1;
 
 /******************************************
  * 类描述： 登录界面
@@ -325,6 +326,10 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 				adapter.notifyDataSetChanged();
 				break;
 			case 2:
+				if(msg.obj instanceof Background1){
+					imghead.setImageDrawable((Drawable)msg.obj);
+					break;
+				}
 				BitmapDrawable img = (BitmapDrawable) msg.obj;
 				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
 				imghead.setImageBitmap(bm);

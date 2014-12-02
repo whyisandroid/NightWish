@@ -76,6 +76,9 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	public float density = 1.0f;
 	ImageView imghead;
 	TextView tvage;
+	TextView tvage1;
+	ImageView imgsex;
+	TextView tvxingzuo;
 	TextView tvxingzuo1;
 	TextView tvsanwei;
 	Baseinfopackage u;
@@ -115,8 +118,11 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		
 		tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		imghead = (ImageView)this.findViewById(R.id.imghead);
+		tvage1 = (TextView)this.findViewById(R.id.tvage1);
 		tvage = (TextView) findViewById(R.id.tvage);
 		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
+		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
+		imgsex = (ImageView)this.findViewById(R.id.imgsex);
 		tvsanwei = (TextView) findViewById(R.id.tvsanwei);
 	}
 
@@ -140,16 +146,26 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		lage.setOnClickListener(this);
 		lsanwei.setOnClickListener(this);
 		btok.setOnClickListener(this);
+		tvage1.setText(controller.getContext().getStringData("edit.age"));
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
+		if(u.getSex().equals("1")){
+			imgsex.setImageResource(R.drawable.f_05);
+		}else{
+			imgsex.setImageResource(R.drawable.f_03);
+		}
 		tvjiaxiang.setOnClickListener(this);
 	}
 	@Override
 	protected void onStart() {
 		super.onStart();
+		tvage1.setText(controller.getContext().getStringData("edit.age"));
 		tvage.setText(controller.getContext().getStringData("edit.age"));
+		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvsanwei.setText(controller.getContext().getStringData("edit.sanwei"));
+		tvjiaxiang.setText(controller.getContext().getStringData("edit.jiaxiang"));
 	}
 	@Override
 	protected void onStop() {

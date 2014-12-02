@@ -42,17 +42,19 @@ public class MyAdapter extends BaseAdapter {
 		this.setOrientation(HORIZONTAL); 
 		
 		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT); 
-		params.setMargins(1, 1, 1, 1); 
+		params.setMargins(5, 5, 5, 5); 
 		
 		TextView name = new TextView( context ); 
-		name.setText( myListItem.getName() ); 
+		name.setText( myListItem.getName() );
+		name.setTextSize(17);
 		addView( name, params); 
 		
 		LinearLayout.LayoutParams params2 = new LinearLayout.LayoutParams(200, LayoutParams.WRAP_CONTENT); 
-		params2.setMargins(1, 1, 1, 1); 
+		params2.setMargins(5, 5, 5, 5); 
 		
 		TextView pcode = new TextView(context); 
-		pcode.setText(myListItem.getPcode()); 
+		pcode.setText(myListItem.getPcode());
+		pcode.setTextSize(17);
 		addView( pcode, params2); 
 		pcode.setVisibility(GONE);
 

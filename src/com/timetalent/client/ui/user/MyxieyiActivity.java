@@ -67,6 +67,7 @@ public class MyxieyiActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		((TextView)this.findViewById(R.id.main_top_title)).setText("用户协议");
 		main_top_left.setOnClickListener(this);
 		setvalue();
 		new Thread(){

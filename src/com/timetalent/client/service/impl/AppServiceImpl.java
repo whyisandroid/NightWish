@@ -18,6 +18,7 @@ import com.timetalent.client.entities.Register;
 import com.timetalent.client.entities.TaskAdd;
 import com.timetalent.client.entities.Walletorderpackage;
 import com.timetalent.client.entities.json.AppConfigResp;
+import com.timetalent.client.entities.json.AppResp;
 import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BaseinfoResp;
 import com.timetalent.client.entities.json.BlackResp;
@@ -47,6 +48,7 @@ import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.net.Request;
 import com.timetalent.common.util.Config;
+import com.timetalent.common.util.Downloadapk;
 import com.timetalent.common.util.ToastUtil;
 
 /******************************************
@@ -974,16 +976,21 @@ public class AppServiceImpl implements AppService {
 	 */
 	@Override
 	public void myapp_version() throws BusinessException {
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<AppResp> request = new Request<AppResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		Log.i("no", ""+TimeTalentApplication.getInstance().curVersionName);
+		Log.i("system", TimeTalentApplication.getInstance().systemVersion+"");
 		nameValuePairs.add(new BasicNameValuePair("number",""+TimeTalentApplication.getInstance().curVersionName));
-		nameValuePairs.add(new BasicNameValuePair("system", ""+TimeTalentApplication.getInstance().systemVersion));
+		nameValuePairs.add(new BasicNameValuePair("system", "ANDROID"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_APP_VERSION);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(AppResp.class);
+		AppResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			if(resp.getData() != null){
+				context.addBusinessData("AppData", resp.getData());
+			}
+			
 			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

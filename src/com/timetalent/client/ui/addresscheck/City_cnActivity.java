@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
@@ -48,6 +49,16 @@ public class City_cnActivity extends Activity {
 		spinner3.setPrompt("地区");
 		
         initSpinner1();
+        main_top_left = (ImageButton) findViewById(R.id.main_top_left);
+        ((TextView)this.findViewById(R.id.main_top_title)).setText("地址选择");
+		main_top_left.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				finish();
+				
+			}
+		});
     }
     
     public void initSpinner1(){

@@ -153,6 +153,7 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvjiaxiang.setText(controller.getContext().getStringData("edit.jiaxiang"));
 		
 	}
 	@Override

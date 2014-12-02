@@ -165,6 +165,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvsanwei.setText(controller.getContext().getStringData("edit.sanwei"));
+		tvjiaxiang.setText(controller.getContext().getStringData("edit.jiaxiang"));
 	}
 	@Override
 	protected void onStop() {

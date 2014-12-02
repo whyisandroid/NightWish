@@ -16,7 +16,7 @@ import android.util.Log;
 public class DBManager {
     private final int BUFFER_SIZE = 1024;
     public static final String DB_NAME = "city_cn.s3db";
-    public static final String PACKAGE_NAME = "cc.lifelink.cn";
+    public static final String PACKAGE_NAME = "com.timetalent.client";
     public static final String DB_PATH = "/data"
             + Environment.getDataDirectory().getAbsolutePath() + "/"+ PACKAGE_NAME;
     private SQLiteDatabase database;

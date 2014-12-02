@@ -154,7 +154,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
-		
+		tvjiaxiang.setText(controller.getContext().getStringData("edit.jiaxiang"));
 	}
 	@Override
 	protected void onStop() {

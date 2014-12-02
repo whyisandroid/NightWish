@@ -3,6 +3,7 @@ package com.timetalent.client.ui.near;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,6 +37,7 @@ import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.dialog.ReportIOSStyleDialog;
+import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.view.NearPicturesLayout;
 import com.timetalent.client.ui.view.PicturesLayout;
@@ -296,6 +298,10 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 				}
 				break;
 			case 2:
+				if(msg.obj instanceof Background1){
+					imghead.setImageDrawable((Drawable)msg.obj);
+					break;
+				}
 				BitmapDrawable img = (BitmapDrawable) msg.obj;
 				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
 				imghead.setImageBitmap(bm);

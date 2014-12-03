@@ -19,6 +19,22 @@ public class Task {
 	private String	sort; // "0",
 	private String	add_time; // "0"
 	private String  description;
+	private User user;
+	
+	
+	/**
+	 * @return user : return the property user.
+	 */
+	public User getUser() {
+		return user;
+	}
+	
+	/**
+	 * @param user : set the property user.
+	 */
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	/**
 	 * @return description : return the property description.

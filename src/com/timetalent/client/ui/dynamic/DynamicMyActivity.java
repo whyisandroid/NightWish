@@ -39,7 +39,7 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 			case 0:
 				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_MyData");
 				if(data != null){
-					DynamicAdapter adapter = new DynamicAdapter(DynamicMyActivity.this,data.getLists());
+					DynamicAdapter adapter = new DynamicAdapter(DynamicMyActivity.this,data.getLists(),mHandler);
 					lv_dynamic.setAdapter(adapter);
 				}
 				break;

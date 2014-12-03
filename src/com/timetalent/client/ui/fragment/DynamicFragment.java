@@ -46,7 +46,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 			case 0:
 				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
 				if(data != null){
-					DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());
+					DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists(),mHandler);
 					lv_dynamic.setAdapter(adapter);
 				}
 				break;
@@ -98,7 +98,7 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
 		FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_Data");
 		if(data != null){
-			DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists());
+			DynamicAdapter adapter = new DynamicAdapter(getActivity(),data.getLists(),mHandler);
 			lv_dynamic.setAdapter(adapter);
 		}
 	}
@@ -120,12 +120,10 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		  * @author: why
 		  * @time: 2014-10-21 上午11:17:14
 		  */
-			ProgressDialogUtil.showProgressDialog(getActivity(), "稍等…", false);
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
 					controller.dynamicIndex(mHandler);
-					ProgressDialogUtil.closeProgressDialog();
 				}
 			}).start();
 	}

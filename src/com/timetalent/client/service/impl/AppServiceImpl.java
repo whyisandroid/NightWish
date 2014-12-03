@@ -112,12 +112,19 @@ public class AppServiceImpl implements AppService {
 			
 			// 登录环信 处理 
 						//调用sdk登陆方法登陆聊天服务器
-						final String name = "UID_74";
+						final String name = "UID_"+resp.getData().getId();
 						String pwd = Md5.digist(name);
 						EMChatManager.getInstance().login(name, pwd, new EMCallBack() {
 									
 						    @Override
 						    public void onSuccess() {
+						    	
+						    	// ** 第一次登录或者之前logout后，加载所有本地群和回话
+								// ** manually load all local groups and
+								// conversations in case we are auto login
+								EMGroupManager.getInstance().loadAllGroups();
+								EMChatManager.getInstance().loadAllConversations();
+						    	
 						    	LogUtil.Log("EMChatManager", "onSuccess");
 						    	// 登陆成功，保存用户名密码
 								TimeTalentApplication.getInstance().setUserName(name);
@@ -141,12 +148,15 @@ public class AppServiceImpl implements AppService {
 									userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
 									
 									// 存入内存
-									//DemoApplication.getInstance().setContactList(userlist);
+									TimeTalentApplication.getInstance().setContactList(userlist);
 									// 存入db
 									UserDao dao = new UserDao(AppController.getController().getCurrentActivity());
 									List<User> users = new ArrayList<User>(userlist.values());
 									dao.saveContactList(users);
 									Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
+									
+									// 获取群聊列表(群聊里只有groupid和groupname的简单信息),sdk会把群组存入到内存和db中
+									EMGroupManager.getInstance().getGroupsFromServer();
 								} catch (EaseMobException e) {
 									e.printStackTrace();
 								}

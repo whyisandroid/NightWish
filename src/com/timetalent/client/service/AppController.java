@@ -364,10 +364,11 @@ public class AppController {
 		
 	}
 	
-	public void dynamicRepaly(Handler mHandler,com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder holder) {
+	public void dynamicRepaly(Handler mHandler,Handler adaHandler) {
 		try {
 			service.dynamicRepaly();
-			mHandler.obtainMessage(1,holder).sendToTarget();
+			adaHandler.obtainMessage(1).sendToTarget();
+			dynamicIndex(mHandler);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

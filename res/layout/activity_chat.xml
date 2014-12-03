@@ -10,7 +10,7 @@
         android:id="@+id/top_bar"
         android:layout_width="match_parent"
         android:layout_height="46dp"
-        android:background="@color/top_bar_normal_bg"
+         android:background="@color/main_red"
         android:gravity="center_vertical" >
 
         <include layout="@layout/commom_back_btn" />
@@ -22,24 +22,6 @@
             android:layout_centerInParent="true"
             android:textColor="#ffffff"
             android:textSize="20sp" />
-
-        <RelativeLayout
-            android:id="@+id/container_remove"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_alignParentRight="true"
-            android:background="@drawable/common_tab_bg"
-            android:onClick="emptyHistory" >
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:layout_marginRight="9dp"
-                android:scaleType="centerInside"
-                android:src="@drawable/mm_title_remove" />
-        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/container_to_group"
@@ -129,7 +111,7 @@
                 android:layout_weight="1"
                 >
 
-                <com.timetalent.client.ui.easemob.PasteEditText
+                <com.timetalent.client.ui.esaemob.PasteEditText
                     android:id="@+id/et_sendmessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

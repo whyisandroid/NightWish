@@ -34,7 +34,7 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 			case 0:
 				FeedData data = (FeedData)controller.getContext().getBusinessData("Dynamic_OtherData");
 				if(data != null){
-					DynamicAdapter adapter = new DynamicAdapter(DynamicOtherActivity.this,data.getLists());
+					DynamicAdapter adapter = new DynamicAdapter(DynamicOtherActivity.this,data.getLists(),mHandler);
 					lv_dynamic.setAdapter(adapter);
 				}
 				break;

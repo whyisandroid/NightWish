@@ -44,6 +44,7 @@ public class DynamicAdapter extends BaseAdapter{
 	private Context mContext;
 	private LayoutInflater inflater;
 	private AppController controller;
+	private Handler dynamicHandler; 
 	
 	private Handler handler  = new  Handler(){
 		public void handleMessage(android.os.Message msg) {
@@ -65,6 +66,19 @@ public class DynamicAdapter extends BaseAdapter{
 			
 		};
 	};
+	
+	/**
+	 * 类的构造方法
+	 * 创建一个新的实例 DynamicAdapter.
+	 * @param 
+	 */
+	public DynamicAdapter(Context mContext,List<Feed> lists,Handler dynamicHandler) {
+		this.mContext = mContext;
+		this.lists = lists;
+		inflater = LayoutInflater.from(mContext);
+		controller = AppController.getController();
+		this.dynamicHandler = dynamicHandler;
+	}
 	
 	/**
 	 * 类的构造方法
@@ -188,7 +202,8 @@ public class DynamicAdapter extends BaseAdapter{
 				new Thread(new Runnable() {
 					@Override
 					public void run() {
-						controller.dynamicRepaly(handler,holder);
+						controller.dynamicRepaly(dynamicHandler,handler);
+						holder.rl_dynamic_message.setVisibility(View.GONE);
 						ProgressDialogUtil.closeProgressDialog();
 					}
 				}).start();

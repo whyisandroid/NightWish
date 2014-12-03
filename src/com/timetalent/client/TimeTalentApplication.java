@@ -1,5 +1,7 @@
 package com.timetalent.client;
 
+import java.util.Map;
+
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -19,6 +21,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.timetalent.client.ui.esaemob.User;
+import com.timetalent.client.ui.esaemob.UserDao;
 import com.timetalent.common.net.AppSocketInterface;
 import com.timetalent.common.net.XUtilsSocketImpl;
 
@@ -46,6 +50,7 @@ public class TimeTalentApplication extends Application {
 	// login user name
 	public final String PREF_USERNAME = "username";
 	private String userName = null;
+	private Map<String, User> contactList;
 
 	private boolean login;// 登录情况
 
@@ -246,5 +251,28 @@ public class TimeTalentApplication extends Application {
 	 */
 	public boolean isTokenFlag() {
 		return AppSharedPref.getInstance(this).getTokenFlag();
+	}
+	
+	/**
+	 * 设置好友user list到内存中
+	 *
+	 * @param contactList
+	 */
+	public void setContactList(Map<String, User> contactList) {
+		this.contactList = contactList;
+	}
+	
+	/**
+	 * 获取内存中好友user list
+	 *
+	 * @return
+	 */
+	public Map<String, User> getContactList() {
+		if (getUserName() != null && contactList == null) {
+			UserDao dao = new UserDao(applicationContext);
+			// 获取本地好友user list到内存,方便以后获取好友list
+			contactList = dao.getContactList();
+		}
+		return contactList;
 	}
 }

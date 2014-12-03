@@ -302,13 +302,13 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 		if (chatType == CHATTYPE_SINGLE) { // 单聊
 			toChatUsername = getIntent().getStringExtra("userId");
-			((TextView) findViewById(R.id.name)).setText(toChatUsername);
+			String nickName = getIntent().getStringExtra("nickName");
+			((TextView) findViewById(R.id.name)).setText(nickName);
 			// conversation =
 			// EMChatManager.getInstance().getConversation(toChatUsername,false);
 		} else {
 			// 群聊
 			findViewById(R.id.container_to_group).setVisibility(View.VISIBLE);
-			findViewById(R.id.container_remove).setVisibility(View.GONE);
 			findViewById(R.id.container_voice_call).setVisibility(View.GONE);
 			toChatUsername = getIntent().getStringExtra("groupId");
 			group = EMGroupManager.getInstance().getGroup(toChatUsername);

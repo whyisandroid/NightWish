@@ -1,5 +1,6 @@
 package com.timetalent.client.ui.chance;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -16,9 +17,10 @@ import com.timetalent.client.entities.TaskShowData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
-import com.timetalent.client.ui.message.MessageChatActivity;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ShareUtil;
+import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -117,8 +119,14 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 			ShareMessage share = new  ShareMessage("今年杨坤20岁演唱会报名开始");
 			ShareUtil.showShare(OfferDetailActivity.this, share);
 			break;
+		case R.id.bt_chance_offer:
 		case R.id.ll_chance_offer_message:
-			IntentUtil.intent(OfferDetailActivity.this, MessageChatActivity.class);
+			Intent intent = new Intent(OfferDetailActivity.this,ChatActivity.class);
+			intent.putExtra("userId", StringUtil.getEsaeUserName(data.getUser_id()));
+			intent.putExtra("nickName", data.getUser().getNickname());
+			startActivity(intent);
+			//IntentUtil.intent(OfferDetailActivity.this,ChatActivity.class);
+			break;
 		default:
 			break;
 		}

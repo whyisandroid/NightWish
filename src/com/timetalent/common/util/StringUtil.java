@@ -4,6 +4,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.timetalent.common.util.aes.Md5;
+
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.DatePickerDialog.OnDateSetListener;
@@ -154,5 +156,35 @@ public class StringUtil {
 			validation = "内容不能为空"; 
 		}
 		return validation;
+	}
+
+
+	
+	/**
+	  * 方法描述：获取 环信用户名  
+	  * @param id
+	  * @author: why
+	  * @time: 2014-12-3 下午4:05:13
+	  */
+	public static String getEsaeUserName(String id) {
+		StringBuffer sb = new StringBuffer();
+		if(!TextUtils.isEmpty(id)){
+			sb.append("UID_"+id);
+		}
+		return sb.toString();
+	}
+	
+	/**
+	  * 方法描述：获取 环信密码
+	  * @param id
+	  * @author: why
+	  * @time: 2014-12-3 下午4:05:13
+	  */
+	public static String getEsaePwd(String id) {
+		StringBuffer sb = new StringBuffer();
+		if(!TextUtils.isEmpty(id)){
+			sb.append(Md5.digist(id));
+		}
+		return sb.toString();
 	}
 }

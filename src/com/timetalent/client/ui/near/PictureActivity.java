@@ -1,12 +1,17 @@
 package com.timetalent.client.ui.near;
 
+import java.util.List;
+
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
@@ -31,13 +36,14 @@ public class PictureActivity extends BaseActivity implements OnClickListener,Ges
 	private TextView tvindex;
 	private ViewFlipper vfpics;
 	private GestureDetector mGestureDetector;
-	
+	List<Drawable> pictures = null;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.near_getpic);
 		controller = AppController.getController(this);
+		pictures = (List<Drawable>) controller.getContext().getBusinessData("photolist");
 		findView();
 		initView();
 	}
@@ -66,6 +72,14 @@ public class PictureActivity extends BaseActivity implements OnClickListener,Ges
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
+		vfpics.removeAllViews();
+		for(Drawable d:pictures){
+			ImageView child = new ImageView(PictureActivity.this);
+			if(d != null){
+				child.setImageDrawable(d);
+			}
+			vfpics.addView(child, new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+		}
 	}
 	
 	

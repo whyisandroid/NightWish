@@ -35,18 +35,15 @@ public class YirenWorkAdapter extends BaseAdapter{
 		return 4;
 	}
 
-	
 	@Override
 	public Object getItem(int position) {
 		return position;
 	}
 
-	
 	@Override
 	public long getItemId(int position) {
 		return position;
 	}
-
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {

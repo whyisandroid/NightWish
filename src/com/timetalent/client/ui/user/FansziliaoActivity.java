@@ -236,7 +236,7 @@ void setvalue(){
 				break;
 			case 2:
 				BitmapDrawable img = (BitmapDrawable) msg.obj;
-				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+				Bitmap bm = PictureUtil.toRoundCorner(img.getBitmap(),10);
 				imghead.setImageBitmap(bm);
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
 				pa.width = (int) (50*density);

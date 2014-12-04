@@ -109,7 +109,7 @@ public class MyqianbaoActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.main_top_right:
-			Toast.makeText(MyqianbaoActivity.this, "点击账单", 1000).show();
+			IntentUtil.intent(MyqianbaoActivity.this, MyzhangdanActivity.class);
 			break;
 		case R.id.btchongzhi:
 			IntentUtil.intent(MyqianbaoActivity.this, MychongzhiActivity.class);

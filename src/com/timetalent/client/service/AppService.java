@@ -151,4 +151,5 @@ public interface AppService {
 	public void myavatarupdate() throws BusinessException;
 	public void myavatardel() throws BusinessException;
 	public void dictionary() throws BusinessException;
+	public void orderlist() throws BusinessException;
 }

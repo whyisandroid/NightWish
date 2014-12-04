@@ -153,12 +153,12 @@ public class EditPicturesLayout extends LinearLayout implements
 						Drawable db = PictureUtil.getImage(p.getUrl(),
 								p.getUser_id(), p.getId());
 						if(db instanceof BitmapDrawable){
-							pictures.add(new BitmapDrawable( PictureUtil.toRoundCorner(((BitmapDrawable) db).getBitmap(), (int)(4*density))));
+							pictures.add(new BitmapDrawable( PictureUtil.toRoundCorner(((BitmapDrawable) db).getBitmap(), (int)(10*density))));
 						}else{
 							pictures.add(db);
 						}
 						controller.getContext().addBusinessData("photolist", pictures);
-					}	
+					}
 				}
 				handler.sendEmptyMessage(1);
 			};

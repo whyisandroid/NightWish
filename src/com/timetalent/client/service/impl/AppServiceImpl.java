@@ -270,7 +270,6 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("birthday", register.getBirthday()));
 		nameValuePairs.add(new BasicNameValuePair("sex", register.getSex()));
 		nameValuePairs.add(new BasicNameValuePair("type", register.getType()));
-		nameValuePairs.add(new BasicNameValuePair("email", "1@qq.com"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_REGISTER);
 		request.setR_calzz(RegisterResp.class);

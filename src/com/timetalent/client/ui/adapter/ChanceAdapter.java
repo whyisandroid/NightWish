@@ -75,20 +75,22 @@ public class ChanceAdapter extends BaseAdapter{
 		Task task = lists.get(position);
 		holder.tv_chance_title.setText(task.getTitle());
 		holder.tv_chance_time.setText("报名截止时间："+task.getCutoff_date());
+		holder.tv_chance_address.setText(task.getPlace());
 		// 处理图片
-		ImageLoader.getInstance().displayImage(task.getBanner(),holder.iv_chance_banner);
+		//ImageLoader.getInstance().displayImage(task.getBanner(),holder.iv_chance_banner);
 		return convertView;
 	}
 	
 	static class ViewHolder{
-		private ImageView iv_chance_banner;
 		private TextView tv_chance_title;
 		private TextView tv_chance_time;
+		private TextView tv_chance_address;
+		
 		
 		public void findView(View convertView){
-			iv_chance_banner = (ImageView)convertView.findViewById(R.id.iv_chance_banner);
 			tv_chance_title = (TextView)convertView.findViewById(R.id.tv_chance_title);
 			tv_chance_time = (TextView)convertView.findViewById(R.id.tv_chance_time);
+			tv_chance_address = (TextView)convertView.findViewById(R.id.tv_chance_address);
 		}
 	}
 

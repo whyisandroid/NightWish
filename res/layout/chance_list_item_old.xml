@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/c13_08"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/iv_chance_banner"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="center"
+             />
+        
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp" >
+
+            <TextView
+                android:id="@+id/tv_chance_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_chance_time"
+                android:text="今年杨坤20岁演唱会"
+                android:singleLine="true"
+                android:textColor="@color/main_red"
+                android:textSize="@dimen/new_size_2" />
+
+            <TextView
+                android:id="@+id/tv_chance_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:text="报名截止时间：2104年12月6日"
+                android:textColor="@color/color_4"
+                android:textSize="@dimen/new_size_1" />
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</LinearLayout>

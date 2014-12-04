@@ -27,8 +27,8 @@ import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
-import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ToastUtil;
+import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
@@ -59,6 +59,7 @@ public class DynamicAdapter extends BaseAdapter{
 				break;
 			case 1:
 				ViewHolder holder1 = (ViewHolder)msg.obj;
+				holder1.rl_dynamic_message.setVisibility(View.GONE);
 				break;
 			default:
 				break;
@@ -139,7 +140,7 @@ public class DynamicAdapter extends BaseAdapter{
 		// 处理 回复
 		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
 		holder.lv_dynamic_replay.setAdapter(replayAdapter);
-		//UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
+		UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
 		// 处理头像
 		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head,PictureUtil.getCircleOption());
 		// 处理图片
@@ -190,37 +191,33 @@ public class DynamicAdapter extends BaseAdapter{
 			}
 		});
 		holder.tv_dynamic_send.setOnClickListener(new OnClickListener() {
-			
 			@Override
 			public void onClick(View v) {
-				if(invaild()){
-					send();
+				if(invaild(holder,feed.getId())){
+				//	ProgressDialogUtil.showProgressDialog(mContext, "发送中…", false);
+						new Thread(new Runnable() {
+							@Override
+							public void run() {
+								controller.dynamicRepaly(dynamicHandler,handler,holder);
+							//	ProgressDialogUtil.closeProgressDialog();
+							}
+						}).start();
 				}
-			}
-			private void send() {
-				ProgressDialogUtil.showProgressDialog(mContext, "发送中…", false);
-				new Thread(new Runnable() {
-					@Override
-					public void run() {
-						controller.dynamicRepaly(dynamicHandler,handler);
-						holder.rl_dynamic_message.setVisibility(View.GONE);
-						ProgressDialogUtil.closeProgressDialog();
-					}
-				}).start();
-			}
-			private boolean invaild() {
-				String message = holder.et_dynamic_message.getText().toString().trim();
-				if (TextUtils.isEmpty(message)) {
-					ToastUtil.showToast(mContext, "回复不能为空", ToastUtil.LENGTH_LONG);
-					return false;
-				}else{
-					controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
-					controller.getContext().addBusinessData("dynamic_feed_replay_message",message);
-				}
-				return true;
 			}
 		});
 		return convertView;
+	}
+	
+	private boolean invaild(ViewHolder holder,String feedID) {
+		String message = holder.et_dynamic_message.getText().toString().trim();
+		if (TextUtils.isEmpty(message)) {
+			ToastUtil.showToast(mContext, "回复不能为空", ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			controller.getContext().addBusinessData("dynamic_feed_id",feedID);
+			controller.getContext().addBusinessData("dynamic_feed_replay_message",message);
+		}
+		return true;
 	}
 	public static class ViewHolder{
 		private ImageView iv_dynamic_head; 				

@@ -38,10 +38,10 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	private TextView bt_chance_offer;
 	
 	
-	private ImageView iv_chance_banner;
 	private TextView tv_chance_title;
 	private TextView tv_chance_time;
 	private TextView tv_offer_detail_address;
+	private TextView tv_chance_address;
 	
 	private LinearLayout ll_chance_offer_message;
 	private TextView tv_chance_detail_des;
@@ -70,11 +70,11 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		tv_chance_detail_des = (TextView)findViewById(R.id.tv_chance_detail_des);
 		 
 		
-		iv_chance_banner = (ImageView)findViewById(R.id.iv_chance_banner);
 		tv_chance_title = (TextView)findViewById(R.id.tv_chance_title);
 		tv_chance_time = (TextView)findViewById(R.id.tv_chance_time);
 		tv_offer_detail_address = (TextView)findViewById(R.id.tv_offer_detail_address);
 		ll_chance_offer_message = (LinearLayout)findViewById(R.id.ll_chance_offer_message);
+		tv_chance_address = (TextView)findViewById(R.id.tv_chance_address);
 	}
 	/**
 	 * 方法描述：TODO
@@ -103,9 +103,9 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 		tv_chance_time.setText("报名截止日期："+data.getCutoff_date());
 		tv_offer_detail_address.setText(data.getPlace());
 		tv_chance_detail_des.setText(data.getDescription());
+		tv_chance_address.setText(data.getPlace());
 		// 处理图片
-		ImageLoader.getInstance().displayImage(data.getBanner(),iv_chance_banner);
-		iv_chance_banner.setScaleType(ScaleType.CENTER);
+		//ImageLoader.getInstance().displayImage(data.getBanner(),iv_chance_banner);
 		ChanceDetailAdapter adapter  = new  ChanceDetailAdapter(this,data.getJobs());
 		lv_chance_detail.setAdapter(adapter);
 		UIUtils.setListViewHeight(lv_chance_detail, adapter);

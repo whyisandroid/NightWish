@@ -147,6 +147,7 @@ public class YirenYaoqingAdapter extends BaseAdapter{
 				});
 			}
 		});
+		dialog.setCanceledOnTouchOutside(true);
 	}
 	class ViewHolder{
 	    public ImageView imghead;

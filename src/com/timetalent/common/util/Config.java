@@ -83,6 +83,8 @@ public class Config {
 	public final static String HTTP_MY_WALLET_CANCELORDER = MY_SERVICE+ "/Wallet/cancel_order"; // 取消订单Wallet/cancel_order
 	public final static String HTTP_MY_WALLET_WITHDRAW = MY_SERVICE+ "/Wallet/withdraw"; // 提现Wallet/withdraw
 	public final static String HTTP_MY_WALLET_WITHDRAWLISTS = MY_SERVICE+ "/Wallet/withdraw_lists"; // 提现记录Wallet/withdraw_lists
+	public final static String HTTP_MY_WALLET_ORDERLISTS = MY_SERVICE+ "/Wallet/charge_order_lists";//充值记录接口
+
 	public final static String HTTP_MY_INVITE_ADD = MY_SERVICE+ "/Invite/add"; // 星探、粉丝邀约某明星Invite/add
 	public final static String HTTP_MY_INVITE_APPOINT = MY_SERVICE+ "/Invite/appoint"; // 我的邀约记录 星探或粉丝邀约明星的记录Invite/appoint
 	public final static String HTTP_MY_INVITE_OFFER = MY_SERVICE+ "/Invite/offer"; // 邀约我的记录 明星被邀约的记录Invite/offer

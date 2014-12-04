@@ -1537,4 +1537,26 @@ public class AppServiceImpl implements AppService {
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#orderlist()
+	 */
+	@Override
+	public void orderlist() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_WALLET_ORDERLISTS);
+		request.setR_calzz(BaseResp.class);  
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+	}
 }

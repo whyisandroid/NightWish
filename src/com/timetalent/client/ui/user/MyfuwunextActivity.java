@@ -1,5 +1,7 @@
 package com.timetalent.client.ui.user;
 
+import java.util.List;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -15,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.MyServicepackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -110,6 +113,17 @@ public class MyfuwunextActivity extends BaseActivity implements OnClickListener 
 			finish();
 			break;
 		case R.id.btok:
+			List<MyServicepackage> list = (List<MyServicepackage>) controller.getContext().getBusinessData("addeditservice");
+			if(list != null){
+//				for(MyServicepackage t:list){
+//					
+//					new Thread(){
+//						public void run() {
+//							controller.mys
+//						};
+//					}.start();
+//				}
+			}
 			finish();
 			Toast.makeText(MyfuwunextActivity.this, "baocun成功", 1000).show();
 			break;

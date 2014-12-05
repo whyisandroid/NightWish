@@ -74,6 +74,7 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 	TextView tvzhiye;
 	TextView tvjiaxiang;
 	TextView tvheight;
+	TextView tvfeed;
 	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +114,7 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 		 tvzhiye = (TextView) findViewById(R.id.tvzhiye);
 		 tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		 tvheight = (TextView) findViewById(R.id.tvheight);
+		 tvfeed = (TextView) findViewById(R.id.tvfeed);
 	}
 
 	/**
@@ -320,6 +322,7 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 					 tvzhiye.setText(u.getMajor());
 					 tvjiaxiang.setText(u.getAge());
 					 tvheight.setText(u.getMore().getHeight()+"cm");
+					 tvfeed.setText(u.getCount().getFeed());
 				}
 				adapter = new TonggaoBaseAdapter(XingtanActivity.this);
 				ltonggao.setAdapter(adapter);

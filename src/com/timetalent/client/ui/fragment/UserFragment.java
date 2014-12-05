@@ -380,7 +380,7 @@ case 2:
 				tvnickname.setText(info.getNickname()+"");
 				 tvmoney.setText(user.getMoney()+"");
 				 tvcounthaoyou.setText(info.getCount().getFriend()+"");
-				 tvcountpushuser.setText(info.getCount().getFeed()+"");
+				 tvcountpushuser.setText(info.getCount().getPushuser()+"");
 				 tvcountguanzhu.setText(info.getCount().getFollowing()+"");
 				 tvcountfans.setText(info.getCount().getFollowed()+"");
 				 

@@ -147,11 +147,11 @@
                         android:text="我的动态" />
 
                     <TextView
-                        android:id="@+id/textView6"
+                        android:id="@+id/tvfeed"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_weight="1"
-                        android:text="317"
+                        android:text=""
                         android:textSize="@dimen/new_size_2"
                         android:textColor="@color/bt_red" />
 

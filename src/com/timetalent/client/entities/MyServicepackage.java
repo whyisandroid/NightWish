@@ -10,9 +10,31 @@ package com.timetalent.client.entities;
  ******************************************/
 public class MyServicepackage {
 	String id = "";
+	String type = "";
 	String name = "";
 	String user_id = "";
 	String service_id = "";
+	String money = "";
+	String unit = "";
+	
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
+	public String getUnit() {
+		return unit;
+	}
+	public void setUnit(String unit) {
+		this.unit = unit;
+	}
 	public String getId() {
 		return id;
 	}

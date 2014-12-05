@@ -26,6 +26,7 @@ import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
@@ -62,6 +63,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 	TextView tvjiaxiang;
 	TextView tvheight;
 	TextView tvsanwei;
+	TextView tvfeed;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private ListView lzuopin;
@@ -70,13 +72,15 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 	public int screenw = 0;
 	public float density = 1.0f;
 	ImageView imghead;
-	Baseinfopackage u;
+	LoginData user;
+	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_yirenziliao);
 		controller = AppController.getController(this);
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenw = dm.widthPixels;
@@ -84,7 +88,8 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		findView();
 		new Thread(){
 			public void run() {
-				controller.mybaseinfo();
+				controller.getContext().addBusinessData("near.user_id", user.getId());
+				controller.userinfo();
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
@@ -115,6 +120,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		 tvheight = (TextView)this.findViewById(R.id.tvheight);
 		 tvsanwei = (TextView)this.findViewById(R.id.tvsanwei);
 		 imghead = (ImageView)this.findViewById(R.id.imghead);
+		 tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 	}
 
 	/**
@@ -139,16 +145,17 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		ldongtai.setOnClickListener(this);
 		tvage1.setText(u.getAge());
 		 tvxingzuo.setText(u.getConstella());
-		 tvdizhi.setText(u.getProvince());
-		 tvtime.setText(u.getLast_time());
-		 tvname.setText(u.getRealname());
+		 tvdizhi.setText(user.getProvince());
+		 tvtime.setText(user.getLast_time());
+		 tvname.setText(user.getRealname());
 		 tvnickname.setText(u.getNickname());
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(u.getProvince());
-		 tvheight.setText(u.getAge());
-		 tvsanwei.setText(u.getAge());
+		 tvjiaxiang.setText(user.getProvince());
+		 tvheight.setText(u.getMore().getHeight());
+		 tvsanwei.setText(u.getMore().getBust()+","+u.getMore().getHip()+","+u.getMore().getWaist());
+		 tvfeed.setText(u.getCount().getFeed());
 	}
 	void setvalue(){
 		
@@ -227,7 +234,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				u = (Baseinfopackage) controller.getContext().getBusinessData("BaseinfoData");
+				u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				if(u != null){
 					initView();
 					new Thread(){

@@ -908,4 +908,13 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	public void myservice_list() {
+		try {
+			service.myservice_list();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

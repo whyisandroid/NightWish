@@ -10,6 +10,7 @@ package com.timetalent.client.entities;
  ******************************************/
 public class Countpackage {
 	String feed = "";
+	String pushuser = "";
 	String followed = "";
 	String following = "";
 	String friend = "";
@@ -18,6 +19,13 @@ public class Countpackage {
 	}
 	public void setFeed(String feed) {
 		this.feed = feed;
+	}
+	
+	public String getPushuser() {
+		return pushuser;
+	}
+	public void setPushuser(String pushuser) {
+		this.pushuser = pushuser;
 	}
 	public String getFollowed() {
 		return followed;

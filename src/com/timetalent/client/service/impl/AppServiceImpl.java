@@ -47,6 +47,7 @@ import com.timetalent.client.entities.json.TaskResp;
 import com.timetalent.client.entities.json.TaskShowResp;
 import com.timetalent.client.entities.json.UserinfoResp;
 import com.timetalent.client.entities.json.WalletorderResp;
+import com.timetalent.client.entities.json.servicelistResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppService;
@@ -1287,15 +1288,18 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void myservice_list() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
-		Request<ServiceResp> request = new Request<ServiceResp>();
+		Request<servicelistResp> request = new Request<servicelistResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_USER_SERVICE_LIST);
-		request.setR_calzz(ServiceResp.class);
-		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(servicelistResp.class);
+		servicelistResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
+			if (resp.getData() != null) {
+				context.addBusinessData("servicelistData", resp.getData());
+			}
+		
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
@@ -22,10 +23,12 @@ import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.LogUtil;
+import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
 /******************************************
@@ -111,6 +114,8 @@ public class AppController {
 	private static final int HANDLER_TOAST = 1; // 吐司 专用
 	private static final int HANDLER_UPDATE = 2; // 更新
 	private static final int HANDLER_UPDATE_ABOUT = 3; // 更新 错误信息由提示 about
+	
+	private static final int MESSAGE_ACCESS = 4;// 不能聊天对话框
 	private Handler accHandler; // 账户页面专用 Handler
 
 	public void setAccHandler(Handler accHandler) {
@@ -134,6 +139,9 @@ public class AppController {
 				if(!TextUtils.isEmpty(msg.obj.toString())){
 					ToastUtil.showToast(currentActivity, msg.obj.toString(), ToastUtil.LENGTH_LONG);
 				}
+				break;
+			case MESSAGE_ACCESS:
+				DialogUtil.messageAccess(currentActivity);
 				break;
 			default:
 				break;
@@ -286,6 +294,38 @@ public class AppController {
 		}
 	}
 	
+	public void chatAccess(String ID,String nickName) {
+		try {
+			service.chatAccess();
+			Intent intent = new Intent(currentActivity,ChatActivity.class);
+			intent.putExtra("userId", StringUtil.getEsaeUserName(ID));
+			intent.putExtra("nickName", nickName);
+			currentActivity.startActivity(intent);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(MESSAGE_ACCESS, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void InvitePayment() {
+		try {
+			service.InvitePayment();
+			Intent intent = new Intent(currentActivity,ChatActivity.class);
+			intent.putExtra("userId", StringUtil.getEsaeUserName("73"));
+			intent.putExtra("nickName", "qqqq");
+			currentActivity.startActivity(intent);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			handler.obtainMessage(MESSAGE_ACCESS, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	public void chanceLists(Handler mHandler) {
 		try {
 			service.chanceLists();
@@ -401,6 +441,15 @@ public class AppController {
 		}
 	}
 	
+	public void dynamicUnFavour(Handler mHandler,com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder holder) {
+		try {
+			service.dynamicUnFavour();
+			mHandler.obtainMessage(2, holder).sendToTarget();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+		}
+	}
 	
 	public void dynamicMy(Handler mHandler) {
 		try {

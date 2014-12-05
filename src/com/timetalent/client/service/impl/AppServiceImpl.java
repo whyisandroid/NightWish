@@ -107,6 +107,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("loginData", resp.getData());
 				context.addBusinessData("_session_id", resp.getData().getSession_id());
 				context.addBusinessData("Login.type", resp.getData().getType());
+				context.addBusinessData("Login.money", resp.getData().getMoney());
 			}
 			
 			
@@ -313,6 +314,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("place", task.getPlace()));
 		nameValuePairs.add(new BasicNameValuePair("job_lists_json", task.getJob_lists_json()));
 		nameValuePairs.add(new BasicNameValuePair("cutoff_date", task.getCutoff_date()));
+		nameValuePairs.add(new BasicNameValuePair("description", task.getDescription()));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_CHANCE_ADD);
 		request.setR_calzz(TaskADDResp.class);  
@@ -452,7 +454,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
 		nameValuePairs.add(new BasicNameValuePair("user_id", other_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_WHO);
 		request.setR_calzz(FeedResp.class);
 		FeedResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
@@ -550,9 +552,29 @@ public class AppServiceImpl implements AppService {
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
+	}
 	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#dynamicFavour()
+	 */
+	@Override
+	public void dynamicUnFavour() throws BusinessException {
+
+		String _session_id = context.getStringData("_session_id");
+		String dynamic_feed_id = context.getStringData("dynamic_feed_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("feed_id", dynamic_feed_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_DYNAMIC_UNFAVOUR);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
 			
-			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
 	}
 
 	
@@ -1549,6 +1571,52 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_WALLET_ORDERLISTS);
+		request.setR_calzz(BaseResp.class);  
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+	
+	
+	
+	@Override
+	public void chatAccess() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		String target_id = context.getStringData("Chat.target_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("target_id", target_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHAT_ACCESS);
+		request.setR_calzz(BaseResp.class);  
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+	
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#InvitePayment()
+	 */
+	@Override
+	public void InvitePayment() throws BusinessException {
+
+		String _session_id = context.getStringData("_session_id");
+		String target_id = context.getStringData("Chat.target_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("id", target_id));
+		nameValuePairs.add(new BasicNameValuePair("payment", "Y"));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_CHAT_PAYMENT);
 		request.setR_calzz(BaseResp.class);  
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {

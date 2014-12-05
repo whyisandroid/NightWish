@@ -57,6 +57,11 @@ public class Config {
 	public final static String HTTP_USER_DYNAMIC_ADD_PIC = MY_SERVICE+ "/Feed/add_photo"; //发布动态 图片
 	public final static String HTTP_USER_DYNAMIC_REPALY = MY_SERVICE+ "/Feed/add_reply"; // 评论某动态Feed/add_reply
 	public final static String HTTP_USER_DYNAMIC_FAVOUR = MY_SERVICE+ "/Feed/favour"; // 点赞Feed/favour
+	public final static String HTTP_USER_DYNAMIC_UNFAVOUR = MY_SERVICE+ "/Feed/unfavour"; // 取消点赞Feed/unfavour
+	public final static String HTTP_USER_CHAT_ACCESS= MY_SERVICE+ "/Message/access"; // 是否可以聊天Message/access
+	public final static String HTTP_USER_CHAT_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用Invite/payment
+
+	
 	
 	//附近
 	public final static String HTTP_NEAR_ZONE_SEARCH = MY_SERVICE+ "/Zone/search"; // 搜索用户Zone/search

@@ -61,6 +61,11 @@ public class DynamicAdapter extends BaseAdapter{
 				ViewHolder holder1 = (ViewHolder)msg.obj;
 				holder1.rl_dynamic_message.setVisibility(View.GONE);
 				break;
+			case 2:
+				ViewHolder holder2 = (ViewHolder)msg.obj;
+				holder2.iv_dynamic_good.setSelected(true);
+				holder2.iv_dynamic_good_num.setText(Integer.valueOf(holder2.iv_dynamic_good_num.getText().toString())-1+"");
+				break;
 			default:
 				break;
 			}
@@ -173,13 +178,21 @@ public class DynamicAdapter extends BaseAdapter{
 			
 				@Override
 				public void onClick(View v) {
-					new Thread(){
-						public void run() {
-							controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
-							controller.dynamicFavour(handler,holder);
-						};
-					}.start();
-					
+					if(v.isSelected()){
+						new Thread(){
+							public void run() {
+								controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
+								controller.dynamicFavour(handler,holder);
+							};
+						}.start();
+					}else{
+						new Thread(){
+							public void run() {
+								controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
+								controller.dynamicUnFavour(handler,holder);
+							};
+						}.start();
+					}
 				}
 			}
 		);

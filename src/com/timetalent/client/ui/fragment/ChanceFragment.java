@@ -155,7 +155,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	  */
 	private void update() {
 		String type = controller.getContext().getStringData("Login.type");
-		if("star".equals(type)){
+		if("scout".equals(type)){
 			main_top_find_right.setVisibility(View.VISIBLE);
 		}else{
 			main_top_find_right.setVisibility(View.INVISIBLE);

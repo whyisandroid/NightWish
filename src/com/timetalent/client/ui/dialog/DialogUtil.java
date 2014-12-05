@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.dialog;
 
 import com.timetalent.client.TimeTalentApplication;
+import com.timetalent.client.service.AppController;
 import com.timetalent.common.util.ToastUtil;
 
 import android.app.Activity;
@@ -95,6 +96,66 @@ public class DialogUtil {
 				dialog.closeDialog();
 				// 对话框
 				ToastUtil.showToast(context, toast, ToastUtil.LENGTH_LONG);
+			}
+		});
+	}
+
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @param currentActivity
+	  * @author: why
+	  * @time: 2014-12-5 下午4:49:49
+	  */
+	public static void messageAccess(final Activity context) {
+
+		final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
+		dialog.setMessage("您不在对方的好友列表,对话需要支付10星币!");
+		dialog.setLeft("取消", new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+			}
+		});
+		dialog.setRight("确定", new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				dialog.closeDialog();
+				String money = AppController.getController().getContext().getStringData("Login.money");
+				if(Double.valueOf(money)< 100){
+					messageWallet(context);
+				}else{
+					// 去支付 
+				}
+			}
+
+			
+			/**
+			  * 方法描述：TODO
+			  * @param context
+			  * @author: why
+			  * @time: 2014-12-5 下午4:57:46
+			  */
+			private void messageWallet(Activity context) {
+				final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_TWO);
+				dialog.setMessage("您的星币余额不足是否充值!");
+				dialog.setLeft("取消", new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.closeDialog();
+					}
+				});
+				dialog.setRight("确定", new OnClickListener() {
+					
+					@Override
+					public void onClick(View v) {
+						dialog.closeDialog();
+						// 充值
+					}
+				});
 			}
 		});
 	}

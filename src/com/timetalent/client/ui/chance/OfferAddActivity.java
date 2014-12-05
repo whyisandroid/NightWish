@@ -52,12 +52,11 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	private Button bt_chance_offer;
 	private RelativeLayout rl_chance_data1;//报名截止日期
 	private TextView tv_chance_data1;
-	private Button bt_chance_offer_picture;
+	private EditText et_chance_add_title_des;
 	
 	private ListView lv_chance_add;
 	private ImageView iv_chance_offer_add;
 	
-	private ImageView iv_chance_add_head;
 	
 	
 	private OfferAddAdapter adapter ;
@@ -67,8 +66,6 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	private EditText et_chance_add_title;
 	private RelativeLayout rl_chance_add_place;//地点
 	private TextView tv_chance_add_place;
-	
-	private boolean  pictureFlag = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,12 +88,11 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 		rl_chance_data1 = (RelativeLayout)findViewById(R.id.rl_chance_data1);
 		rl_chance_add_place = (RelativeLayout)findViewById(R.id.rl_chance_add_place);
 	
-		bt_chance_offer_picture = (Button)findViewById(R.id.bt_chance_offer_picture);
 		
 		lv_chance_add = (ListView)findViewById(R.id.lv_chance_add);
 		iv_chance_offer_add = (ImageView)findViewById(R.id.iv_chance_offer_add);
-		iv_chance_add_head = (ImageView)findViewById(R.id.iv_chance_add_head);
 		et_chance_add_title = (EditText)findViewById(R.id.et_chance_add_title);
+		et_chance_add_title_des = (EditText)findViewById(R.id.et_chance_add_title_des);
 	}
 	
 	/**
@@ -112,7 +108,6 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 		rl_chance_data1.setOnClickListener(this);
 		rl_chance_add_place.setOnClickListener(this);
 		
-		bt_chance_offer_picture.setOnClickListener(this);
 		iv_chance_offer_add.setOnClickListener(this);
 		list = new ArrayList<Job>();
 		list.add(new Job());
@@ -131,9 +126,6 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 			break;
 		case R.id.rl_chance_data1:
 			StringUtil.getData(OfferAddActivity.this,tv_chance_data1);
-			break;
-		case R.id.bt_chance_offer_picture:
-			PictureUtil.doGoToImg(OfferAddActivity.this,sdcardTempFile);
 			break;
 		case R.id.iv_chance_offer_add:
 			list = adapter.getList();
@@ -187,13 +179,6 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	  */
 	private boolean invaild() {
 		TaskAdd task = new TaskAdd();
-		if(!pictureFlag){
-			ToastUtil.showToast(this, "图片不能为空", ToastUtil.LENGTH_LONG);
-			return false;
-		}else{
-			
-		}
-		
 		String title = et_chance_add_title.getText().toString().trim();
 		if(TextUtils.isEmpty(title)){
 			ToastUtil.showToast(this, "招聘专题不能为空", ToastUtil.LENGTH_LONG);
@@ -202,6 +187,13 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 			task.setTitle(title);
 		}
 		
+		String titledes = et_chance_add_title_des.getText().toString().trim();
+		if(TextUtils.isEmpty(titledes)){
+			ToastUtil.showToast(this, "工作介绍不能为空", ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			task.setDescription(titledes);
+		}
 		
 		String data1 = tv_chance_data1.getText().toString().trim();
 		if(TextUtils.isEmpty(data1)){
@@ -252,13 +244,13 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			Bitmap bmp = BitmapFactory.decodeFile(sdcardTempFile
+/*			Bitmap bmp = BitmapFactory.decodeFile(sdcardTempFile
 					.getAbsolutePath());
 			iv_chance_add_head.setImageBitmap(bmp);
 			pictureFlag = true;
 			List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
 			picValuePair.add(new PicValuePair("banner", sdcardTempFile));
-			controller.getContext().addBusinessData("Task.banner", picValuePair);
+			controller.getContext().addBusinessData("Task.banner", picValuePair);*/
 		}
 	}
 }

@@ -14,6 +14,21 @@ public class TaskAdd {
 	private String	place; //工作地点
 	private String	job_lists_json; //职位列表(可以为空,之后调用Task/add_job方法亦可) json数据[{'job':'','description':'','work_date_start':'','work_date_end':''},{'job':'','description':'','work_date_start':'','work_date_end':''}]
 	private String	cutoff_date; //报名截止日期 格式 秒时间戳
+	private String description;
+	
+	/**
+	 * @param description : set the property description.
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	/**
+	 * @return description : return the property description.
+	 */
+	public String getDescription() {
+		return description;
+	}
 	/**
 	 * @return _session_id : return the property _session_id.
 	 */

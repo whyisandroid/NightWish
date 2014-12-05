@@ -2,15 +2,13 @@ package com.timetalent.client.ui.chance;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
-import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.ShareMessage;
 import com.timetalent.client.entities.TaskShowData;
@@ -18,7 +16,7 @@ import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.ChanceDetailAdapter;
 import com.timetalent.client.ui.esaemob.ChatActivity;
-import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ShareUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.UIUtils;
@@ -48,6 +46,21 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	
 	
 	private TaskShowData data;
+	
+	private Handler handler  = new Handler(){
+		public void handleMessage(android.os.Message msg) {
+			switch (msg.what) {
+			case 0:
+				Intent intent = new Intent(OfferDetailActivity.this,ChatActivity.class);
+				intent.putExtra("userId", StringUtil.getEsaeUserName(data.getUser_id()));
+				intent.putExtra("nickName", data.getUser().getNickname());
+				startActivity(intent);
+				break;
+			default:
+				break;
+			}
+		};
+	};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -121,10 +134,15 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 			break;
 		case R.id.bt_chance_offer:
 		case R.id.ll_chance_offer_message:
-			Intent intent = new Intent(OfferDetailActivity.this,ChatActivity.class);
-			intent.putExtra("userId", StringUtil.getEsaeUserName(data.getUser_id()));
-			intent.putExtra("nickName", data.getUser().getNickname());
-			startActivity(intent);
+			ProgressDialogUtil.showProgressDialog(this, "通信中…", false);
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					controller.getContext().addBusinessData("Chat.target_id",data.getUser_id() );
+					controller.chatAccess(data.getUser_id(),data.getUser().getNickname());
+					ProgressDialogUtil.closeProgressDialog();
+				}
+			}).start();
 			//IntentUtil.intent(OfferDetailActivity.this,ChatActivity.class);
 			break;
 		default:

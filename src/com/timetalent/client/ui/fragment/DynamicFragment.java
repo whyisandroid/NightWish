@@ -69,7 +69,6 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	}
 	/**
 	 * 方法描述：TODO
-	 * 
 	 * @author: why
 	 * @time: 2014-10-10 下午6:36:00
 	 */
@@ -81,7 +80,6 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 
 	/**
 	 * 方法描述：TODO
-	 * 
 	 * @author: why
 	 * @time: 2014-10-10 下午6:36:02
 	 */

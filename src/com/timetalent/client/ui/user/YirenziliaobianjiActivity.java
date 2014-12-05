@@ -34,6 +34,8 @@ import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -81,13 +83,16 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	TextView tvxingzuo;
 	TextView tvxingzuo1;
 	TextView tvsanwei;
-	Baseinfopackage u;
+	TextView tvfeed;
+	LoginData user;
+	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_yirenziliaobianji);
 		controller = AppController.getController(this);
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenw = dm.widthPixels;
@@ -95,7 +100,8 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		findView();
 		new Thread(){
 			public void run() {
-				controller.mybaseinfo();
+				controller.getContext().addBusinessData("near.user_id", user.getId());
+				controller.userinfo();
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
@@ -124,6 +130,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
 		imgsex = (ImageView)this.findViewById(R.id.imgsex);
 		tvsanwei = (TextView) findViewById(R.id.tvsanwei);
+		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 	}
 
 	/**
@@ -150,6 +157,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvfeed.setText(u.getCount().getFeed());
 		if(u.getSex().equals("1")){
 			imgsex.setImageResource(R.drawable.f_05);
 		}else{
@@ -275,7 +283,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				 u = (Baseinfopackage) controller.getContext().getBusinessData("BaseinfoData");
+				 u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				if(u != null){
 					initView();
 					new Thread(){

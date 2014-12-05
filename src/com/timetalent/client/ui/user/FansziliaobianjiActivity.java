@@ -29,6 +29,8 @@ import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
+import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -66,6 +68,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	ImageView imgsex;
 	TextView tvxingzuo;
 	TextView tvxingzuo1;
+	TextView tvfeed;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private TextView main_top_right;
@@ -75,22 +78,24 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	public int screenw = 0;
 	public float density = 1.0f;
 	ImageView imghead;
-	Baseinfopackage u;
+	LoginData user;
+	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.my_fansziliaobianji);
 		controller = AppController.getController(this);
+		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenw = dm.widthPixels;
 		density = dm.density;
 		findView();
-		
 		new Thread(){
 			public void run() {
-				controller.mybaseinfo();
+				controller.getContext().addBusinessData("near.user_id", user.getId());
+				controller.userinfo();
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
@@ -115,6 +120,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
 		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
 		imgsex = (ImageView)this.findViewById(R.id.imgsex);
+		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 	}
 
 	/**
@@ -140,6 +146,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
+		tvfeed.setText(u.getCount().getFeed());
 		if(u.getSex().equals("1")){
 			imgsex.setImageResource(R.drawable.f_05);
 		}else{
@@ -264,7 +271,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				 u = (Baseinfopackage) controller.getContext().getBusinessData("BaseinfoData");
+				 u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				if(u != null){
 					initView();
 					new Thread(){

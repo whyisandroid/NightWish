@@ -53,6 +53,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 		new Thread(){
 			public void run() {
 				controller.myuser_service();
+				controller.myservice_list();
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
@@ -100,7 +101,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	 */
 	public void setListViewHeightBasedOnChildren(GridView listView) {
         ListAdapter listAdapter = listView.getAdapter();   
-        if (listAdapter == null) {  
+        if (listAdapter == null) {
             // pre-condition  
             return;  
         }  
@@ -124,8 +125,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.btok:
-			finish();
-			Toast.makeText(MyfuwuActivity.this, "baocun成功", 1000).show();
+			IntentUtil.intent(MyfuwuActivity.this, MyfuwunextActivity.class);
 			break;
 		default:
 			break;

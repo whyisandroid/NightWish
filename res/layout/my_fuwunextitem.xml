@@ -48,6 +48,7 @@
             android:layout_weight="1"
             android:background="@drawable/btn_anshi"
             android:button="@null"
+            android:checked="true"
             android:textColor="@color/color_4"
             android:textSize="@dimen/new_size_2" />
 
@@ -58,7 +59,6 @@
             android:layout_weight="1"
             android:background="@drawable/btn_anjian"
             android:button="@null"
-            android:checked="true"
             android:textColor="@color/color_4"
             android:textSize="@dimen/new_size_2" />
     </RadioGroup>

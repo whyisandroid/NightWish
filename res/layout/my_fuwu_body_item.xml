@@ -28,15 +28,15 @@
         android:layout_width="110dp"
         android:layout_height="55dp"
         android:gravity="center"
-        android:background="@drawable/biankuanghuixuxian" >
+        android:background="@color/bt_light_red" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/tvindex1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/color_2"
+            android:textColor="@color/white"
             android:textSize="@dimen/new_size_4"
-            android:text="" />
+            android:text="1" />
 
     </LinearLayout>
    

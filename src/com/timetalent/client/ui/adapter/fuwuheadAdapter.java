@@ -106,15 +106,15 @@ public class fuwuheadAdapter extends BaseAdapter{
 		if(position == list.size()){
 			holder.l1.setVisibility(View.GONE);
 			holder.l2.setVisibility(View.VISIBLE);
-			holder.l2.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					IntentUtil.intent(mcontext, MyfuwunextActivity.class);
-				}
-			});
+//			holder.l2.setOnClickListener(new OnClickListener() {
+//				
+//				@Override
+//				public void onClick(View v) {
+//					IntentUtil.intent(mcontext, MyfuwunextActivity.class);
+//				}
+//			});
 		}else{
-			holder.tvindex.setText(""+list.get(position).getName());
+			holder.tvindex.setText(""+list.get(position).getService_id());
 		}
 		
 		return convertView;

@@ -75,6 +75,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 	TextView tvjiaxiang;
 	TextView tvheight;
 	TextView tvsanwei;
+	TextView tvfeed;
 	int index = 0;
 	String userid = "1";
 	public int screenw = 0;
@@ -120,6 +121,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 		 tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		 tvheight = (TextView) findViewById(R.id.tvheight);
 		 tvsanwei = (TextView) findViewById(R.id.tvsanwei);
+		 tvfeed = (TextView) findViewById(R.id.tvfeed);
 	}
 
 	/**
@@ -290,6 +292,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 					 tvzhiye.setText(u.getMajor());
 					 tvjiaxiang.setText(u.getAge());
 					 tvheight.setText(u.getMore().getHeight()+"cm");
+					 tvfeed.setText(u.getCount().getFeed());
 					 tvsanwei.setText(u.getMore().getBust()+","+u.getMore().getWaist()+","+u.getMore().getHip());
 					adapter = new ZuopinBaseAdapter(YirenActivity.this);
 					lzuopin.setAdapter(adapter);

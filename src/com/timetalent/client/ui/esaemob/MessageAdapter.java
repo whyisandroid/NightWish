@@ -30,7 +30,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.text.Spannable;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -438,16 +437,6 @@ public class MessageAdapter extends BaseAdapter{
 		Spannable span = SmileUtils.getSmiledText(context, txtBody.getMessage());
 		// 设置内容
 		holder.tv.setText(span, BufferType.SPANNABLE);
-		// 设置长按事件监听
-		holder.tv.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
-						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.TXT.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-				return true;
-			}
-		});
 
 		if (message.direct == EMMessage.Direct.SEND) {
 			switch (message.status) {
@@ -493,15 +482,6 @@ public class MessageAdapter extends BaseAdapter{
 	 */
 	private void handleImageMessage(final EMMessage message, final ViewHolder holder, final int position, View convertView) {
 		holder.pb.setTag(position);
-		holder.iv.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
-						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.IMAGE.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-				return true;
-			}
-		});
 
 		// 接收方向的消息
 		if (message.direct == EMMessage.Direct.RECEIVE) {
@@ -612,16 +592,7 @@ public class MessageAdapter extends BaseAdapter{
 		// videoBody.getFileName());
 		String localThumb = videoBody.getLocalThumb();
 
-		holder.iv.setOnLongClickListener(new OnLongClickListener() {
 
-			@Override
-			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
-						new Intent(activity, ContextMenu.class).putExtra("position", position).putExtra("type",
-								EMMessage.Type.VIDEO.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-				return true;
-			}
-		});
 
 		if (localThumb != null) {
 
@@ -738,15 +709,7 @@ public class MessageAdapter extends BaseAdapter{
 		VoiceMessageBody voiceBody = (VoiceMessageBody) message.getBody();
 		holder.tv.setText(voiceBody.getLength() + "\"");
 		holder.iv.setOnClickListener(new VoicePlayClickListener(message, holder.iv, holder.iv_read_status, this, activity, username));
-		holder.iv.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
-						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.VOICE.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-				return true;
-			}
-		});
+
 		if (((ChatActivity)activity).playMsgId != null
 				&& ((ChatActivity)activity).playMsgId.equals(message
 						.getMsgId())&&VoicePlayClickListener.isPlaying) {
@@ -954,16 +917,6 @@ public class MessageAdapter extends BaseAdapter{
 		locationView.setText(locBody.getAddress());
 		LatLng loc = new LatLng(locBody.getLatitude(), locBody.getLongitude());
 		locationView.setOnClickListener(new MapClickListener(loc, locBody.getAddress()));
-		locationView.setOnLongClickListener(new OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				activity.startActivityForResult(
-						(new Intent(activity, ContextMenu.class)).putExtra("position", position).putExtra("type",
-								EMMessage.Type.LOCATION.ordinal()), ChatActivity.REQUEST_CODE_CONTEXT_MENU);
-				return false;
-			}
-		});
-
 		if (message.direct == EMMessage.Direct.RECEIVE) {
 			return;
 		}

@@ -67,7 +67,7 @@
                 android:layout_marginLeft="6dp"
                 android:background="@drawable/chatting_setmode_voice_btn"
                 android:onClick="setModeVoice"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_set_mode_keyboard"
@@ -107,6 +107,7 @@
                 android:layout_marginLeft="6dp"
                 android:layout_marginRight="6dp"
                 android:layout_marginBottom="3dp"
+                android:background="@null"
                 android:gravity="bottom"
                 android:layout_weight="1"
                 >
@@ -115,29 +116,18 @@
                     android:id="@+id/et_sendmessage"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="35dip"
+                    android:layout_toRightOf="@+id/iv_emoticons_normal"
+                    android:layout_marginRight="15dip"
                     android:background="@null"
                     android:maxLines="3"
                     android:minHeight="40dp"
                     android:onClick="editClick"
-                    android:paddingLeft="1dp"
+                    android:paddingLeft="5dp"
                     android:paddingTop="3dp"
                     android:paddingRight="1dp"
                     android:paddingBottom="3dp"
                     android:textSize="18sp" />
                     <!-- emojicon:emojiconSize="25sp" -->
-
-                <ImageView
-                    android:id="@+id/iv_emoticons_normal"
-                    android:layout_width="24dip"
-                    android:layout_height="24dip"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_gravity="center_vertical|right"
-                    android:layout_margin="1dip"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/chatting_biaoqing_btn_normal"
-                    android:visibility="visible" />
 
                 <ImageView
                     android:id="@+id/iv_emoticons_checked"
@@ -149,7 +139,19 @@
                     android:layout_margin="1dip"
                     android:scaleType="fitCenter"
                     android:src="@drawable/chatting_biaoqing_btn_enable"
-                    android:visibility="invisible" />
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/iv_emoticons_normal"
+                    android:layout_width="24dip"
+                    android:layout_height="24dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="1dip"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/chatting_biaoqing_btn_normal"
+                    android:visibility="visible" />
+
             </RelativeLayout>
 
             <Button
@@ -159,6 +161,7 @@
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="4dp"
                 android:background="@drawable/type_select_btn"
+                android:visibility="gone"
                 android:onClick="more" />
 
             <Button
@@ -171,7 +174,7 @@
                 android:text="发送"
                 android:textColor="#666666"
                 android:textSize="16sp"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </LinearLayout>
 
         <LinearLayout

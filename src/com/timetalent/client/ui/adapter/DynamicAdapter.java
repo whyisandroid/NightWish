@@ -185,14 +185,14 @@ public class DynamicAdapter extends BaseAdapter{
 								controller.dynamicFavour(handler,holder);
 							};
 						}.start();
-					}else{
+					}/*else{
 						new Thread(){
 							public void run() {
 								controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
 								controller.dynamicUnFavour(handler,holder);
 							};
 						}.start();
-					}
+					}*/
 				}
 			}
 		);

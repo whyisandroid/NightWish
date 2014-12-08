@@ -309,22 +309,24 @@ public class AppController {
 		}
 	}
 	
-	public void InvitePayment() {
+	public void chatPay() {
 		try {
-			service.InvitePayment();
+			service.chatPay();
 			Intent intent = new Intent(currentActivity,ChatActivity.class);
 			intent.putExtra("userId", StringUtil.getEsaeUserName("73"));
 			intent.putExtra("nickName", "qqqq");
 			currentActivity.startActivity(intent);
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			handler.obtainMessage(MESSAGE_ACCESS, e.getErrorMessage().getMessage()).sendToTarget();
+			if("2".equals(e.getErrorMessage().getClass())){
+				DialogUtil.messagePayN(currentActivity);
+			}else{
+				handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 	
 	public void chanceLists(Handler mHandler) {
 		try {

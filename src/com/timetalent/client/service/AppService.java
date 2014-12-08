@@ -162,4 +162,6 @@ public interface AppService {
 	public void myavatardel() throws BusinessException;
 	public void dictionary() throws BusinessException;
 	public void orderlist() throws BusinessException;
+	public void mytasklists() throws BusinessException;
+	public void myapplytasklists() throws BusinessException;
 }

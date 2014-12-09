@@ -1,6 +1,9 @@
 package com.timetalent.client.ui.user;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -23,6 +26,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +39,7 @@ import android.widget.ViewFlipper;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
 import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
@@ -76,6 +81,8 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	private Button btok;
 	public int screenw = 0;
 	public float density = 1.0f;
+	EditText etname ;
+	EditText etnickname ;
 	ImageView imghead;
 	TextView tvage;
 	TextView tvage1;
@@ -131,6 +138,8 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		imgsex = (ImageView)this.findViewById(R.id.imgsex);
 		tvsanwei = (TextView) findViewById(R.id.tvsanwei);
 		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
+		etname = (EditText) this.findViewById(R.id.etname);
+		etnickname = (EditText) this.findViewById(R.id.etnickname);
 	}
 
 	/**
@@ -147,7 +156,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		piclay.setcontroller(controller);
 		piclay.initView();
-		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenziliaobianjiActivity.this));
+//		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenziliaobianjiActivity.this));
 		setListViewHeightBasedOnChildren(lzuopin);
 		ldongtai.setOnClickListener(this);
 		lage.setOnClickListener(this);
@@ -207,17 +216,24 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
         listView.setLayoutParams(params);  
     }
 	public void setvalue(){
-		controller.getContext().addBusinessData("fans.bianji.username", "");
-		controller.getContext().addBusinessData("fans.bianji.phone", "");
-		controller.getContext().addBusinessData("fans.bianji.email", "");
-		controller.getContext().addBusinessData("fans.bianji.sex", "");
-		controller.getContext().addBusinessData("fans.bianji.nickname", "");
-		controller.getContext().addBusinessData("fans.bianji.realname", "");
-		controller.getContext().addBusinessData("fans.bianji.birthday", "");
-		controller.getContext().addBusinessData("fans.bianji.constella", "");
-		controller.getContext().addBusinessData("fans.bianji.certificate", "");
-		controller.getContext().addBusinessData("fans.bianji.certificate", "");
-		controller.getContext().addBusinessData("fans.bianji.city", "");
+		controller.getContext().addBusinessData("bianji.username", etname.getText().toString());
+		controller.getContext().addBusinessData("bianji.phone", u.getPhone());
+		controller.getContext().addBusinessData("bianji.email", "");
+		controller.getContext().addBusinessData("bianji.sex", u.getSex());
+		controller.getContext().addBusinessData("bianji.nickname", etnickname.getText().toString());
+		controller.getContext().addBusinessData("bianji.realname", etname.getText().toString());
+		controller.getContext().addBusinessData("bianji.birthday", tvage1.getText().toString());
+		controller.getContext().addBusinessData("bianji.constella", tvxingzuo1.getText().toString());
+		controller.getContext().addBusinessData("bianji.certificate", "");
+		String[] jiaxiang = tvjiaxiang.getText().toString().split(" ");
+		if(jiaxiang.length >= 2){
+			controller.getContext().addBusinessData("bianji.province", jiaxiang[0]);
+			controller.getContext().addBusinessData("bianji.city", jiaxiang[1]);
+		}else{
+			controller.getContext().addBusinessData("bianji.province", "");
+			controller.getContext().addBusinessData("bianji.city", "");
+		}
+		
 	}
 	@Override
 	public void onClick(final View vclick) {
@@ -241,7 +257,12 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 			break;
 		case R.id.btok:
 			setvalue();
-			controller.mybaseinfoupdate();
+			new Thread(){
+				public void run() {
+					controller.mybaseinfoupdate();
+				};
+			}.start();
+			
 			finish();
 			break;
 		case R.id.img1:
@@ -325,11 +346,14 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 			  //将光标移至开头 ，这个很重要，不小心很容易引起越界
 			  cursor.moveToFirst();
 			  //最后根据索引值获取图片路径
-			  String path = cursor.getString(column_index);
+			  final String path = cursor.getString(column_index);
 			  Log.i("dayin path", path+"");
 			  new Thread(){
 				  public void run() {
-					  controller.myphoto();
+					  File file = new File(path);
+					  List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
+						picValuePair.add(new PicValuePair("photo1", file));
+					  controller.myphotoupdate(picValuePair);
 				  };
 			  }.start();
 		  }

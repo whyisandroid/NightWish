@@ -12,6 +12,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,6 +21,8 @@ import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -47,6 +50,7 @@ import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.client.ui.user.FansziliaobianjiActivity;
 import com.timetalent.client.ui.user.XingtanziliaobianjiActivity;
 import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
+import com.timetalent.client.ui.view.RadioGroup;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -281,18 +285,18 @@ public class NearFragment extends Fragment implements OnClickListener {
 			pop.setBackgroundDrawable(new Background2());
 			pop.setOutsideTouchable(true);
 			pop.setFocusable(true);
-
+			com.timetalent.client.ui.view.RadioGroup RadioGroup03 = (com.timetalent.client.ui.view.RadioGroup) popview.findViewById(R.id.RadioGroup03);
 			RadioButton rd1 = (RadioButton) popview.findViewById(R.id.rd1);
 			RadioButton rd2 = (RadioButton) popview.findViewById(R.id.rd2);
 			RadioButton rd3 = (RadioButton) popview.findViewById(R.id.rd3);
-			RadioButton rd4 = (RadioButton) popview.findViewById(R.id.rd4);
-			RadioButton rd5 = (RadioButton) popview.findViewById(R.id.rd5);
-			RadioButton rd6 = (RadioButton) popview.findViewById(R.id.rd6);
-			RadioButton rd7 = (RadioButton) popview.findViewById(R.id.rd7);
-			RadioButton rd8 = (RadioButton) popview.findViewById(R.id.rd8);
-			RadioButton rd9 = (RadioButton) popview.findViewById(R.id.rd9);
-			RadioButton rd10 = (RadioButton) popview.findViewById(R.id.rd10);
-			RadioButton rd11 = (RadioButton) popview.findViewById(R.id.rd11);
+			RadioButton rd4 = (RadioButton) RadioGroup03.findViewById(R.id.rd4);
+			RadioButton rd5 = (RadioButton) RadioGroup03.findViewById(R.id.rd5);
+			RadioButton rd6 = (RadioButton) RadioGroup03.findViewById(R.id.rd6);
+			RadioButton rd7 = (RadioButton) RadioGroup03.findViewById(R.id.rd7);
+			RadioButton rd8 = (RadioButton) RadioGroup03.findViewById(R.id.rd8);
+			RadioButton rd9 = (RadioButton) RadioGroup03.findViewById(R.id.rd9);
+			RadioButton rd10 = (RadioButton) RadioGroup03.findViewById(R.id.rd10);
+			RadioButton rd11 = (RadioButton) RadioGroup03.findViewById(R.id.rd11);
 			RadioButton rd12 = (RadioButton) popview.findViewById(R.id.rd12);
 			RadioButton rd13 = (RadioButton) popview.findViewById(R.id.rd13);
 			RadioButton rd14 = (RadioButton) popview.findViewById(R.id.rd14);
@@ -321,68 +325,107 @@ public class NearFragment extends Fragment implements OnClickListener {
 					sex = "1";
 				}
 			});
-			rd4.setOnClickListener(new OnClickListener() {
-
+			rd4.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "0";
-					age_max = "60";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "0";
+						age_max = "60";
+					}
+					
 				}
 			});
-			rd5.setOnClickListener(new OnClickListener() {
-
+//			setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					age_min = "0";
+//					age_max = "60";
+//				}
+//			});
+			rd5.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "10";
-					age_max = "16";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "10";
+						age_max = "16";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd6.setOnClickListener(new OnClickListener() {
-
+			rd6.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "16";
-					age_max = "24";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "16";
+						age_max = "24";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd7.setOnClickListener(new OnClickListener() {
-
+			rd7.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "24";
-					age_max = "30";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "24";
+						age_max = "30";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd8.setOnClickListener(new OnClickListener() {
-
+			rd8.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "30";
-					age_max = "36";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "30";
+						age_max = "36";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd9.setOnClickListener(new OnClickListener() {
-
+			rd9.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "36";
-					age_max = "42";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "36";
+						age_max = "42";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd10.setOnClickListener(new OnClickListener() {
-
+			rd10.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "42";
-					age_max = "50";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "42";
+						age_max = "50";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
-			rd11.setOnClickListener(new OnClickListener() {
-
+			rd11.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
 				@Override
-				public void onClick(View v) {
-					age_min = "50";
-					age_max = "60";
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if(isChecked){
+						age_min = "50";
+						age_max = "60";
+						Log.i("nianming", age_min+","+age_max);
+					}
+					
 				}
 			});
 			rd12.setOnClickListener(new OnClickListener() {

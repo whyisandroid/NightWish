@@ -1,13 +1,21 @@
 package com.timetalent.client.ui.user;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -17,6 +25,7 @@ import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +38,7 @@ import android.widget.ViewFlipper;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
 import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
@@ -70,6 +80,8 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 	private Button btok;
 	public int screenw = 0;
 	public float density = 1.0f;
+	EditText etname ;
+	EditText etnickname ;
 	ImageView imghead;
 	TextView tvage;
 	TextView tvage1;
@@ -121,6 +133,8 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
 		imgsex = (ImageView)this.findViewById(R.id.imgsex);
 		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
+		etname = (EditText) this.findViewById(R.id.etname);
+		etnickname = (EditText) this.findViewById(R.id.etnickname);
 	}
 
 	/**
@@ -196,17 +210,23 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
         listView.setLayoutParams(params);  
     }
 	public void setvalue(){
-		controller.getContext().addBusinessData("fans.bianji.username", "");
-		controller.getContext().addBusinessData("fans.bianji.phone", "");
-		controller.getContext().addBusinessData("fans.bianji.email", "");
-		controller.getContext().addBusinessData("fans.bianji.sex", "");
-		controller.getContext().addBusinessData("fans.bianji.nickname", "");
-		controller.getContext().addBusinessData("fans.bianji.realname", "");
-		controller.getContext().addBusinessData("fans.bianji.birthday", "");
-		controller.getContext().addBusinessData("fans.bianji.constella", "");
-		controller.getContext().addBusinessData("fans.bianji.certificate", "");
-		controller.getContext().addBusinessData("fans.bianji.certificate", "");
-		controller.getContext().addBusinessData("fans.bianji.city", "");
+		controller.getContext().addBusinessData("bianji.username", etname.getText().toString());
+		controller.getContext().addBusinessData("bianji.phone", u.getPhone());
+		controller.getContext().addBusinessData("bianji.email", "");
+		controller.getContext().addBusinessData("bianji.sex", u.getSex());
+		controller.getContext().addBusinessData("bianji.nickname", etnickname.getText().toString());
+		controller.getContext().addBusinessData("bianji.realname", etname.getText().toString());
+		controller.getContext().addBusinessData("bianji.birthday", tvage1.getText().toString());
+		controller.getContext().addBusinessData("bianji.constella", tvxingzuo1.getText().toString());
+		controller.getContext().addBusinessData("bianji.certificate", "");
+		String[] jiaxiang = tvjiaxiang.getText().toString().split(" ");
+		if(jiaxiang.length >= 2){
+			controller.getContext().addBusinessData("bianji.province", jiaxiang[0]);
+			controller.getContext().addBusinessData("bianji.city", jiaxiang[1]);
+		}else{
+			controller.getContext().addBusinessData("bianji.province", "");
+			controller.getContext().addBusinessData("bianji.city", "");
+		}
 	}
 	@Override
 	public void onClick(final View vclick) {
@@ -227,7 +247,12 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 			break;
 		case R.id.btok:
 			setvalue();
-			controller.mybaseinfoupdate();
+			new Thread(){
+				public void run() {
+					controller.mybaseinfoupdate();
+				};
+			}.start();
+			
 			finish();
 			break;
 		case R.id.img1:
@@ -294,5 +319,32 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 				break;
 			}
 		}
+	};
+	protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
+		  if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
+            Log.e("TAG->onresult","ActivityResult resultCode error");
+            return;
+        }
+		  if (requestCode == 0) {
+			  Uri originalUri = data.getData();
+			String[] proj = {MediaStore.Images.Media.DATA};
+			  //好像是android多媒体数据库的封装接口，具体的看Android文档
+			  Cursor cursor = managedQuery(originalUri, proj, null, null, null); 
+			  //按我个人理解 这个是获得用户选择的图片的索引值
+			  int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+			  //将光标移至开头 ，这个很重要，不小心很容易引起越界
+			  cursor.moveToFirst();
+			  //最后根据索引值获取图片路径
+			  final String path = cursor.getString(column_index);
+			  Log.i("dayin path", path+"");
+			  new Thread(){
+				  public void run() {
+					  File file = new File(path);
+					  List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
+						picValuePair.add(new PicValuePair("photo1", file));
+					  controller.myphotoupdate(picValuePair);
+				  };
+			  }.start();
+		  }
 	};
 }

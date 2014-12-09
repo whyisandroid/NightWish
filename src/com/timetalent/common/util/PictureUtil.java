@@ -134,7 +134,7 @@ public class PictureUtil {
 			}
 			file.createNewFile();
 			os = new BufferedOutputStream(new FileOutputStream(file));
-			bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+			bitmap.compress(Bitmap.CompressFormat.PNG, 30, os);
 			
 		} finally {
 			if (os != null) {
@@ -245,6 +245,7 @@ public class PictureUtil {
     public static Bitmap getRoundedCornerBitmap(Bitmap bitmap) {
 
         Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(),android.graphics.Bitmap.Config.ARGB_8888);
+        if(output == null){return output;}
         Canvas canvas = new Canvas(output);
 
         final Paint paint = new Paint();
@@ -364,9 +365,9 @@ public class PictureUtil {
 						new FileOutputStream(file));
 				if (Url.split("\\.")[count - 1].equals("png")
 						|| Url.split("\\.")[count - 1].equals("PNG")) {
-					bm.compress(Bitmap.CompressFormat.PNG, 100, bos);
+					bm.compress(Bitmap.CompressFormat.PNG, 30, bos);
 				} else {
-					bm.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+					bm.compress(Bitmap.CompressFormat.JPEG, 30, bos);
 				}
 				bos.flush();
 				bos.close();

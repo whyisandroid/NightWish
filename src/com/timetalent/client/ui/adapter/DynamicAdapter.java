@@ -27,6 +27,7 @@ import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -179,10 +180,12 @@ public class DynamicAdapter extends BaseAdapter{
 				@Override
 				public void onClick(View v) {
 					if(v.isSelected()){
+						ProgressDialogUtil.showProgressDialog(mContext, "", false);
 						new Thread(){
 							public void run() {
 								controller.getContext().addBusinessData("dynamic_feed_id",feed.getId());
 								controller.dynamicFavour(handler,holder);
+								ProgressDialogUtil.closeProgressDialog();
 							};
 						}.start();
 					}/*else{

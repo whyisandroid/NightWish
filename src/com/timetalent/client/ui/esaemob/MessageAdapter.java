@@ -22,12 +22,10 @@ import java.util.TimerTask;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.AnimationDrawable;
-import android.net.Uri;
 import android.text.Spannable;
 import android.util.Log;
 import android.view.LayoutInflater;

@@ -74,7 +74,7 @@ public class ChanceAdapter extends BaseAdapter{
 		}
 		Task task = lists.get(position);
 		holder.tv_chance_title.setText(task.getTitle());
-		holder.tv_chance_time.setText("报名截止时间："+task.getCutoff_date());
+		holder.tv_chance_time.setText("报名截止时间："+StringUtil.transformTime(task.getCutoff_date()));
 		holder.tv_chance_address.setText(task.getPlace());
 		// 处理图片
 		//ImageLoader.getInstance().displayImage(task.getBanner(),holder.iv_chance_banner);

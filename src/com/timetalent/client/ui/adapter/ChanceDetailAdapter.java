@@ -21,6 +21,7 @@ import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -77,7 +78,7 @@ public class ChanceDetailAdapter extends BaseAdapter{
 		final TaskShow show = lists.get(position);
 		
 		holder.tv_offer_detail_work.setText(show.getJob());
-		holder.tv_offer_detail_work_time.setText(show.getWork_date_start()+"-"+show.getWork_date_end());
+		holder.tv_offer_detail_work_time.setText(StringUtil.transformTime(show.getWork_date_start())+"-"+StringUtil.transformTime(show.getWork_date_end()));
 		holder.tv_offer_detail_message.setText(show.getDescription());
 		holder.tv_offer_detail_qpply.setOnClickListener(new  OnClickListener() {
 			@Override

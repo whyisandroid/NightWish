@@ -165,6 +165,8 @@ public class AppServiceImpl implements AppService {
 									EMGroupManager.getInstance().getGroupsFromServer();
 								} catch (EaseMobException e) {
 									e.printStackTrace();
+								}catch(Exception e){
+									e.printStackTrace();
 								}
 						    }
 							
@@ -1627,23 +1629,22 @@ public class AppServiceImpl implements AppService {
 	 * @see com.timetalent.client.service.AppService#InvitePayment()
 	 */
 	@Override
-	public void InvitePayment() throws BusinessException {
+	public void chatPay() throws BusinessException {
 
 		String _session_id = context.getStringData("_session_id");
 		String target_id = context.getStringData("Chat.target_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
-		nameValuePairs.add(new BasicNameValuePair("id", target_id));
-		nameValuePairs.add(new BasicNameValuePair("payment", "Y"));
+		nameValuePairs.add(new BasicNameValuePair("target_id", target_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
-		request.setUrl(Config.HTTP_USER_CHAT_PAYMENT);
+		request.setUrl(Config.HTTP_USER_CHAT_PAY);
 		request.setR_calzz(BaseResp.class);  
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
 			
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+			throw new BusinessException(new ErrorMessage(resp.getStatus(),resp.getText()));
 		}
 	
 	}

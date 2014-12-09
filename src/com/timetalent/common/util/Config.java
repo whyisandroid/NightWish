@@ -59,7 +59,7 @@ public class Config {
 	public final static String HTTP_USER_DYNAMIC_FAVOUR = MY_SERVICE+ "/Feed/favour"; // 点赞Feed/favour
 	public final static String HTTP_USER_DYNAMIC_UNFAVOUR = MY_SERVICE+ "/Feed/unfavour"; // 取消点赞Feed/unfavour
 	public final static String HTTP_USER_CHAT_ACCESS= MY_SERVICE+ "/Message/access"; // 是否可以聊天Message/access
-	public final static String HTTP_USER_CHAT_PAYMENT = MY_SERVICE+ "/Invite/payment"; // 支付邀约费用Invite/payment
+	public final static String HTTP_USER_CHAT_PAY = MY_SERVICE+ "/Message/chat_pay"; // 支付聊天费用/Message/chat_pay
 
 	
 	

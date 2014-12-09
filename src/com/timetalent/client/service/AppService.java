@@ -58,8 +58,8 @@ public interface AppService {
 	/**是否可以聊天Message/access**/
 	public void chatAccess() throws BusinessException;
 	
-	/**支付邀约费用Invite/payment**/
-	public void InvitePayment() throws BusinessException;
+	/** 支付聊天费用/Message/chat_pay**/
+	public void chatPay() throws BusinessException;
 	
 	/**上传动态照片Feed/add_photo**/
 	public void dynamicAdd_pic(List<PicValuePair> picValuePair) throws BusinessException;

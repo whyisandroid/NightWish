@@ -113,7 +113,7 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 	private void setData() {
 		data = (TaskShowData)controller.getContext().getBusinessData("Task_lists_detail");
 		tv_chance_title.setText(data.getTitle());
-		tv_chance_time.setText("报名截止日期："+data.getCutoff_date());
+		tv_chance_time.setText("报名截止日期："+StringUtil.transformTime(data.getCutoff_date()));
 		tv_offer_detail_address.setText(data.getPlace());
 		tv_chance_detail_des.setText(data.getDescription());
 		tv_chance_address.setText(data.getPlace());

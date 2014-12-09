@@ -31,6 +31,37 @@ public class StringUtil {
 	}
 	
 	
+	
+	/** 
+	 *  方法描述:   把时间戳 转换为时间
+	 *  方法名称:   getTime 
+	 *  @return    			 
+	 *  返回类型:   String    	  	
+	 */
+	public static String transformTime(String time) {
+		return transformTime(time,"yyyy年MM月dd日");
+	}
+	
+	/** 
+	 *  方法描述:   把时间戳 转换为时间
+	 *  方法名称:   getTime 
+	 *  @return    			 
+	 *  返回类型:   String    	  	
+	 */
+	public static String transformTime(String time,String formant ) {
+		if(!TextUtils.isEmpty(time)){
+			if(RegExpUtil.isNumeric(time)){
+				SimpleDateFormat sdf = new SimpleDateFormat(formant);
+				return sdf.format(new Date(Long.valueOf(time)));
+			}else{
+				return time;
+			}
+		}
+		return "";
+	}
+	
+
+	
 	/** 
 	 *  方法描述:   把时间转换成需要的时间格式
 	 *  方法名称:   getTime 

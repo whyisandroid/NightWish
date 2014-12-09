@@ -271,8 +271,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 					btnMore.setVisibility(View.GONE);
 					buttonSend.setVisibility(View.VISIBLE);
 				} else {
-					btnMore.setVisibility(View.VISIBLE);
-					buttonSend.setVisibility(View.GONE);
+				//	btnMore.setVisibility(View.VISIBLE);
+					//buttonSend.setVisibility(View.GONE);
 				}
 			}
 
@@ -368,7 +368,6 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			// 显示发送要转发的消息
 			forwardMessage(forward_msg_id);
 		}
-
 	}
 
 	
@@ -534,15 +533,24 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		} else if (id == R.id.btn_location) { // 位置
 			//startActivityForResult(new Intent(this, BaiduMapActivity.class), REQUEST_CODE_MAP);
 		} else if (id == R.id.iv_emoticons_normal) { // 点击显示表情框
-			more.setVisibility(View.VISIBLE);
-			iv_emoticons_normal.setVisibility(View.INVISIBLE);
-			iv_emoticons_checked.setVisibility(View.VISIBLE);
-			btnContainer.setVisibility(View.GONE);
-			emojiIconContainer.setVisibility(View.VISIBLE);
-			hideKeyboard();
+			if(more.getVisibility() == View.GONE){
+				more.setVisibility(View.VISIBLE);
+				iv_emoticons_normal.setVisibility(View.VISIBLE);
+				iv_emoticons_checked.setVisibility(View.GONE);
+				btnContainer.setVisibility(View.GONE);
+				emojiIconContainer.setVisibility(View.VISIBLE);
+				hideKeyboard();
+			}else{
+				iv_emoticons_normal.setVisibility(View.VISIBLE);
+				iv_emoticons_checked.setVisibility(View.GONE);
+				btnContainer.setVisibility(View.VISIBLE);
+				emojiIconContainer.setVisibility(View.GONE);
+				more.setVisibility(View.GONE);
+			}
+			
 		} else if (id == R.id.iv_emoticons_checked) { // 点击隐藏表情框
 			iv_emoticons_normal.setVisibility(View.VISIBLE);
-			iv_emoticons_checked.setVisibility(View.INVISIBLE);
+			iv_emoticons_checked.setVisibility(View.GONE);
 			btnContainer.setVisibility(View.VISIBLE);
 			emojiIconContainer.setVisibility(View.GONE);
 			more.setVisibility(View.GONE);
@@ -864,7 +872,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		view.setVisibility(View.GONE);
 		buttonSetModeKeyboard.setVisibility(View.VISIBLE);
 		buttonSend.setVisibility(View.GONE);
-		btnMore.setVisibility(View.VISIBLE);
+		btnMore.setVisibility(View.GONE);
 		buttonPressToSpeak.setVisibility(View.VISIBLE);
 		iv_emoticons_normal.setVisibility(View.VISIBLE);
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
@@ -897,8 +905,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		// buttonSend.setVisibility(View.VISIBLE);
 		buttonPressToSpeak.setVisibility(View.GONE);
 		if (TextUtils.isEmpty(mEditTextContent.getText())) {
-			btnMore.setVisibility(View.VISIBLE);
-			buttonSend.setVisibility(View.GONE);
+			btnMore.setVisibility(View.GONE);
+			buttonSend.setVisibility(View.VISIBLE);
 		} else {
 			btnMore.setVisibility(View.GONE);
 			buttonSend.setVisibility(View.VISIBLE);
@@ -1155,11 +1163,11 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 				try {
 					// 文字输入框可见时，才可输入表情
 					// 按住说话可见，不让输入表情
-					if (buttonSetModeKeyboard.getVisibility() != View.VISIBLE) {
+					//if (buttonSetModeKeyboard.getVisibility() != View.VISIBLE) {
 
 						if (filename != "delete_expression") { // 不是删除键，显示表情
 							// 这里用的反射，所以混淆的时候不要混淆SmileUtils这个类
-							Class clz = Class.forName("com.easemob.chatuidemo.utils.SmileUtils");
+							Class clz = Class.forName("com.timetalent.client.ui.esaemob.SmileUtils");
 							Field field = clz.getField(filename);
 							mEditTextContent.append(SmileUtils.getSmiledText(ChatActivity.this, (String) field.get(null)));
 						} else { // 删除文字或者表情
@@ -1180,7 +1188,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 										mEditTextContent.getEditableText().delete(selectionStart - 1, selectionStart);
 									}
 								}
-							}
+						//	}
 
 						}
 					}

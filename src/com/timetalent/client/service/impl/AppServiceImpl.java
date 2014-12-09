@@ -29,14 +29,17 @@ import com.timetalent.client.entities.json.BaseResp;
 import com.timetalent.client.entities.json.BaseinfoResp;
 import com.timetalent.client.entities.json.BlackResp;
 import com.timetalent.client.entities.json.DictionaryResp;
+import com.timetalent.client.entities.json.FansyaoqingResp;
 import com.timetalent.client.entities.json.FeedADDResp;
 import com.timetalent.client.entities.json.FeedResp;
 import com.timetalent.client.entities.json.FollowedResp;
 import com.timetalent.client.entities.json.FollowingResp;
 import com.timetalent.client.entities.json.FriendResp;
 import com.timetalent.client.entities.json.LoginResp;
+import com.timetalent.client.entities.json.MyapplytaskResp;
 import com.timetalent.client.entities.json.MyphotoResp;
 import com.timetalent.client.entities.json.MyserviceResp;
+import com.timetalent.client.entities.json.MytasklistResp;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.entities.json.PushuserResp;
 import com.timetalent.client.entities.json.RegisterResp;
@@ -47,6 +50,7 @@ import com.timetalent.client.entities.json.TaskResp;
 import com.timetalent.client.entities.json.TaskShowResp;
 import com.timetalent.client.entities.json.UserinfoResp;
 import com.timetalent.client.entities.json.WalletorderResp;
+import com.timetalent.client.entities.json.YiRenyaoqingResp;
 import com.timetalent.client.entities.json.servicelistResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppController;
@@ -976,14 +980,19 @@ public class AppServiceImpl implements AppService {
 	public void myinvite_appoint() throws BusinessException {
 
 
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<FansyaoqingResp> request = new Request<FansyaoqingResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_INVITE_APPOINT);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(FansyaoqingResp.class);
+		FansyaoqingResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			if(resp.getData() != null){
+				context.addBusinessData("FansyaoqingData", resp.getData());
+			}
+			
+			
 			
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
@@ -1001,18 +1010,21 @@ public class AppServiceImpl implements AppService {
 	public void myinvite_offer() throws BusinessException {
 
 
-		Request<BaseResp> request = new Request<BaseResp>();
+		Request<YiRenyaoqingResp> request = new Request<YiRenyaoqingResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
 		nameValuePairs.add(new BasicNameValuePair("page", "1"));
 		nameValuePairs.add(new BasicNameValuePair("page_per", "1000"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_INVITE_OFFER);
-		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(YiRenyaoqingResp.class);
+		YiRenyaoqingResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
+			if(resp.getData() != null){
+				context.addBusinessData("YirenyaoqingData", resp.getData());
+			}
 			
-		} else{
+			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
@@ -1630,5 +1642,53 @@ public class AppServiceImpl implements AppService {
 			throw new BusinessException(new ErrorMessage(resp.getStatus(),resp.getText()));
 		}
 	
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mytasklists()
+	 */
+	@Override
+	public void mytasklists() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<MytasklistResp> request = new Request<MytasklistResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_TASK_LISTS);
+		request.setR_calzz(MytasklistResp.class);  
+		MytasklistResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("MytasklistData", resp.getData());
+			}
+		
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myapplytasklists()
+	 */
+	@Override
+	public void myapplytasklists() throws BusinessException {
+		String _session_id = context.getStringData("_session_id");
+		Request<MyapplytaskResp> request = new Request<MyapplytaskResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_TASK_APPLY_LISTS);
+		request.setR_calzz(MyapplytaskResp.class);  
+		MyapplytaskResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+			if (resp.getData() != null) {
+				context.addBusinessData("MyapplytaskData", resp.getData());
+			}
+		
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
 	}
 }

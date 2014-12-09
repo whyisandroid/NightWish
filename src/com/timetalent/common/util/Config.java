@@ -100,6 +100,8 @@ public class Config {
 	public final static String HTTP_MY_USER_SERVICE_LIST = MY_SERVICE+ "/System/service_list";
 	public final static String HTTP_MY_USER_LOYAL = MY_SERVICE+ "/User/loyal";
 	public final static String HTTP_MY_USER_LOYAL_ITEM = MY_SERVICE+ "/User/loyal_item";
+	public final static String HTTP_MY_TASK_LISTS = MY_SERVICE+ "/Task/publish_task_lists";
+	public final static String HTTP_MY_TASK_APPLY_LISTS = MY_SERVICE+ "/Task/my_apply_lists";
 	
 	
 	

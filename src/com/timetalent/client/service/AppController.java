@@ -968,4 +968,22 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	public void mytasklists() {
+		try {
+			service.mytasklists();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void myapplytasklists() {
+		try {
+			service.myapplytasklists();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

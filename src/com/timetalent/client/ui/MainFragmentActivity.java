@@ -188,7 +188,7 @@ public class MainFragmentActivity extends BaseFragmentActivity {
 
 		} else {
 			// 退出应用程序
-			AppManager.getAppManager().AppExit(this);
+		//	AppManager.getAppManager().AppExit(this);
 		}
 	}
 }

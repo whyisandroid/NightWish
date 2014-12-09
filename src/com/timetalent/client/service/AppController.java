@@ -116,6 +116,7 @@ public class AppController {
 	private static final int HANDLER_UPDATE_ABOUT = 3; // 更新 错误信息由提示 about
 	
 	private static final int MESSAGE_ACCESS = 4;// 不能聊天对话框
+	private static final int MESSAGE_PAY = 5;// 提示支付聊天费用
 	private Handler accHandler; // 账户页面专用 Handler
 
 	public void setAccHandler(Handler accHandler) {
@@ -142,6 +143,9 @@ public class AppController {
 				break;
 			case MESSAGE_ACCESS:
 				DialogUtil.messageAccess(currentActivity);
+				break;
+			case MESSAGE_PAY:
+				DialogUtil.messagePayN(currentActivity);
 				break;
 			default:
 				break;
@@ -294,12 +298,17 @@ public class AppController {
 		}
 	}
 	
-	public void chatAccess(String ID,String nickName) {
+	public void chatAccess(String ID,String nickName,String userImageURL) {
 		try {
 			service.chatAccess();
 			Intent intent = new Intent(currentActivity,ChatActivity.class);
+			
 			intent.putExtra("userId", StringUtil.getEsaeUserName(ID));
 			intent.putExtra("nickName", nickName);
+			intent.putExtra("userImageURL", userImageURL);
+			context.addBusinessData("userId", StringUtil.getEsaeUserName(ID));
+			context.addBusinessData("nickName", nickName);
+			context.addBusinessData("userImageURL", userImageURL);
 			currentActivity.startActivity(intent);
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -313,13 +322,14 @@ public class AppController {
 		try {
 			service.chatPay();
 			Intent intent = new Intent(currentActivity,ChatActivity.class);
-			intent.putExtra("userId", StringUtil.getEsaeUserName("73"));
-			intent.putExtra("nickName", "qqqq");
+			intent.putExtra("userId", context.getStringData("userId"));
+			intent.putExtra("nickName",context.getStringData("nickName"));
+			intent.putExtra("userImageURL",context.getStringData("userImageURL"));
 			currentActivity.startActivity(intent);
 		} catch (BusinessException e) {
 			e.printStackTrace();
-			if("2".equals(e.getErrorMessage().getClass())){
-				DialogUtil.messagePayN(currentActivity);
+			if(2 == e.getErrorMessage().getCode()){
+				handler.obtainMessage(MESSAGE_PAY, e.getErrorMessage().getMessage()).sendToTarget();
 			}else{
 				handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 			}

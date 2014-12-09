@@ -57,7 +57,6 @@ public class GuideActivity extends BaseActivity implements OnClickListener,OnPag
 		setContentView(R.layout.guide_layout);
 		// 初始化页面
         initViews();
-
         // 初始化底部小点
         initDots();
 		

@@ -60,6 +60,7 @@ import com.easemob.util.EMLog;
 import com.easemob.util.FileUtils;
 import com.easemob.util.LatLng;
 import com.easemob.util.TextFormater;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 
 public class MessageAdapter extends BaseAdapter{
@@ -288,7 +289,12 @@ public class MessageAdapter extends BaseAdapter{
 		} else {
 			holder = (ViewHolder) convertView.getTag();
 		}
-
+		// 显示头像
+		try {
+			ImageLoader.getInstance().displayImage(conversation.getLastMessage().getStringAttribute("userImageURL"), holder.head_iv);
+		} catch (EaseMobException e1) {
+			e1.printStackTrace();
+		}
 		// 群聊时，显示接收的消息的发送人的名称
 		if (chatType == ChatType.GroupChat && message.direct == EMMessage.Direct.RECEIVE)
 			// demo用username代替nick

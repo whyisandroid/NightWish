@@ -35,6 +35,7 @@ import com.easemob.chat.EMConversation;
 import com.easemob.chat.EMGroup;
 import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
+import com.easemob.exceptions.EaseMobException;
 import com.timetalent.client.R;
 import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.ui.MainActivity;
@@ -103,6 +104,18 @@ public class ChatAllHistoryFragment extends Fragment {
 					} else {
 						// it is single chat
 						intent.putExtra("userId", username);
+						String  userImageURL = "";
+						String  nickName = "";
+						try {
+							userImageURL = conversation.getMessage(0).getStringAttribute(
+									"userImageURL");
+							nickName = conversation.getMessage(0).getStringAttribute(
+									"nickName");
+						} catch (EaseMobException e) {
+							e.printStackTrace();
+						}
+						intent.putExtra("userImageURL", userImageURL);
+						intent.putExtra("nickName", nickName);
 					}
 					startActivity(intent);
 				}

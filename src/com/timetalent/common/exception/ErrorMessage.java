@@ -32,6 +32,12 @@ public class ErrorMessage implements java.io.Serializable{
 		this.details = details;
 	}
 	
+	
+	public ErrorMessage(int code,String mesg){
+		this.message=mesg;
+		this.code=code;
+	}
+	
 	public ErrorMessage(String message){
 		this.message=message;
 	}

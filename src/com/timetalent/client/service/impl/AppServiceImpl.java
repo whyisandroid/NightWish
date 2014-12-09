@@ -1637,9 +1637,8 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);  
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getStatus(),resp.getText()));
+			throw new BusinessException(new ErrorMessage(Integer.valueOf(resp.getStatus()),resp.getText()));
 		}
 	
 	}

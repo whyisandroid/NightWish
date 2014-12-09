@@ -171,6 +171,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	private boolean haveMoreData = true;
 	private Button btnMore;
 	public String playMsgId;
+	private String nickName;
+	private String userImageURL;
 
 	private Handler micImageHandler = new Handler() {
 		@Override
@@ -302,7 +304,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 
 		if (chatType == CHATTYPE_SINGLE) { // 单聊
 			toChatUsername = getIntent().getStringExtra("userId");
-			String nickName = getIntent().getStringExtra("nickName");
+			 nickName = getIntent().getStringExtra("nickName");
+			 userImageURL = getIntent().getStringExtra("userImageURL");
 			((TextView) findViewById(R.id.name)).setText(nickName);
 			// conversation =
 			// EMChatManager.getInstance().getConversation(toChatUsername,false);
@@ -630,20 +633,19 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		if (content.length() > 0) {
 			EMMessage message = EMMessage.createSendMessage(EMMessage.Type.TXT);
 			// 如果是群聊，设置chattype,默认是单聊
-			if (chatType == CHATTYPE_GROUP)
-				message.setChatType(ChatType.GroupChat);
 			TextMessageBody txtBody = new TextMessageBody(content);
 			// 设置消息body
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
-			message.setReceipt(toChatUsername);
+			message.setReceipt(nickName);
+			message.setAttribute("nickname", nickName);
+			message.setAttribute("userImageURL", userImageURL);
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法
 			adapter.refresh();
 			listView.setSelection(listView.getCount() - 1);
 			mEditTextContent.setText("");
-
 			setResult(RESULT_OK);
 
 		}

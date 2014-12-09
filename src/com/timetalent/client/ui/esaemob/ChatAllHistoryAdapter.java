@@ -35,7 +35,9 @@ import com.easemob.chat.EMGroupManager;
 import com.easemob.chat.EMMessage;
 import com.easemob.chat.ImageMessageBody;
 import com.easemob.chat.TextMessageBody;
+import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DateUtils;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 
 /**
@@ -59,6 +61,15 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		// 获取与此用户/群组的会话
+				EMConversation conversation = getItem(position);
+				// 获取用户username或者群组groupid
+				String username = conversation.getUserName();
+			/*	if(username.startsWith("UID") || username.startsWith("uid")){
+					return convertView;
+				}*/
+		
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.row_chat_history, parent, false);
 		}
@@ -80,11 +91,9 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 			holder.list_item_layout.setBackgroundResource(R.drawable.mm_listitem_grey);
 		}
 
-		// 获取与此用户/群组的会话
-		EMConversation conversation = getItem(position);
-		// 获取用户username或者群组groupid
-		String username = conversation.getUserName();
-		List<EMGroup> groups = EMGroupManager.getInstance().getAllGroups();
+		
+	
+		/*List<EMGroup> groups = EMGroupManager.getInstance().getAllGroups();
 		EMContact contact = null;
 		boolean isGroup = false;
 		for (EMGroup group : groups) {
@@ -93,22 +102,31 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				contact = group;
 				break;
 			}
+		}*/
+		
+		// 本地或者服务器获取用户详情，以用来显示头像和nick
+		holder.avatar.setImageResource(R.drawable.default_avatar);
+		// 显示头像
+		try {
+			ImageLoader.getInstance().displayImage(
+					conversation.getLastMessage().getStringAttribute(
+							"userImageURL"), holder.avatar);
+		} catch (EaseMobException e1) {
+			e1.printStackTrace();
 		}
-		if (isGroup) {
+
+		/*if (isGroup) {
 			// 群聊消息，显示群聊头像
-			holder.avatar.setImageResource(R.drawable.group_icon);
 			holder.name.setText(contact.getNick() != null ? contact.getNick() : username);
 		} else {
-			// 本地或者服务器获取用户详情，以用来显示头像和nick
-			holder.avatar.setImageResource(R.drawable.default_avatar);
 			if (username.equals(Constant.GROUP_USERNAME)) {
 				holder.name.setText("群聊");
 
 			} else if (username.equals(Constant.NEW_FRIENDS_USERNAME)) {
 				holder.name.setText("申请与通知");
 			}
-			holder.name.setText(username);
-		}
+		}*/
+		holder.name.setText(username);
 
 		if (conversation.getUnreadMsgCount() > 0) {
 			// 显示与此用户的消息未读数

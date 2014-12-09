@@ -50,7 +50,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_toRightOf="@id/tv_chatcontent"
-            android:layout_below="@id/iv_userhead"/>
+            android:layout_below="@id/iv_userhead"/>
+
         -->
 
         <ImageView

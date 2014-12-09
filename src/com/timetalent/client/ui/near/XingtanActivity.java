@@ -36,6 +36,7 @@ import com.timetalent.client.ui.adapter.TonggaoBaseAdapter;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
+import com.timetalent.client.ui.dialog.ReportIOSStyleDialog;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.view.NearPicturesLayout;
 import com.timetalent.client.ui.view.PicturesLayout;
@@ -269,23 +270,25 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 					});
 					break;
 				case 2:
-					new Thread(){
-						public void run() {
-							controller.getContext().addBusinessData("report.type", "black");
-							controller.getContext().addBusinessData("report.target_id", u.getId());
-							controller.getContext().addBusinessData("report.msg", "black");
-							controller.myreport();
-						};
-					}.start();
-					final IOSStyleDialog dialog2 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog2.setMessage("您举报了此人");
-					dialog2.setOne("确认",new OnClickListener() {
-						@Override
-						public void onClick(View v) {
-//							IntentUtil.intent(mContext, MainFragmentActivity.class);
-							dialog2.closeDialog();
-						}
-					});
+//					new Thread(){
+//						public void run() {
+//							controller.getContext().addBusinessData("report.type", "black");
+//							controller.getContext().addBusinessData("report.target_id", u.getId());
+//							controller.getContext().addBusinessData("report.msg", "black");
+//							controller.myreport();
+//						};
+//					}.start();
+//					final IOSStyleDialog dialog2 = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
+//					dialog2.setMessage("您举报了此人");
+//					dialog2.setOne("确认",new OnClickListener() {
+//						@Override
+//						public void onClick(View v) {
+////							IntentUtil.intent(mContext, MainFragmentActivity.class);
+//							dialog2.closeDialog();
+//						}
+//					});
+					final ReportIOSStyleDialog dialog2 = new ReportIOSStyleDialog(context,controller ,IOSStyleDialog.DIALOG_TWO);
+					
 					break;
 				default:
 					break;

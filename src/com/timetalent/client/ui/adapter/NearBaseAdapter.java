@@ -19,6 +19,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,8 +42,11 @@ public class NearBaseAdapter extends BaseAdapter {
 	private LayoutInflater mInflater;
 	Nearlist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
+	float density = 1.0f;
 	public NearBaseAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
+		DisplayMetrics dm2 = context.getResources().getDisplayMetrics();
+		density = dm2.density;
 		data = (Nearlist) AppController.getController(((Activity)context)).getContext().getBusinessData("NearData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -71,7 +75,7 @@ public class NearBaseAdapter extends BaseAdapter {
 					if(temp == null){
 						continue;
 					}
-					Bitmap bm = PictureUtil.getRoundedCornerBitmap(temp);
+					Bitmap bm = PictureUtil.toRoundCorner(temp, (int)(5*density));
 					icons.set(i, new BitmapDrawable(bm));
 					handler.sendEmptyMessage(1);
 				}

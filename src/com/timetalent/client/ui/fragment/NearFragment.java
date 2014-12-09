@@ -114,6 +114,11 @@ public class NearFragment extends Fragment implements OnClickListener {
 		btshaixuan.setText("筛选");
 		btsearch.setText("");
 		UIUtils.setDrawableLeft(getActivity(), btsearch, R.drawable.f9_06);
+		sex = "";
+		age_min = "0";
+		age_max = "80";
+		type = "";
+		major = "";
 		setvalue();
 		new Thread() {
 			public void run() {

@@ -110,6 +110,7 @@
                         android:background="@drawable/btn_squanbu1"
                         android:button="@null"
                         android:gravity="center"
+                        android:checked="true"
                         android:padding="7dp"
                         android:text="全部"
                         android:textColor="@color/color_4" />
@@ -121,7 +122,6 @@
                         android:layout_weight="1"
                         android:background="@drawable/btn_s10_16"
                         android:button="@null"
-                        android:checked="true"
                         android:gravity="center"
                         android:padding="7dp"
                         android:text="10-16岁"
@@ -244,6 +244,7 @@
                     android:background="@drawable/btn_squanbu2"
                     android:button="@null"
                     android:gravity="center"
+                    android:checked="true"
                     android:padding="7dp"
                     android:text="全部"
                     android:textColor="@color/color_4" />
@@ -255,7 +256,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/btn_syiren"
                     android:button="@null"
-                    android:checked="true"
                     android:gravity="center"
                     android:padding="7dp"
                     android:text="艺人"

@@ -29,6 +29,7 @@ import com.timetalent.client.entities.Myfansyaoqingpackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter.ViewHolder;
+import com.timetalent.client.ui.adapter.YirenYaoqingAdapter.myOnClickListener;
 import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.fragment.util.Background1;
@@ -136,14 +137,7 @@ public class XingtanYaoqingAdapter extends BaseAdapter{
 				    null);
 			holder = new ViewHolder();
 			holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
-			holder.imghead.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-					IntentUtil.intent(mContext, XingtanActivity.class);
-					
-				}
-			});
+			holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 			holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 			holder.tvstatus = (TextView) convertView.findViewById(R.id.tvstatus);
 			holder.tvstatus.setText("未处理");

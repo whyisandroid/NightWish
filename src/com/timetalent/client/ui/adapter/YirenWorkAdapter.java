@@ -34,6 +34,7 @@ import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
 
 
 /******************************************
@@ -122,21 +123,13 @@ public class YirenWorkAdapter extends BaseAdapter{
 	}
 	
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		ViewHolder holder;
 		if (convertView == null) {
 			convertView = mInflater.inflate(R.layout.chance_list_item,
 				    null);
 			holder = new ViewHolder();
-			holder.relativeLayout1 = (RelativeLayout) convertView.findViewById(R.id.relativeLayout1);
-			holder.relativeLayout1.setOnClickListener(new OnClickListener() {
-				
-				@Override
-				public void onClick(View v) {
-//					showMessageTwo(mContext, "对方已完成预定工作，\n星币将转入对方账户？", "完成");
-					
-				}
-			});
+			holder.relativeLayout1 = (RelativeLayout) convertView.findViewById(R.id.relativeLayoutroot);
 			holder.tv_chance_title = (TextView) convertView.findViewById(R.id.tv_chance_title);
 			holder.tv_chance_address = (TextView) convertView.findViewById(R.id.tv_chance_address);
 			holder.tv_chance_time = (TextView) convertView.findViewById(R.id.tv_chance_time);
@@ -148,6 +141,21 @@ public class YirenWorkAdapter extends BaseAdapter{
 			holder.tv_chance_title.setText(""+data.getLists().get(position).getTask().getTitle());
 			holder.tv_chance_address.setText(""+data.getLists().get(position).getTask().getPlace());
 			holder.tv_chance_time.setText("报名截止时间："+data.getLists().get(position).getTask().getCutoff_date());
+			holder.relativeLayout1.setOnClickListener(new OnClickListener() {
+				
+				@Override
+				public void onClick(View v) {
+					new Thread(new Runnable() {
+						@Override
+						public void run() {
+							controller.getContext().addBusinessData("chance_detail_id", data.getLists().get(position).getTask_id());
+							controller.chanceDetails();
+							ProgressDialogUtil.closeProgressDialog();
+						}  
+					}).start();
+					
+				}
+			});
 		}
 		return convertView;
 	}

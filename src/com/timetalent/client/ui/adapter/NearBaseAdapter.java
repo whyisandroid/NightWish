@@ -144,7 +144,7 @@ public class NearBaseAdapter extends BaseAdapter {
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
-		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getMajor());
 		if(data.getLists().get(position).getLoyal_pass().equals("1")){
 			holder.imgonline.setImageResource(R.drawable.f3_13);
 		}else{

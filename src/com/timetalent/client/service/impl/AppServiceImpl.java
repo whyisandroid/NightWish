@@ -1116,7 +1116,7 @@ public class AppServiceImpl implements AppService {
 	public void mybaseinfo() throws BusinessException {
 		Request<BaseinfoResp> request = new Request<BaseinfoResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getStringData("_session_id")));
 		
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_BASEINFO);
@@ -1142,18 +1142,18 @@ public class AppServiceImpl implements AppService {
 	public void mybaseinfoupdate() throws BusinessException {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("username", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("phone", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("email", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("sex", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("nickname", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("realname", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("birthday", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("constella", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("certificate", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("province", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("city", (String)context.getBusinessData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getStringData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("username", (String)context.getStringData("bianji.username")));
+		nameValuePairs.add(new BasicNameValuePair("phone", (String)context.getStringData("bianji.phone")));
+		nameValuePairs.add(new BasicNameValuePair("email", (String)context.getStringData("bianji.email")));
+		nameValuePairs.add(new BasicNameValuePair("sex", (String)context.getStringData("bianji.sex")));
+		nameValuePairs.add(new BasicNameValuePair("nickname", (String)context.getStringData("bianji.nickname")));
+		nameValuePairs.add(new BasicNameValuePair("realname", (String)context.getStringData("bianji.realname")));
+		nameValuePairs.add(new BasicNameValuePair("birthday", (String)context.getStringData("bianji.birthday")));
+		nameValuePairs.add(new BasicNameValuePair("constella", (String)context.getStringData("bianji.constella")));
+		nameValuePairs.add(new BasicNameValuePair("certificate", (String)context.getStringData("bianji.certificate")));
+		nameValuePairs.add(new BasicNameValuePair("province", (String)context.getStringData("bianji.province")));
+		nameValuePairs.add(new BasicNameValuePair("city", (String)context.getStringData("bianji.city")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_BASEINFOUPDATE);
 		request.setR_calzz(BaseResp.class);
@@ -1305,16 +1305,22 @@ public class AppServiceImpl implements AppService {
 	@Override
 	public void myuser_addservice() throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
+		String serviceid = context.getStringData("service.serviceid");
+		String money = context.getStringData("service.money");
+		String unit = context.getStringData("service.unit");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+		nameValuePairs.add(new BasicNameValuePair("service_id", serviceid));
+		nameValuePairs.add(new BasicNameValuePair("money", money));
+		nameValuePairs.add(new BasicNameValuePair("unit", unit));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_USER_ADDSERVICE);
 		request.setR_calzz(BaseResp.class);  
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			
-		} else{
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
@@ -1497,7 +1503,6 @@ public class AppServiceImpl implements AppService {
 	
 	@Override
 	public void myavatarupdate() throws BusinessException {
-
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
@@ -1687,6 +1692,29 @@ public class AppServiceImpl implements AppService {
 			}
 		
 		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myphotoupdate()
+	 */
+	@Override
+	public void myphotoupdate(List<PicValuePair> picValuePair) throws BusinessException {
+
+		String _session_id = context.getStringData("_session_id");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.addParameter(Request.PICTURE, picValuePair);
+		request.setUrl(Config.HTTP_MY_PHOTO_UPDATE);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
+		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}

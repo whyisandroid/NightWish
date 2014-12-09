@@ -104,7 +104,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 			lyaoqing.setAdapter(new YirenYaoqingAdapter(MyworkActivity.this,controller));
 			break;
 		case 1:
-			lyaoqing.setAdapter(new XingtanYaoqingAdapter(MyworkActivity.this,controller));
+			lyaoqing.setAdapter(new XingtanWorkAdapter(MyworkActivity.this,controller));
 			break;
 		case 2:
 			lyaoqing.setAdapter(new FansYaoqingAdapter(MyworkActivity.this,controller,"Y"));
@@ -127,7 +127,7 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 //				}
 //			});
 		}else if(index == 1){
-			lwork.setAdapter(new XingtanWorkAdapter(MyworkActivity.this,controller));
+			lwork.setAdapter(new XingtanYaoqingAdapter(MyworkActivity.this,controller));
 			lwork.setOnItemClickListener(new OnItemClickListener() {
 				@Override
 				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,

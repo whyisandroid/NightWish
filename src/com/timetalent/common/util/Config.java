@@ -74,6 +74,8 @@ public class Config {
 	public final static String HTTP_MY_DO_SOCIAL = MY_SERVICE+ "/User/do_social";//更新坐标
 	public final static String HTTP_MY_REPORT = MY_SERVICE+ "/User/report";//更新坐标
 	public final static String HTTP_MY_PHOTO = MY_SERVICE+ "/User/photo";//更新坐标
+	public final static String HTTP_MY_PHOTO_UPDATE = MY_SERVICE+ "/User/photo_upload";//更新坐标
+	
 	public final static String HTTP_MY_PHOTO_DEL = MY_SERVICE+ "/User/photo_del";//更新坐标
 	public final static String HTTP_MY_AVATAR_UPDATE = MY_SERVICE+ "/User/avatar_upload";//更新坐标
 	public final static String HTTP_MY_AVATAR_DEL = MY_SERVICE+ "/User/avatar_del";//更新坐标

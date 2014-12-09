@@ -21,6 +21,7 @@ public class Nearpackage {
 	String province = "";
 	String city = "";
 	String type = "";
+	String major = "";
 	String sort = "0";
 	String status = "1";
 	String lat = "";
@@ -29,6 +30,12 @@ public class Nearpackage {
 	String age = "";
 	String content = "";
 	
+	public String getMajor() {
+		return major;
+	}
+	public void setMajor(String major) {
+		this.major = major;
+	}
 	public String getContent() {
 		return content;
 	}

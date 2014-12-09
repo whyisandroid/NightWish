@@ -996,4 +996,13 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	public void myphotoupdate(List<PicValuePair> picValuePair){
+		try {
+			service.myphotoupdate(picValuePair);
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

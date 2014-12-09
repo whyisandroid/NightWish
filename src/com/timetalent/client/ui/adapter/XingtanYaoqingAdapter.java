@@ -141,7 +141,7 @@ public class XingtanYaoqingAdapter extends BaseAdapter{
 			holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 			holder.tvstatus = (TextView) convertView.findViewById(R.id.tvstatus);
 			holder.tvstatus.setText("未处理");
-			holder.tvstatus.setTextColor(0XFFFF0000);
+			holder.tvstatus.setTextColor(0XFFFFFFFF);
 			holder.lneirong = (LinearLayout) convertView.findViewById(R.id.lneirong);
 			holder.lneirong.setOnClickListener(new OnClickListener() {
 				
@@ -168,10 +168,13 @@ public class XingtanYaoqingAdapter extends BaseAdapter{
 			holder.tvname.setText(data.getLists().get(position).getService_job());
 			if(data.getLists().get(position).getAccept().equals("Y")){
 				holder.tvstatus.setText("完成交易");
+				holder.tvstatus.setBackgroundColor(0XFF00FF00);
 			}else if(data.getLists().get(position).getAccept().equals("N")){
 				holder.tvstatus.setText("已被拒绝");
+				holder.tvstatus.setBackgroundColor(0XFFFF0000);
 			}else{
 				holder.tvstatus.setText("未处理");
+				holder.tvstatus.setBackgroundColor(0XFFFF0000);
 			}
 			
 			holder.tvjiesuan.setText(data.getLists().get(position).getService_method());

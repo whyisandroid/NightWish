@@ -118,8 +118,8 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 			       }
 			     });
 			         webSettings.setJavaScriptEnabled(true);
-					wb.loadUrl(data.getUrl());
-//			         wb.loadDataWithBaseURL(null,"<html><body><img src=\"http://wap.yomai.com/test1.gif\" /></body></html>", "text/html",  "utf-8", null);
+//					wb.loadUrl(data.getUrl());
+			         wb.loadDataWithBaseURL(null,data.getUrl(), "text/html",  "utf-8", null);
 				}
 				break;
 			}

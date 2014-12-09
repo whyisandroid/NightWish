@@ -115,17 +115,21 @@ public class MyfuwunextActivity extends BaseActivity implements OnClickListener 
 		case R.id.btok:
 			List<MyServicepackage> list = (List<MyServicepackage>) controller.getContext().getBusinessData("addeditservice");
 			if(list != null){
-//				for(MyServicepackage t:list){
-//					
-//					new Thread(){
-//						public void run() {
-//							controller.mys
-//						};
-//					}.start();
-//				}
+				for(final MyServicepackage t:list){
+					
+					new Thread(){
+						public void run() {
+							controller.getContext().addBusinessData("service.serviceid", t.getService_id());
+							controller.getContext().addBusinessData("service.money", t.getMoney());
+							controller.getContext().addBusinessData("service.unit", t.getUnit());
+							t.getService_id();
+							controller.myuser_addservice();
+						};
+					}.start();
+				}
 			}
 			finish();
-			Toast.makeText(MyfuwunextActivity.this, "baocun成功", 1000).show();
+//			Toast.makeText(MyfuwunextActivity.this, "baocun成功", 1000).show();
 			break;
 		default:
 			break;

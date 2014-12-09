@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.graphics.Color;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -107,16 +109,39 @@ public class fuwunextAdapter extends BaseAdapter{
 			holder = new ViewHolder();
 			holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 			holder.etjiage =(EditText) convertView.findViewById(R.id.etjiage);
-			holder.etjiage.setOnFocusChangeListener(new OnFocusChangeListener() {
+			holder.etjiage.addTextChangedListener(new TextWatcher() {
 				
 				@Override
-				public void onFocusChange(View v, boolean hasFocus) {
+				public void onTextChanged(CharSequence s, int start, int before, int count) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void beforeTextChanged(CharSequence s, int start, int count,
+						int after) {
+					// TODO Auto-generated method stub
+					
+				}
+				
+				@Override
+				public void afterTextChanged(Editable s) {
 					MyServicepackage t = list.get(position);
-					t.setMoney(((EditText)v).getText().toString());
+					t.setMoney(s.toString());
 					list.set(position, t);
 					AppController.getController(((Activity)mcontext)).getContext().addBusinessData("addeditservice", list);
 				}
 			});
+//			holder.etjiage.setOnFocusChangeListener(new OnFocusChangeListener() {
+//				
+//				@Override
+//				public void onFocusChange(View v, boolean hasFocus) {
+//					MyServicepackage t = list.get(position);
+//					t.setMoney(((EditText)v).getText().toString());
+//					list.set(position, t);
+//					AppController.getController(((Activity)mcontext)).getContext().addBusinessData("addeditservice", list);
+//				}
+//			});
 			
 			holder.rb1 = (RadioButton) convertView.findViewById(R.id.rb1);
 			holder.rb2 = (RadioButton) convertView.findViewById(R.id.rb2);

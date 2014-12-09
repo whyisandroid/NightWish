@@ -157,6 +157,7 @@ public interface AppService {
 	public void mydo_social() throws BusinessException;
 	public void myreport() throws BusinessException;
 	public void myphoto() throws BusinessException;
+	public void myphotoupdate(List<PicValuePair> picValuePair) throws BusinessException;
 	public void myphotodel() throws BusinessException;
 	public void myavatarupdate() throws BusinessException;
 	public void myavatardel() throws BusinessException;

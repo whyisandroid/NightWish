@@ -23,6 +23,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -48,9 +49,12 @@ public class GuanzhuAdapter extends BaseAdapter {
 	Followinglist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
 	Context mcontext;
+	float density = 1.0f;
 	public GuanzhuAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
 		mcontext = context;
+		DisplayMetrics dm2 = mcontext.getResources().getDisplayMetrics();
+		density = dm2.density;
 		data = (Followinglist) AppController.getController(((Activity)context)).getContext().getBusinessData("FollowingData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -142,9 +146,10 @@ public class GuanzhuAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
 		holder.imghead.setImageDrawable(icons.get(position));
-		holder.imghead.setPadding(10, 10, 10, 10);
+//		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
-		pa.height = holder.imghead.getWidth();
+		pa.width = (int) (50*density);
+		pa.height = (int) (50*density);
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");

@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,9 +51,12 @@ public class FansAdapter extends BaseAdapter {
 	Followedlist data = null;
 	List<Drawable> icons = new ArrayList<Drawable>();
 	Context context;
+	float density = 1.0f;
 	public FansAdapter(Context context){
 		this.mInflater = LayoutInflater.from(context);
 		this.context = context;
+		DisplayMetrics dm2 = context.getResources().getDisplayMetrics();
+		density = dm2.density;
 		data = (Followedlist) AppController.getController(((Activity)context)).getContext().getBusinessData("FollowedData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -142,9 +146,10 @@ public class FansAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
 		holder.imghead.setImageDrawable(icons.get(position));
-		holder.imghead.setPadding(10, 10, 10, 10);
+//		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
-		pa.height = holder.imghead.getWidth();
+		pa.width = (int) (50*density);
+		pa.height = (int) (50*density);
 		holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());

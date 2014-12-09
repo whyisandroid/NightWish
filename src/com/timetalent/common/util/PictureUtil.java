@@ -216,7 +216,8 @@ public class PictureUtil {
 	 * @return
 	 */
     public static Bitmap toRoundCorner(Bitmap bitmap, int pixels) {  
-        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);  
+        Bitmap output = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+        if(output == null){return output;}
         Canvas canvas = new Canvas(output);  
         final int color = 0xff424242;  
         final Paint paint = new Paint();  

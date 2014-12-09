@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
+import com.easemob.util.DensityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.AppPackage;
@@ -98,12 +100,14 @@ public class UserFragment extends Fragment implements OnClickListener {
 	TextView tvcountfans;
 	int r = 0;
 	LoginData user;
+	float density = 1.0f;
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
 		user = (LoginData) controller.getContext().getBusinessData("loginData");
-		
+		DisplayMetrics dm2 = this.getResources().getDisplayMetrics();
+		density = dm2.density;
 		String type = user.getType();
 		if(type.equalsIgnoreCase("star")){
 			r = 0;
@@ -367,7 +371,8 @@ case 2:
 				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
 				imghead.setImageBitmap(bm);
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
-				pa.height = imghead.getWidth();
+				pa.width = (int) (50*density);
+				pa.height = (int) (50*density);
 //				imghead.setPadding(0, 20, 0, 20);
 				break;
 			case 2:

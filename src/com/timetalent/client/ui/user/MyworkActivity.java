@@ -119,13 +119,13 @@ public class MyworkActivity extends BaseActivity implements OnClickListener {
 		
 		if(index == 0){
 			lwork.setAdapter(new YirenWorkAdapter(MyworkActivity.this,controller));
-			lwork.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-						long arg3) {
-					IntentUtil.intent(MyworkActivity.this, OfferDetailActivity.class);
-				}
-			});
+//			lwork.setOnItemClickListener(new OnItemClickListener() {
+//				@Override
+//				public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+//						long arg3) {
+//					IntentUtil.intent(MyworkActivity.this, OfferDetailActivity.class);
+//				}
+//			});
 		}else if(index == 1){
 			lwork.setAdapter(new XingtanWorkAdapter(MyworkActivity.this,controller));
 			lwork.setOnItemClickListener(new OnItemClickListener() {

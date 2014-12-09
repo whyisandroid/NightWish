@@ -149,10 +149,10 @@ public class HaoyouAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
 		holder.imghead.setImageDrawable(icons.get(position));
-		holder.imghead.setPadding(10, 10, 10, 10);
+//		holder.imghead.setPadding(0, (int) (5*density), 0, (int) (5*density));
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.width = (int) (50*density);
-		pa.height = holder.imghead.getWidth();
+		pa.height = (int) (50*density);
 		holder.imghead.setOnClickListener(new myOnClickListener(data.getLists().get(position)));
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());

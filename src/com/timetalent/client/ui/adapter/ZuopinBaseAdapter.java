@@ -17,6 +17,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,9 +40,12 @@ public class ZuopinBaseAdapter extends BaseAdapter {
 	List<Drawable> icons = new ArrayList<Drawable>();
 	Context context;
 	Userinfopackage data = null;
+	float density = 1.0f;
 	public ZuopinBaseAdapter(Context context){
 		this.context = context;
 		this.mInflater = LayoutInflater.from(context);
+		DisplayMetrics dm2 = context.getResources().getDisplayMetrics();
+		density = dm2.density;
 		data = (Userinfopackage) AppController.getController(((Activity)context)).getContext().getBusinessData("UserinfoData");
 		if(icons == null){
 			icons = new ArrayList<Drawable>();
@@ -70,7 +74,7 @@ public class ZuopinBaseAdapter extends BaseAdapter {
 					if(temp == null){
 						continue;
 					}
-					Bitmap bm = PictureUtil.getRoundedCornerBitmap(temp);
+					Bitmap bm = PictureUtil.toRoundCorner(temp, (int)(5*density));//getRoundedCornerBitmap(temp);
 					icons.set(i, new BitmapDrawable(bm));
 					handler.sendEmptyMessage(1);
 				}
@@ -126,9 +130,10 @@ public class ZuopinBaseAdapter extends BaseAdapter {
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
 		holder.imgzuopin.setImageDrawable(icons.get(position));
-		holder.imgzuopin.setPadding(10, 10, 10, 10);
+//		holder.imgzuopin.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imgzuopin.getLayoutParams();
-		pa.height = holder.imgzuopin.getWidth();
+		pa.width = (int) (50*density);
+		pa.height = (int) (50*density);
 		holder.tvzuopinname.setText(""+data.getMore().getWorks().get(position).getTitle());
 		holder.tvzuopinjuese.setText(""+data.getMore().getWorks().get(position).getActor());
 		holder.tvzuopintime.setText(""+data.getMore().getWorks().get(position).getTime());

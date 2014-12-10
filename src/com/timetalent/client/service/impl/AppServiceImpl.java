@@ -783,9 +783,6 @@ public class AppServiceImpl implements AppService {
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
-	
-			
-			
 	}
 
 	
@@ -991,11 +988,8 @@ public class AppServiceImpl implements AppService {
 			if(resp.getData() != null){
 				context.addBusinessData("FansyaoqingData", resp.getData());
 			}
-			
-			
-			
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 			
@@ -1025,7 +1019,7 @@ public class AppServiceImpl implements AppService {
 			}
 			
 			} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 			
@@ -1296,7 +1290,7 @@ public class AppServiceImpl implements AppService {
 			}
 		
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 	}
@@ -1343,7 +1337,7 @@ public class AppServiceImpl implements AppService {
 			}
 		
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 	}
@@ -1478,7 +1472,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("MyphotoData", resp.getData());
 			}
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 
@@ -1599,7 +1593,7 @@ public class AppServiceImpl implements AppService {
 		if ("1".equals(resp.getStatus())) {
 			
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 	
@@ -1668,7 +1662,7 @@ public class AppServiceImpl implements AppService {
 			}
 		
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 
@@ -1692,7 +1686,7 @@ public class AppServiceImpl implements AppService {
 			}
 		
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 

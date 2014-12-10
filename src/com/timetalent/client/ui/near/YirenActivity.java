@@ -37,6 +37,7 @@ import com.timetalent.client.ui.chance.WorkAppointmentActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.dialog.ReportIOSStyleDialog;
+import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.view.NearPicturesLayout;
@@ -78,6 +79,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 	TextView tvfeed;
 	TextView tvage1;
 	ImageView imgsex1;
+	TextView tvcontent;
 	int index = 0;
 	String userid = "1";
 	public int screenw = 0;
@@ -87,6 +89,14 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	@Override
+	protected void onStart() {
+		super.onStart();
 		setContentView(R.layout.near_yirenxiangqing);
 		userid = getIntent().getStringExtra("userid");
 		controller = AppController.getController(this);
@@ -96,6 +106,12 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 		density = dm.density;
 		findView();
 		initView();
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		piclay.onDestroy();
 	}
 	/**
 	 * 方法描述：TODO
@@ -126,6 +142,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 		 tvfeed = (TextView) findViewById(R.id.tvfeed);
 		 tvage1 = (TextView) findViewById(R.id.tvage1);
 		 imgsex1 = (ImageView) findViewById(R.id.imgsex1);
+		 tvcontent = (TextView) findViewById(R.id.tvcontent);
 	}
 
 	/**
@@ -190,7 +207,10 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 			finish();
 			break;
 		case R.id.lneardongtai:
-			IntentUtil.intent(YirenActivity.this, NearDongtaiActivity.class);
+			controller.getContext().addBusinessData("other_id", u.getId());
+			Bundle bundle0 = new Bundle();
+			bundle0.putString("userName", u.getNickname());
+			IntentUtil.intent(YirenActivity.this, bundle0,DynamicOtherActivity.class,false);
 			break;
 		case R.id.imgduihua:
 			IntentUtil.intent(YirenActivity.this, MessageChatActivity.class);
@@ -298,6 +318,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 					 tvheight.setText(u.getMore().getHeight()+"cm");
 					 tvfeed.setText(u.getCount().getFeed());
 					 tvage1.setText(u.getAge());
+					 tvcontent.setText(u.getMore().getContent()+"");
 					 if(u.getSex().equals("1")){
 						 imgsex1.setImageResource(R.drawable.f_05);
 					 }else if(u.getSex().equals("2")){

@@ -5,9 +5,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.lang.ref.SoftReference;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.timetalent.client.ui.fragment.util.Background1;
@@ -315,7 +320,6 @@ public class PictureUtil {
 					return drawable;
 				}
 			}
-
 		}
 		// /////////////////////////////
 
@@ -331,11 +335,7 @@ public class PictureUtil {
 			BitmapDrawable bd = (BitmapDrawable) drawable;
 			Bitmap bm = bd.getBitmap();
 			if(bm == null){
-
-
 				return new Background1();
-			
-			
 			}
 			int count = Url.split("\\.").length;
 			if (count > 0) {
@@ -377,6 +377,33 @@ public class PictureUtil {
 		return drawable;
 	}
 	}
+	
+	
+	
+	
+//	public static Drawable getImage(String urlString, String userid, String pictureid) {
+//		Map drawableMap = new HashMap<String, SoftReference<Drawable>>();
+//	    SoftReference<Drawable> drawableRef = (SoftReference<Drawable>) drawableMap.get(urlString);   
+//	    if (drawableRef != null) {
+//	        Drawable drawable = drawableRef.get();   
+//	        if (drawable != null)   
+//	            return drawable;   
+//	        drawableMap.remove(urlString);   
+//	    }
+//	   
+//	    try {
+//	        InputStream is = new URL(urlString).openStream();
+//	        Drawable drawable = Drawable.createFromStream(is, "src");   
+//	        drawableRef = new SoftReference<Drawable>(drawable);   
+//	        drawableMap.put(urlString, drawableRef);   
+//	        return drawableRef.get();   
+//	    } catch (MalformedURLException e) {   
+//	        return new Background1();   
+//	    } catch (IOException e) {   
+//	        return new Background1();   
+//	    }   
+//	} 
+	
 	/**
 	 * 删除SD卡或者手机的缓存图片和目录
 	 */

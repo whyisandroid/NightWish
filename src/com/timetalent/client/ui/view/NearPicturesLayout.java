@@ -295,6 +295,7 @@ public class NearPicturesLayout extends LinearLayout implements
 									}else{
 										imgpic1.setImageDrawable(new Background1());
 										imgpic1.setOnClickListener(null);
+										imgpic1.setVisibility(INVISIBLE);
 									}
 									
 								}
@@ -305,6 +306,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic2.setImageDrawable(new Background1());
 									imgpic2.setOnClickListener(null);
+									imgpic2.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 2:
@@ -313,6 +315,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic3.setImageDrawable(new Background1());
 									imgpic3.setOnClickListener(null);
+									imgpic3.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 3:
@@ -321,6 +324,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic4.setImageDrawable(new Background1());
 									imgpic4.setOnClickListener(null);
+									imgpic4.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 4:
@@ -329,6 +333,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic5.setImageDrawable(new Background1());
 									imgpic5.setOnClickListener(null);
+									imgpic5.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 5:
@@ -337,6 +342,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic6.setImageDrawable(new Background1());
 									imgpic6.setOnClickListener(null);
+									imgpic6.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 6:
@@ -345,6 +351,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic7.setImageDrawable(new Background1());
 									imgpic7.setOnClickListener(null);
+									imgpic7.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 7:
@@ -353,6 +360,7 @@ public class NearPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic8.setImageDrawable(new Background1());
 									imgpic8.setOnClickListener(null);
+									imgpic8.setVisibility(INVISIBLE);
 								}}
 								break;
 							default:
@@ -529,5 +537,19 @@ public class NearPicturesLayout extends LinearLayout implements
 	public boolean onTouchEvent(MotionEvent ev) {
 		super.onTouchEvent(ev);
 		return mGestureDetector.onTouchEvent(ev);
+	}
+	public void onDestroy(){
+		if(pictures != null){
+			for (int i = 0; i < pictures.size(); i++) {
+				if(pictures.get(i) instanceof BitmapDrawable){
+					Bitmap bmp = ((BitmapDrawable) pictures.get(i)).getBitmap();
+					if (null != bmp && !bmp.isRecycled()){
+						bmp.recycle();
+						bmp = null;
+						}
+				}
+			}
+			
+		}
 	}
 }

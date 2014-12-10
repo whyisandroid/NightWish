@@ -379,9 +379,7 @@ public class AppController {
 	public void dynamicAdd(Handler mHandler) {
 		try {
 			service.dynamicAdd();
-			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
 			mHandler.obtainMessage(0).sendToTarget();
-			currentActivity.finish();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -393,7 +391,7 @@ public class AppController {
 	public void dynamicAddPic(List<PicValuePair> picValuePair) {
 		try {
 			service.dynamicAdd_pic(picValuePair);
-			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
+			handler.obtainMessage(HANDLER_TOAST,"发布成功").sendToTarget();
 			currentActivity.finish();
 		} catch (BusinessException e) {
 			e.printStackTrace();
@@ -619,6 +617,8 @@ public class AppController {
 	public void mywithdraw() {
 		try {
 			service.mywithdraw();
+			currentActivity.finish();
+			handler.obtainMessage(HANDLER_TOAST, "提现成功，预计3个工作日到达指定的账户!").sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

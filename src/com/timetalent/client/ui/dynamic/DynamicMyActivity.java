@@ -1,7 +1,5 @@
 package com.timetalent.client.ui.dynamic;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,7 +9,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
-import com.timetalent.client.entities.Feed;
 import com.timetalent.client.entities.FeedData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;

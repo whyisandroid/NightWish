@@ -6,20 +6,14 @@ import java.util.List;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Replay;
-import com.timetalent.client.entities.Task;
-import com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder;
-import com.timetalent.client.ui.chance.OfferAddActivity;
-import com.timetalent.common.util.StringUtil;
 
 
 /******************************************

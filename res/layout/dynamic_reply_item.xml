@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="8dp"
-    android:orientation="horizontal" >
+    android:layout_height="wrap_content" >
 
-    <TextView
-        android:id="@+id/tv_dynamic_replay_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="NO DATA：" />
+        android:orientation="horizontal"
+        android:padding="8dp"
+        android:paddingBottom="20dp" >
 
-    <TextView
-        android:id="@+id/tv_dynamic_replay_content"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="@string/chance_text16" />
+        <TextView
+            android:id="@+id/tv_dynamic_replay_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="NO DATA：" />
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tv_dynamic_replay_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:singleLine="true"
+            android:text="chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16" />
+    </LinearLayout>
+</RelativeLayout>

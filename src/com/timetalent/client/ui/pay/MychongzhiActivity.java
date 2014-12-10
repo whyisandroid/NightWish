@@ -1,18 +1,19 @@
-package com.timetalent.client.ui.user;
+package com.timetalent.client.ui.pay;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.LinearLayout.LayoutParams;
 
 import com.timetalent.client.R;
@@ -23,6 +24,8 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -33,24 +36,22 @@ import com.timetalent.common.util.UIUtils;
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
  ******************************************/
-public class MychongzhifangshiActivity extends BaseActivity implements OnClickListener {
+public class MychongzhiActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	Button btok;
+	Button btchongzhifangshi;
 	ImageView imghead;
 	TextView tvnickname;
 	TextView tvmoney;
 	TextView tvid;
-	TextView tvmoneymiaoshu;
-	TextView tvmoney1;
-	TextView tvname1;
 	LoginData user;
+	EditText etmoney;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.my_chongzhifangshi);
+		setContentView(R.layout.my_chongzhi);
 		controller = AppController.getController(this);
 		user = (LoginData) controller.getContext().getBusinessData("loginData");
 		findView();
@@ -64,14 +65,12 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 	 */
 	private void findView() {
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		btok = (Button) findViewById(R.id.btok);
+		btchongzhifangshi = (Button) findViewById(R.id.btchongzhifangshi);
+		etmoney = (EditText) findViewById(R.id.etmoney);
 		imghead = (ImageView) findViewById(R.id.imghead);
 		tvnickname = (TextView) findViewById(R.id.tvnickname);
 		tvmoney = (TextView) findViewById(R.id.tvmoney);
 		tvid = (TextView) findViewById(R.id.tvid);
-		tvmoneymiaoshu = (TextView) findViewById(R.id.tvmoneymiaoshu);
-		tvmoney1 = (TextView) findViewById(R.id.tvmoney1);
-		tvname1 = (TextView) findViewById(R.id.tvname1);
 	}
 
 	/**
@@ -86,13 +85,10 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
-		btok.setOnClickListener(this);
+		btchongzhifangshi.setOnClickListener(this);
 		tvnickname.setText(user.getNickname());
 		tvmoney.setText(user.getMoney());
 		tvid.setText(""+user.getId());
-		tvmoneymiaoshu.setText("充值"+controller.getContext().getStringData("wallet.money")+"元");
-		tvmoney1.setText(""+controller.getContext().getStringData("wallet.money"));
-		tvname1.setText(""+user.getNickname());
 		new Thread(){
 			public void run() {
 				Message msg = new Message();
@@ -103,6 +99,7 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 		}.start();
 	}
 	void setvalue(){
+		controller.getContext().addBusinessData("wallet.money", etmoney.getText()+"");
 		controller.getContext().addBusinessData("wallet.type", "alipay");
 	}
 	
@@ -112,15 +109,14 @@ public class MychongzhifangshiActivity extends BaseActivity implements OnClickLi
 		case R.id.main_top_left:
 			finish();
 			break;
-		case R.id.btok:
+		case R.id.btchongzhifangshi:
+			String Validate1 = StringUtil.notnull(etmoney.getText().toString());
+			if(!TextUtils.isEmpty(Validate1)){
+				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
+				return;
+			}
 			setvalue();
-			new Thread(){
-				public void run() {
-					controller.mycharge_order();
-					controller.mycomplete_order();
-				};
-			}.start();
-			finish();
+			IntentUtil.intent(MychongzhiActivity.this, MychongzhifangshiActivity.class);
 			break;
 		default:
 			break;

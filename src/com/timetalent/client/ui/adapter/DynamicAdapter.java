@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -143,10 +144,7 @@ public class DynamicAdapter extends BaseAdapter{
 		holder.iv_dynamic_good_num.setText(feed.getFavour_num());
 		holder.iv_dynamic_good.setSelected("N".equals(feed.getFavour_do()));
 		
-		// 处理 回复
-		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
-		holder.lv_dynamic_replay.setAdapter(replayAdapter);
-		UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
+		
 		// 处理头像
 		ImageLoader.getInstance().displayImage(feed.getUser().getAvatar(), holder.iv_dynamic_head,PictureUtil.getCircleOption());
 		// 处理图片
@@ -221,6 +219,12 @@ public class DynamicAdapter extends BaseAdapter{
 				}
 			}
 		});
+		
+		// 处理 回复
+				DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
+				holder.lv_dynamic_replay.setAdapter(replayAdapter);
+				//UIUtils.setListViewHeightBasedOnChildren(holder.lv_dynamic_replay);
+				UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
 		return convertView;
 	}
 	
@@ -235,6 +239,9 @@ public class DynamicAdapter extends BaseAdapter{
 		}
 		return true;
 	}
+	
+
+	
 	public static class ViewHolder{
 		private ImageView iv_dynamic_head; 				
 		private TextView tv_dynamic_name;

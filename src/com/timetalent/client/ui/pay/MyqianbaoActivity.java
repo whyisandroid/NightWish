@@ -1,4 +1,4 @@
-package com.timetalent.client.ui.user;
+package com.timetalent.client.ui.pay;
 
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -24,14 +24,16 @@ import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.client.ui.pay.MychongzhiActivity;
+import com.timetalent.client.ui.user.MyzhangdanActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.UIUtils;
 
 
 /******************************************
- * 类描述： 动态界面
- * 类名称：NearDongtaiActivity  
+ * 类描述：我的钱包
+ * 类名称：MyqianbaoActivity  
  * @version: 1.0
  * @author: why
  * @time: 2014-10-10 下午6:32:12 

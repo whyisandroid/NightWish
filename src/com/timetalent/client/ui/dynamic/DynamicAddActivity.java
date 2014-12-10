@@ -56,10 +56,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			switch (msg.what) {
 			case 0:
 				//发送图片 
-				for (int i = 0; i < imgList.size(); i++) {
-					File file = new File(imgList.get(i).getPath());
-					sendPic(file);
-				}
+				sendPic();
 				break;
 			default:
 				break;
@@ -195,14 +192,20 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	}
 	
 
-	private void sendPic(final File file) {
-		
+	private void sendPic() {
+		ProgressDialogUtil.showProgressDialog(this, "正在上传图片 请稍等…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
-				picValuePair.add(new PicValuePair("photo", file));
+				File file = new File(imgList.get(0).getPath());
+				picValuePair.add(new PicValuePair("photo1", file));
+				for (int i = 1; i < imgList.size(); i++) {
+					File file2 = new File(imgList.get(i).getPath());
+					picValuePair.add(new PicValuePair("photo"+(i+1), file2));
+				}
 				controller.dynamicAddPic(picValuePair);
+				ProgressDialogUtil.closeProgressDialog();
 			}
 		}).start();
 		

@@ -16,8 +16,8 @@ import com.timetalent.client.ui.adapter.NearBaseAdapter.ViewHolder;
 import com.timetalent.client.ui.chance.OfferInfoActivity;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.near.XingtanActivity;
-import com.timetalent.client.ui.user.MychongzhiActivity;
-import com.timetalent.client.ui.user.MychongzhifangshiActivity;
+import com.timetalent.client.ui.pay.MychongzhiActivity;
+import com.timetalent.client.ui.pay.MychongzhifangshiActivity;
 import com.timetalent.common.util.IntentUtil;
 
 

@@ -85,7 +85,7 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 		}
 		String value = "";
 		HttpUtils httpUtils = new HttpUtils();
-		
+		httpUtils.configTimeout(TIMEOUT_SOCKET*10);
 		
 		try {
 			RequestParams params = new RequestParams();
@@ -100,7 +100,7 @@ public class XUtilsSocketImpl implements AppSocketInterface {
 			for (int i = 0; i < picFiles.size(); i++) {
 				params.addBodyParameter(picFiles.get(i).getKey(),picFiles.get(i).getPicFile());
 			}
-			LogUtil.Log("sendHttp", request.getUrl() + nameValuePairs.toString() + "图片个数:  "+picFiles.size() +"  " + picFiles.iterator().next().getKey());
+			LogUtil.Log("sendHttp", request.getUrl() + nameValuePairs.toString() + "图片个数:  "+picFiles.size() +"  " );
 			ResponseStream responseStream = httpUtils.sendSync(HttpRequest.HttpMethod.POST,
 					request.getUrl(), params);
 

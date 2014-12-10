@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.service.AppController;
-import com.timetalent.client.ui.user.MychongzhiActivity;
+import com.timetalent.client.ui.pay.MychongzhiActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.ToastUtil;

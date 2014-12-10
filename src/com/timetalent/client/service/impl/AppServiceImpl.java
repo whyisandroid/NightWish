@@ -433,7 +433,7 @@ public class AppServiceImpl implements AppService {
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		nameValuePairs.add(new BasicNameValuePair("page", "1"));
-		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "50"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_MY);
 		request.setR_calzz(FeedResp.class);
@@ -913,7 +913,7 @@ public class AppServiceImpl implements AppService {
 		request.setR_calzz(BaseResp.class);
 		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}

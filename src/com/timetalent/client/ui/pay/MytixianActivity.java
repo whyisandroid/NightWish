@@ -1,6 +1,7 @@
-package com.timetalent.client.ui.user;
+package com.timetalent.client.ui.pay;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,6 +17,9 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -56,13 +60,7 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 		etaccount_name = (EditText) this.findViewById(R.id.etaccount_name);
 		etmoney = (EditText) this.findViewById(R.id.etmoney);
 	}
-	void setvalue(){
-		controller.getContext().addBusinessData("tixian.money", etmoney.getText()+"");
-		controller.getContext().addBusinessData("tixian.account_num", etaccount_num.getText()+"");
-		controller.getContext().addBusinessData("tixian.account_name", etaccount_name.getText()+"");
-		controller.getContext().addBusinessData("tixian.type", "alipay");
-		controller.getContext().addBusinessData("tixian.account_vender", "ALIBABA");
-	}
+
 	/**
 	 * 方法描述：TODO
 	 * 
@@ -78,7 +76,6 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 		bttixian.setOnClickListener(this);
 	}
 	
-	
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
@@ -86,17 +83,62 @@ public class MytixianActivity extends BaseActivity implements OnClickListener {
 			finish();
 			break;
 		case R.id.bttixian:
-			setvalue();
-			new Thread(){
-				public void run() {
-					controller.mywithdraw();
-				};
-			}.start();
-			finish();
+			if(invaild()){
+				withdraw();
+			}
 			break;
 		default:
 			break;
 		}
+	}
+	
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-12-10 下午9:39:16
+	  */
+	private void withdraw() {
+		ProgressDialogUtil.showProgressDialog(this, "通信中…", false);
+		new Thread(){
+			public void run() {
+				controller.mywithdraw();
+				ProgressDialogUtil.closeProgressDialog();
+			};
+		}.start();
+		
+	}
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-10-21 上午11:17:11
+	  */
+	private boolean invaild() {
+		String account = etaccount_num.getText().toString().trim();
+		String name = etaccount_name.getText().toString().trim();
+		String money = etmoney.getText().toString().trim();
+		if(TextUtils.isEmpty(account)){
+			ToastUtil.showToast(this, "账号不能为空!", ToastUtil.LENGTH_LONG);
+			return false;
+		} else{
+			controller.getContext().addBusinessData("tixian.account_num", etaccount_num.getText()+"");
+		}
+		if (TextUtils.isEmpty(name)) {
+			ToastUtil.showToast(this, "姓名不能为空", ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			controller.getContext().addBusinessData("tixian.account_name", etaccount_name.getText()+"");
+		}
+		if (TextUtils.isEmpty(money)) {
+			ToastUtil.showToast(this, "提现星币不能为空", ToastUtil.LENGTH_LONG);
+			return false;
+		}else{
+			controller.getContext().addBusinessData("tixian.money", etmoney.getText()+"");
+		}
+		controller.getContext().addBusinessData("tixian.type", "alipay");
+		controller.getContext().addBusinessData("tixian.account_vender", "ALIBABA");
+		return true;
 	}
 
 }

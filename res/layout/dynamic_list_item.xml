@@ -159,6 +159,8 @@
             android:id="@+id/lv_dynamic_replay"
             android:layout_width="match_parent"
             android:background="@color/main_grey"
+            android:dividerHeight="1px"
+                    android:focusable="false"
             android:layout_height="wrap_content" >
         </ListView>
 

@@ -1,6 +1,5 @@
 package com.timetalent.client.ui.fragment;
 
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -22,7 +21,6 @@ import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
-import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -62,7 +60,6 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 			Bundle savedInstanceState) {
 		controller = AppController.getController(getActivity());
 		view = inflater.inflate(R.layout.dynamic_fragment, container, false);
-		getActivity();
 		findView();
 		initView();
 		return view;
@@ -113,11 +110,6 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 	  * @time: 2014-11-5 下午9:55:14
 	  */
 	private void dynamic() {
-		/**
-		  * 方法描述：TODO
-		  * @author: why
-		  * @time: 2014-10-21 上午11:17:14
-		  */
 			new Thread(new Runnable() {
 				@Override
 				public void run() {

@@ -34,8 +34,8 @@ import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
-import com.timetalent.client.ui.user.MychongzhiActivity;
-import com.timetalent.client.ui.user.MychongzhifangshiActivity;
+import com.timetalent.client.ui.pay.MychongzhiActivity;
+import com.timetalent.client.ui.pay.MychongzhifangshiActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 

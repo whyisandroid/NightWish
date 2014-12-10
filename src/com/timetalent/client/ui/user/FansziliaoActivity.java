@@ -166,7 +166,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(user.getProvince());
+		 tvjiaxiang.setText(user.getProvince()+user.getCity());
 		 tvheight.setText(u.getMore().getHeight());
 		 tvfeed.setText(u.getCount().getFeed());
 		 tvcontent.setText(u.getMore().getContent()+"");

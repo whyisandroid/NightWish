@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.Searchlist;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -129,6 +131,27 @@ public class SearchActivity extends BaseActivity implements OnClickListener {
             	list.setVisibility(list.VISIBLE);
             	adapter = new SearchBaseAdapter(SearchActivity.this);
         		list.setAdapter(adapter);
+        		list.setOnItemClickListener(new OnItemClickListener() {
+
+        			@Override
+        			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+        					long arg3) {
+        				Searchlist result = (Searchlist) controller.getContext().getBusinessData("SearchData");
+        				if(result.getLists().get(arg2).getType().equals("star")){
+        					Bundle bundle1 = new Bundle();
+        					bundle1.putString("userid", result.getLists().get(arg2).getId());
+        					IntentUtil.intent(SearchActivity.this, bundle1,YirenActivity.class,false);
+        				}else if(result.getLists().get(arg2).getType().equals("scout")){
+        					Bundle bundle1 = new Bundle();
+        					bundle1.putString("userid", result.getLists().get(arg2).getId());
+        					IntentUtil.intent(SearchActivity.this, bundle1,XingtanActivity.class,false);
+        				}else if(result.getLists().get(arg2).getType().equals("fans")){
+        					Bundle bundle1 = new Bundle();
+        					bundle1.putString("userid", result.getLists().get(arg2).getId());
+        					IntentUtil.intent(SearchActivity.this, bundle1,FansActivity.class,false);
+        				}
+        			}
+        		});
             	adapter.notifyDataSetChanged();
                 break;
             }

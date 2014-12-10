@@ -33,6 +33,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
@@ -63,6 +64,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 	TextView tvjiaxiang;
 	TextView tvheight;
 	TextView tvfeed;
+	TextView tvcontent;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private TextView main_top_right;
@@ -76,6 +78,15 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
 		setContentView(R.layout.my_fansziliao);
 		controller = AppController.getController(this);
 		user = (LoginData) controller.getContext().getBusinessData("loginData");
@@ -91,6 +102,12 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		piclay.onDestroy();
 	}
 	/**
 	 * 方法描述：TODO
@@ -117,6 +134,7 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 		 tvheight = (TextView)this.findViewById(R.id.tvheight);
 		 imghead = (ImageView)this.findViewById(R.id.imghead);
 		 tvfeed = (TextView)this.findViewById(R.id.tvfeed);
+		 tvcontent = (TextView) findViewById(R.id.tvcontent);
 	}
 
 	/**
@@ -148,9 +166,10 @@ public class FansziliaoActivity extends BaseActivity implements OnClickListener 
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(user.getProvince());
+		 tvjiaxiang.setText(user.getProvince()+user.getCity());
 		 tvheight.setText(u.getMore().getHeight());
 		 tvfeed.setText(u.getCount().getFeed());
+		 tvcontent.setText(u.getMore().getContent()+"");
 	}
 void setvalue(){
 		
@@ -186,7 +205,7 @@ void setvalue(){
 		case R.id.bt_login_next:
 			break;
 		case R.id.lneardongtai:
-			IntentUtil.intent(FansziliaoActivity.this, MyDongtaiActivity.class);
+			IntentUtil.intent(FansziliaoActivity.this, DynamicMyActivity.class);
 			break;
 		case R.id.main_top_left:
 			finish();

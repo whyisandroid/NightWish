@@ -29,7 +29,7 @@ public class TonggaoBaseAdapter extends BaseAdapter {
 	@Override
 	public int getCount() {
 		// TODO Auto-generated method stub
-		return 5;//
+		return 0;//
 	}
 
 	

@@ -17,11 +17,18 @@ public class Userinfomorepackage {
 	String hip = "";
 	String height = "";
 	String weight = "";
+	String content = "";
 	List<zuopinpackage> works = null;
 	List<awardpackage> award = null;
 	List<advocatuspackage> advocatus = null;
 	List<MyPhotopackage> photos = null;
 	
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public List<zuopinpackage> getWorks() {
 		return works;
 	}

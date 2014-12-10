@@ -33,6 +33,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
 import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
@@ -64,6 +65,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 	TextView tvheight;
 	TextView tvsanwei;
 	TextView tvfeed;
+	TextView tvcontent;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private ListView lzuopin;
@@ -78,6 +80,15 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
+	}
+	
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onStart()
+	 */
+	@Override
+	protected void onStart() {
+		// TODO Auto-generated method stub
+		super.onStart();
 		setContentView(R.layout.my_yirenziliao);
 		controller = AppController.getController(this);
 		user = (LoginData) controller.getContext().getBusinessData("loginData");
@@ -93,6 +104,12 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
+	}
+	@Override
+	protected void onStop() {
+		// TODO Auto-generated method stub
+		super.onStop();
+		piclay.onDestroy();
 	}
 	/**
 	 * 方法描述：TODO
@@ -121,6 +138,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		 tvsanwei = (TextView)this.findViewById(R.id.tvsanwei);
 		 imghead = (ImageView)this.findViewById(R.id.imghead);
 		 tvfeed = (TextView)this.findViewById(R.id.tvfeed);
+		 tvcontent = (TextView) findViewById(R.id.tvcontent);
 	}
 
 	/**
@@ -152,10 +170,11 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(user.getProvince());
+		 tvjiaxiang.setText(user.getProvince()+user.getCity());
 		 tvheight.setText(u.getMore().getHeight());
 		 tvsanwei.setText(u.getMore().getBust()+","+u.getMore().getHip()+","+u.getMore().getWaist());
 		 tvfeed.setText(u.getCount().getFeed());
+		 tvcontent.setText(u.getMore().getContent()+"");
 	}
 	void setvalue(){
 		
@@ -191,7 +210,7 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		case R.id.bt_login_next:
 			break;
 		case R.id.lneardongtai:
-			IntentUtil.intent(YirenziliaoActivity.this, MyDongtaiActivity.class);
+			IntentUtil.intent(YirenziliaoActivity.this, DynamicMyActivity.class);
 			break;
 		case R.id.main_top_left:
 			finish();

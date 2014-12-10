@@ -171,6 +171,70 @@ public class EditPicturesLayout extends LinearLayout implements
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
+				if(list == null){
+					vfpics.removeAllViews();
+					LinearLayout child = (LinearLayout) LayoutInflater.from(EditPicturesLayout.this.getContext()).inflate(
+							R.layout.pictures_item, null);
+					PhotoImageView imgpic1 = (PhotoImageView) child
+							.findViewById(R.id.img1);
+					imgpic1.setImageDrawable(new Background1());
+					LayoutParams  p1 = (LayoutParams) imgpic1.getLayoutParams();
+					p1.height = (int)(screenw/4-8*density);
+					imgpic1.setImageResource(R.drawable.d11_03);
+					imgpic1.setOnClickListener(new OnClickListener() {
+						@Override
+						public void onClick(View v) {
+							StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+						}
+					});
+					PhotoImageView imgpic2 = (PhotoImageView) child
+							.findViewById(R.id.img2);
+					imgpic2.setVisibility(INVISIBLE);
+					PhotoImageView imgpic3 = (PhotoImageView) child
+							.findViewById(R.id.img3);
+					imgpic3.setVisibility(INVISIBLE);
+					PhotoImageView imgpic4 = (PhotoImageView) child
+							.findViewById(R.id.img4);
+					imgpic4.setVisibility(INVISIBLE);
+					PhotoImageView imgpic5 = (PhotoImageView) child
+							.findViewById(R.id.img5);
+					imgpic5.setVisibility(GONE);
+					PhotoImageView imgpic6 = (PhotoImageView) child
+							.findViewById(R.id.img6);
+					imgpic6.setVisibility(GONE);
+					PhotoImageView imgpic7 = (PhotoImageView) child
+							.findViewById(R.id.img7);
+					imgpic7.setVisibility(GONE);
+					PhotoImageView imgpic8 = (PhotoImageView) child
+							.findViewById(R.id.img8);
+					imgpic8.setVisibility(GONE);
+					LayoutParams  p2 = (LayoutParams) imgpic2.getLayoutParams();
+					p2.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p3 = (LayoutParams) imgpic3.getLayoutParams();
+					p3.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p4 = (LayoutParams) imgpic4.getLayoutParams();
+					p4.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p5 = (LayoutParams) imgpic5.getLayoutParams();
+					p5.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p6 = (LayoutParams) imgpic6.getLayoutParams();
+					p6.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p7 = (LayoutParams) imgpic7.getLayoutParams();
+					p7.height = (int)(screenw/4-8*density);
+					
+					LayoutParams  p8 = (LayoutParams) imgpic8.getLayoutParams();
+					p8.height = (int)(screenw/4-8*density);
+					vfpics.addView(child);
+					ImageView tab = new ImageView(ltabs.getContext());
+						tab.setImageResource(R.drawable.f10_26);
+					LinearLayout.LayoutParams pitem = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+					ltabs.addView(tab,pitem);
+					
+				}
 				if (list != null) {
 					vfpics.removeAllViews();
 					int count = list.size();
@@ -253,6 +317,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									}else{
 										imgpic1.setImageDrawable(new Background1());
 										imgpic1.setOnClickListener(null);
+										imgpic1.setVisibility(INVISIBLE);
 									}
 									
 								}
@@ -291,6 +356,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic2.setImageDrawable(new Background1());
 									imgpic2.setOnClickListener(null);
+									imgpic2.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 2:
@@ -317,7 +383,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic3.setImageDrawable(new Background1());
 									imgpic3.setOnClickListener(null);
-									
+									imgpic3.setVisibility(INVISIBLE);
 									
 								}}
 								break;
@@ -346,6 +412,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic4.setImageDrawable(new Background1());
 									imgpic4.setOnClickListener(null);
+									imgpic4.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 4:
@@ -372,6 +439,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic5.setImageDrawable(new Background1());
 									imgpic5.setOnClickListener(null);
+									imgpic5.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 5:
@@ -399,6 +467,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic6.setImageDrawable(new Background1());
 									imgpic6.setOnClickListener(null);
+									imgpic6.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 6:
@@ -425,6 +494,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic7.setImageDrawable(new Background1());
 									imgpic7.setOnClickListener(null);
+									imgpic7.setVisibility(INVISIBLE);
 								}}
 								break;
 							case 7:
@@ -449,10 +519,28 @@ public class EditPicturesLayout extends LinearLayout implements
 								}else{
 									imgpic8.setImageDrawable(new Background1());
 									imgpic8.setOnClickListener(null);
+									imgpic8.setVisibility(INVISIBLE);
 								}}
 								break;
 							default:
 								break;
+							}
+							if(count == 0 ){
+//								imgpic1.setVisibility(GONE);
+								imgpic2.setVisibility(GONE);
+								imgpic3.setVisibility(GONE);
+								imgpic4.setVisibility(GONE);
+							}
+							if(count < 4){
+								imgpic5.setVisibility(GONE);
+								imgpic6.setVisibility(GONE);
+								imgpic7.setVisibility(GONE);
+								imgpic8.setVisibility(GONE);
+							}
+							if(count == 4){
+								imgpic6.setVisibility(GONE);
+								imgpic7.setVisibility(GONE);
+								imgpic8.setVisibility(GONE);
 							}
 						}
 						vfpics.addView(child);
@@ -643,5 +731,18 @@ public class EditPicturesLayout extends LinearLayout implements
 		imgv.getLocationOnScreen(location);
 		pop.showAtLocation(imgv, Gravity.NO_GRAVITY, location[0]-pop.getWidth()-19, location[1]-pop.getHeight()-19);
 	}
-	
+	public void onDestroy(){
+		if(pictures != null){
+			for (int i = 0; i < pictures.size(); i++) {
+				if(pictures.get(i) instanceof BitmapDrawable){
+					Bitmap bmp = ((BitmapDrawable) pictures.get(i)).getBitmap();
+					if (null != bmp && !bmp.isRecycled()){
+						bmp.recycle();
+						bmp = null;
+						}
+				}
+			}
+			
+		}
+	}
 }

@@ -149,6 +149,7 @@ public interface AppService {
 	public void myuser_service() throws BusinessException;
 	//
 	public void myuser_addservice() throws BusinessException;
+	public void myuser_delservice() throws BusinessException;
 	public void myapp_config() throws BusinessException;
 	//
 	public void myservice_list() throws BusinessException;

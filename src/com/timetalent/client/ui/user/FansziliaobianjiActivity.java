@@ -1,12 +1,17 @@
 package com.timetalent.client.ui.user;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -14,6 +19,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -33,12 +39,14 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.PicValuePair;
+import com.timetalent.client.entities.Picture;
 import com.timetalent.client.entities.Userinfopackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
@@ -46,6 +54,8 @@ import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.addresscheck.City_cnActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
+import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.Background3;
 import com.timetalent.client.ui.near.NearDongtaiActivity;
@@ -53,9 +63,12 @@ import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.view.EditPicturesLayout;
 import com.timetalent.client.ui.view.PicturesLayout;
+import com.timetalent.common.util.Config;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
@@ -78,13 +91,15 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	TextView tvxingzuo;
 	TextView tvxingzuo1;
 	TextView tvfeed;
+	TextView tvcontent;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
 	private LinearLayout lage;
 	private Button btok;
-	public int screenw = 0;
+	public int screenw = 400;
+	public int screenh = 800;
 	public float density = 1.0f;
 	ImageView imghead;
 	LoginData user;
@@ -100,6 +115,8 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenw = dm.widthPixels;
 		density = dm.density;
+		screenw = dm.widthPixels;
+		screenh = dm.heightPixels;
 		findView();
 		new Thread(){
 			public void run() {
@@ -108,6 +125,16 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.ui.BaseActivity#onDestroy()
+	 */
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		super.onDestroy();
+		piclay.onDestroy();
 	}
 	/**
 	 * 方法描述：TODO
@@ -132,6 +159,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 		etname = (EditText) this.findViewById(R.id.etname);
 		etnickname = (EditText) this.findViewById(R.id.etnickname);
+		tvcontent = (TextView) findViewById(R.id.tvcontent);
 	}
 
 	/**
@@ -158,6 +186,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvfeed.setText(u.getCount().getFeed());
+		tvcontent.setText(u.getMore().getContent()+"");
 		if(u.getSex().equals("1")){
 			imgsex.setImageResource(R.drawable.f_05);
 		}else{
@@ -233,7 +262,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		case R.id.bt_login_next:
 			break;
 		case R.id.lneardongtai:
-			IntentUtil.intent(FansziliaobianjiActivity.this, MyDongtaiActivity.class);
+			IntentUtil.intent(FansziliaobianjiActivity.this, DynamicMyActivity.class);
 			break;
 		case R.id.main_top_left:
 			finish();
@@ -320,30 +349,93 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		}
 	};
 	protected void onActivityResult(int requestCode, int resultCode, android.content.Intent data) {
-		  if (resultCode != RESULT_OK) {        //此处的 RESULT_OK 是系统自定义得一个常量
-            Log.e("TAG->onresult","ActivityResult resultCode error");
-            return;
-        }
-		  if (requestCode == 0) {
-			  Uri originalUri = data.getData();
-			String[] proj = {MediaStore.Images.Media.DATA};
-			  //好像是android多媒体数据库的封装接口，具体的看Android文档
-			  Cursor cursor = managedQuery(originalUri, proj, null, null, null); 
-			  //按我个人理解 这个是获得用户选择的图片的索引值
-			  int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-			  //将光标移至开头 ，这个很重要，不小心很容易引起越界
-			  cursor.moveToFirst();
-			  //最后根据索引值获取图片路径
-			  final String path = cursor.getString(column_index);
-			  Log.i("dayin path", path+"");
-			  new Thread(){
-				  public void run() {
-					  File file = new File(path);
-					  List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
-						picValuePair.add(new PicValuePair("photo1", file));
-					  controller.myphotoupdate(picValuePair);
-				  };
-			  }.start();
-		  }
+
+		if (resultCode == RESULT_OK) {
+			if (data != null) {
+				Uri uri = data.getData();
+				if (!TextUtils.isEmpty(uri.getAuthority())) {
+					Cursor cursor = getContentResolver().query(uri,
+							new String[] { MediaStore.Images.Media._ID,MediaStore.Images.Media.DATA },
+							null, null, null);
+					if (null == cursor) {
+						ToastUtil.showToast(FansziliaobianjiActivity.this, "图片没找到", 0);
+						return;
+					}
+					cursor.moveToFirst();
+					String id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+					final String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+					cursor.close();
+					LogUtil.Log("path=" + path);
+					if (PictureUtil.isPicture(path)) {
+						new Thread(){
+							  public void run() {
+								  Bitmap bm = getSmallBitmap(path);
+								  ByteArrayOutputStream baos = new ByteArrayOutputStream();
+							        bm.compress(Bitmap.CompressFormat.JPEG, 30, baos);
+							        byte[] b = baos.toByteArray();
+							        
+								  File file = getFileFromBytes(b, Config.IMAGEPATH+"temp.jpg");
+								  List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
+									picValuePair.add(new PicValuePair("photo1", file));
+								  controller.myphotoupdate(picValuePair);
+							  };
+						  }.start();
+					} else {
+						Toast.makeText(
+								this,
+								"请选择png或者jpg格式的图片",
+								Toast.LENGTH_SHORT).show();
+					}
+				}
+				}
+			}
 	};
+	//计算图片的缩放值
+	public  int calculateInSampleSize(BitmapFactory.Options options,int reqWidth, int reqHeight) {
+	    final int height = options.outHeight;
+	    final int width = options.outWidth;
+	    int inSampleSize = 1;
+
+	    if (height > reqHeight || width > reqWidth) {
+	             final int heightRatio = Math.round((float) height/ (float) reqHeight);
+	             final int widthRatio = Math.round((float) width / (float) reqWidth);
+	             inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+	    }
+	        return inSampleSize;
+	}
+	// 根据路径获得图片并压缩，返回bitmap用于显示
+	public  Bitmap getSmallBitmap(String filePath) {
+	        final BitmapFactory.Options options = new BitmapFactory.Options();
+	        options.inJustDecodeBounds = true;
+	        BitmapFactory.decodeFile(filePath, options);
+
+	        // Calculate inSampleSize
+	    options.inSampleSize = calculateInSampleSize(options, screenw, screenh);
+
+	        // Decode bitmap with inSampleSize set
+	    options.inJustDecodeBounds = false;
+
+	    return BitmapFactory.decodeFile(filePath, options);
+	    }
+	 public  File getFileFromBytes(byte[] b, String outputFile){
+	        BufferedOutputStream stream = null;
+	        File file = null;
+	        try {
+	            file = new File(outputFile);
+	            FileOutputStream fstream = new FileOutputStream(file);
+	            stream = new BufferedOutputStream(fstream);
+	            stream.write(b);
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	        } finally {
+	            if (stream != null) {
+	                try {
+	                    stream.close();
+	                } catch (IOException e1) {
+	                    e1.printStackTrace();
+	                }
+	            }
+	        }
+	        return file;
+	    }
 }

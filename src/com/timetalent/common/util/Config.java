@@ -100,6 +100,8 @@ public class Config {
 	public final static String HTTP_MY_USER_SERVICE = MY_SERVICE+ "/User/service"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
 	public final static String HTTP_MY_USER_ADDSERVICE = MY_SERVICE+ "/User/add_service"; // 支付邀约费用 确定支付邀约费用，发生在发起邀约方Invite/payment
 	public final static String HTTP_MY_USER_SERVICE_LIST = MY_SERVICE+ "/System/service_list";
+	public final static String HTTP_MY_USER_DELSERVICE = MY_SERVICE+ "/User/del_service";
+	
 	public final static String HTTP_MY_USER_LOYAL = MY_SERVICE+ "/User/loyal";
 	public final static String HTTP_MY_USER_LOYAL_ITEM = MY_SERVICE+ "/User/loyal_item";
 	public final static String HTTP_MY_TASK_LISTS = MY_SERVICE+ "/Task/publish_task_lists";

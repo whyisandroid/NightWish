@@ -454,6 +454,18 @@ public class EditPicturesLayout extends LinearLayout implements
 							default:
 								break;
 							}
+							if(count == 0 ){
+								imgpic1.setVisibility(GONE);
+								imgpic2.setVisibility(GONE);
+								imgpic3.setVisibility(GONE);
+								imgpic4.setVisibility(GONE);
+							}
+							if(count <=4){
+								imgpic5.setVisibility(GONE);
+								imgpic6.setVisibility(GONE);
+								imgpic7.setVisibility(GONE);
+								imgpic8.setVisibility(GONE);
+							}
 						}
 						vfpics.addView(child);
 						ImageView tab = new ImageView(ltabs.getContext());

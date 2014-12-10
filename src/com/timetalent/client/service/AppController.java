@@ -1005,4 +1005,14 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
+	public void myuser_delservice(){
+		try {
+			service.myuser_delservice();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

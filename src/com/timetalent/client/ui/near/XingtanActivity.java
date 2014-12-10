@@ -76,6 +76,8 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 	TextView tvjiaxiang;
 	TextView tvheight;
 	TextView tvfeed;
+	TextView tvage1;
+	ImageView imgsex1;
 	Userinfopackage u;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +118,8 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 		 tvjiaxiang = (TextView) findViewById(R.id.tvjiaxiang);
 		 tvheight = (TextView) findViewById(R.id.tvheight);
 		 tvfeed = (TextView) findViewById(R.id.tvfeed);
+		 tvage1 = (TextView) findViewById(R.id.tvage1);
+		 imgsex1 = (ImageView) findViewById(R.id.imgsex1);
 	}
 
 	/**
@@ -326,6 +330,14 @@ public class XingtanActivity extends BaseActivity implements OnClickListener{
 					 tvjiaxiang.setText(u.getAge());
 					 tvheight.setText(u.getMore().getHeight()+"cm");
 					 tvfeed.setText(u.getCount().getFeed());
+					 tvage1.setText(u.getAge());
+					 if(u.getSex().equals("1")){
+						 imgsex1.setImageResource(R.drawable.f_05);
+					 }else if(u.getSex().equals("2")){
+						 imgsex1.setImageResource(R.drawable.f_03);
+					 }else{
+						 imgsex1.setImageResource(R.drawable.f_05); 
+					 }
 				}
 				adapter = new TonggaoBaseAdapter(XingtanActivity.this);
 				ltonggao.setAdapter(adapter);

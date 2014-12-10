@@ -121,8 +121,8 @@ public class fuwubodyAdapter extends BaseAdapter{//
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
 		if(list != null){
-			holder.tvindex.setText(""+list.get(position).getId());
-			holder.tvindex1.setText(""+list.get(position).getId());
+			holder.tvindex.setText(""+list.get(position).getName());
+			holder.tvindex1.setText(""+list.get(position).getName());
 		}
 		return convertView;
 	}

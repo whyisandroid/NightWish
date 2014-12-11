@@ -102,6 +102,10 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 	TextView tvxingzuo1;
 	TextView tvfeed;
 	TextView tvcontent;
+	
+	EditText etmajor;
+	EditText etheight;
+	
 	LoginData user;
 	Userinfopackage u;
 	@Override
@@ -157,6 +161,9 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		etname = (EditText) this.findViewById(R.id.etname);
 		etnickname = (EditText) this.findViewById(R.id.etnickname);
 		tvcontent = (TextView) findViewById(R.id.tvcontent);
+		
+		etmajor = (EditText) this.findViewById(R.id.etzhiye);
+		etheight = (EditText) this.findViewById(R.id.etheight);
 	}
 
 	/**
@@ -233,7 +240,7 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
         listView.setLayoutParams(params);  
     }
 	public void setvalue(){
-		controller.getContext().addBusinessData("bianji.username", etname.getText().toString());
+		controller.getContext().addBusinessData("bianji.username", etnickname.getText().toString());
 		controller.getContext().addBusinessData("bianji.phone", u.getPhone());
 		controller.getContext().addBusinessData("bianji.email", "");
 		controller.getContext().addBusinessData("bianji.sex", u.getSex());
@@ -242,6 +249,15 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		controller.getContext().addBusinessData("bianji.birthday", tvage1.getText().toString());
 		controller.getContext().addBusinessData("bianji.constella", tvxingzuo1.getText().toString());
 		controller.getContext().addBusinessData("bianji.certificate", "");
+		
+		controller.getContext().addBusinessData("bianji.bust", "");
+		controller.getContext().addBusinessData("bianji.waist", "");
+		controller.getContext().addBusinessData("bianji.hip", "");
+		controller.getContext().addBusinessData("bianji.height", ""+etheight.getText().toString());
+		controller.getContext().addBusinessData("bianji.weight", "");
+		controller.getContext().addBusinessData("bianji.major", ""+etmajor.getText().toString());
+		
+		
 		String[] jiaxiang = tvjiaxiang.getText().toString().split(" ");
 		if(jiaxiang.length >= 2){
 			controller.getContext().addBusinessData("bianji.province", jiaxiang[0]);
@@ -273,6 +289,7 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 			new Thread(){
 				public void run() {
 					controller.mybaseinfoupdate();
+					controller.mymoreinfoupdate();
 				};
 			}.start();
 			

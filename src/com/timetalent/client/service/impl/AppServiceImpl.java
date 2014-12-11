@@ -1148,6 +1148,7 @@ public class AppServiceImpl implements AppService {
 		nameValuePairs.add(new BasicNameValuePair("certificate", (String)context.getStringData("bianji.certificate")));
 		nameValuePairs.add(new BasicNameValuePair("province", (String)context.getStringData("bianji.province")));
 		nameValuePairs.add(new BasicNameValuePair("city", (String)context.getStringData("bianji.city")));
+		nameValuePairs.add(new BasicNameValuePair("major", (String)context.getStringData("bianji.major")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_BASEINFOUPDATE);
 		request.setR_calzz(BaseResp.class);
@@ -1348,15 +1349,15 @@ public class AppServiceImpl implements AppService {
 		String _session_id = context.getStringData("_session_id");
 		String realname = context.getStringData("loyal.realname");
 		String certificate = context.getStringData("loyal.certificate");
-		Request<ServiceResp> request = new Request<ServiceResp>();
+		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
 		nameValuePairs.add(new BasicNameValuePair("realname", realname));
 		nameValuePairs.add(new BasicNameValuePair("certificate", certificate));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_USER_LOYAL);
-		request.setR_calzz(ServiceResp.class);
-		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
 			
 		} else{
@@ -1367,25 +1368,44 @@ public class AppServiceImpl implements AppService {
 
 	
 	@Override
-	public void myuser_loyal_item() throws BusinessException {
+	public void myuser_loyal_item(List<PicValuePair> picValuePair) throws BusinessException {
+//		String _session_id = context.getStringData("_session_id");
+//		String item = context.getStringData("loyal.item");
+//		Request<BaseResp> request = new Request<BaseResp>();
+//		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+//		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
+//		nameValuePairs.add(new BasicNameValuePair("item", item));
+//		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+//		request.addParameter(Request.PICTURE, picValuePair);
+//		request.setUrl(Config.HTTP_MY_USER_LOYAL_ITEM);
+//		request.setR_calzz(BaseResp.class);
+//		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+//		if ("1".equals(resp.getStatus())) {
+//			
+//		} else{
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
+//		}
+	
+		
+		
+		
+		
+
+
 		String _session_id = context.getStringData("_session_id");
 		String item = context.getStringData("loyal.item");
-		int count = Integer.parseInt(context.getStringData("loyal.count"));
-		Request<ServiceResp> request = new Request<ServiceResp>();
+		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
-		nameValuePairs.add(new BasicNameValuePair("item", item));
-		for(int i = 0;i < count;i++){
-			nameValuePairs.add(new BasicNameValuePair("photo"+(i+1), context.getBusinessData("loyal."+"photo"+(i+1)).toString()));
-		}
-		
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		nameValuePairs.add(new BasicNameValuePair("item",item));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.addParameter(Request.PICTURE, picValuePair);
 		request.setUrl(Config.HTTP_MY_USER_LOYAL_ITEM);
-		request.setR_calzz(ServiceResp.class);
-		ServiceResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
 		if ("1".equals(resp.getStatus())) {
-			
-		} else{
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
@@ -1764,5 +1784,34 @@ public class AppServiceImpl implements AppService {
 			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#mymoreinfoupdate()
+	 */
+	@Override
+	public void mymoreinfoupdate() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getStringData("_session_id")));
+		nameValuePairs.add(new BasicNameValuePair("bust", (String)context.getStringData("bianji.bust")));
+		nameValuePairs.add(new BasicNameValuePair("waist", (String)context.getStringData("bianji.waist")));
+		nameValuePairs.add(new BasicNameValuePair("hip", (String)context.getStringData("bianji.hip")));
+		nameValuePairs.add(new BasicNameValuePair("height", (String)context.getStringData("bianji.height")));
+		nameValuePairs.add(new BasicNameValuePair("weight", (String)context.getStringData("bianji.weight")));
+		nameValuePairs.add(new BasicNameValuePair("major", (String)context.getStringData("bianji.major")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_MY_MOREINFO_UPDATE);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+//			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	
+			
+			
 	}
 }

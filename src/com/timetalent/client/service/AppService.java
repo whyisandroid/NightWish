@@ -135,6 +135,7 @@ public interface AppService {
 	public void mybaseinfo() throws BusinessException;
 	
 	public void mybaseinfoupdate() throws BusinessException;
+	public void mymoreinfoupdate() throws BusinessException;
 	// 充值订单
 	public void walletOrder() throws BusinessException;
 	// 确认支付
@@ -154,7 +155,7 @@ public interface AppService {
 	//
 	public void myservice_list() throws BusinessException;
 	public void myuser_loyal() throws BusinessException;
-	public void myuser_loyal_item() throws BusinessException;
+	public void myuser_loyal_item(List<PicValuePair> picValuePair) throws BusinessException;
 	public void mydo_social() throws BusinessException;
 	public void myreport() throws BusinessException;
 	public void myphoto() throws BusinessException;

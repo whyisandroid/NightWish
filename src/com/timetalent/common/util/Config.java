@@ -71,6 +71,7 @@ public class Config {
 	public final static String HTTP_MY_BASEINFO = MY_SERVICE+ "/User/baseinfo";
 	public final static String HTTP_MY_LOCATION_UPDATE = MY_SERVICE+ "/User/location_update";//更新坐标
 	public final static String HTTP_MY_MOREINFO = MY_SERVICE+ "/User/moreinfo";//更新坐标
+	public final static String HTTP_MY_MOREINFO_UPDATE = MY_SERVICE+ "/User/moreinfo_update";//
 	public final static String HTTP_MY_DO_SOCIAL = MY_SERVICE+ "/User/do_social";//更新坐标
 	public final static String HTTP_MY_REPORT = MY_SERVICE+ "/User/report";//更新坐标
 	public final static String HTTP_MY_PHOTO = MY_SERVICE+ "/User/photo";//更新坐标

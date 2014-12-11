@@ -870,9 +870,9 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-	public void myuser_loyal_item() {
+	public void myuser_loyal_item(List<PicValuePair> picValuePair) {
 		try {
-			service.myuser_loyal_item();
+			service.myuser_loyal_item(picValuePair);
 		} catch (BusinessException e) {
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {
@@ -1008,6 +1008,15 @@ public class AppController {
 	public void myuser_delservice(){
 		try {
 			service.myuser_delservice();
+		} catch (BusinessException e) {
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void mymoreinfoupdate(){
+		try {
+			service.mymoreinfoupdate();
 		} catch (BusinessException e) {
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {

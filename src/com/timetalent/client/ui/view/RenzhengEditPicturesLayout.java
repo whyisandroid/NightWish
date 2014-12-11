@@ -48,7 +48,7 @@ import android.widget.PopupWindow;
 import android.widget.Scroller;
 import android.widget.ViewFlipper;
 
-public class EditPicturesLayout extends LinearLayout implements
+public class RenzhengEditPicturesLayout extends LinearLayout implements
 		GestureDetector.OnDoubleTapListener,
 		android.view.GestureDetector.OnGestureListener {
 	private AppController controller;
@@ -60,7 +60,6 @@ public class EditPicturesLayout extends LinearLayout implements
 	int photoindex = 0;
 	public int screenw = 0;
 	public float density = 1.0f;
-	List<MyPhotopackage> list = null;
 	List<Drawable> pictures = null;
 	private GestureDetector mGestureDetector;
 
@@ -70,7 +69,7 @@ public class EditPicturesLayout extends LinearLayout implements
 	 * @param
 	 * @param context
 	 */
-	public EditPicturesLayout(Context context) {
+	public RenzhengEditPicturesLayout(Context context) {
 		super(context);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -92,7 +91,7 @@ public class EditPicturesLayout extends LinearLayout implements
 	 * @param context
 	 * @param attrs
 	 */
-	public EditPicturesLayout(Context context, AttributeSet attrs) {
+	public RenzhengEditPicturesLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -112,7 +111,7 @@ public class EditPicturesLayout extends LinearLayout implements
 	 * @param defStyle
 	 */
 	@SuppressLint("NewApi")
-	public EditPicturesLayout(Context context, AttributeSet attrs, int defStyle) {
+	public RenzhengEditPicturesLayout(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		mInflater = LayoutInflater.from(context);
 		mInflater.inflate(R.layout.pictures_layout, null);
@@ -144,22 +143,7 @@ public class EditPicturesLayout extends LinearLayout implements
 	public void initView() {
 		new Thread() {
 			public void run() {
-				controller.myphoto();
-				list = (List<MyPhotopackage>) controller.getContext()
-						.getBusinessData("MyphotoData");
 				pictures = new ArrayList<Drawable>();
-				if(list!= null){
-					for (MyPhotopackage p : list) {
-						Drawable db = PictureUtil.getImage(p.getUrl(),
-								p.getUser_id(), p.getId());
-						if(db instanceof BitmapDrawable){
-							pictures.add(new BitmapDrawable( PictureUtil.toRoundCorner(((BitmapDrawable) db).getBitmap(), (int)(10*density))));
-						}else{
-							pictures.add(db);
-						}
-						controller.getContext().addBusinessData("photolist", pictures);
-					}
-				}
 				handler.sendEmptyMessage(1);
 			};
 		}.start();
@@ -171,9 +155,9 @@ public class EditPicturesLayout extends LinearLayout implements
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				if(list == null){
+				if(pictures == null){
 					vfpics.removeAllViews();
-					LinearLayout child = (LinearLayout) LayoutInflater.from(EditPicturesLayout.this.getContext()).inflate(
+					LinearLayout child = (LinearLayout) LayoutInflater.from(RenzhengEditPicturesLayout.this.getContext()).inflate(
 							R.layout.pictures_item, null);
 					PhotoImageView imgpic1 = (PhotoImageView) child
 							.findViewById(R.id.img1);
@@ -184,7 +168,7 @@ public class EditPicturesLayout extends LinearLayout implements
 					imgpic1.setOnClickListener(new OnClickListener() {
 						@Override
 						public void onClick(View v) {
-							StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+							StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 						}
 					});
 					PhotoImageView imgpic2 = (PhotoImageView) child
@@ -235,13 +219,13 @@ public class EditPicturesLayout extends LinearLayout implements
 					ltabs.addView(tab,pitem);
 					
 				}
-				if (list != null) {
+				if (pictures != null) {
 					vfpics.removeAllViews();
-					int count = list.size();
+					int count = pictures.size();
 					for (int i = 0; i < count / 8 + 1; i++) {
 //						LinearLayout child = new LinearLayout(
 //								PicturesLayout.this.getContext());
-						LinearLayout child = (LinearLayout) LayoutInflater.from(EditPicturesLayout.this.getContext()).inflate(
+						LinearLayout child = (LinearLayout) LayoutInflater.from(RenzhengEditPicturesLayout.this.getContext()).inflate(
 								R.layout.pictures_item, null);
 						PhotoImageView imgpic1 = (PhotoImageView) child
 								.findViewById(R.id.img1);
@@ -296,7 +280,7 @@ public class EditPicturesLayout extends LinearLayout implements
 								if(j*i < pictures.size()){
 									if(i*8+j < pictures.size()){
 										imgpic1.setindex(i*8+j);
-										imgpic1.id = list.get(i*8+j).getId();
+										imgpic1.id = (i*8+j)+"";
 										imgpic1.setImageDrawable(pictures.get(i*8+j));
 										
 										imgpic1.setOnClickListener(new OnClickListener() {
@@ -311,7 +295,7 @@ public class EditPicturesLayout extends LinearLayout implements
 										imgpic1.setOnClickListener(new OnClickListener() {
 											@Override
 											public void onClick(View v) {
-												StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+												StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 											}
 										});
 									}else{
@@ -326,7 +310,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic1.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}
@@ -334,7 +318,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 1:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic2.setindex(i*8+j);
-									imgpic2.id = list.get(i*8+j).getId();
+									imgpic2.id = (i*8+j)+"";
 									imgpic2.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic2.setOnClickListener(new OnClickListener() {
@@ -350,7 +334,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic2.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -362,7 +346,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 2:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic3.setindex(i*8+j);
-									imgpic3.id = list.get(i*8+j).getId();
+									imgpic3.id = (i*8+j)+"";
 									imgpic3.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic3.setOnClickListener(new OnClickListener() {
@@ -377,7 +361,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic3.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -390,7 +374,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 3:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic4.setindex(i*8+j);
-									imgpic4.id = list.get(i*8+j).getId();
+									imgpic4.id = (i*8+j)+"";
 									imgpic4.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic4.setOnClickListener(new OnClickListener() {
@@ -405,7 +389,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic4.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 									
@@ -418,7 +402,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 4:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic5.setindex(i*8+j);
-									imgpic5.id = list.get(i*8+j).getId();
+									imgpic5.id = (i*8+j)+"";
 									imgpic5.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic5.setOnClickListener(new OnClickListener() {
@@ -433,7 +417,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic5.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -445,7 +429,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 5:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic6.setindex(i*8+j);
-									imgpic6.id = list.get(i*8+j).getId();
+									imgpic6.id = (i*8+j)+"";
 									imgpic6.setImageDrawable(pictures.get(i*8+j));
 									
 									imgpic6.setOnClickListener(new OnClickListener() {
@@ -461,7 +445,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic6.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -473,7 +457,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 6:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic7.setindex(i*8+j);
-									imgpic7.id = list.get(i*8+j).getId();
+									imgpic7.id = (i*8+j)+"";
 									imgpic7.setImageDrawable(pictures.get(i*8+j));
 									imgpic7.setOnClickListener(new OnClickListener() {
 										@Override
@@ -488,7 +472,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic7.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -500,7 +484,7 @@ public class EditPicturesLayout extends LinearLayout implements
 							case 7:
 								if(j*i < pictures.size()){if(i*8+j < pictures.size()){
 									imgpic8.setindex(i*8+j);
-									imgpic8.id = list.get(i*8+j).getId();
+									imgpic8.id = (i*8+j)+"";
 									imgpic8.setImageDrawable(pictures.get(i*8+j));
 									imgpic8.setOnClickListener(new OnClickListener() {
 										@Override
@@ -513,7 +497,7 @@ public class EditPicturesLayout extends LinearLayout implements
 									imgpic8.setOnClickListener(new OnClickListener() {
 										@Override
 										public void onClick(View v) {
-											StringUtil.doGoToImg(EditPicturesLayout.this.getContext());
+											StringUtil.doGoToImg(RenzhengEditPicturesLayout.this.getContext());
 										}
 									});
 								}else{
@@ -595,8 +579,8 @@ public class EditPicturesLayout extends LinearLayout implements
 		} else {
 			return false;
 		}
-		for(int x = 0;x < list.size()/8;x++){
-			if(x == index%(list.size()/8)){
+		for(int x = 0;x < pictures.size()/8;x++){
+			if(x == index%(pictures.size()/8)){
 				((ImageView)ltabs.getChildAt(x)).setImageResource(R.drawable.f10_26);
 			}else{
 				((ImageView)ltabs.getChildAt(x)).setImageResource(R.drawable.f10_24);
@@ -714,7 +698,6 @@ public class EditPicturesLayout extends LinearLayout implements
 			
 			@Override
 			public void onClick(View v) {
-				list.remove(imgv.index);
 				pictures.remove(imgv.index);
 				new Thread(){
 					public void run() {

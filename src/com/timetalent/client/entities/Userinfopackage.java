@@ -20,12 +20,33 @@ public class Userinfopackage {
 	String constella = "";
 	String type = "";
 	String major = "0";
+	String province = "";
+	String city = "";
 	String loyal_pass = "1";
 	String age = "";
 	String id = "";
 	Userinfomorepackage more = null;
 	Countpackage count = null;
+	String follow_do = "";
 	
+	public String getProvince() {
+		return province;
+	}
+	public void setProvince(String province) {
+		this.province = province;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public String getFollow_do() {
+		return follow_do;
+	}
+	public void setFollow_do(String follow_do) {
+		this.follow_do = follow_do;
+	}
 	public String getUsername() {
 		return username;
 	}

@@ -52,6 +52,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.adapter.ZuopinupdateAdapter;
 import com.timetalent.client.ui.addresscheck.City_cnActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.fragment.util.Background2;
@@ -116,7 +117,6 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenw = dm.widthPixels;
 		density = dm.density;
-		screenw = dm.widthPixels;
 		screenh = dm.heightPixels;
 		findView();
 		new Thread(){
@@ -177,7 +177,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		piclay.setcontroller(controller);
 		piclay.initView();
-//		lzuopin.setAdapter(new ZuopinBaseAdapter(YirenziliaobianjiActivity.this));
+		lzuopin.setAdapter(new ZuopinupdateAdapter(YirenziliaobianjiActivity.this));
 		setListViewHeightBasedOnChildren(lzuopin);
 		ldongtai.setOnClickListener(this);
 		lage.setOnClickListener(this);

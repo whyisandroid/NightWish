@@ -113,6 +113,8 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("_session_id", resp.getData().getSession_id());
 				context.addBusinessData("Login.type", resp.getData().getType());
 				context.addBusinessData("Login.money", resp.getData().getMoney());
+				context.addBusinessData("Login.avatar", resp.getData().getAvatar());
+				context.addBusinessData("Login.nickname", resp.getData().getNickname());
 			}
 			
 			

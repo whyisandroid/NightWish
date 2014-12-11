@@ -85,6 +85,7 @@ import com.easemob.util.PathUtil;
 import com.easemob.util.VoiceRecorder;
 import com.timetalent.client.R;
 import com.timetalent.client.TimeTalentApplication;
+import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 
 /**
@@ -173,6 +174,8 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	public String playMsgId;
 	private String nickName;
 	private String userImageURL;
+	private TextView titleName ;
+	private AppController controller;
 
 	private Handler micImageHandler = new Handler() {
 		@Override
@@ -187,6 +190,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chat);
+		controller =  AppController.getController(this);
 		initView();
 		setUpView();
 	}
@@ -217,6 +221,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 		iv_emoticons_checked.setVisibility(View.INVISIBLE);
 		more = findViewById(R.id.more);
 		edittext_layout.setBackgroundResource(R.drawable.input_bar_bg_normal);
+		 titleName = (TextView) findViewById(R.id.name);
 
 		// 动画资源文件,用于录制语音时
 		micImages = new Drawable[] { getResources().getDrawable(R.drawable.record_animate_01),
@@ -306,7 +311,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			toChatUsername = getIntent().getStringExtra("userId");
 			 nickName = getIntent().getStringExtra("nickName");
 			 userImageURL = getIntent().getStringExtra("userImageURL");
-			((TextView) findViewById(R.id.name)).setText(nickName);
+			 titleName.setText(nickName);
 			// conversation =
 			// EMChatManager.getInstance().getConversation(toChatUsername,false);
 		} else {
@@ -320,6 +325,7 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			// EMChatManager.getInstance().getConversation(toChatUsername,true);
 		}
 		conversation = EMChatManager.getInstance().getConversation(toChatUsername);
+		
 		// 把此会话的未读数置为0
 		conversation.resetUnsetMsgCount();
 		adapter = new MessageAdapter(this, toChatUsername, chatType);
@@ -637,9 +643,13 @@ public class ChatActivity extends BaseActivity implements OnClickListener {
 			// 设置消息body
 			message.addBody(txtBody);
 			// 设置要发给谁,用户username或者群聊groupid
-			message.setReceipt(nickName);
-			message.setAttribute("nickname", nickName);
-			message.setAttribute("userImageURL", userImageURL);
+			message.setReceipt(toChatUsername);
+			
+			 //fromPerson、toPerson、fromPhoto、toPhoto
+			message.setAttribute("fromPerson", controller.getContext().getStringData("Login.nickname"));
+			message.setAttribute("fromPhoto",  controller.getContext().getStringData("Login.avatar"));
+			message.setAttribute("toPerson", nickName);
+			message.setAttribute("toPhoto", userImageURL);
 			// 把messgage加到conversation中
 			conversation.addMessage(message);
 			// 通知adapter有消息变动，adapter会根据加入的这条message显示消息和调用sdk的发送方法

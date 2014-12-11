@@ -106,14 +106,21 @@ public class ChatAllHistoryFragment extends Fragment {
 						intent.putExtra("userId", username);
 						String  userImageURL = "";
 						String  nickName = "";
+						EMMessage emMessage  = conversation.getLastMessage();
 						try {
-							userImageURL = conversation.getMessage(0).getStringAttribute(
-									"userImageURL");
-							nickName = conversation.getMessage(0).getStringAttribute(
-									"nickName");
+							if(username.equals(emMessage.getFrom())){
+								nickName = emMessage.getStringAttribute("fromPerson");
+								userImageURL = emMessage.getStringAttribute("fromPhoto");
+							}else{
+								nickName = emMessage.getStringAttribute("toPerson");
+								userImageURL = emMessage.getStringAttribute("toPhoto");
+							}
+							
 						} catch (EaseMobException e) {
+							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
+						
 						intent.putExtra("userImageURL", userImageURL);
 						intent.putExtra("nickName", nickName);
 					}

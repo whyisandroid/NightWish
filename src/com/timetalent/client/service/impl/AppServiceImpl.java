@@ -1736,4 +1736,33 @@ public class AppServiceImpl implements AppService {
 		}
 	
 	}
+
+	
+	/* (non-Javadoc)
+	 * @see com.timetalent.client.service.AppService#myworksadd()
+	 */
+	@Override
+	public void myworksadd(List<PicValuePair> picValuePair) throws BusinessException {
+
+		String _session_id = context.getStringData("_session_id");
+		String title = context.getStringData("work.title");
+		String actor = context.getStringData("work.actor");
+		String time = context.getStringData("work.time");
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
+		nameValuePairs.add(new BasicNameValuePair("title",title));
+		nameValuePairs.add(new BasicNameValuePair("actor",actor));
+		nameValuePairs.add(new BasicNameValuePair("time",time));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.addParameter(Request.PICTURE, picValuePair);
+		request.setUrl(Config.HTTP_MY_WORKS_ADD);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
+		if ("1".equals(resp.getStatus())) {
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
 }

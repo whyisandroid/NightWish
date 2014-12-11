@@ -166,4 +166,5 @@ public interface AppService {
 	public void orderlist() throws BusinessException;
 	public void mytasklists() throws BusinessException;
 	public void myapplytasklists() throws BusinessException;
+	public void myworksadd(List<PicValuePair> picValuePair) throws BusinessException;
 }

@@ -1,0 +1,125 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+<include
+        layout="@layout/main_top_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1" >
+
+        <ImageView
+            android:id="@+id/imgzuopin"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@color/main_white"
+            android:src="@drawable/d11_03" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="7" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/main_white"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/TextView02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/main_white"
+                    android:text="片名:"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" />
+
+                <TextView
+                    android:id="@+id/TextView01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@color/main_white"
+                    android:text="角色:"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" />
+
+                <TextView
+                    android:id="@+id/TextView03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/main_white"
+                    android:text="时间:"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/main_white"
+                android:gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/etzuopinname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@null"
+                    android:hint="输入作品名"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" >
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/etzuopinjuese"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:background="@null"
+                    android:hint="输入角色名"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" >
+
+                </EditText>
+
+                <EditText
+                    android:id="@+id/etzuopintime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:hint="输入 时间"
+                    android:textColor="@color/color_3"
+                    android:textSize="@dimen/new_size_3" >
+                </EditText>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btbaocun"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_red"
+        android:textColor="@color/white"
+        android:textSize="@dimen/new_size_4"
+        android:text="保存" />
+
+</LinearLayout>

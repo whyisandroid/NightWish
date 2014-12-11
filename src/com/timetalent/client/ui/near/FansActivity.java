@@ -312,7 +312,7 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 					 tvage.setText(u.getAge());
 					 tvxingzuo1.setText(u.getConstella());
 					 tvzhiye.setText(u.getMajor());
-					 tvjiaxiang.setText(u.getAge());
+					 tvjiaxiang.setText(u.getProvince()+u.getCity());
 					 tvheight.setText(u.getMore().getHeight()+"cm");
 					 tvfeed.setText(u.getCount().getFeed());
 					 tvage1.setText(u.getAge());

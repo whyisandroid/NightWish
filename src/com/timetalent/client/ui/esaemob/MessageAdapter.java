@@ -104,8 +104,8 @@ public class MessageAdapter extends BaseAdapter{
 		this.username = username;
 		this.context = context;
 		inflater = LayoutInflater.from(context);
-		activity = (Activity) context;
 		this.conversation = EMChatManager.getInstance().getConversation(username);
+		activity = (Activity) context;
 	}
 
 	// public void setUser(String user) {
@@ -294,11 +294,11 @@ public class MessageAdapter extends BaseAdapter{
 		// 显示头像
 		// 加载网络图片
 		try {
-			if(conversation.getUserName().equals(message.getFrom())){
+			/*if(conversation.getUserName().equals(message.getFrom())){
 				ImageLoader.getInstance().displayImage(message.getStringAttribute("toPhoto"), holder.head_iv,PictureUtil.getCircleOption());
-			}else{
+			}else{*/
 					ImageLoader.getInstance().displayImage(message.getStringAttribute("fromPhoto"), holder.head_iv,PictureUtil.getCircleOption());
-			}
+		//	}
 		} catch (EaseMobException e1) {
 			e1.printStackTrace();
 		}

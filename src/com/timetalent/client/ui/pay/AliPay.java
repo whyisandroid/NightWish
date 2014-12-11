@@ -71,7 +71,6 @@ public class AliPay {
 					} else {
 						Toast.makeText(mContext, "支付失败",
 								Toast.LENGTH_SHORT).show();
-
 					}
 				}
 				break;

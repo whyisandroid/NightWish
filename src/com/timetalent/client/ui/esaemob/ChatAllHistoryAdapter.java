@@ -39,6 +39,7 @@ import com.easemob.exceptions.EaseMobException;
 import com.easemob.util.DateUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.common.util.PictureUtil;
 
 /**
  * 显示所有聊天记录adpater
@@ -65,11 +66,24 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		// 获取与此用户/群组的会话
 				EMConversation conversation = getItem(position);
 				// 获取用户username或者群组groupid
-				String username = conversation.getUserName();
-			/*	if(username.startsWith("UID") || username.startsWith("uid")){
-					return convertView;
-				}*/
-		
+				String name = "";
+				String photo = "";
+				EMMessage emMessage  = conversation.getLastMessage();
+						if(conversation.getUserName().equals(emMessage.getFrom())){
+							try {
+								name = emMessage.getStringAttribute("fromPerson");
+								photo = emMessage.getStringAttribute("fromPhoto");
+							} catch (EaseMobException e) {
+								e.printStackTrace();
+							}
+						}else{
+							try {
+								name = emMessage.getStringAttribute("toPerson");
+								photo = emMessage.getStringAttribute("toPhoto");
+							} catch (EaseMobException e) {
+								e.printStackTrace();
+							}
+					}
 		if (convertView == null) {
 			convertView = inflater.inflate(R.layout.row_chat_history, parent, false);
 		}
@@ -107,13 +121,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 		// 本地或者服务器获取用户详情，以用来显示头像和nick
 		holder.avatar.setImageResource(R.drawable.default_avatar);
 		// 显示头像
-		try {
-			ImageLoader.getInstance().displayImage(
-					conversation.getLastMessage().getStringAttribute(
-							"userImageURL"), holder.avatar);
-		} catch (EaseMobException e1) {
-			e1.printStackTrace();
-		}
+		ImageLoader.getInstance().displayImage(photo, holder.avatar,PictureUtil.getCircleOption());
 
 		/*if (isGroup) {
 			// 群聊消息，显示群聊头像
@@ -126,7 +134,7 @@ public class ChatAllHistoryAdapter extends ArrayAdapter<EMConversation> {
 				holder.name.setText("申请与通知");
 			}
 		}*/
-		holder.name.setText(username);
+		holder.name.setText(name);
 
 		if (conversation.getUnreadMsgCount() > 0) {
 			// 显示与此用户的消息未读数

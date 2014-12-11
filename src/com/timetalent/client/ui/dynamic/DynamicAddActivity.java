@@ -198,9 +198,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			@Override
 			public void run() {
 				List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
-				File file = new File(imgList.get(0).getPath());
-				picValuePair.add(new PicValuePair("photo1", file));
-				for (int i = 1; i < imgList.size(); i++) {
+				for (int i = 0; i < imgList.size(); i++) {
 					File file2 = new File(imgList.get(i).getPath());
 					picValuePair.add(new PicValuePair("photo"+(i+1), file2));
 				}

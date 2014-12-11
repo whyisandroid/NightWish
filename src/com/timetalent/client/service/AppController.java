@@ -300,7 +300,7 @@ public class AppController {
 	
 	public void chatAccess(String ID,String nickName,String userImageURL) {
 		try {
-			service.chatAccess();
+			//service.chatAccess();
 			Intent intent = new Intent(currentActivity,ChatActivity.class);
 			
 			intent.putExtra("userId", StringUtil.getEsaeUserName(ID));
@@ -310,10 +310,10 @@ public class AppController {
 			context.addBusinessData("nickName", nickName);
 			context.addBusinessData("userImageURL", userImageURL);
 			currentActivity.startActivity(intent);
-		} catch (BusinessException e) {
+		} /*catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(MESSAGE_ACCESS, e.getErrorMessage().getMessage()).sendToTarget();
-		} catch (Exception e) {
+		} */catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

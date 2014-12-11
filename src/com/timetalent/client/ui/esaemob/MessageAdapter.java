@@ -62,6 +62,9 @@ import com.easemob.util.LatLng;
 import com.easemob.util.TextFormater;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.entities.LoginData;
+import com.timetalent.client.service.AppController;
+import com.timetalent.common.util.PictureUtil;
 
 public class MessageAdapter extends BaseAdapter{
 
@@ -262,7 +265,6 @@ public class MessageAdapter extends BaseAdapter{
 					holder.playBtn = (ImageView) convertView.findViewById(R.id.chatting_status_btn);
 					holder.container_status_btn = (LinearLayout) convertView.findViewById(R.id.container_status_btn);
 					holder.tv_userId = (TextView) convertView.findViewById(R.id.tv_userid);
-
 				} catch (Exception e) {
 				}
 			} else if (message.getType() == EMMessage.Type.FILE) {
@@ -290,8 +292,13 @@ public class MessageAdapter extends BaseAdapter{
 			holder = (ViewHolder) convertView.getTag();
 		}
 		// 显示头像
+		// 加载网络图片
 		try {
-			ImageLoader.getInstance().displayImage(conversation.getLastMessage().getStringAttribute("userImageURL"), holder.head_iv);
+			if(conversation.getUserName().equals(message.getFrom())){
+				ImageLoader.getInstance().displayImage(message.getStringAttribute("toPhoto"), holder.head_iv,PictureUtil.getCircleOption());
+			}else{
+					ImageLoader.getInstance().displayImage(message.getStringAttribute("fromPhoto"), holder.head_iv,PictureUtil.getCircleOption());
+			}
 		} catch (EaseMobException e1) {
 			e1.printStackTrace();
 		}

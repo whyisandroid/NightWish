@@ -24,8 +24,9 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_marginRight="@dimen/margin_chat_activity"
-            android:background="@drawable/mini_avatar_shadow"
             android:scaleType="fitXY" />
+        <!--android:background="@drawable/mini_avatar_shadow"  -->
+            
 
        <TextView
             android:id="@+id/tv_chatcontent"

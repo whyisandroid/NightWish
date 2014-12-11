@@ -84,6 +84,8 @@ public class DynamicFragment extends Fragment implements OnClickListener {
 		((TextView)view.findViewById(R.id.main_top_title)).setText("动态");
 		main_top_right.setOnClickListener(this);
 		
+		
+		
 		// 加载网络图片
 		LoginData loginData = (LoginData)controller.getContext().getBusinessData("loginData");
 		if(loginData != null){

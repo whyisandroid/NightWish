@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.near;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -31,6 +32,7 @@ import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
 import com.timetalent.client.ui.dialog.ReportIOSStyleDialog;
 import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.user.MyhaoyouMainActivity;
@@ -172,7 +174,16 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 			IntentUtil.intent(FansActivity.this, bundle0,DynamicOtherActivity.class,false);
 			break;
 		case R.id.imgduihua:
-			IntentUtil.intent(FansActivity.this, MessageChatActivity.class);
+			
+			Intent intent = new Intent(FansActivity.this,ChatActivity.class);
+			
+			intent.putExtra("userId", u.getId());
+			intent.putExtra("nickName", u.getNickname());
+			intent.putExtra("userImageURL", u.getAvatar());
+			controller.getContext().addBusinessData("userId", u.getId());
+			controller.getContext().addBusinessData("nickName", u.getNickname());
+			controller.getContext().addBusinessData("userImageURL", u.getAvatar());
+			FansActivity.this.startActivity(intent);
 			break;
 		case R.id.imgguanzhu:
 			showMessageTwo(FansActivity.this, "关注？", "完成");

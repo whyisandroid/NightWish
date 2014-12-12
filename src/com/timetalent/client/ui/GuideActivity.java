@@ -104,8 +104,8 @@ public class GuideActivity extends BaseActivity implements OnClickListener,OnPag
         views = new ArrayList<View>();
         // 初始化引导图片列表
         views.add(inflater.inflate(R.layout.guide_page_one, null));
-        views.add(inflater.inflate(R.layout.guide_page_two, null));
-        views.add(inflater.inflate(R.layout.guide_page_three, null));
+      //  views.add(inflater.inflate(R.layout.guide_page_two, null));
+        //views.add(inflater.inflate(R.layout.guide_page_three, null));
 //        views.add(inflater.inflate(R.layout.guide_page_four, null));
         setCurrentIndex(0);
         // 初始化Adapter

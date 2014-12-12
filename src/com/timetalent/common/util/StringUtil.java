@@ -200,7 +200,7 @@ public class StringUtil {
 	public static String getEsaeUserName(String id) {
 		StringBuffer sb = new StringBuffer();
 		if(!TextUtils.isEmpty(id)){
-			sb.append("UID_"+id);
+			sb.append("uid_"+id);
 		}
 		return sb.toString();
 	}

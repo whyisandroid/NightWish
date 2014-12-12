@@ -12,6 +12,7 @@ import org.apache.http.message.BasicNameValuePair;
 import android.util.Log;
 
 import com.easemob.EMCallBack;
+import com.easemob.EMError;
 import com.easemob.chat.EMChatManager;
 import com.easemob.chat.EMContactManager;
 import com.easemob.chat.EMConversation;
@@ -126,7 +127,6 @@ public class AppServiceImpl implements AppService {
 									
 						    @Override
 						    public void onSuccess() {
-						    	
 						    	// ** 第一次登录或者之前logout后，加载所有本地群和回话
 								// ** manually load all local groups and
 								// conversations in case we are auto login
@@ -174,20 +174,41 @@ public class AppServiceImpl implements AppService {
 							
 						    @Override
 						    public void onProgress(int progress, String status) {
-						    // TODO Auto-generated method stub
 						    }
-								
 						    @Override
 						    public void onError(int code, String message) {
 						    	LogUtil.Log("EMChatManager", "onError");
+						    	if(code == EMError.INVALID_PASSWORD_USERNAME){
+						    		try {
+										huanxin_reg();
+									} catch (BusinessException e) {
+										e.printStackTrace();
+									}
+						    	}
 						    }
 						});
-			
-			
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
+	
+	@Override
+	public void huanxin_reg() throws BusinessException {
+		Request<BaseResp> request = new Request<BaseResp>();
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
+		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.setUrl(Config.HTTP_USER_HUANXIN_REG);
+		request.setR_calzz(BaseResp.class);
+		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		if ("1".equals(resp.getStatus())) {
+		} else{
+			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+	
+	
+	
 	/* (non-Javadoc)
 	 * @see com.timetalent.client.service.AppService#logout()
 	 */

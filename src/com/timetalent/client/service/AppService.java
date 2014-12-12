@@ -15,6 +15,8 @@ import com.timetalent.common.exception.BusinessException;
 public interface AppService {
 	/** 登陆 **/
 	public void login() throws BusinessException;
+	/**环信注册**/
+	public void huanxin_reg() throws BusinessException;
 	/**
 	 * exit
 	 */

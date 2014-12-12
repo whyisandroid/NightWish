@@ -3,13 +3,17 @@ package com.timetalent.client.ui.dynamic;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
@@ -47,6 +51,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	private EditText et_dynamic_add_content;
 	private GridView gv_dynamic_add;
 	private DynamicAddAdapter adapter;
+	 private File sdcardTempFile;
 	
 	// 原图列表
 	ArrayList<Picture> imgList = new ArrayList<Picture>();
@@ -101,46 +106,88 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		main_top_left2.setText("取消");
 		main_top_right.setOnClickListener(this);
 		main_top_left2.setOnClickListener(this);
-		adapter = new  DynamicAddAdapter(this,mHandler,imgList);
+		sdcardTempFile = getFile();
+		adapter = new  DynamicAddAdapter(this,mHandler,imgList,sdcardTempFile);
 		gv_dynamic_add.setAdapter(adapter);
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-12-12 下午3:43:30
+	  */
+	private File getFile() {
+		 sdcardTempFile = new File("/mnt/sdcard/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
+		return sdcardTempFile;
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			if (data != null) {
-				Uri uri = data.getData();
-				if (!TextUtils.isEmpty(uri.getAuthority())) {
-					Cursor cursor = getContentResolver().query(uri,
-							new String[] { MediaStore.Images.Media._ID,MediaStore.Images.Media.DATA },
-							null, null, null);
-					if (null == cursor) {
-						ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
-						return;
-					}
-					cursor.moveToFirst();
-					String id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
-					String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-					cursor.close();
-					LogUtil.Log("path=" + path);
-					if (PictureUtil.isPicture(path)) {
-							// 添加
-						Picture pic = new Picture(Integer.valueOf(id),path);
-							if (!containsPic(pic)) {
-								imgList.add(pic);
-							} else {
-								ToastUtil.showToast(this, "您已添加此图片！",
-										ToastUtil.LENGTH_SHORT);
-							}
-							adapter.notifyDataSetChanged();
-					} else {
-						Toast.makeText(
-								this,
-								"请选择png或者jpg格式的图片",
-								Toast.LENGTH_SHORT).show();
-					}
+			// picCursor(data);
+			if (sdcardTempFile == null) {
+				ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
+				return;
+			}
+			String path = sdcardTempFile.getAbsolutePath();
+			String id = UUID.randomUUID().toString();
+			if (PictureUtil.isPicture(path)) {
+				// 添加
+				Picture pic = new Picture(id, path);
+				if (!containsPic(pic)) {
+					imgList.add(pic);
+				} else {
+					ToastUtil.showToast(this, "您已添加此图片！",ToastUtil.LENGTH_SHORT);
 				}
 				adapter.notifyDataSetChanged();
+			} else {
+				Toast.makeText(this, "请选择png或者jpg格式的图片", Toast.LENGTH_SHORT).show();
+			}
+			adapter.setSdcardTempFile(getFile());
+			adapter.notifyDataSetChanged();
+		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @param data
+	  * @author: why
+	  * @time: 2014-12-12 下午3:22:59
+	  */
+	private void picCursor(Intent data) {
+		if (data != null) {
+			Uri uri = data.getData();
+			if (!TextUtils.isEmpty(uri.getAuthority())) {
+				Cursor cursor = getContentResolver().query(uri,
+						new String[] { MediaStore.Images.Media._ID,MediaStore.Images.Media.DATA },
+						null, null, null);
+				if (null == cursor) {
+					ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
+					return;
 				}
+				cursor.moveToFirst();
+				String id = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media._ID));
+				String path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+				cursor.close();
+				LogUtil.Log("path=" + path);
+				if (PictureUtil.isPicture(path)) {
+						// 添加
+					Picture pic = new Picture(id,path);
+						if (!containsPic(pic)) {
+							imgList.add(pic);
+						} else {
+							ToastUtil.showToast(this, "您已添加此图片！",
+									ToastUtil.LENGTH_SHORT);
+						}
+						adapter.notifyDataSetChanged();
+				} else {
+					Toast.makeText(
+							this,
+							"请选择png或者jpg格式的图片",
+							Toast.LENGTH_SHORT).show();
+				}
+			}
+			adapter.notifyDataSetChanged();
 			}
 	}
 	
@@ -153,7 +200,7 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	  */
 	private boolean containsPic(Picture pic) {
 		for (Picture picture : imgList) {
-			if(picture.getId() == pic.getId()){
+			if(picture.getId().equals(pic.getId())){
 				return true;
 			}
 		}

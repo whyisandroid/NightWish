@@ -2,6 +2,7 @@ package com.timetalent.client.ui.fragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RadioButton;
@@ -34,6 +36,7 @@ import com.timetalent.client.database.ContentEntry;
 import com.timetalent.client.database.SQLiteHelper;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.dictionarypackage;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
@@ -138,6 +141,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 						handler.sendEmptyMessage(2);
 					}
 				}
+			};
+		}.start();
+		new Thread(){
+			public void run() {
+				controller.getContext().addBusinessData("dictionary.type", "star,fans,scout");
+				controller.dictionary();
 			};
 		}.start();
 		list.setOnItemClickListener(new OnItemClickListener() {
@@ -301,9 +310,10 @@ public class NearFragment extends Fragment implements OnClickListener {
 			RadioButton rd13 = (RadioButton) popview.findViewById(R.id.rd13);
 			RadioButton rd14 = (RadioButton) popview.findViewById(R.id.rd14);
 			RadioButton rd15 = (RadioButton) popview.findViewById(R.id.rd15);
-			RadioButton rd16 = (RadioButton) popview.findViewById(R.id.rd16);
-			RadioButton rd17 = (RadioButton) popview.findViewById(R.id.rd17);
-			RadioButton rd18 = (RadioButton) popview.findViewById(R.id.rd18);
+//			RadioButton rd16 = (RadioButton) popview.findViewById(R.id.rd16);
+//			RadioButton rd17 = (RadioButton) popview.findViewById(R.id.rd17);
+//			RadioButton rd18 = (RadioButton) popview.findViewById(R.id.rd18);
+			final android.widget.RadioGroup rgzhiye = (android.widget.RadioGroup) popview.findViewById(R.id.rgzhiye);
 			rd1.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -432,7 +442,9 @@ public class NearFragment extends Fragment implements OnClickListener {
 
 				@Override
 				public void onClick(View v) {
+					rgzhiye.removeAllViews();
 					type = "";
+					major = "";
 				}
 			});
 			rd13.setOnClickListener(new OnClickListener() {
@@ -440,13 +452,30 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "star";
-					new Thread(){
-						public void run() {
-							controller.getContext().addBusinessData("dictionary.type", type);
-							controller.dictionary();
-							handler.sendEmptyMessage(3);
-						};
-					}.start();
+					List<dictionarypackage> data = (List<dictionarypackage>) controller.getContext().getBusinessData("DictionaryData");
+					if(data != null){
+						rgzhiye.removeAllViews();
+						for(final dictionarypackage temp:data){
+							if(temp.getType().equals("star")){
+								RadioButton eb = new RadioButton(getActivity());
+								eb.setText(""+temp.getName());
+								eb.setBackgroundResource(R.drawable.btn_smote);
+								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+//								eb.setTextColor(0X999999);
+								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+									
+									@Override
+									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+										if(isChecked){
+											major = temp.getKey();
+											Log.i("zhiye", major);
+										}
+									}
+								});
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+							}
+						}
+					}
 					
 				}
 			});
@@ -455,13 +484,31 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "scout";
-					new Thread(){
-						public void run() {
-							controller.getContext().addBusinessData("dictionary.type", type);
-							controller.dictionary();
-							handler.sendEmptyMessage(3);
-						};
-					}.start();
+					List<dictionarypackage> data = (List<dictionarypackage>) controller.getContext().getBusinessData("DictionaryData");
+					if(data != null){
+						rgzhiye.removeAllViews();
+						for(final dictionarypackage temp:data){
+							if(temp.getType().equals("scout")){
+								RadioButton eb = new RadioButton(getActivity());
+								eb.setBackgroundResource(R.drawable.btn_smote);
+								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+//								eb.setTextColor(0X999999);
+								eb.setText(""+temp.getName());
+								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+									
+									@Override
+									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+										if(isChecked){
+											major = temp.getKey();
+											Log.i("zhiye", major);
+										}
+									}
+								});
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+							}
+						}
+					}
+					
 				}
 			});
 			rd15.setOnClickListener(new OnClickListener() {
@@ -469,17 +516,33 @@ public class NearFragment extends Fragment implements OnClickListener {
 				@Override
 				public void onClick(View v) {
 					type = "fans";
-					new Thread(){
-						public void run() {
-							controller.getContext().addBusinessData("dictionary.type", type);
-							controller.dictionary();
-							handler.sendEmptyMessage(3);
-						};
-					}.start();
+					List<dictionarypackage> data = (List<dictionarypackage>) controller.getContext().getBusinessData("DictionaryData");
+					if(data != null){
+						rgzhiye.removeAllViews();
+						for(final dictionarypackage temp:data){
+							if(temp.getType().equals("fans")){
+								RadioButton eb = new RadioButton(getActivity());
+								eb.setBackgroundResource(R.drawable.btn_smote);
+								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
+//								eb.setTextColor(0XFF999999);
+								eb.setText(""+temp.getName());
+								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+									
+									@Override
+									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+										if(isChecked){
+											major = temp.getKey();
+											Log.i("zhiye", major);
+										}
+									}
+								});
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+							}
+						}
+					}
 				}
 			});
 			if(type.equals("star")){
-				
 			}
 			if(type.equals("scout")){
 	
@@ -487,27 +550,27 @@ public class NearFragment extends Fragment implements OnClickListener {
 			if(type.equals("fans")){
 				
 			}
-			rd16.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					major = "singer";
-				}
-			});
-			rd17.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					major = "model";
-				}
-			});
-			rd18.setOnClickListener(new OnClickListener() {
-
-				@Override
-				public void onClick(View v) {
-					major = "actor";
-				}
-			});
+//			rd16.setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					major = "singer";
+//				}
+//			});
+//			rd17.setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					major = "model";
+//				}
+//			});
+//			rd18.setOnClickListener(new OnClickListener() {
+//
+//				@Override
+//				public void onClick(View v) {
+//					major = "actor";
+//				}
+//			});
 			search = "";
 			lat = "116.287128";
 			lng = "39.830486";

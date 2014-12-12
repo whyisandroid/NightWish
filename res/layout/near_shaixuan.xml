@@ -297,48 +297,11 @@
             android:background="@color/new_color_4" >
 
             <RadioGroup
-                android:id="@+id/RadioGroup02"
+                android:id="@+id/rgzhiye"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal" >
-
-                <RadioButton
-                    android:id="@+id/rd16"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_sgeshou"
-                    android:button="@null"
-                    android:checked="true"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="歌手"
-                    android:textColor="@color/color_4" />
-
-                <RadioButton
-                    android:id="@+id/rd17"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_smote"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="模特"
-                    android:textColor="@color/color_4" />
-
-                <RadioButton
-                    android:id="@+id/rd18"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/btn_syanyuan"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:padding="7dp"
-                    android:text="演员"
-                    android:textColor="@color/color_4" />
             </RadioGroup>
 
         </LinearLayout>

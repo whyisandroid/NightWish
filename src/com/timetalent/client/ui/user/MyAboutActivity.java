@@ -43,7 +43,7 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	AppConfigPackage data;
+	String data;
 	WebView wb;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +102,12 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				data = (AppConfigPackage) controller.getContext().getBusinessData("AppConfigdata");
+				data = (String) controller.getContext().getBusinessData("AppConfigdata");
 				if(data != null){
 //					data.setUrl("http://www.163.com");
 			        WebSettings webSettings = wb.getSettings();
-			        webSettings.setUseWideViewPort(true); 
-			        webSettings.setLoadWithOverviewMode(true);
+//			        webSettings.setUseWideViewPort(true); 
+//			        webSettings.setLoadWithOverviewMode(true);
 			        wb.setWebViewClient
 			        (new WebViewClient(){
 			            public boolean shouldOverrideUrlLoading(WebView view, String url) {       
@@ -119,7 +119,7 @@ public class MyAboutActivity extends BaseActivity implements OnClickListener {
 			     });
 			         webSettings.setJavaScriptEnabled(true);
 //					wb.loadUrl(data.getUrl());
-			         wb.loadDataWithBaseURL(null,data.getUrl(), "text/html",  "utf-8", null);
+			         wb.loadDataWithBaseURL(null,data, "text/html",  "utf-8", null);
 				}
 				break;
 			}

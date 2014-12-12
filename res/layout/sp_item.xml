@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/main_white"
+    android:gravity="center_vertical" >
+
+    <TextView
+        android:id="@+id/tvsrc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:textColor="@color/color_3"
+        android:textSize="@dimen/new_size_3"
+        android:text="选择职业" />
+
+</LinearLayout>

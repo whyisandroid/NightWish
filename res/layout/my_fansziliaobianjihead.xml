@@ -391,15 +391,10 @@
                         android:layout_weight="1"
                         android:orientation="vertical" >
 
-                        <EditText
-                            android:id="@+id/etzhiye"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:background="@null"
-                            android:ems="10"
-                            android:textColor="@color/color_2"
-                            android:textColorHint="@color/color_4"
-                            android:textSize="@dimen/new_size_2" />
+                        <Spinner
+                        android:id="@+id/spzhiye"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
 
                         <LinearLayout
                             android:layout_width="match_parent"

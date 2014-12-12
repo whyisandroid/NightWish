@@ -1,5 +1,6 @@
 package com.timetalent.client.ui.user;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -20,6 +21,7 @@ import com.timetalent.client.ui.adapter.GuanzhuAdapter;
 import com.timetalent.client.ui.adapter.HaoyouAdapter;
 import com.timetalent.client.ui.adapter.SearchBaseAdapter;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.message.MessageChatActivity;
 import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.common.util.IntentUtil;
@@ -65,14 +67,6 @@ public class MyhaoyouActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
-		lhaoyou.setOnItemClickListener(new OnItemClickListener() {
-
-			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-					long arg3) {
-				IntentUtil.intent(MyhaoyouActivity.this, MessageChatActivity.class);
-			}
-		});
 		setvalue();
 		new Thread(){
 			public void run() {

@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -53,6 +54,7 @@ import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
+import com.timetalent.client.ui.adapter.zhiyexuanzeAdapter;
 import com.timetalent.client.ui.addresscheck.City_cnActivity;
 import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
@@ -83,7 +85,6 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	EditPicturesLayout piclay;	
 	EditText etname ;
 	EditText etnickname ;
-	EditText etzhiye ;
 	TextView tvjiaxiang;
 	TextView tvage;
 	TextView tvage1;
@@ -93,7 +94,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 	TextView tvfeed;
 	TextView tvcontent;
 	
-	EditText etmajor;
+	Spinner spmajor;
 	EditText etheight;
 	
 	int index = 0;
@@ -165,7 +166,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		etnickname = (EditText) this.findViewById(R.id.etnickname);
 		tvcontent = (TextView) findViewById(R.id.tvcontent);
 		
-		etmajor = (EditText) this.findViewById(R.id.etzhiye);
+		spmajor = (Spinner) this.findViewById(R.id.spzhiye);
 		etheight = (EditText) this.findViewById(R.id.etheight);
 	}
 
@@ -199,6 +200,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		}else{
 			imgsex.setImageResource(R.drawable.f_03);
 		}
+		spmajor.setAdapter(new zhiyexuanzeAdapter(FansziliaobianjiActivity.this, controller, "fans"));
 	}
 	
 	@Override
@@ -258,7 +260,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 		controller.getContext().addBusinessData("bianji.hip", "");
 		controller.getContext().addBusinessData("bianji.height", ""+etheight.getText().toString());
 		controller.getContext().addBusinessData("bianji.weight", "");
-		controller.getContext().addBusinessData("bianji.major", ""+etmajor.getText().toString());
+//		controller.getContext().addBusinessData("bianji.major", ""+tvmajor.getText().toString());
 		
 		
 		String[] jiaxiang = tvjiaxiang.getText().toString().split(" ");
@@ -362,6 +364,9 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 				pa.width = (int) (50*density);
 				pa.height = (int) (50*density);
 //				imghead.setPadding(0, (int) (20*density), 0, (int) (20*density));
+				break;
+			case 3:
+				
 				break;
 			}
 		}

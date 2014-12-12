@@ -12,19 +12,19 @@ import com.timetalent.client.entities.Walletorderpackage;
  * @time: 2014-2-20 下午3:29:26 
  ******************************************/
 public class AppConfigResp extends BaseResp {
-	private AppConfigPackage data;
+	private String data;
 
 	/**
 	 * @return data : return the property data.
 	 */
-	public AppConfigPackage getData() {
+	public String getData() {
 		return data;
 	}
 
 	/**
 	 * @param data : set the property data.
 	 */
-	public void setData(AppConfigPackage data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 	

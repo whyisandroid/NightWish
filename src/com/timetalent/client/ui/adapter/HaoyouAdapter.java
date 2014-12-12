@@ -10,15 +10,18 @@ import com.timetalent.client.entities.Friendlist;
 import com.timetalent.client.entities.Friendpackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.GuanzhuAdapter.myOnClickListener;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
+import com.timetalent.client.ui.user.MyhaoyouActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -34,6 +37,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 
@@ -133,7 +137,7 @@ public class HaoyouAdapter extends BaseAdapter {
 			if(data!= null && data.getLists().size() > position){
 				convertView = mInflater.inflate(R.layout.my_haoyou_item,
 					    null);
-				
+				holder.lroot = (LinearLayout) convertView.findViewById(R.id.lroot);
 				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
 				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 				holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
@@ -157,16 +161,18 @@ public class HaoyouAdapter extends BaseAdapter {
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
-		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getMajor());
 		if(data.getLists().get(position).getSex().equals("0")){
 			holder.imgsex.setImageResource(R.drawable.f3_15);
 		}else{
 			holder.imgsex.setImageResource(R.drawable.f3_31);
 		}
 		holder.tvmiaoshu.setText(""+data.getLists().get(position).getCity());
+		holder.lroot.setOnClickListener(new myrootOnClickListener(data.getLists().get(position)));
 		return convertView;
 	}
 	class ViewHolder{
+		public LinearLayout lroot;
 	    public ImageView imghead;
 	    public TextView tvname;
 	    public ImageView imgsex;
@@ -213,6 +219,24 @@ public class HaoyouAdapter extends BaseAdapter {
 				IntentUtil.intent(mcontext, bundle1,FansActivity.class,false);
 			}
 			
+		}
+		
+	}
+	class myrootOnClickListener implements OnClickListener{
+		Friendpackage data;
+		public myrootOnClickListener(Friendpackage friendpackage) {
+			data = friendpackage;
+		}
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent(mcontext,ChatActivity.class);
+			intent.putExtra("userId", data.getId());
+			intent.putExtra("nickName", data.getNickname());
+			intent.putExtra("userImageURL", data.getAvatar());
+			AppController.getController(((Activity)mcontext)).getContext().addBusinessData("userId", data.getId());
+			AppController.getController(((Activity)mcontext)).getContext().addBusinessData("nickName", data.getNickname());
+			AppController.getController(((Activity)mcontext)).getContext().addBusinessData("userImageURL", data.getAvatar());
+			mcontext.startActivity(intent);
 		}
 		
 	}

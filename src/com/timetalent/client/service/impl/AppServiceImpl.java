@@ -1441,12 +1441,11 @@ public class AppServiceImpl implements AppService {
 
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-		Log.i("my.do", (String)context.getBusinessData("my.do"));
-		Log.i("my.target_id", (String)context.getBusinessData("my.target_id"));
-		nameValuePairs.add(new BasicNameValuePair("do", (String)context.getBusinessData("my.do")));
-		nameValuePairs.add(new BasicNameValuePair("target_id", (String)context.getBusinessData("my.target_id")));
-		
+		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getStringData("_session_id")));
+		Log.i("my.do", (String)context.getStringData("my.do"));
+		Log.i("my.target_id", (String)context.getStringData("my.target_id"));
+		nameValuePairs.add(new BasicNameValuePair("do", (String)context.getStringData("my.do")));
+		nameValuePairs.add(new BasicNameValuePair("target_id", (String)context.getStringData("my.target_id")));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_MY_DO_SOCIAL);
 		request.setR_calzz(BaseResp.class);

@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -34,6 +35,7 @@ import com.timetalent.client.ui.dialog.DialogUtil;
 import com.timetalent.client.ui.dialog.ExitIOSStyleListDialog;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
 import com.timetalent.client.ui.dialog.IOSStyleListDialog;
+import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.near.SearchActivity;
 import com.timetalent.client.ui.pay.MyqianbaoActivity;
 import com.timetalent.client.ui.user.FansziliaoActivity;
@@ -58,6 +60,7 @@ import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
 import com.timetalent.common.util.Downloadapk;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -254,7 +257,13 @@ public class UserFragment extends Fragment implements OnClickListener {
 			IntentUtil.intent(this.mContext, MyAboutActivity.class);
 			break;
 		case R.id.lkefu:
-			IntentUtil.intent(this.mContext, MylianxiActivity.class);
+			
+			Intent intent = new Intent(mContext,ChatActivity.class);
+			intent.putExtra("userId", StringUtil.getEsaeUserName("101"));
+			intent.putExtra("nickName", "客服101");
+			intent.putExtra("userImageURL", "http://118.144.74.24////xingtan//Uploads//avatar//201412//547ebb6296782.jpeg");
+			mContext.startActivity(intent);
+			//IntentUtil.intent(this.mContext, MylianxiActivity.class);
 			break;
 		case R.id.lxieyi:
 			IntentUtil.intent(this.mContext, MyxieyiActivity.class);

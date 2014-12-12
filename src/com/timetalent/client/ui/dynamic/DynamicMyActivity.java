@@ -1,10 +1,13 @@
 package com.timetalent.client.ui.dynamic;
 
 
+import android.app.ActionBar.LayoutParams;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,6 +31,7 @@ import com.timetalent.common.util.UIUtils;
 public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private TextView main_top_right;
+	private ImageButton main_top_left;
 	private ListView lv_dynamic;
 	
 	private Handler mHandler = new  Handler(){
@@ -64,6 +68,7 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	private void findView() {
 		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
 		main_top_right = (TextView)findViewById(R.id.main_top_right);
+		main_top_left = (ImageButton)findViewById(R.id.main_top_left1);
 	}
 
 	/**
@@ -73,9 +78,13 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		findViewById(R.id.main_top_left).setVisibility(View.GONE);
+		main_top_left.setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.main_top_title)).setText("我的动态");
 		UIUtils.setDrawableLeft(DynamicMyActivity.this,main_top_right,R.drawable.d3_06);
 		main_top_right.setOnClickListener(this);
+		main_top_left.setImageResource(R.drawable.btn_gobackl);
+		main_top_left.setOnClickListener(this);
 	}
 	
 
@@ -106,6 +115,9 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.main_top_right:
 			IntentUtil.intent(DynamicMyActivity.this, DynamicAddActivity.class);
+			break;
+		case R.id.main_top_left1:
+			this.finish();
 			break;
 		default:
 			break;

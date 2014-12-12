@@ -38,6 +38,7 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.PopupWindow;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
@@ -53,6 +54,7 @@ import com.timetalent.client.ui.GuideActivity;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.ZuopinBaseAdapter;
 import com.timetalent.client.ui.adapter.ZuopinupdateAdapter;
+import com.timetalent.client.ui.adapter.zhiyexuanzeAdapter;
 import com.timetalent.client.ui.addresscheck.City_cnActivity;
 import com.timetalent.client.ui.dynamic.DynamicMyActivity;
 import com.timetalent.client.ui.fragment.util.Background2;
@@ -95,7 +97,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 	public float density = 1.0f;
 	EditText etname;
 	EditText etnickname;
-	EditText etmajor;
+	Spinner spmajor;
 	EditText etheight;
 	ImageView imghead;
 	TextView tvage;
@@ -164,7 +166,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		etnickname = (EditText) this.findViewById(R.id.etnickname);
 		tvcontent = (TextView) findViewById(R.id.tvcontent);
 		
-		etmajor = (EditText) this.findViewById(R.id.etzhiye);
+		spmajor = (Spinner) this.findViewById(R.id.spzhiye);
 		etheight = (EditText) this.findViewById(R.id.etheight);
 	}
 
@@ -199,6 +201,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		}else{
 			imgsex.setImageResource(R.drawable.f_03);
 		}
+		spmajor.setAdapter(new zhiyexuanzeAdapter(YirenziliaobianjiActivity.this, controller, "star"));
 		tvjiaxiang.setOnClickListener(this);
 	}
 	@Override
@@ -261,7 +264,7 @@ public class YirenziliaobianjiActivity extends BaseActivity implements OnClickLi
 		}
 		controller.getContext().addBusinessData("bianji.height", ""+etheight.getText().toString());
 		controller.getContext().addBusinessData("bianji.weight", "");
-		controller.getContext().addBusinessData("bianji.major", ""+etmajor.getText().toString());
+//		controller.getContext().addBusinessData("bianji.major", ""+etmajor.getText().toString());
 		String[] jiaxiang = tvjiaxiang.getText().toString().split(" ");
 		if(jiaxiang.length >= 2){
 			controller.getContext().addBusinessData("bianji.province", jiaxiang[0]);

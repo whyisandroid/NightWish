@@ -538,9 +538,9 @@ public class EditPicturesLayout extends LinearLayout implements
 								imgpic8.setVisibility(GONE);
 							}
 							if(count == 4){
-								imgpic6.setVisibility(GONE);
-								imgpic7.setVisibility(GONE);
-								imgpic8.setVisibility(GONE);
+								imgpic6.setVisibility(INVISIBLE);
+								imgpic7.setVisibility(INVISIBLE);
+								imgpic8.setVisibility(INVISIBLE);
 							}
 						}
 						vfpics.addView(child);

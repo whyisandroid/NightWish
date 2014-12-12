@@ -10,7 +10,7 @@ package com.timetalent.client.entities;
  ******************************************/
 public class Picture {
 	private String path; //地址
-	private int id; //id
+	private String id; //id
 	
 	/**
 	  * 类的构造方法
@@ -19,7 +19,7 @@ public class Picture {
 	  * @param id2
 	  * @param path2
 	  */
-	public Picture(int id, String path) {
+	public Picture(String id, String path) {
 		this.path = path;
 		this.id = id;
 	}
@@ -38,22 +38,13 @@ public class Picture {
 	/**
 	 * @return id : return the property id.
 	 */
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	/**
 	 * @param id : set the property id.
 	 */
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
-	}
-	
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#hashCode()
-	 */
-	@Override
-	public int hashCode() {
-		return id;
 	}
 }

@@ -36,6 +36,7 @@ public class Config {
 	public final static String HTTP_USER_LOGIN = MY_SERVICE+ "/Login/login"; // 登录接口
 	public final static String HTTP_USER_REGISTER = MY_SERVICE+ "/Reg/index"; // 注册接口
 	public final static String HTTP_USER_LOGOUT = MY_SERVICE+ "/Login/logout"; // 注册接口
+	public final static String HTTP_USER_HUANXIN_REG = MY_SERVICE+ "/User/huanxin_reg"; // 环信注册接口
 	public final static String HTTP_USER_REGISTER_AVATAR = MY_SERVICE+ "/Reg/avatar_upload"; // 注册接口 上传图片
 	public final static String HTTP_USER_RESET_PWD = MY_SERVICE+ "/System/password_reset"; // 修改密码
 	

@@ -5,6 +5,7 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +15,7 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -25,7 +27,6 @@ import com.timetalent.common.util.CommonData;
 import com.timetalent.common.util.Config;
 import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.PictureUtil;
-import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -42,6 +43,8 @@ public class DynamicAddAdapter extends BaseAdapter{
 	   /** 添加按钮TAG */
     public static final long ADD_TAG= 1;
 	private Context mContext;
+	
+	private File 	sdcardTempFile;
 	// 图片
 	private ArrayList<Picture> mData = new  ArrayList<Picture>();
 	private HashMap<String, SoftReference<Bitmap>> cache = new HashMap<String, SoftReference<Bitmap>>();
@@ -52,9 +55,17 @@ public class DynamicAddAdapter extends BaseAdapter{
 	 * 创建一个新的实例 DynamicAdapter.
 	 * @param 
 	 */
-	public DynamicAddAdapter(Context mContext,Handler mHandler,ArrayList<Picture> mData) {
+	public DynamicAddAdapter(Context mContext,Handler mHandler,ArrayList<Picture> mData, File sdcardTempFile) {
 		this.mContext = mContext;
 		this.mData = mData;
+		this.sdcardTempFile = sdcardTempFile;
+	}
+	
+	/**
+	 * @param sdcardTempFile : set the property sdcardTempFile.
+	 */
+	public void setSdcardTempFile(File sdcardTempFile) {
+		this.sdcardTempFile = sdcardTempFile;
 	}
 	
 	@Override
@@ -138,6 +149,10 @@ public class DynamicAddAdapter extends BaseAdapter{
 			holder.mImageIcon.setTag(onClickMessage);
 			holder.mImageIcon.setOnClickListener(mGridViewItemCloseListener);
 		}
+		
+		 AbsListView.LayoutParams param = new AbsListView.LayoutParams(
+	                android.view.ViewGroup.LayoutParams.MATCH_PARENT, 200);
+	        convertView.setLayoutParams(param);
 		return convertView;
 	}
 	
@@ -160,12 +175,13 @@ public class DynamicAddAdapter extends BaseAdapter{
 	}
 	
 	private View.OnClickListener mGridViewItemListener = new View.OnClickListener() {
-
 		@Override
 		public void onClick(View v) {
 			OnClickMessage onClickMessage = (OnClickMessage)v.getTag();
 			if ( onClickMessage.tag == ADD_TAG ) {
-				StringUtil.doGoToImg(mContext);
+				PictureUtil.headPic((Activity)mContext, 360, sdcardTempFile);
+				
+				//StringUtil.doGoToImg(mContext);
 			}else if (onClickMessage.tag == SELECT_TAG){
 				 LogUtil.Log("点击图片路径："+mData.get(onClickMessage.position));
 				 String value = mData.get(onClickMessage.position).getPath();

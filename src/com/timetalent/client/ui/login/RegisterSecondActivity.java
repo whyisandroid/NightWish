@@ -105,7 +105,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		rl_register_data.setOnClickListener(this);
 		register = (Register)getIntent().getExtras().getSerializable("Register.register");
 		register.setType("fans");
-		sdcardTempFile = new File("/mnt/sdcard/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
+		sdcardTempFile = new File("/mnt/sdcard/timetalent/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
 	}
 	
 	

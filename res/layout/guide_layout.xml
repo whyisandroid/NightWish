@@ -20,8 +20,7 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_alignParentBottom="true"
-      android:layout_marginBottom="60dp"
+      android:layout_below="@+id/imageView1"
       android:orientation="vertical" >
 
       <LinearLayout
@@ -53,18 +52,21 @@
               android:background="@drawable/unread_dot" />
       </LinearLayout>
 
-      <RelativeLayout
+      <LinearLayout
           android:layout_width="match_parent"
-          android:layout_height="wrap_content" >
+          android:layout_height="wrap_content"
+          android:layout_marginTop="15dp"
+          android:gravity="center"
+           >
 
           <Button
               android:id="@+id/bt_guide_register"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentLeft="true" 
-              android:background="@drawable/btn_guide_register"
-              android:text="用户注册"
+              android:background="@drawable/bt_new_register"
               android:textColor="@color/white"
+              android:layout_marginRight="10dp"
               android:textSize="@dimen/new_size_4"
               />
 
@@ -73,15 +75,22 @@
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
               android:layout_alignParentRight="true" 
-              android:background="@drawable/btn_guide_login"
-               android:text="用户登录"
+              android:layout_marginLeft="10dp"
+              android:background="@drawable/bt_new_login"
               android:textColor="@color/white"
               android:textSize="@dimen/new_size_4"
               />
 
-      </RelativeLayout>
+      </LinearLayout>
 
-  </LinearLayout>  
-    
+  </LinearLayout>
+
+  <ImageView
+      android:id="@+id/imageView1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:src="@drawable/guide_ic_launcher" />
 
 </RelativeLayout>

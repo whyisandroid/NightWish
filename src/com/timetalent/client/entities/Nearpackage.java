@@ -29,7 +29,14 @@ public class Nearpackage {
 	String distance = "";
 	String age = "";
 	String content = "";
+	String time = "";
 	
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
 	public String getMajor() {
 		return major;
 	}

@@ -2,6 +2,7 @@ package com.timetalent.client.ui.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -85,6 +86,9 @@ public class IOSStyleListDialog extends BasicDialog implements DialogInterface{
 			if(user.getFollow_do().equals("Y")){
 				rb1.setText("取消关注");
 			}
+			Log.i("baocuos", user.getFollow_do());
+		}else{
+			Log.i("baocuo", "null");
 		}
 		rb2 = (RadioButton) findViewById(R.id.radio1);
 		rb3 = (RadioButton) findViewById(R.id.radio2);

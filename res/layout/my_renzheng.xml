@@ -65,8 +65,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/m3_03" />
+                    android:layout_marginTop="5dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -81,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_2"
             			android:textSize="@dimen/new_size_3"
-                        android:text="吴沐熙vicky" />
+                        android:text=" " />
                 </LinearLayout>
             </LinearLayout>
 			<LinearLayout

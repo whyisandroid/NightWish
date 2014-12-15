@@ -245,7 +245,11 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 						};
 					}.start();
 					final IOSStyleDialog dialog = new IOSStyleDialog(context, IOSStyleDialog.DIALOG_ONE);
-					dialog.setMessage("您关注了此人");
+					if(u.getFollow_do().equals("Y")){
+						dialog.setMessage("您取消了关注此人");
+					}else{
+						dialog.setMessage("您关注了此人");
+					}
 					dialog.setOne("确认",new OnClickListener() {
 						@Override
 						public void onClick(View v) {

@@ -8,8 +8,7 @@
         android:id="@+id/imgtonggao"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/main_white"
-        android:src="@drawable/f10_49" />
+        android:background="@color/main_white" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -28,14 +27,14 @@
             android:background="@color/main_white"
             android:textColor="@color/color_2"
                 android:textSize="@dimen/new_size_3"
-            android:text="平面模特" />
+            android:text=" " />
 
         <TextView
             android:id="@+id/tvtonggaoneirong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:text="1905电影网(薪酬5000/天)"
+            android:text=" "
                 android:textSize="@dimen/new_size_3"
             android:textColor="@color/color_4" />
 
@@ -44,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/main_white"
-            android:text="北京  18-24岁  女"
+            android:text=" "
                 android:textSize="@dimen/new_size_3"
             android:textColor="@color/color_4" />
 

@@ -38,8 +38,7 @@
                         android:layout_marginRight="10dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginBottom="20dp"
-                        android:layout_weight="15"
-                        android:src="@drawable/m23_06" />
+                        android:layout_weight="15" />
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -57,7 +56,7 @@
                                 android:id="@+id/tvnickname"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="乱世飞尘"
+                                android:text=" "
             			android:textSize="@dimen/new_size_3"
                                 android:textColor="@color/color_2" />
 
@@ -94,7 +93,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="5dp"
-                                android:text="56"
+                                android:text=" "
             			android:textSize="@dimen/new_size_3"
                                 android:textColor="@color/color_3" />
 
@@ -136,7 +135,7 @@
                             android:id="@+id/tvcounthaoyou"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="226"
+                            android:text=" "
             			android:textSize="@dimen/new_size_3"
                             android:textColor="@color/color_2" />
 
@@ -164,7 +163,7 @@
                             android:id="@+id/tvcountpushuser"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="123"
+                            android:text=" "
             			android:textSize="@dimen/new_size_3"
                             android:textColor="@color/color_2" />
 
@@ -192,7 +191,7 @@
                             android:id="@+id/tvcountguanzhu"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="145"
+                            android:text=" "
             			android:textSize="@dimen/new_size_3"
                             android:textColor="@color/color_2" />
 
@@ -219,7 +218,7 @@
                             android:id="@+id/tvcountfans"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="46"
+                            android:text=" "
             			android:textSize="@dimen/new_size_3"
                             android:textColor="@color/color_2" />
                         <TextView

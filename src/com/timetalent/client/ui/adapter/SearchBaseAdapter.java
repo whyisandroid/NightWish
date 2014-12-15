@@ -10,6 +10,7 @@ import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
 
 import android.app.Activity;
 import android.content.Context;
@@ -120,6 +121,7 @@ public class SearchBaseAdapter extends BaseAdapter {
 				
 				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
 				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
+				holder.tvonlinetime = (TextView) convertView.findViewById(R.id.tvonlinetime);
 				holder.imgonline = (ImageView) convertView.findViewById(R.id.imgonline);
 				holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
 				holder.tvage = (TextView) convertView.findViewById(R.id.tvage);
@@ -136,10 +138,10 @@ public class SearchBaseAdapter extends BaseAdapter {
 		holder.imghead.setPadding(10, 10, 10, 10);
 		LayoutParams pa = (LayoutParams) holder.imghead.getLayoutParams();
 		pa.height = holder.imghead.getWidth();
-//		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
 		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		holder.tvonlinetime.setText(data.getLists().get(position).getCity()+" "+StringUtil.transformTime(data.getLists().get(position).getLast_time()));
 		if(data.getLists().get(position).getLoyal_pass().equals("0")){
 			holder.imgonline.setImageResource(R.drawable.f3_13);
 		}else{

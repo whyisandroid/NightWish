@@ -34,8 +34,7 @@
                 android:padding="7dp"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="10dp"
-                android:background="@drawable/m_bg_head"
-                android:src="@drawable/m23_06" />
+                android:background="@drawable/m_bg_head" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -53,7 +52,7 @@
                         android:id="@+id/tvnickname"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="乱世飞尘"
+                        android:text=" "
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
 
@@ -84,7 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:text="56"
+                        android:text=" "
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -111,7 +110,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
-                    android:text="乱世飞尘" />
+                    android:text=" " />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -130,7 +129,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
-                    android:text="12345" />
+                    android:text=" " />
 
                 <TextView
                     android:id="@+id/tvmoneymiaoshu"
@@ -139,7 +138,7 @@
                     android:layout_weight="1"
                     android:textColor="@color/color_2"
                     android:textSize="@dimen/new_size_3"
-                    android:text="支付100元" />
+                    android:text=" " />
             </LinearLayout>
 
         </LinearLayout>
@@ -252,7 +251,7 @@
                         android:id="@+id/tvmoney1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100"
+                        android:text=" "
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/bt_light_red" />
                 </LinearLayout>

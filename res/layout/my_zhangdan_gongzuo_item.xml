@@ -17,7 +17,7 @@
             android:layout_weight="1"
             android:textColor="@color/color_2"
             android:textSize="@dimen/new_size_2"
-            android:text="吴沐熙:拍照" />
+            android:text=" " />
 
         <TextView
             android:id="@+id/tvjine"

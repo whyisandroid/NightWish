@@ -77,7 +77,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="双子座"
+                    android:text=" "
                     android:textColor="@color/color_3"
                     android:textSize="@dimen/new_size_3" />
 
@@ -91,7 +91,7 @@
                     android:id="@+id/tvdizhi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="北京"
+                    android:text=" "
                     android:textColor="@color/color_4"
                     android:textSize="@dimen/new_size_2" />
 
@@ -107,7 +107,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
-                    android:text="8分钟前"
+                    android:text=" "
                     android:textColor="@color/color_4"
                     android:textSize="@dimen/new_size_2" />
 
@@ -162,8 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/f10_42" />
+                    android:layout_marginRight="5dp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -184,7 +183,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="北京"
+                        android:text=" "
                         android:textColor="@color/color_4"
                     android:textSize="@dimen/new_size_1"/>
 
@@ -216,7 +215,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:layout_marginTop="12dp" >
+                    android:layout_marginTop="12dp"
+                    android:visibility="gone" >
 
                     <TextView
                         android:id="@+id/TextView19"
@@ -272,7 +272,7 @@
                         <TextView
                             android:id="@+id/tvnickname"
                             style="@style/main_color3_style"
-                            android:text="Vicky" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -308,7 +308,7 @@
                         <TextView
                             android:id="@+id/tvage"
                             style="@style/main_color3_style"
-                            android:text="25" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -344,7 +344,7 @@
                         <TextView
                             android:id="@+id/tvxingzuo1"
                             style="@style/main_color3_style"
-                            android:text="双子座" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -380,7 +380,7 @@
                         <TextView
                             android:id="@+id/tvzhiye"
                             style="@style/main_color3_style"
-                            android:text="演员" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -416,7 +416,7 @@
                         <TextView
                             android:id="@+id/tvjiaxiang"
                             style="@style/main_color3_style"
-                            android:text="湖南省阮江市" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -452,7 +452,7 @@
                         <TextView
                             android:id="@+id/tvheight"
                             style="@style/main_color3_style"
-                            android:text="172cm" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"

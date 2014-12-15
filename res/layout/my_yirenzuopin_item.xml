@@ -7,8 +7,7 @@
     <ImageView
         android:id="@+id/imgzuopin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/f10_49" />
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -62,7 +61,7 @@
             android:background="@color/main_white"
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/color_2"
-            android:text="一夜惊喜" />
+            android:text=" " />
 
         <TextView
             android:id="@+id/tvzuopinjuese"
@@ -71,7 +70,7 @@
             android:background="@color/main_white"
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/color_2"
-            android:text="米雪" />
+            android:text=" " />
 
         <TextView
             android:id="@+id/tvzuopintime"
@@ -80,7 +79,7 @@
             android:background="@color/main_white"
             android:textSize="@dimen/new_size_3"
                         android:textColor="@color/color_2"
-            android:text="2013年8月9日" />
+            android:text=" " />
 
     </LinearLayout>
 

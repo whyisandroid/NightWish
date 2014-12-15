@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:text="21"
+                        android:text=" "
                         android:textSize="@dimen/new_size_3"
                         android:textColor="@color/white" />
                 </LinearLayout>
@@ -77,7 +77,7 @@
                     android:layout_weight="1"
                     android:textSize="@dimen/new_size_3"
                         android:textColor="@color/color_3"
-                    android:text="双子座" />
+                    android:text=" " />
 
                 <ImageView
                     android:id="@+id/imageView7"
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/new_size_2"
                         android:textColor="@color/color_4"
-                    android:text="北京" />
+                    android:text=" " />
 
                 <ImageView
                     android:id="@+id/imageView8"
@@ -107,7 +107,7 @@
                     android:layout_marginRight="10dp"
                     android:textSize="@dimen/new_size_2"
                         android:textColor="@color/color_4"
-                    android:text="8分钟前" />
+                    android:text=" " />
 
             </LinearLayout>
 
@@ -160,8 +160,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:src="@drawable/f10_42" />
+                    android:layout_marginRight="5dp" />
 
                 <TextView
                     android:id="@+id/tvcontent"
@@ -306,7 +305,7 @@
                             android:id="@+id/tvage"
                             style="@style/main_color3_style"
                             android:layout_width="match_parent"
-                            android:text="25" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -343,7 +342,7 @@
                         <TextView
                             android:id="@+id/tvxingzuo1"
                             style="@style/main_color3_style"
-                            android:text="双子座" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -499,7 +498,7 @@
                         <TextView
                             android:id="@+id/tvsanwei"
                             style="@style/main_color3_style"
-                            android:text="89,60,95" />
+                            android:text=" " />
 
                         <LinearLayout
                             android:layout_width="match_parent"

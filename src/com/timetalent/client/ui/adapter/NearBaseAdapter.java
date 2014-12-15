@@ -123,6 +123,7 @@ public class NearBaseAdapter extends BaseAdapter {
 			if(data!= null && data.getLists().size() > position){
 				convertView = mInflater.inflate(R.layout.near_list_item, null);
 				holder.imghead = (ImageView) convertView.findViewById(R.id.imghead);
+				holder.tvonlinetime = (TextView) convertView.findViewById(R.id.tvonlinetime);
 				holder.tvname = (TextView) convertView.findViewById(R.id.tvname);
 				holder.imgonline = (ImageView) convertView.findViewById(R.id.imgonline);
 				holder.imgsex = (ImageView) convertView.findViewById(R.id.imgsex);
@@ -145,6 +146,7 @@ public class NearBaseAdapter extends BaseAdapter {
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
 		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getMajor());
+		holder.tvonlinetime.setText(data.getLists().get(position).getCity()+" "+data.getLists().get(position).getTime());
 		if(data.getLists().get(position).getLoyal_pass().equals("1")){
 			holder.imgonline.setImageResource(R.drawable.f3_13);
 		}else{

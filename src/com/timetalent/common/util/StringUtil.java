@@ -174,6 +174,20 @@ public class StringUtil {
 		return validation;
 	}
 	/**
+	 * 手机号码验证
+	 * @param s
+	 * @return
+	 */
+	public static String shenfenzheng(String s){
+		String validation = "";
+		if (TextUtils.isEmpty(s)) {
+			validation =  "请填写身份证号"; 
+		}else if (!RegExpUtil.personIdValidation(s)) {
+			validation =  "请填写正确的身份证号"; 
+		}
+		return validation;
+	}
+	/**
 	 * 验证内容非空
 	  * 方法描述：TODO
 	  * @param s

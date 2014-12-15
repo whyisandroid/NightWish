@@ -190,7 +190,7 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 		new Thread(){
 			public void run() {
 				Message msg = new Message();
-				msg.what = 2;
+				msg.what = 1;
 				msg.obj = PictureUtil.getImage(user.getAvatar(), user.getId(), "head");
 				handler.sendMessage(msg);
 			};
@@ -228,6 +228,11 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			break;
 		case R.id.tvaddmore:
 			if(l5.getVisibility() == View.GONE){
+				String temp = StringUtil.notnull(etitem.getText().toString());
+				if(!temp.isEmpty()){
+					ToastUtil.showToast(this, temp, ToastUtil.LENGTH_LONG);
+					return;
+				}
 				l5.setVisibility(View.VISIBLE);
 				etitem = (EditText) l5.findViewById(R.id.etitem);
 				etitem.addTextChangedListener(new TextWatcher() {
@@ -256,6 +261,11 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 				piclay.initView();
 				break;
 			}else if(l6.getVisibility() == View.GONE){
+				String temp = StringUtil.notnull(etitem.getText().toString());
+				if(!temp.isEmpty()){
+					ToastUtil.showToast(this, temp, ToastUtil.LENGTH_LONG);
+					return;
+				}
 				l6.setVisibility(View.VISIBLE);
 				etitem = (EditText) l6.findViewById(R.id.etitem);
 				etitem.addTextChangedListener(new TextWatcher() {
@@ -284,6 +294,11 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 				piclay.initView();
 				break;
 			}else if(l7.getVisibility() == View.GONE){
+				String temp = StringUtil.notnull(etitem.getText().toString());
+				if(!temp.isEmpty()){
+					ToastUtil.showToast(this, temp, ToastUtil.LENGTH_LONG);
+					return;
+				}
 				l7.setVisibility(View.VISIBLE);
 				etitem = (EditText) l7.findViewById(R.id.etitem);
 				etitem.addTextChangedListener(new TextWatcher() {
@@ -312,6 +327,11 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 				piclay.initView();
 				break;
 			}else if(l8.getVisibility() == View.GONE){
+				String temp = StringUtil.notnull(etitem.getText().toString());
+				if(!temp.isEmpty()){
+					ToastUtil.showToast(this, temp, ToastUtil.LENGTH_LONG);
+					return;
+				}
 				l8.setVisibility(View.VISIBLE);
 				etitem = (EditText) l8.findViewById(R.id.etitem);
 				etitem.addTextChangedListener(new TextWatcher() {
@@ -343,10 +363,17 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			}
 			break;
 		case R.id.btnext:
+			if(l8.getVisibility() == View.VISIBLE){
+				String temp = StringUtil.notnull(etitem.getText().toString());
+				if(!temp.isEmpty()){
+					ToastUtil.showToast(this, temp, ToastUtil.LENGTH_LONG);
+					return;
+				}
+			}
 			String realname = etrealname.getText().toString().trim();
 			String shenfenzheng = etshenfenzheng.getText().toString().trim();
 			String Validate1 = StringUtil.notnull(realname);
-			String Validate2 = StringUtil.notnull(shenfenzheng);
+			String Validate2 = StringUtil.shenfenzheng(shenfenzheng);
 			if(!TextUtils.isEmpty(Validate1)){
 				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
 				return;

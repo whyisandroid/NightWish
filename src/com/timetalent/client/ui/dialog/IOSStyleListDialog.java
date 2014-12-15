@@ -8,6 +8,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Userinfopackage;
 
 
 
@@ -25,6 +26,7 @@ public class IOSStyleListDialog extends BasicDialog implements DialogInterface{
 	public RadioButton rb2;
 	public RadioButton rb3;
 	public int index = 0;
+	Userinfopackage user;
 	public  Button bt_one;// button one
 	
 	public static final int DIALOG_ONE = 1;  //Dialog 样式  一个Button 
@@ -35,8 +37,9 @@ public class IOSStyleListDialog extends BasicDialog implements DialogInterface{
 	 * 创建一个新的实例 IOSStyleDialog.
 	 * @param 
 	 */
-	public IOSStyleListDialog(Context context,int type) {
+	public IOSStyleListDialog(Context context,int type,Userinfopackage u) {
 		this(context, 280, 150, R.style.add_dialog);
+		user = u;
 		if(type == DIALOG_ONE){
 			initOne();
 			this.show();
@@ -78,6 +81,11 @@ public class IOSStyleListDialog extends BasicDialog implements DialogInterface{
 	private void InitTwo() {
 		setContentView(R.layout.dialog_list_title_two);
 		rb1 = (RadioButton) findViewById(R.id.radio0);
+		if(user!= null){
+			if(user.getFollow_do().equals("Y")){
+				rb1.setText("取消关注");
+			}
+		}
 		rb2 = (RadioButton) findViewById(R.id.radio1);
 		rb3 = (RadioButton) findViewById(R.id.radio2);
 		rb1.setOnClickListener(new View.OnClickListener() {

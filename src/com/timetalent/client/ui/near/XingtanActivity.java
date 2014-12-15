@@ -253,7 +253,8 @@ Intent intent = new Intent(XingtanActivity.this,ChatActivity.class);
 		}
 	}
 	private void showMessageTwo(final Context context,String message,final String toast) {
-		final IOSStyleListDialog dialog = new IOSStyleListDialog(context, IOSStyleDialog.DIALOG_TWO);
+		final Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+		final IOSStyleListDialog dialog = new IOSStyleListDialog(context, IOSStyleDialog.DIALOG_TWO,u);
 		dialog.setLeft("取消", new OnClickListener() {
 			
 			@Override
@@ -265,13 +266,16 @@ Intent intent = new Intent(XingtanActivity.this,ChatActivity.class);
 			
 			@Override
 			public void onClick(View v) {
-				final Userinfopackage u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
 				dialog.closeDialog();
 				switch (dialog.index) {
 				case 0:
 					new Thread(){
 						public void run() {
-							controller.getContext().addBusinessData("my.do", "follow");
+							if(u.getFollow_do().equals("Y")){
+								controller.getContext().addBusinessData("my.do", "unfollow");
+							}else{
+								controller.getContext().addBusinessData("my.do", "follow");
+							}
 							controller.getContext().addBusinessData("my.target_id", u.getId());
 							controller.mydo_social();
 						};

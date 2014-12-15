@@ -8,6 +8,8 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -460,8 +462,14 @@ public class NearFragment extends Fragment implements OnClickListener {
 								RadioButton eb = new RadioButton(getActivity());
 								eb.setText(""+temp.getName());
 								eb.setBackgroundResource(R.drawable.btn_smote);
-								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
-//								eb.setTextColor(0X999999);
+								Drawable drawable = getActivity().getResources().getDrawable(
+										R.drawable.acc_add);
+								drawable.setBounds(0, 0,
+										drawable.getIntrinsicWidth(),
+										drawable.getIntrinsicHeight());
+								eb.setButtonDrawable(android.R.color.transparent);
+								eb.setCompoundDrawables(null,null,null,null);
+								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
 									@Override
@@ -491,8 +499,14 @@ public class NearFragment extends Fragment implements OnClickListener {
 							if(temp.getType().equals("scout")){
 								RadioButton eb = new RadioButton(getActivity());
 								eb.setBackgroundResource(R.drawable.btn_smote);
-								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
-//								eb.setTextColor(0X999999);
+								Drawable drawable = getActivity().getResources().getDrawable(
+										R.drawable.acc_add);
+								drawable.setBounds(0, 0,
+										drawable.getIntrinsicWidth(),
+										drawable.getIntrinsicHeight());
+								eb.setButtonDrawable(android.R.color.transparent);
+								eb.setCompoundDrawables(null,null,null,null);
+								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
@@ -523,8 +537,14 @@ public class NearFragment extends Fragment implements OnClickListener {
 							if(temp.getType().equals("fans")){
 								RadioButton eb = new RadioButton(getActivity());
 								eb.setBackgroundResource(R.drawable.btn_smote);
-								eb.setCompoundDrawablesWithIntrinsicBounds(null,null,null,null);
-//								eb.setTextColor(0XFF999999);
+								Drawable drawable = getActivity().getResources().getDrawable(
+										R.drawable.acc_add);
+								drawable.setBounds(0, 0,
+										drawable.getIntrinsicWidth(),
+										drawable.getIntrinsicHeight());
+								eb.setButtonDrawable(android.R.color.transparent);
+								eb.setCompoundDrawables(null,null,null,null);
+								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									

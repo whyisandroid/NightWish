@@ -345,6 +345,9 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 					lzuopin.setAdapter(adapter);
 					setListViewHeightBasedOnChildren(lzuopin);
 					adapter.notifyDataSetChanged();
+					if(!u.getType().equals("scout")){
+						img3.setVisibility(View.GONE);
+					}
 				}
 				break;
 			case 2:

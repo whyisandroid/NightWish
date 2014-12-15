@@ -63,10 +63,10 @@
               android:id="@+id/bt_guide_register"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_alignParentLeft="true" 
               android:background="@drawable/bt_new_register"
               android:textColor="@color/white"
               android:layout_marginRight="10dp"
+              android:text="用户注册"
               android:textSize="@dimen/new_size_4"
               />
 
@@ -74,10 +74,10 @@
               android:id="@+id/bt_guide_login"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:layout_alignParentRight="true" 
               android:layout_marginLeft="10dp"
               android:background="@drawable/bt_new_login"
               android:textColor="@color/white"
+              android:text="用户登录"
               android:textSize="@dimen/new_size_4"
               />
 

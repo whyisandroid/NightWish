@@ -64,6 +64,7 @@ import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.net.Request;
 import com.timetalent.common.util.Config;
 import com.timetalent.common.util.LogUtil;
+import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.aes.Md5;
 
@@ -121,7 +122,7 @@ public class AppServiceImpl implements AppService {
 			
 			// 登录环信 处理 
 						//调用sdk登陆方法登陆聊天服务器
-						final String name = "UID_"+resp.getData().getId();
+						final String name = StringUtil.getEsaeUserName(resp.getData().getId());
 						String pwd = Md5.digist(name);
 						EMChatManager.getInstance().login(name, pwd, new EMCallBack() {
 									

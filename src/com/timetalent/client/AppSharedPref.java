@@ -4,6 +4,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import com.timetalent.client.entities.LoginData;
+import com.timetalent.common.exception.BusinessException;
+import com.timetalent.common.util.Json_U;
+
 /**
  * ****************************************
 	 * 类描述： 持久化数据层
@@ -16,7 +20,7 @@ import android.content.SharedPreferences.Editor;
 public class AppSharedPref {
 	
 	/** SharePreferences名字 */
-	private  String SHARE_PREFERENCES_NAME = "CreditPerson";
+	private  String SHARE_PREFERENCES_NAME = "TimeTalent";
 	
 	/** The shared preferences. */
 	private static SharedPreferences sharedPreferences = null;
@@ -89,5 +93,42 @@ public class AppSharedPref {
 	  */
 	public String getToken() {
 		return sharedPreferences.getString("token", "");
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @return
+	  * @author: why
+	  * @time: 2014-12-16 下午6:58:43
+	  */
+	public LoginData getLoginInfo() {
+		String  jsonStr = sharedPreferences.getString("LoginData", "");
+		try {
+			return Json_U.parseJsonToObj(jsonStr, LoginData.class);
+		} catch (BusinessException e) {
+			e.printStackTrace();
+		}
+		return null;
+	
+	}
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @param data
+	  * @author: why
+	  * @time: 2014-12-16 下午6:58:49
+	  */
+	public void setLoginInfo(LoginData data) {
+
+		Editor e = sharedPreferences.edit();
+		try {
+			e.putString("LoginData", Json_U.objToJsonStr(data));
+		} catch (BusinessException e1) {
+			e1.printStackTrace();
+		}
+		e.commit();
+	
 	}
 }

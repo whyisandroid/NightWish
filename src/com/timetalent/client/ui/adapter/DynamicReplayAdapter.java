@@ -7,9 +7,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.timetalent.client.R;
@@ -78,12 +77,11 @@ public class DynamicReplayAdapter extends BaseAdapter{
 	
 	static class ViewHolder{
 		private TextView tv_dynamic_replay_name;
-		private TextView tv_dynamic_replay_content;
+		private Button tv_dynamic_replay_content;
 		
 		public void findView(View convertView){
 			tv_dynamic_replay_name = (TextView)convertView.findViewById(R.id.tv_dynamic_replay_name);
-			tv_dynamic_replay_content = (TextView)convertView.findViewById(R.id.tv_dynamic_replay_content);
+			tv_dynamic_replay_content = (Button)convertView.findViewById(R.id.tv_dynamic_replay_content);
 		}
 	}
-
 }

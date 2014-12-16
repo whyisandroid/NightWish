@@ -111,7 +111,7 @@ public class AppController {
 		this.currentActivity = currentActivity;
 	}
 	private static final int HANDLER_DIALOG = 0; //弹对话框
-	private static final int HANDLER_TOAST = 1; // 吐司 专用
+	public static final int HANDLER_TOAST = 1; // 吐司 专用
 	private static final int HANDLER_UPDATE = 2; // 更新
 	private static final int HANDLER_UPDATE_ABOUT = 3; // 更新 错误信息由提示 about
 	
@@ -161,9 +161,7 @@ public class AppController {
 	 */
 	public void login() {
 		try {
-			service.login();
-			IntentUtil.intent(currentActivity, MainFragmentActivity.class);
-			handler.obtainMessage(HANDLER_TOAST, "登陆成功").sendToTarget();
+			service.login(handler);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

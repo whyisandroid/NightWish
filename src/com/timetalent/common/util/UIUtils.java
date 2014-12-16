@@ -1,6 +1,7 @@
 package com.timetalent.common.util;
 
 import java.io.FileNotFoundException;
+import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -15,6 +16,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.timetalent.client.entities.Replay;
 import com.timetalent.client.ui.view.HorizontalListView;
 
 
@@ -66,6 +68,67 @@ public class UIUtils {
 		  params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
 		  listView.setLayoutParams(params);
 		 }
+	 
+	 
+	 /**
+	  * 方法描述：设置listView 的高度 等于所有元素相加
+	  * @param lv
+	  * @param la
+	  * @author: why
+	  * @time: 2014-5-7 下午4:51:40
+	 */
+	public static void setListViewHeight(ListView lv, BaseAdapter la,List<Replay> lists) {
+		// calculate height of all items.
+		int h = 0;
+		final int cnt = la.getCount();
+		for (int i = 0; i < cnt; i++) {
+			
+		}
+		int lenSize = 29;
+		for(int i = 0; i < lists.size(); i++){
+			View item = la.getView(i, null, lv);
+			item.measure(0, 0);
+		//	h += item.getMeasuredHeight();
+			int length = lists.get(i).getContents().length();
+			//int pixSize = getPixels(lists.get(i).getContents());
+		//	int width = item.getMeasuredWidth()/3;
+			//int line = pixSize % width  == 0 ? pixSize/width : pixSize/width +1;
+		int line = length%lenSize == 0?length/lenSize :length/lenSize +1;
+			h += item.getMeasuredHeight() * line;
+		}
+		// reset ListView height
+		ViewGroup.LayoutParams lp = lv.getLayoutParams();
+		lp.height = h + (lv.getDividerHeight() * (cnt - 1));
+		lv.setLayoutParams(lp);
+	}
+	
+	//通过计算得出字符串像素大小 
+    public static int getPixels(String parseStr){ 
+        if (parseStr == null || parseStr.length() <= 0) { 
+                return 0; 
+            } 
+        int pixelsLength = 0; 
+        char c; 
+        for (int i = parseStr.length()-1; i >= 0; i--) { 
+            c = parseStr.charAt(i); 
+            if ((c >= '0' && c <= '9') || (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')) { 
+                //字母, 数字 
+                pixelsLength++; 
+            } 
+            else { 
+                if (Character.isLetter(c)) { 
+                    //中文 
+                    pixelsLength += 2; 
+                } 
+                else { 
+                    //符号或控制字符 
+                    pixelsLength++; 
+                } 
+            } 
+        } 
+        pixelsLength = (int)pixelsLength/2; 
+        return pixelsLength; 
+    }
 	
 	
 	/**

@@ -21,6 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.ui.esaemob.User;
 import com.timetalent.client.ui.esaemob.UserDao;
 import com.timetalent.common.net.AppSocketInterface;
@@ -238,10 +239,6 @@ public class TimeTalentApplication extends Application {
 	public void saveTokenFlag(boolean flag) {
 		AppSharedPref.getInstance(this).setTokenFlag(flag);
 	}
-
-
-	
-	
 	
 	
 	/**
@@ -274,5 +271,23 @@ public class TimeTalentApplication extends Application {
 			contactList = dao.getContactList();
 		}
 		return contactList;
+	}
+	
+	/**
+	 * 获取登录信息
+	 * 
+	 * @return
+	 */
+	public LoginData getLoginInfo() {
+		return AppSharedPref.getInstance(this).getLoginInfo();
+	}
+	/**
+	 * 保存登录信息
+	 * 
+	 * @param username
+	 * @param pwd
+	 */
+	public void saveLoginInfo(LoginData data) {
+		AppSharedPref.getInstance(this).setLoginInfo(data);
 	}
 }

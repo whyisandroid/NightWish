@@ -1,28 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="8dp"
+    android:paddingBottom="20dp" >
+    <TextView
+        android:id="@+id/tv_dynamic_replay_name"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        android:paddingBottom="20dp" >
+        android:text="NO DATA：" />
 
-        <TextView
-            android:id="@+id/tv_dynamic_replay_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NO DATA：" />
+    <Button
+        android:id="@+id/tv_dynamic_replay_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:textColor="@color/color_2"
+        android:textSize="@dimen/new_size_2"
+        android:background="@null"
+        android:text="chance" />
 
-        <TextView
-            android:id="@+id/tv_dynamic_replay_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp"
-            android:singleLine="true"
-            android:text="chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16" />
-    </LinearLayout>
-</RelativeLayout>
+    <CheckedTextView
+        android:id="@+id/checkedTextView1"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:text="CheckedTextView" />
+
+    <TextView
+        android:id="@+id/tv_dynamic_replay_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:visibility="gone"
+        android:text="chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16chance_text16" />
+</LinearLayout>

@@ -2,6 +2,8 @@ package com.timetalent.client.service;
 
 import java.util.List;
 
+import android.os.Handler;
+
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.common.exception.BusinessException;
 
@@ -14,7 +16,7 @@ import com.timetalent.common.exception.BusinessException;
  ******************************************/
 public interface AppService {
 	/** 登陆 **/
-	public void login() throws BusinessException;
+	public void login(Handler handler) throws BusinessException;
 	/**环信注册**/
 	public void huanxin_reg() throws BusinessException;
 	/**

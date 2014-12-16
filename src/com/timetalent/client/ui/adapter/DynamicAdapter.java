@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,10 @@ public class DynamicAdapter extends BaseAdapter{
 				ViewHolder holder2 = (ViewHolder)msg.obj;
 				holder2.iv_dynamic_good.setSelected(true);
 				holder2.iv_dynamic_good_num.setText(Integer.valueOf(holder2.iv_dynamic_good_num.getText().toString())-1+"");
+				break;
+			case 3:
+				replayList replay = (replayList)msg.obj;
+				UIUtils.setListViewHeight(replay.lv_dynamic_replay, replay.replayAdapter);
 				break;
 			default:
 				break;
@@ -221,12 +226,21 @@ public class DynamicAdapter extends BaseAdapter{
 		});
 		
 		// 处理 回复
+		
+		
+		
 				DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
 				holder.lv_dynamic_replay.setAdapter(replayAdapter);
 				//UIUtils.setListViewHeightBasedOnChildren(holder.lv_dynamic_replay);
-				UIUtils.setListViewHeight(holder.lv_dynamic_replay, replayAdapter);
+				/*Message msg = new Message();
+				msg.what = 3;
+				msg.obj = new replayList(holder.lv_dynamic_replay, replayAdapter); 
+				handler.sendMessageDelayed(msg, 1000);*/
+				UIUtils.setListViewHeight(holder.lv_dynamic_replay,replayAdapter);
 		return convertView;
 	}
+	
+	
 	
 	private boolean invaild(ViewHolder holder,String feedID) {
 		String message = holder.et_dynamic_message.getText().toString().trim();
@@ -240,7 +254,22 @@ public class DynamicAdapter extends BaseAdapter{
 		return true;
 	}
 	
+	class replayList{
 
+		private ListView lv_dynamic_replay;
+		private DynamicReplayAdapter replayAdapter;
+		/**
+		  * 类的构造方法
+		  * 创建一个新的实例 replayList.
+		  * @param 
+		  * @param lv_dynamic_replay
+		  * @param replayAdapter
+		  */
+		public replayList(ListView lv_dynamic_replay,DynamicReplayAdapter replayAdapter) {
+			this.lv_dynamic_replay = lv_dynamic_replay;
+			this.replayAdapter = replayAdapter;
+		}
+	}
 	
 	public static class ViewHolder{
 		private ImageView iv_dynamic_head; 				

@@ -9,6 +9,7 @@ import java.util.Map;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
+import android.os.Handler;
 import android.util.Log;
 
 import com.easemob.EMCallBack;
@@ -56,6 +57,7 @@ import com.timetalent.client.entities.json.servicelistResp;
 import com.timetalent.client.service.AppContext;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.service.AppService;
+import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.esaemob.Constant;
 import com.timetalent.client.ui.esaemob.User;
 import com.timetalent.client.ui.esaemob.UserDao;
@@ -63,6 +65,7 @@ import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.exception.ErrorMessage;
 import com.timetalent.common.net.Request;
 import com.timetalent.common.util.Config;
+import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
@@ -94,7 +97,7 @@ public class AppServiceImpl implements AppService {
 	 * 登录
 	 */
 	@Override
-	public void login() throws BusinessException {
+	public void login(final Handler handler) throws BusinessException {
 		String account = (String)context.getBusinessData("user.account");
 		String password = (String)context.getBusinessData("user.password");
 		Request<LoginResp> request = new Request<LoginResp>();
@@ -106,73 +109,22 @@ public class AppServiceImpl implements AppService {
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_LOGIN);
 		request.setR_calzz(LoginResp.class);
-		LoginResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		final LoginResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
 		if ("1".equals(resp.getStatus())) {
-			TimeTalentApplication.getInstance().setLogin(true);
-			// 登录成功 存储 账户
-			if (resp.getData() != null) {
-				context.addBusinessData("loginData", resp.getData());
-				context.addBusinessData("_session_id", resp.getData().getSession_id());
-				context.addBusinessData("Login.type", resp.getData().getType());
-				context.addBusinessData("Login.money", resp.getData().getMoney());
-				context.addBusinessData("Login.avatar", resp.getData().getAvatar());
-				context.addBusinessData("Login.nickname", resp.getData().getNickname());
-			}
-			
-			
 			// 登录环信 处理 
 						//调用sdk登陆方法登陆聊天服务器
 						final String name = StringUtil.getEsaeUserName(resp.getData().getId());
-						String pwd = Md5.digist(name);
+						final String pwd = Md5.digist(name);
 						EMChatManager.getInstance().login(name, pwd, new EMCallBack() {
 									
 						    @Override
 						    public void onSuccess() {
-						    	// ** 第一次登录或者之前logout后，加载所有本地群和回话
-								// ** manually load all local groups and
-								// conversations in case we are auto login
-								EMGroupManager.getInstance().loadAllGroups();
-								EMChatManager.getInstance().loadAllConversations();
-						    	
-						    	LogUtil.Log("EMChatManager", "onSuccess");
-						    	// 登陆成功，保存用户名密码
-								TimeTalentApplication.getInstance().setUserName(name);
-								//TimeTalentApplication.getInstance().setPassword(pwd);
-								try {
-									List<String> usernames = EMContactManager.getInstance().getContactUserNames();
-									EMLog.d("roster", "contacts size: " + usernames.size());
-									
-									Map<String, User> userlist = new HashMap<String, User>();
-									for (String username : usernames) {
-										User user = new User();
-										user.setUsername(username);
-									//	setUserHearder(username, user);
-										userlist.put(username, user);
-									}
-									// 添加user"申请与通知"
-									User newFriends = new User();
-									newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
-									newFriends.setNick("申请与通知");
-									newFriends.setHeader("");
-									userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
-									
-									// 存入内存
-									TimeTalentApplication.getInstance().setContactList(userlist);
-									// 存入db
-									UserDao dao = new UserDao(AppController.getController().getCurrentActivity());
-									List<User> users = new ArrayList<User>(userlist.values());
-									dao.saveContactList(users);
-									Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
-									
-									// 获取群聊列表(群聊里只有groupid和groupname的简单信息),sdk会把群组存入到内存和db中
-									EMGroupManager.getInstance().getGroupsFromServer();
-								} catch (EaseMobException e) {
-									e.printStackTrace();
-								}catch(Exception e){
-									e.printStackTrace();
-								}
+						    	emosOnSuccess(name);
+						    	IntentUtil.intent(AppController.getController().getCurrentActivity(), MainFragmentActivity.class);
+								handler.obtainMessage(AppController.HANDLER_TOAST, "登陆成功").sendToTarget();
+
+								saveLoginData(resp);
 						    }
-							
 						    @Override
 						    public void onProgress(int progress, String status) {
 						    }
@@ -184,12 +136,102 @@ public class AppServiceImpl implements AppService {
 										huanxin_reg();
 									} catch (BusinessException e) {
 										e.printStackTrace();
+									}finally{
+										EMChatManager.getInstance().login(name, pwd, new EMCallBack() {
+										    @Override
+										    public void onSuccess() {
+										    	emosOnSuccess(name);
+										    	saveLoginData(resp);
+										    	IntentUtil.intent(AppController.getController().getCurrentActivity(), MainFragmentActivity.class);
+												handler.obtainMessage(AppController.HANDLER_TOAST, "登陆成功").sendToTarget();
+										    }
+										    @Override
+										    public void onProgress(int progress, String status) {
+										    }
+										    @Override
+										    public void onError(int code, String message){
+										    	LogUtil.Log("EMChatManager", "onError");
+										    		handler.obtainMessage(AppController.HANDLER_TOAST, "登录失败").sendToTarget();
+										    }
+										});
 									}
 						    	}
 						    }
 						});
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
+		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @param resp
+	  * @author: why
+	  * @time: 2014-12-16 下午6:56:13
+	  */
+	private void saveLoginData(final LoginResp resp) {
+		TimeTalentApplication.getInstance().setLogin(true);
+		// 登录成功 存储 账户
+		if (resp.getData() != null) {
+			TimeTalentApplication.getInstance().saveLoginInfo(resp.getData());
+			context.addBusinessData("loginData", resp.getData());
+			context.addBusinessData("_session_id", resp.getData().getSession_id());
+			context.addBusinessData("Login.type", resp.getData().getType());
+			context.addBusinessData("Login.money", resp.getData().getMoney());
+			context.addBusinessData("Login.avatar", resp.getData().getAvatar());
+			context.addBusinessData("Login.nickname", resp.getData().getNickname());
+		}
+	}
+	
+	/**
+	  * 方法描述：环信登录成功处理
+	  * @param name
+	  * @author: why
+	  * @time: 2014-12-16 下午6:41:51
+	  */
+	private void emosOnSuccess(
+			final String name) {
+		// ** 第一次登录或者之前logout后，加载所有本地群和回话
+		// ** manually load all local groups and
+		// conversations in case we are auto login
+		EMGroupManager.getInstance().loadAllGroups();
+		EMChatManager.getInstance().loadAllConversations();
+   	LogUtil.Log("EMChatManager", "onSuccess");
+   	// 登陆成功，保存用户名密码
+		TimeTalentApplication.getInstance().setUserName(name);
+		//TimeTalentApplication.getInstance().setPassword(pwd);
+		try {
+			List<String> usernames = EMContactManager.getInstance().getContactUserNames();
+			EMLog.d("roster", "contacts size: " + usernames.size());
+			
+			Map<String, User> userlist = new HashMap<String, User>();
+			for (String username : usernames) {
+				User user = new User();
+				user.setUsername(username);
+			//	setUserHearder(username, user);
+				userlist.put(username, user);
+			}
+			// 添加user"申请与通知"
+			User newFriends = new User();
+			newFriends.setUsername(Constant.NEW_FRIENDS_USERNAME);
+			newFriends.setNick("申请与通知");
+			newFriends.setHeader("");
+			userlist.put(Constant.NEW_FRIENDS_USERNAME, newFriends);
+			
+			// 存入内存
+			TimeTalentApplication.getInstance().setContactList(userlist);
+			// 存入db
+			UserDao dao = new UserDao(AppController.getController().getCurrentActivity());
+			List<User> users = new ArrayList<User>(userlist.values());
+			dao.saveContactList(users);
+			Hashtable<String, EMConversation> conversations = EMChatManager.getInstance().getAllConversations();
+			
+			// 获取群聊列表(群聊里只有groupid和groupname的简单信息),sdk会把群组存入到内存和db中
+			EMGroupManager.getInstance().getGroupsFromServer();
+		} catch (EaseMobException e) {
+			e.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
 		}
 	}
 	

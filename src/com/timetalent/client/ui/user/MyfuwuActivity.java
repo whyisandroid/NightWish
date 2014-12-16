@@ -1,20 +1,31 @@
 package com.timetalent.client.ui.user;
 
+import java.util.List;
+
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.dictionarypackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.DynamicAdapter;
@@ -42,7 +53,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	Button btok;
 	private GridView  gvhead;
 	private GridView  gvbody;
-	
+	android.widget.RadioGroup rgzhiye;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -77,7 +88,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 		gvhead = (GridView) findViewById(R.id.gvhead);
 		gvbody = (GridView) findViewById(R.id.gvbody);
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
-		
+		rgzhiye = (android.widget.RadioGroup) findViewById(R.id.rgzhiye);
 	}
 
 	/**
@@ -88,9 +99,9 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 	 */
 	private void initView() {
 		headadapter = new fuwuheadAdapter(MyfuwuActivity.this);
-		bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this);
+//		bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,"");
 		gvhead.setAdapter(headadapter);
-		gvbody.setAdapter(bodyadapter);
+//		gvbody.setAdapter(bodyadapter);
 		setListViewHeightBasedOnChildren(gvhead);
 		setListViewHeightBasedOnChildren(gvbody);
 		btok = (Button) findViewById(R.id.btok);
@@ -100,6 +111,13 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		btok.setOnClickListener(this);
+		new Thread(){
+			public void run() {
+				controller.getContext().addBusinessData("dictionary.type", "star");
+				controller.dictionary();
+				handler.sendEmptyMessage(2);
+			};
+		}.start();
 	}
 	/**
 	 * 重新计算listview高度
@@ -149,6 +167,38 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 				initView();
 				break;
 			case 2:
+				List<dictionarypackage> data = (List<dictionarypackage>) controller.getContext().getBusinessData("DictionaryData");
+				if(data != null){
+					rgzhiye.removeAllViews();
+					for(final dictionarypackage temp:data){
+						if(temp.getType().equals("star")){
+							RadioButton eb = new RadioButton(MyfuwuActivity.this);
+							eb.setText(""+temp.getName());
+							eb.setBackgroundResource(R.drawable.btn_smote);
+							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(
+									R.drawable.acc_add);
+							drawable.setBounds(0, 0,
+									drawable.getIntrinsicWidth(),
+									drawable.getIntrinsicHeight());
+							eb.setButtonDrawable(android.R.color.transparent);
+							eb.setCompoundDrawables(null,null,null,null);
+							eb.setTextColor(Color.parseColor("#999999"));
+							eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+								@Override
+								public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+									if(isChecked){
+										Log.i("输出", temp.getKey());
+										bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,temp.getKey());
+										gvbody.setAdapter(bodyadapter);
+									}
+								}
+							});
+							rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+						}
+					}
+				}
+				
+			
 				break;
 			case 3:
 				break;

@@ -41,20 +41,29 @@ import com.timetalent.client.ui.adapter.HaoyouAdapter.ViewHolder;
 public class fuwubodyAdapter extends BaseAdapter{//
 	private LayoutInflater mInflater;
 	List<Servicelistpackage> list;
+	List<Servicelistpackage> nowlist;
 	List<Servicelistpackage> addlist;
 	Context mcontext;
-	public fuwubodyAdapter(Context context){
+	String type;
+	public fuwubodyAdapter(Context context,String t){
 		mInflater = LayoutInflater.from(context);
 		mcontext = context;
+		type = t;
 		list = (List<Servicelistpackage>) AppController.getController(((Activity)context)).getContext().getBusinessData("servicelistData");
+		nowlist =  new ArrayList<Servicelistpackage>();
+		for(Servicelistpackage temp:list){
+			if(temp.getType().equals(type)){
+				nowlist.add(temp);
+			}
+		}
 		addlist = new ArrayList<Servicelistpackage>();
 	}
 	/* (non-Javadoc)
 	 * @see android.widget.Adapter#getCount()
 	 */
 	@Override
-	public int getCount() {if(list != null){
-		return list.size();
+	public int getCount() {if(nowlist != null){
+		return nowlist.size();
 	}else{
 		return 0;	
 	}}
@@ -102,7 +111,7 @@ public class fuwubodyAdapter extends BaseAdapter{//
 				public void onClick(View v) {
 					holder.l1.setVisibility(View.GONE);
 					holder.l2.setVisibility(View.VISIBLE);
-					addlist.add(list.get(position));
+					addlist.add(nowlist.get(position));
 					AppController.getController(((Activity)mcontext)).getContext().addBusinessData("addlist", addlist);
 				}
 			});
@@ -112,7 +121,7 @@ public class fuwubodyAdapter extends BaseAdapter{//
 				public void onClick(View v) {
 					holder.l1.setVisibility(View.VISIBLE);
 					holder.l2.setVisibility(View.GONE);
-					addlist.remove(list.get(position));
+					addlist.remove(nowlist.get(position));
 					AppController.getController(((Activity)mcontext)).getContext().addBusinessData("addlist", addlist);
 				}
 			});
@@ -120,9 +129,9 @@ public class fuwubodyAdapter extends BaseAdapter{//
 		}else{
             holder = (ViewHolder)convertView.getTag();//取出ViewHolder对象 
             }
-		if(list != null){
-			holder.tvindex.setText(""+list.get(position).getName());
-			holder.tvindex1.setText(""+list.get(position).getName());
+		if(nowlist != null){
+			holder.tvindex.setText(""+nowlist.get(position).getName());
+			holder.tvindex1.setText(""+nowlist.get(position).getName());
 		}
 		return convertView;
 	}

@@ -29,7 +29,10 @@ import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Userinfopackage;
+import com.timetalent.client.entities.advocatuspackage;
+import com.timetalent.client.entities.awardpackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
@@ -82,6 +85,8 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 	TextView tvage1;
 	ImageView imgsex1;
 	TextView tvcontent;
+	TextView tvdaiyan;
+	TextView tvhuojiangjilu;
 	int index = 0;
 	String userid = "1";
 	public int screenw = 0;
@@ -145,6 +150,8 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 		 tvage1 = (TextView) findViewById(R.id.tvage1);
 		 imgsex1 = (ImageView) findViewById(R.id.imgsex1);
 		 tvcontent = (TextView) findViewById(R.id.tvcontent);
+		 tvdaiyan = (TextView) findViewById(R.id.tvdaiyan); 
+		 tvhuojiangjilu = (TextView) findViewById(R.id.tvhuojiangjilu); 
 	}
 
 	/**
@@ -311,6 +318,7 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 			switch (msg.what) {
 			case 1:
 				u = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				LoginData user = (LoginData) controller.getContext().getBusinessData("loginData");
 				if(u != null){
 					((TextView)YirenActivity.this.findViewById(R.id.main_top_title)).setText(""+u.getNickname());
 					new Thread(){
@@ -345,9 +353,19 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 					lzuopin.setAdapter(adapter);
 					setListViewHeightBasedOnChildren(lzuopin);
 					adapter.notifyDataSetChanged();
-					if(!u.getType().equals("scout")){
+					if(!user.getType().equals("scout")){
 						img3.setVisibility(View.GONE);
 					}
+					String awards = "";
+					for(awardpackage a:u.getMore().getAward()){
+						awards+= a.getContent()+"\n";
+					}
+					tvdaiyan.setText(awards);
+					String huojiang = "";
+					for(advocatuspackage b:u.getMore().getAdvocatus()){
+						huojiang+= b.getContent()+"\n";
+					}
+					tvhuojiangjilu.setText(huojiang);
 				}
 				break;
 			case 2:

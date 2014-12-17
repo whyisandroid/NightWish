@@ -386,6 +386,9 @@ case 2:
 				break;
 			case 2:
 				Userinfopackage info = (Userinfopackage) controller.getContext().getBusinessData("UserinfoData");
+				if(info == null){
+					return ;
+				}
 				if(info.getLoyal_pass().equals("1")){
 					imgloyal_pass.setImageResource(R.drawable.f3_13);
 				}else{

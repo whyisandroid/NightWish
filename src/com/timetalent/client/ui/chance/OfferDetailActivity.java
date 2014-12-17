@@ -141,8 +141,8 @@ public class OfferDetailActivity extends BaseActivity implements OnClickListener
 				@Override
 				public void run() {
 					controller.getContext().addBusinessData("Chat.target_id",data.getUser_id() );
-					//controller.chatAccess(data.getUser_id(),data.getUser().getNickname(),data.getUser().getAvatar());
-					controller.chatAccess("10060","看看","http://118.144.74.24//xingtan/Uploads/avatar/201412/5486a52489e43.jpeg");
+					controller.chatAccess(data.getUser_id(),data.getUser().getNickname(),data.getUser().getAvatar());
+					//controller.chatAccess("10060","看看","http://118.144.74.24//xingtan/Uploads/avatar/201412/5486a52489e43.jpeg");
 					ProgressDialogUtil.closeProgressDialog();
 				}
 			}).start();

@@ -3,7 +3,9 @@ package com.timetalent.common.util;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
+import com.timetalent.client.entities.Feed;
 import com.timetalent.common.util.aes.Md5;
 
 import android.app.Activity;
@@ -52,7 +54,7 @@ public class StringUtil {
 		if(!TextUtils.isEmpty(time)){
 			if(RegExpUtil.isNumeric(time)){
 				SimpleDateFormat sdf = new SimpleDateFormat(formant);
-				return sdf.format(new Date(Long.valueOf(time)));
+				return sdf.format(new Date(Long.valueOf(time)*1000));
 			}else{
 				return time;
 			}
@@ -232,4 +234,14 @@ public class StringUtil {
 		}
 		return sb.toString();
 	}
+	
+
+	public static boolean containsFeed(Feed feed, List<Feed> listFeeds) {
+		for (Feed feed2 : listFeeds) {
+			if(feed2.getId().equals(feed.getId())){
+				return true;
+			}
+		}
+		return false;
+	};
 }

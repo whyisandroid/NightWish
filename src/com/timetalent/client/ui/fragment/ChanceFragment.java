@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -40,6 +41,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private Context mContext;
 	private AppController controller;
 	private ImageView main_top_find_right;
+	private Button main_top_find_right2;
 	
 	private RadioButton rb_chance_hot;
 	private RadioButton rb_chance_new;
@@ -91,6 +93,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		rb_chance_new = (RadioButton)view.findViewById(R.id.rb_chance_new);
 		main_top_find_query = (ImageView)view.findViewById(R.id.main_top_find_query);
 		main_top_find_message = (EditText)view.findViewById(R.id.main_top_find_message);
+		main_top_find_right2 = (Button)view.findViewById(R.id.main_top_find_right2);
 	}
 	/**
 	 * 方法描述：TODO
@@ -103,6 +106,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		rb_chance_new.setOnClickListener(this);
 		main_top_find_right.setOnClickListener(this);
 		main_top_find_query.setOnClickListener(this);
+		main_top_find_right2.setOnClickListener(this);
 		update();
 	}
 	
@@ -125,6 +129,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_find_right2:
 		case R.id.main_top_find_query:
 			if(invaild()){
 				query();
@@ -157,8 +162,10 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		String type = controller.getContext().getStringData("Login.type");
 		if("scout".equals(type)){
 			main_top_find_right.setVisibility(View.VISIBLE);
+			main_top_find_right2.setVisibility(View.GONE);
 		}else{
 			main_top_find_right.setVisibility(View.INVISIBLE);
+			main_top_find_right2.setVisibility(View.VISIBLE);
 		}
 		
 		data = (TaskData)controller.getContext().getBusinessData("Task_lists_data");

@@ -47,8 +47,9 @@ public interface AppService {
 	/**申请报名某机会Task/apply***/
 	public void chanceApply() throws BusinessException;
 	
-	/**获取 用户 最新 动态***/
-	public void dynamicIndex() throws BusinessException;
+	/**获取 用户 最新 动态
+	 * @param pageNum ***/
+	public void dynamicIndex(int pageNum) throws BusinessException;
 	
 	/**获取某个用户的动态列表***/
 	public void dynamicWho() throws BusinessException;

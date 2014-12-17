@@ -6,16 +6,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -207,6 +206,15 @@ public class DynamicAdapter extends BaseAdapter{
 			@Override
 			public void onClick(View v) {
 				holder.rl_dynamic_message.setVisibility(View.VISIBLE ==holder.rl_dynamic_message.getVisibility()?View.GONE:View.VISIBLE );
+				if(View.VISIBLE ==holder.rl_dynamic_message.getVisibility()){
+					holder.et_dynamic_message.setFocusable(true);
+					 holder.et_dynamic_message.setFocusableInTouchMode(true);
+					holder.et_dynamic_message.requestFocus();
+					
+					InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+					imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+					
+				}
 			}
 		});
 		holder.tv_dynamic_send.setOnClickListener(new OnClickListener() {

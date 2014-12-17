@@ -1,13 +1,11 @@
 package com.timetalent.client.ui.dynamic;
 
 
-import android.app.ActionBar.LayoutParams;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 

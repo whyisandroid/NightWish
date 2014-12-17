@@ -398,15 +398,17 @@ public class AppController {
 		}
 	}
 	
-	public void dynamicIndex(Handler mHandler) {
+	public void dynamicIndex(Handler mHandler, int pageNum) {
 			try {
-				service.dynamicIndex();
+				service.dynamicIndex(pageNum);
 				mHandler.obtainMessage(0).sendToTarget();
 			} catch (BusinessException e) {
 				e.printStackTrace();
+				mHandler.obtainMessage(1).sendToTarget();
 				handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 			} catch (Exception e) {
 				e.printStackTrace();
+				mHandler.obtainMessage(1).sendToTarget();
 			}
 		
 	}
@@ -415,7 +417,7 @@ public class AppController {
 		try {
 			service.dynamicRepaly();
 			adaHandler.obtainMessage(1,holder).sendToTarget();
-			dynamicIndex(mHandler);
+			//dynamicIndex(mHandler);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();

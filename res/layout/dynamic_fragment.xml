@@ -5,12 +5,16 @@
     android:orientation="vertical" >
 	<include layout="@layout/main_top_image_layout" />
 
-	<ListView
-	    android:id="@+id/lv_dynamic"
+	<com.timetalent.client.ui.view.PullToRefreshView
+	    android:id="@+id/main_pull_refresh_view"
 	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" 
-	    android:layout_marginTop="10dp"
-	    >
-	</ListView>
-
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical" >
+		<ListView
+		    android:id="@+id/lv_dynamic"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp" >
+		</ListView>
+	</com.timetalent.client.ui.view.PullToRefreshView>
 </LinearLayout>

@@ -15,12 +15,13 @@
         android:id="@+id/tv_dynamic_replay_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:gravity="left"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
+        android:text="chance_te"
         android:textColor="@color/color_2"
-        android:textSize="@dimen/new_size_2"
-        android:background="@null"
-        android:text="chance" />
+        android:textSize="@dimen/new_size_2" />
 
     <CheckedTextView
         android:id="@+id/checkedTextView1"

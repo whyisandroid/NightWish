@@ -82,7 +82,6 @@ public class AppServiceImpl implements AppService {
 	@SuppressWarnings("unused")
 	private String TAG = "AppServiceImpl";
 	private AppContext context;
-
 	/**
 	 * 类的构造方法 创建一个新的实例 AppServiceImpl.
 	 * 
@@ -469,13 +468,13 @@ public class AppServiceImpl implements AppService {
 
 	
 	@Override
-	public void dynamicIndex() throws BusinessException {
+	public void dynamicIndex(int pageNum) throws BusinessException {
 		String _session_id = context.getStringData("_session_id");
 		Request<FeedResp> request = new Request<FeedResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", _session_id));
-		nameValuePairs.add(new BasicNameValuePair("page", "1"));
-		nameValuePairs.add(new BasicNameValuePair("page_per", "100"));
+		nameValuePairs.add(new BasicNameValuePair("page", pageNum+""));
+		nameValuePairs.add(new BasicNameValuePair("page_per", "10"));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
 		request.setUrl(Config.HTTP_USER_DYNAMIC_INDEX);
 		request.setR_calzz(FeedResp.class);
@@ -485,7 +484,6 @@ public class AppServiceImpl implements AppService {
 		} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
-	
 	}
 	
 	

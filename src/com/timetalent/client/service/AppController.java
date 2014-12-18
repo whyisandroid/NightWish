@@ -15,8 +15,10 @@ import android.text.TextUtils;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
+import com.timetalent.client.ui.chance.OfferAddActivity;
 import com.timetalent.client.ui.chance.OfferDetailActivity;
 import com.timetalent.client.ui.dialog.DialogUtil;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
@@ -279,6 +281,7 @@ public class AppController {
 	public void chanceAdd() {
 		try {
 			service.chanceAdd();
+			OfferAddActivity.ADDFlag = true;
 			handler.obtainMessage(HANDLER_TOAST,"发表成功").sendToTarget();
 			currentActivity.finish();
 		} catch (BusinessException e) {
@@ -328,14 +331,16 @@ public class AppController {
 		}
 	}
 	
-	public void chanceLists(Handler mHandler) {
+	public void chanceLists(Handler mHandler,int num) {
 		try {
-			service.chanceLists();
+			service.chanceLists(num);
 			mHandler.obtainMessage(0).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			mHandler.obtainMessage(1).sendToTarget();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {
+			mHandler.obtainMessage(1).sendToTarget();
 			e.printStackTrace();
 		}
 	}
@@ -381,6 +386,7 @@ public class AppController {
 	public void dynamicAddPic(List<PicValuePair> picValuePair) {
 		try {
 			service.dynamicAdd_pic(picValuePair);
+			DynamicAddActivity.ADDFlag = true;
 			handler.obtainMessage(HANDLER_TOAST,"发布成功").sendToTarget();
 			currentActivity.finish();
 		} catch (BusinessException e) {

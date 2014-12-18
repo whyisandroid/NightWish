@@ -2,6 +2,7 @@ package com.timetalent.client.ui.dynamic;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -63,7 +64,13 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener,O
 				if(data != null){
 					for (Feed feed : data.getLists()) {
 						if(!StringUtil.containsFeed(feed,listFeeds)){
-							listFeeds.add(feed);
+							Collections.reverse(feed.getReply());
+							if(DynamicAddActivity.ADDFlag){
+								listFeeds.add(0,feed);
+								DynamicAddActivity.ADDFlag = false;
+							}else{
+								listFeeds.add(feed);
+							}
 						}
 					}
 					adapter.notifyDataSetChanged();
@@ -119,13 +126,13 @@ public class DynamicMyActivity extends BaseActivity implements OnClickListener,O
 		main_pull_refresh_view.setOnFooterRefreshListener(this);
 		adapter = new DynamicAdapter(this,listFeeds,mHandler);
 		lv_dynamic.setAdapter(adapter);
-		dynamic(1);
 	}
 	
 
 	@Override
 	public void onResume() {
 		super.onResume();
+		dynamic(1);
 	}
 	
 	/**

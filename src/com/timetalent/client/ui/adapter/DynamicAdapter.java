@@ -87,11 +87,7 @@ public class DynamicAdapter extends BaseAdapter{
 			default:
 				break;
 			}
-			
 		}
-
-		
-	
 	};
 	
 	
@@ -227,10 +223,8 @@ public class DynamicAdapter extends BaseAdapter{
 					holder.et_dynamic_message.setFocusable(true);
 					 holder.et_dynamic_message.setFocusableInTouchMode(true);
 					holder.et_dynamic_message.requestFocus();
-					
 					InputMethodManager imm = (InputMethodManager)mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 					imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
-					
 				}
 			}
 		});
@@ -238,7 +232,6 @@ public class DynamicAdapter extends BaseAdapter{
 		
 		// 处理 回复
 		List<Replay> replayList =feed.getReply();
-		Collections.reverse(replayList);
 		holder.setReplayList(replayList);
 		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, holder.replayList);
 		holder.lv_dynamic_replay.setAdapter(replayAdapter);

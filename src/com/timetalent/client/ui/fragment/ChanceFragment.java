@@ -1,5 +1,8 @@
 package com.timetalent.client.ui.fragment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,11 +21,16 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 
 import com.timetalent.client.R;
+import com.timetalent.client.entities.Feed;
+import com.timetalent.client.entities.Task;
 import com.timetalent.client.entities.TaskData;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.adapter.ChanceAdapter;
 import com.timetalent.client.ui.chance.OfferAddActivity;
-import com.timetalent.client.ui.chance.OfferDetailActivity;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
+import com.timetalent.client.ui.view.PullToRefreshView;
+import com.timetalent.client.ui.view.PullToRefreshView.OnFooterRefreshListener;
+import com.timetalent.client.ui.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
 import com.timetalent.common.util.StringUtil;
@@ -36,7 +44,7 @@ import com.timetalent.common.util.ToastUtil;
  * @author: why
  * @time: 2014-10-10 下午6:31:43 
  ******************************************/
-public class ChanceFragment extends Fragment implements OnClickListener {
+public class ChanceFragment extends Fragment implements OnClickListener ,OnHeaderRefreshListener,OnFooterRefreshListener {
 	private View view;
 	private Context mContext;
 	private AppController controller;
@@ -51,6 +59,14 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	private ListView lv_chance;
 	private TaskData data;
 	
+	private PullToRefreshView main_pull_refresh_view;
+	private List<Task> listTasks = new  ArrayList<Task>();
+	private int pageNum = 1;
+	private int  tolalPage = -1;
+	private boolean refresh = false;
+	
+	private ChanceAdapter adapter;
+	
 	
 	
 	private Handler mHandler = new  Handler(){
@@ -58,7 +74,13 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 			switch (msg.what) {
 			case 0:
 				update();
+				main_pull_refresh_view.onHeaderRefreshComplete();
+				main_pull_refresh_view.onFooterRefreshComplete();
 				break;
+			case 1:
+				main_pull_refresh_view.onHeaderRefreshComplete();
+				main_pull_refresh_view.onFooterRefreshComplete();
+			break;
 			default:
 				break;
 			}
@@ -75,7 +97,6 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		mContext = getActivity();
 		findView();
 		initView();
-		getData();
 		return view;
 	}
 	
@@ -94,6 +115,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		main_top_find_query = (ImageView)view.findViewById(R.id.main_top_find_query);
 		main_top_find_message = (EditText)view.findViewById(R.id.main_top_find_message);
 		main_top_find_right2 = (Button)view.findViewById(R.id.main_top_find_right2);
+		main_pull_refresh_view = (PullToRefreshView)view.findViewById(R.id.main_pull_refresh_view);
 	}
 	/**
 	 * 方法描述：TODO
@@ -107,7 +129,17 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		main_top_find_right.setOnClickListener(this);
 		main_top_find_query.setOnClickListener(this);
 		main_top_find_right2.setOnClickListener(this);
+		main_pull_refresh_view.setOnHeaderRefreshListener(this);
+		main_pull_refresh_view.setOnFooterRefreshListener(this);
+		lv_chance.setOnItemClickListener(chanceItemlistener);
 		update();
+	}
+	
+	
+	@Override
+	public void onResume() {
+		super.onResume();
+		getData(1);
 	}
 	
 	/**
@@ -115,13 +147,13 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 	  * @author: wanghy
 	  * @time: 2014-11-8 下午3:39:22
 	  */
-	private void getData() {
-		ProgressDialogUtil.showProgressDialog(getActivity(), "正在通信中…", false);
+	private void getData(final int num) {
+	//	ProgressDialogUtil.showProgressDialog(getActivity(), "正在通信中…", false);
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				controller.chanceLists(mHandler);
-				ProgressDialogUtil.closeProgressDialog();
+				controller.chanceLists(mHandler,num);
+			//	ProgressDialogUtil.closeProgressDialog();
 			}
 		}).start();
 	}
@@ -132,18 +164,27 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		case R.id.main_top_find_right2:
 		case R.id.main_top_find_query:
 			if(invaild()){
-				query();
+				OfferAddActivity.ADDFlag = false;
+				refresh = false;
+				listTasks.clear();
+				getData(1);
 			}
 			break;
 		case R.id.rb_chance_hot:
 			controller.getContext().addBusinessData("chance_search","");
 			controller.getContext().addBusinessData("chance_order", "hot");
-			getData();
+			refresh = false;
+			listTasks.clear();
+			OfferAddActivity.ADDFlag = false;
+			getData(1);
 			break;
 		case R.id.rb_chance_new:
 			controller.getContext().addBusinessData("chance_search","");
 			controller.getContext().addBusinessData("chance_order", "new");
-			getData();
+			refresh = false;
+			OfferAddActivity.ADDFlag = false;
+			listTasks.clear();
+			getData(1);
 			break;
 		case R.id.main_top_find_right:
 			IntentUtil.intent(getActivity(), OfferAddActivity.class);
@@ -167,13 +208,25 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 			main_top_find_right.setVisibility(View.INVISIBLE);
 			main_top_find_right2.setVisibility(View.VISIBLE);
 		}
-		
 		data = (TaskData)controller.getContext().getBusinessData("Task_lists_data");
-		if(data != null){
-			ChanceAdapter adapter = new ChanceAdapter(getActivity(),data.getLists());
-			lv_chance.setAdapter(adapter);
-			lv_chance.setOnItemClickListener(chanceItemlistener);
+		if(data == null){
+			return;
 		}
+		for (Task task : data.getLists()) {
+			if(!StringUtil.containsTask(task,listTasks)){
+				if(OfferAddActivity.ADDFlag){
+					listTasks.add(0,task);
+				}else{
+					listTasks.add(task);
+				}
+			}
+		}
+		if(refresh){
+			adapter.notifyDataSetChanged();
+		}else{
+				adapter = new ChanceAdapter(getActivity(),listTasks);
+				lv_chance.setAdapter(adapter);
+			}
 	}
 	
 	private OnItemClickListener chanceItemlistener = new  OnItemClickListener() {
@@ -181,7 +234,7 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
 				long arg3) {
-			controller.getContext().addBusinessData("chance_detail_id", data.getLists().get(arg2).getId());
+			controller.getContext().addBusinessData("chance_detail_id", listTasks.get(arg2).getId());
 			show();
 		}
 	};
@@ -201,17 +254,6 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		}
 		return true;
 	}
-	
-	
-	
-	/**
-	  * 方法描述：TODO
-	  * @author: why
-	  * @time: 2014-11-24 下午3:49:08
-	  */
-	private void query() {
-		getData();
-	}
 
 	/**
 	  * 方法描述：TODO
@@ -229,4 +271,23 @@ public class ChanceFragment extends Fragment implements OnClickListener {
 		}).start();
 	}
 	
+	@Override
+	public void onHeaderRefresh(PullToRefreshView view) {
+		OfferAddActivity.ADDFlag = true;
+		refresh = true;
+		getData(1); 
+	}
+	
+	@Override
+	public void onFooterRefresh(PullToRefreshView view) {
+		OfferAddActivity.ADDFlag = false;
+		refresh = true;
+		int num = pageNum+1;
+		if(num > tolalPage){
+			main_pull_refresh_view.onFooterRefreshComplete();
+			ToastUtil.showToast(getActivity(), "没有更多了", ToastUtil.LENGTH_LONG);
+		}else{
+			getData(num); 
+		}
+	}
 }

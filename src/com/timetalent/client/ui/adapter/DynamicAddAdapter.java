@@ -179,7 +179,7 @@ public class DynamicAddAdapter extends BaseAdapter{
 		public void onClick(View v) {
 			OnClickMessage onClickMessage = (OnClickMessage)v.getTag();
 			if ( onClickMessage.tag == ADD_TAG ) {
-				PictureUtil.headPic((Activity)mContext, 360, sdcardTempFile);
+				PictureUtil.headPic((Activity)mContext, 480, sdcardTempFile);
 				
 				//StringUtil.doGoToImg(mContext);
 			}else if (onClickMessage.tag == SELECT_TAG){

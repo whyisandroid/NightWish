@@ -51,8 +51,9 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	private EditText et_dynamic_add_content;
 	private GridView gv_dynamic_add;
 	private DynamicAddAdapter adapter;
-	 private File sdcardTempFile;
+	private File sdcardTempFile;
 	
+	public static Boolean ADDFlag = false;
 	// 原图列表
 	ArrayList<Picture> imgList = new ArrayList<Picture>();
 	
@@ -61,7 +62,13 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			switch (msg.what) {
 			case 0:
 				//发送图片 
-				sendPic();
+				if(imgList.size() >0){
+					sendPic();
+				}else{
+					ADDFlag = true;
+					DynamicAddActivity.this.finish();
+					ToastUtil.showToast(DynamicAddActivity.this, "发表成功!", ToastUtil.LENGTH_LONG);
+				}
 				break;
 			default:
 				break;
@@ -272,4 +279,6 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 		}
 		return true;
 	}
+	
+	
 }

@@ -38,11 +38,17 @@
             android:textSize="@dimen/new_size_2" />
     </RadioGroup>
 
-    <ListView
-        android:id="@+id/lv_chance"
+    <com.timetalent.client.ui.view.PullToRefreshView
+        android:id="@+id/main_pull_refresh_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-    </ListView>
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/lv_chance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+        </ListView>
+    </com.timetalent.client.ui.view.PullToRefreshView>
 
 </LinearLayout>

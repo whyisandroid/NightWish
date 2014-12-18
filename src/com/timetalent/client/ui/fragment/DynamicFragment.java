@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.R.integer;
@@ -67,9 +68,16 @@ public class DynamicFragment extends Fragment implements OnClickListener,OnHeade
 				if(data != null){
 					for (Feed feed : data.getLists()) {
 						if(!StringUtil.containsFeed(feed,listFeeds)){
-							listFeeds.add(feed);
+							Collections.reverse(feed.getReply());
+							if(DynamicAddActivity.ADDFlag){
+								listFeeds.add(0,feed);
+								DynamicAddActivity.ADDFlag = false;
+							}else{
+								listFeeds.add(feed);
+							}
 						}
 					}
+					
 					adapter.notifyDataSetChanged();
 				}
 				main_pull_refresh_view.onHeaderRefreshComplete();
@@ -127,13 +135,12 @@ public class DynamicFragment extends Fragment implements OnClickListener,OnHeade
 		UIUtils.setDrawableLeft(getActivity(),main_top_right,R.drawable.d3_06);
 		adapter = new DynamicAdapter(getActivity(),listFeeds,mHandler);
 		lv_dynamic.setAdapter(adapter);
-		dynamic(1);
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		
+		dynamic(1);
 	}
 	
 	/**

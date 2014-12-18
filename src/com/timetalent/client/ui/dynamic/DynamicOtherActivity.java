@@ -2,6 +2,7 @@ package com.timetalent.client.ui.dynamic;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.os.Bundle;
@@ -59,6 +60,7 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 				if(data != null){
 					for (Feed feed : data.getLists()) {
 						if(!StringUtil.containsFeed(feed,listFeeds)){
+							Collections.reverse(feed.getReply());
 							listFeeds.add(feed);
 						}
 					}
@@ -94,7 +96,6 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
 		main_pull_refresh_view = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
 		main_top_left = (ImageButton)findViewById(R.id.main_top_left1);
-		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 	}
 
 	/**
@@ -105,7 +106,6 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 	 */
 	private void initView() {
 		findViewById(R.id.main_top_left).setVisibility(View.GONE);
-		main_top_left.setVisibility(View.VISIBLE);
 		main_top_left.setImageResource(R.drawable.btn_gobackl);
 		main_top_left.setVisibility(View.VISIBLE);
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);

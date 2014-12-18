@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import com.timetalent.client.entities.Feed;
+import com.timetalent.client.entities.Task;
 import com.timetalent.common.util.aes.Md5;
 
 import android.app.Activity;
@@ -267,8 +268,31 @@ public class StringUtil {
 	
 
 	public static boolean containsFeed(Feed feed, List<Feed> listFeeds) {
-		for (Feed feed2 : listFeeds) {
-			if(feed2.getId().equals(feed.getId())){
+		for (int i = 0; i < listFeeds.size(); i++) {
+			if(listFeeds.get(i).getId().equals(feed.getId())){
+				listFeeds.get(i).setTime_ago(feed.getTime_ago());
+				listFeeds.get(i).setFavour_do(feed.getFavour_do());
+				listFeeds.get(i).setFavour_num(feed.getFavour_num());
+				return true;
+			}
+		}
+		return false;
+	}
+
+
+
+	
+	/**
+	  * 方法描述：TODO
+	  * @param task
+	  * @param listTasks
+	  * @return
+	  * @author: why
+	  * @time: 2014-12-18 下午9:07:34
+	  */
+	public static boolean containsTask(Task task, List<Task> listTasks) {
+		for (int i = 0; i < listTasks.size(); i++) {
+			if(listTasks.get(i).getId().equals(task.getId())){
 				return true;
 			}
 		}

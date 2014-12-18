@@ -62,6 +62,21 @@ public class PictureUtil {
 		activity.startActivityForResult(intent, 0);
 	}
 	
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-10-27 下午4:35:32
+	  */
+	public static void cropPic(Activity activity,int crop,File sdcardTempFile) {
+		Intent intent = new Intent("android.intent.action.PICK");
+		intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
+		intent.putExtra("output", Uri.fromFile(sdcardTempFile));
+		intent.putExtra("outputX", crop);// 输出图片大小
+		intent.putExtra("outputY", crop);
+		activity.startActivityForResult(intent, 0);
+	}
+	
 	/**
 	  * 方法描述：获取本地相册
 	  * @author: wanghy

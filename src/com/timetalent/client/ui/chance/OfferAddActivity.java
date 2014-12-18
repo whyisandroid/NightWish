@@ -56,7 +56,7 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 	
 	private ListView lv_chance_add;
 	private ImageView iv_chance_offer_add;
-	
+	public static Boolean ADDFlag = false;
 	
 	
 	private OfferAddAdapter adapter ;
@@ -200,7 +200,7 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 			ToastUtil.showToast(this, "报名截止日期 不能为空", ToastUtil.LENGTH_LONG);
 			return false;
 		}else{
-			task.setCutoff_date(data1);
+			task.setCutoff_date(StringUtil.transformDate(data1)+"");
 		}
 		
 		String palce = tv_chance_add_place.getText().toString().trim();
@@ -230,6 +230,8 @@ public class OfferAddActivity extends BaseActivity implements OnClickListener {
 				return false;
 			}
 		}
+		
+		
 		try {
 			String job_json = Json_U.objToJsonStr(adapter.getList());
 			LogUtil.Log("发布成功",job_json);

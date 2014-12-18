@@ -65,7 +65,7 @@ public class OfferAddAdapter extends BaseAdapter{
 		Job job = list.get(position);
 		if (convertView == null) {
 			convertView = LayoutInflater.from(mContext).inflate(R.layout.chance_offer_add_item, null);
-		}
+		}  
 		
 		final	TextView tv_chance_data2 = (TextView)convertView.findViewById(R.id.tv_chance_data2);
 		RelativeLayout	rl_chance_data2 = (RelativeLayout)convertView.findViewById(R.id.rl_chance_data2);
@@ -75,8 +75,8 @@ public class OfferAddAdapter extends BaseAdapter{
 		final EditText et_chance_add_job_info = (EditText)convertView.findViewById(R.id.et_chance_add_job_info);
 		
 		
-		tv_chance_data2.setText(job.getWork_date_start());
-		tv_chance_data3.setText(job.getWork_date_end());
+		tv_chance_data2.setText(StringUtil.transformTime(job.getWork_date_start(),"yyyy-MM-dd"));
+		tv_chance_data3.setText(StringUtil.transformTime(job.getWork_date_end(),"yyyy-MM-dd"));
 		et_chance_add_job.setText(job.getJob());
 		et_chance_add_job_info.setText(job.getDescription());
 		
@@ -92,7 +92,7 @@ public class OfferAddAdapter extends BaseAdapter{
 			}
 			@Override
 			public void afterTextChanged(Editable s) {
-				list.get(position).setWork_date_start(tv_chance_data2.getText().toString());
+				list.get(position).setWork_date_start(StringUtil.transformDate(tv_chance_data2.getText().toString())+"");
 			}
 		});
 		
@@ -110,7 +110,7 @@ public class OfferAddAdapter extends BaseAdapter{
 			}
 			@Override
 			public void afterTextChanged(Editable s) {
-				list.get(position).setWork_date_end(tv_chance_data3.getText().toString());
+				list.get(position).setWork_date_end(StringUtil.transformDate(tv_chance_data3.getText().toString())+"");
 			}
 		});
 		

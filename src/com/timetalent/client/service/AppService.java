@@ -39,7 +39,7 @@ public interface AppService {
 	public void chanceAdd() throws BusinessException;
 	
 	/** 机会 列表***/
-	public void chanceLists() throws BusinessException;
+	public void chanceLists(int num) throws BusinessException;
 	
 	/**机会  详情 ***/
 	public void chanceDetails() throws BusinessException;

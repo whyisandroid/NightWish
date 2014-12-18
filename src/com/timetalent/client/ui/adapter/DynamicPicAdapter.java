@@ -12,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.lidroid.xutils.BitmapUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Photo;
@@ -75,6 +74,8 @@ public class DynamicPicAdapter extends  BaseAdapter{
 				 intent.setAction(android.content.Intent.ACTION_VIEW);
 				 intent.setDataAndType(Uri.parse(list.get(position).getUrl()), "image/*");
 				 mContext.startActivity(intent);
+			//	IntentUtil.intent(mContext,PictureActivity.class);
+				
 			}
 		});
 		//BitmapUtils bitmapUtils = new BitmapUtils(mContext);

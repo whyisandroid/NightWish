@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -27,7 +28,7 @@ import com.timetalent.common.util.ProgressDialogUtil;
 public class DynamicOtherActivity extends BaseActivity implements OnClickListener {
 	private AppController controller;
 	private ListView lv_dynamic;
-	
+	private ImageButton main_top_left;
 	private Handler mHandler = new  Handler(){
 		public void handleMessage(android.os.Message msg) {
 			switch (msg.what) {
@@ -61,6 +62,7 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 	 */
 	private void findView() {
 		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 	}
 
 	/**
@@ -70,6 +72,9 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
+		main_top_left.setOnClickListener(this);
 		String name = getIntent().getExtras().getString("userName");
 		if(TextUtils.isEmpty(name)){
 			((TextView)findViewById(R.id.main_top_title)).setText("动态");
@@ -104,6 +109,9 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
+		case R.id.main_top_left:
+			finish();
+			break;
 		default:
 			break;
 		}

@@ -94,6 +94,7 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 		lv_dynamic = (ListView)findViewById(R.id.lv_dynamic);
 		main_pull_refresh_view = (PullToRefreshView)findViewById(R.id.main_pull_refresh_view);
 		main_top_left = (ImageButton)findViewById(R.id.main_top_left1);
+		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 	}
 
 	/**
@@ -106,6 +107,8 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 		findViewById(R.id.main_top_left).setVisibility(View.GONE);
 		main_top_left.setVisibility(View.VISIBLE);
 		main_top_left.setImageResource(R.drawable.btn_gobackl);
+		main_top_left.setVisibility(View.VISIBLE);
+//		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		String name = getIntent().getExtras().getString("userName");
 		if(TextUtils.isEmpty(name)){
@@ -148,7 +151,6 @@ public class DynamicOtherActivity extends BaseActivity implements OnClickListene
 		switch (v.getId()) {
 		case R.id.main_top_left1:
 			this.finish();
-			break;
 		default:
 			break;
 		}

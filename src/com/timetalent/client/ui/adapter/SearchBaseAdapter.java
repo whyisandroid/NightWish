@@ -140,7 +140,7 @@ public class SearchBaseAdapter extends BaseAdapter {
 		pa.height = holder.imghead.getWidth();
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
-		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getMajor());
 		holder.tvonlinetime.setText(data.getLists().get(position).getCity()+" "+StringUtil.transformTime(data.getLists().get(position).getLast_time()));
 		if(data.getLists().get(position).getLoyal_pass().equals("0")){
 			holder.imgonline.setImageResource(R.drawable.f3_13);

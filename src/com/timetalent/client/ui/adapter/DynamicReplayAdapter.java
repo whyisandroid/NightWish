@@ -37,7 +37,6 @@ public class DynamicReplayAdapter extends BaseAdapter{
 	public DynamicReplayAdapter(Context mContext,List<Replay> lists) {
 		this.mContext = mContext;
 		this.lists = lists;
-		Collections.reverse(this.lists);
 	}
 	
 	@Override

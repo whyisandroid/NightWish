@@ -1,5 +1,6 @@
 package com.timetalent.client.ui.adapter;
 
+import java.util.Collections;
 import java.util.List;
 
 import android.annotation.SuppressLint;
@@ -70,7 +71,7 @@ public class DynamicAdapter extends BaseAdapter{
 				holder1.et_dynamic_message.setText("");
 				String message = controller.getContext().getStringData("dynamic_feed_replay_message");
 				String name  = TimeTalentApplication.getInstance().getLoginInfo().getNickname();
-				holder1.replayList.add(new Replay(name,message));
+				holder1.replayList.add(0,new Replay(name,message));
 				holder1.replayAdapter.notifyDataSetChanged();
 				UIUtils.setListViewHeight(holder1.lv_dynamic_replay,holder1.replayAdapter);
 				break;
@@ -236,9 +237,9 @@ public class DynamicAdapter extends BaseAdapter{
 		
 		
 		// 处理 回复
-		
-		
-		holder. setReplayList(feed.getReply());
+		List<Replay> replayList =feed.getReply();
+		Collections.reverse(replayList);
+		holder.setReplayList(replayList);
 		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, holder.replayList);
 		holder.lv_dynamic_replay.setAdapter(replayAdapter);
 		holder.setReplayAdapter(replayAdapter);

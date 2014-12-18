@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.adapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import android.content.Context;
@@ -13,7 +14,6 @@ import android.widget.TextView;
 
 import com.timetalent.client.R;
 import com.timetalent.client.entities.Replay;
-import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -37,6 +37,7 @@ public class DynamicReplayAdapter extends BaseAdapter{
 	public DynamicReplayAdapter(Context mContext,List<Replay> lists) {
 		this.mContext = mContext;
 		this.lists = lists;
+		Collections.reverse(this.lists);
 	}
 	
 	@Override

@@ -81,6 +81,36 @@ public class StringUtil {
 		return new SimpleDateFormat(newFormat).format(date);
 	}
 	
+	/**
+	  * 方法描述：转换为 unix 时间戳 format yyyy-MM-dd 
+	  * @param time
+	  * @return
+	  * @author: why
+	  * @time: 2014-12-18 下午3:16:46
+	 */
+	public static long transformDate(String time){
+		return transformDate(time,"yyyy-MM-dd")/1000;
+	}
+	
+	
+	/**
+	  * 方法描述：时间转换为时间戳
+	  * @param time
+	  * @param formant
+	  * @return
+	  * @author: why
+	  * @time: 2014-12-18 下午3:15:27
+	 */
+	public static long transformDate(String time,String formant ) {
+		SimpleDateFormat sdf = new SimpleDateFormat(formant);
+		try {
+			return sdf.parse(time).getTime();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
 	
 	/**
 	  * 方法描述：添加日期选择

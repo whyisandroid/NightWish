@@ -15,6 +15,17 @@ public class Replay {
 	private String contents;
 	private String time;
 	private User user;
+	
+	/**
+	  * 类的构造方法
+	  * 创建一个新的实例 Replay.
+	  * @param 
+	  * @param message
+	  */
+	public Replay(String name,String message) {
+		this.contents = message;
+		 this.user = new User(name);
+	}
 	/**
 	 * @return id : return the property id.
 	 */

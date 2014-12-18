@@ -52,10 +52,10 @@ public interface AppService {
 	public void dynamicIndex(int pageNum) throws BusinessException;
 	
 	/**获取某个用户的动态列表***/
-	public void dynamicWho() throws BusinessException;
+	public void dynamicWho(int pageNum) throws BusinessException;
 	
 	/**获取当前用户自己的动态列表***/
-	public void dynamicMy() throws BusinessException;
+	public void dynamicMy(int pageNum) throws BusinessException;
 	
 	/**发布动态Feed/addfeed**/
 	public void dynamicAdd() throws BusinessException;

@@ -112,6 +112,7 @@ public class DynamicFragment extends Fragment implements OnClickListener,OnHeade
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		view.findViewById(R.id.main_top_left1).setVisibility(View.GONE);
 		((TextView)view.findViewById(R.id.main_top_title)).setText("动态");
 		main_top_right.setOnClickListener(this);
 		main_pull_refresh_view.setOnHeaderRefreshListener(this);

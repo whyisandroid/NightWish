@@ -12,12 +12,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.text.TextUtils;
 
-import com.easemob.EMCallBack;
-import com.easemob.chat.EMChatManager;
-import com.easemob.chat.EMContactManager;
-import com.easemob.exceptions.EaseMobException;
-import com.easemob.util.EMLog;
-import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.PicValuePair;
 import com.timetalent.client.service.impl.AppServiceImpl;
 import com.timetalent.client.ui.MainFragmentActivity;
@@ -27,7 +21,6 @@ import com.timetalent.client.ui.esaemob.ChatActivity;
 import com.timetalent.client.ui.login.LoginActivity;
 import com.timetalent.common.exception.BusinessException;
 import com.timetalent.common.util.IntentUtil;
-import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 
@@ -417,7 +410,6 @@ public class AppController {
 		try {
 			service.dynamicRepaly();
 			adaHandler.obtainMessage(1,holder).sendToTarget();
-			//dynamicIndex(mHandler);
 		} catch (BusinessException e) {
 			e.printStackTrace();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
@@ -427,17 +419,7 @@ public class AppController {
 	}
 	
 	
-	public void dynamicWho(Handler mHandler) {
-		try {
-			service.dynamicWho();
-			mHandler.obtainMessage(0).sendToTarget();
-		} catch (BusinessException e) {
-			e.printStackTrace();
-			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+
 	
 	
 	public void dynamicFavour(Handler mHandler,com.timetalent.client.ui.adapter.DynamicAdapter.ViewHolder holder) {
@@ -460,15 +442,31 @@ public class AppController {
 		}
 	}
 	
-	public void dynamicMy(Handler mHandler) {
+	public void dynamicMy(Handler mHandler,int num) {
 		try {
-			service.dynamicMy();
+			service.dynamicMy(num);
 			mHandler.obtainMessage(0).sendToTarget();
 		} catch (BusinessException e) {
 			e.printStackTrace();
+			mHandler.obtainMessage(1).sendToTarget();
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {
 			e.printStackTrace();
+			mHandler.obtainMessage(1).sendToTarget();
+		}
+	}
+	
+	public void dynamicWho(Handler mHandler,int num) {
+		try {
+			service.dynamicWho(num);
+			mHandler.obtainMessage(0).sendToTarget();
+		} catch (BusinessException e) {
+			e.printStackTrace();
+			mHandler.obtainMessage(1).sendToTarget();
+			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
+		} catch (Exception e) {
+			e.printStackTrace();
+			mHandler.obtainMessage(1).sendToTarget();
 		}
 	}
 	

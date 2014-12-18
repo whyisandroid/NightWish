@@ -3,6 +3,7 @@ package com.timetalent.common.util;
 import java.io.FileNotFoundException;
 import java.util.List;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ListAdapter;
@@ -200,5 +202,18 @@ public class UIUtils {
 	     return bitmap; 
 	 } 
 	
+
 	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-12-18 下午5:25:23
+	  */
+	public static void InputClose(Context mContext) {
+		View view = ((Activity) mContext).getWindow().peekDecorView();
+		if (view != null) {
+		    InputMethodManager inputmanger = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+		    inputmanger.hideSoftInputFromWindow(view.getWindowToken(), 0);
+		}
+	};
 }

@@ -28,6 +28,16 @@ public class User {
 	private String	major; // "",
 	private String	loyal_pass; // "0",
 	private String	age; // "15"
+	
+	/**
+	  * 类的构造方法
+	  * 创建一个新的实例 User.
+	  * @param 
+	  * @param name
+	  */
+	public User(String name) {
+		this.nickname = name;
+	}
 	/**
 	 * @return phone : return the property phone.
 	 */

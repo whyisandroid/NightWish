@@ -21,14 +21,17 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.Feed;
 import com.timetalent.client.entities.Photo;
+import com.timetalent.client.entities.Replay;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.dynamic.DynamicOtherActivity;
 import com.timetalent.client.ui.view.HorizontalListView;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
@@ -60,8 +63,16 @@ public class DynamicAdapter extends BaseAdapter{
 				holder.iv_dynamic_good_num.setText(Integer.valueOf(holder.iv_dynamic_good_num.getText().toString())+1+"");
 				break;
 			case 1:
+				/**隐藏软键盘**/
+				UIUtils.InputClose(mContext);
 				ViewHolder holder1 = (ViewHolder)msg.obj;
 				holder1.rl_dynamic_message.setVisibility(View.GONE);
+				holder1.et_dynamic_message.setText("");
+				String message = controller.getContext().getStringData("dynamic_feed_replay_message");
+				String name  = TimeTalentApplication.getInstance().getLoginInfo().getNickname();
+				holder1.replayList.add(new Replay(name,message));
+				holder1.replayAdapter.notifyDataSetChanged();
+				UIUtils.setListViewHeight(holder1.lv_dynamic_replay,holder1.replayAdapter);
 				break;
 			case 2:
 				ViewHolder holder2 = (ViewHolder)msg.obj;
@@ -76,8 +87,13 @@ public class DynamicAdapter extends BaseAdapter{
 				break;
 			}
 			
-		};
+		}
+
+		
+	
 	};
+	
+	
 	
 	/**
 	 * 类的构造方法
@@ -217,34 +233,39 @@ public class DynamicAdapter extends BaseAdapter{
 				}
 			}
 		});
+		
+		
+		// 处理 回复
+		
+		
+		holder. setReplayList(feed.getReply());
+		DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, holder.replayList);
+		holder.lv_dynamic_replay.setAdapter(replayAdapter);
+		holder.setReplayAdapter(replayAdapter);
+		//UIUtils.setListViewHeightBasedOnChildren(holder.lv_dynamic_replay);
+		/*Message msg = new Message();
+		msg.what = 3;
+		msg.obj = new replayList(holder.lv_dynamic_replay, replayAdapter); 
+		handler.sendMessageDelayed(msg, 1000);*/
+		UIUtils.setListViewHeight(holder.lv_dynamic_replay,replayAdapter);
+		
 		holder.tv_dynamic_send.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				if(invaild(holder,feed.getId())){
-				//	ProgressDialogUtil.showProgressDialog(mContext, "发送中…", false);
+				ProgressDialogUtil.showProgressDialog(mContext, "发送中…", false);
 						new Thread(new Runnable() {
 							@Override
 							public void run() {
 								controller.dynamicRepaly(dynamicHandler,handler,holder);
-							//	ProgressDialogUtil.closeProgressDialog();
+							ProgressDialogUtil.closeProgressDialog();
 							}
 						}).start();
 				}
 			}
 		});
 		
-		// 处理 回复
 		
-		
-		
-				DynamicReplayAdapter replayAdapter = new DynamicReplayAdapter(mContext, feed.getReply());
-				holder.lv_dynamic_replay.setAdapter(replayAdapter);
-				//UIUtils.setListViewHeightBasedOnChildren(holder.lv_dynamic_replay);
-				/*Message msg = new Message();
-				msg.what = 3;
-				msg.obj = new replayList(holder.lv_dynamic_replay, replayAdapter); 
-				handler.sendMessageDelayed(msg, 1000);*/
-				UIUtils.setListViewHeight(holder.lv_dynamic_replay,replayAdapter);
 		return convertView;
 	}
 	
@@ -299,6 +320,9 @@ public class DynamicAdapter extends BaseAdapter{
 		private EditText et_dynamic_message;
 		private TextView tv_dynamic_send;
 		
+		private DynamicReplayAdapter replayAdapter;
+		private List<Replay> replayList;
+		
 		private void findView(View view){
 			iv_dynamic_head = (ImageView)view.findViewById(R.id.iv_dynamic_head);
 			tv_dynamic_name = (TextView)view.findViewById(R.id.tv_dynamic_name);
@@ -318,6 +342,20 @@ public class DynamicAdapter extends BaseAdapter{
 			lv_dynamic_pic = (HorizontalListView)view.findViewById(R.id.hlv_dynamic_pic);
 			lv_dynamic_replay = (ListView)view.findViewById(R.id.lv_dynamic_replay);
 			et_dynamic_message = (EditText)view.findViewById(R.id.et_dynamic_message);
+		}
+		
+		/**
+		 * @param replayList : set the property replayList.
+		 */
+		public void setReplayList(List<Replay> replayList) {
+			this.replayList = replayList;
+		}
+		
+		/**
+		 * @param replayAdapter : set the property replayAdapter.
+		 */
+		public void setReplayAdapter(DynamicReplayAdapter replayAdapter) {
+			this.replayAdapter = replayAdapter;
 		}
 	}
 }

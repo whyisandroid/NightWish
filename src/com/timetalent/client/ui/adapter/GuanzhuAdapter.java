@@ -138,7 +138,7 @@ public class GuanzhuAdapter extends BaseAdapter {
 				holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
 				holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
 				holder.bttianjia = (ImageButton) convertView.findViewById(R.id.bttianjia);
-				holder.bttianjia.setVisibility(holder.bttianjia.GONE);
+//				holder.bttianjia.setVisibility(holder.bttianjia.GONE);
 				convertView.setTag(holder);//绑定ViewHolder对象
 			}
 			
@@ -153,7 +153,7 @@ public class GuanzhuAdapter extends BaseAdapter {
 //		holder.imghead.setImageBitmap( ImageLoader.getInstance().loadImageSync("http://124.193.223.166/xingtan/Uploads/avatar/201411/5458d19bd4a43.jpg"));//"http://124.193.223.166/xingtan/Uploads/avatar/"+data.getLists().get(position).getAvatar()
 		holder.tvname.setText(""+data.getLists().get(position).getNickname());
 		holder.tvage.setText(data.getLists().get(position).getAge()+"岁");
-		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getType());
+		holder.tvzhiye.setText("职业/"+data.getLists().get(position).getMajor());
 		if(data.getLists().get(position).getSex().equals("0")){
 			holder.imgsex.setImageResource(R.drawable.f3_15);
 		}else{

@@ -376,9 +376,16 @@ case 2:
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				BitmapDrawable img = (BitmapDrawable) msg.obj;
-				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
-				imghead.setImageBitmap(bm);
+				if(msg.obj instanceof Drawable){
+					imghead.setImageDrawable((Drawable)(msg.obj));
+				}else{
+					BitmapDrawable img = (BitmapDrawable) msg.obj;
+					Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
+					imghead.setImageBitmap(bm);
+				}
+				
+				
+				
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
 				pa.width = (int) (50*density);
 				pa.height = (int) (50*density);

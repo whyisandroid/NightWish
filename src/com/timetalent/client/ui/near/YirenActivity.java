@@ -66,9 +66,9 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 	ZuopinBaseAdapter adapter;
 	private TextView main_top_right;
 	private ImageButton main_top_left;
-	private ImageView img1;
-	private ImageView img2;
-	private ImageView img3;
+	private LinearLayout lduihua;
+	private LinearLayout lguanzhu;
+	private LinearLayout lyuyue;
 	private GestureDetector mGestureDetector;
 	ImageView imghead;
 	TextView tvxingzuo;
@@ -131,9 +131,9 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 		main_top_left = (ImageButton)this.findViewById(R.id.main_top_left);
 		lzuopin = (ListView) findViewById(R.id.lzuopin);
 		ldongtai = (LinearLayout) findViewById(R.id.lneardongtai);
-		img1 = (ImageView) findViewById(R.id.imgduihua);
-		img2 = (ImageView) findViewById(R.id.imgguanzhu);
-		img3 = (ImageView) findViewById(R.id.imgyuyue);
+		lduihua = (LinearLayout) findViewById(R.id.lduihua);
+		lguanzhu = (LinearLayout) findViewById(R.id.lguanzhu);
+		lyuyue = (LinearLayout) findViewById(R.id.lyuyue);
 		
 		imghead = (ImageView) findViewById(R.id.imghead);
 		 tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
@@ -174,9 +174,9 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 //		UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 		main_top_left.setOnClickListener(this);
 		ldongtai.setOnClickListener(this);
-		img1.setOnClickListener(this);
-		img2.setOnClickListener(this);
-		img3.setOnClickListener(this);
+		lduihua.setOnClickListener(this);
+		lguanzhu.setOnClickListener(this);
+		lyuyue.setOnClickListener(this);
 		piclay.setcontroller(controller);
 		piclay.initView();
 	}
@@ -221,7 +221,7 @@ public class YirenActivity extends BaseActivity implements OnClickListener{
 			bundle0.putString("userName", u.getNickname());
 			IntentUtil.intent(YirenActivity.this, bundle0,DynamicOtherActivity.class,false);
 			break;
-		case R.id.imgduihua:
+		case R.id.lduihua:
 Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 			
 			intent.putExtra("userId", u.getId());
@@ -232,10 +232,10 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 			controller.getContext().addBusinessData("userImageURL", u.getAvatar());
 			YirenActivity.this.startActivity(intent);
 			break;
-		case R.id.imgguanzhu:
+		case R.id.lguanzhu:
 			showMessageTwo(YirenActivity.this, "关注？", "完成");
 			break;
-		case R.id.imgyuyue:
+		case R.id.lyuyue:
 			IntentUtil.intent(YirenActivity.this, WorkAppointmentActivity.class);
 			break;
 		default:
@@ -354,7 +354,7 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 					setListViewHeightBasedOnChildren(lzuopin);
 					adapter.notifyDataSetChanged();
 					if(!user.getType().equals("scout")){
-						img3.setVisibility(View.GONE);
+						lyuyue.setVisibility(View.GONE);
 					}
 					String awards = "";
 					for(awardpackage a:u.getMore().getAward()){

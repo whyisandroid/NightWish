@@ -13,6 +13,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -445,9 +446,13 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			// super.handleMessage(msg);
 			switch (msg.what) {
 			case 1:
-				BitmapDrawable img = (BitmapDrawable) msg.obj;
-				Bitmap bm = PictureUtil.getRoundedCornerBitmap(img.getBitmap());
-				imghead.setImageBitmap(bm);
+				if(msg.obj instanceof Drawable){
+					imghead.setImageDrawable((Drawable)(msg.obj));
+				}else{
+					BitmapDrawable img = (BitmapDrawable) msg.obj;
+					Bitmap bm = PictureUtil.toRoundCorner(img.getBitmap(),10);
+					imghead.setImageBitmap(bm);
+				}
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
 				pa.width = (int) (50*density);
 				pa.height = (int) (50*density);

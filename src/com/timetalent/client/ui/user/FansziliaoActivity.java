@@ -3,6 +3,7 @@ package com.timetalent.client.ui.user;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -261,9 +262,13 @@ void setvalue(){
 				}
 				break;
 			case 2:
-				BitmapDrawable img = (BitmapDrawable) msg.obj;
-				Bitmap bm = PictureUtil.toRoundCorner(img.getBitmap(),10);
-				imghead.setImageBitmap(bm);
+				if(msg.obj instanceof Drawable){
+					imghead.setImageDrawable((Drawable)(msg.obj));
+				}else{
+					BitmapDrawable img = (BitmapDrawable) msg.obj;
+					Bitmap bm = PictureUtil.toRoundCorner(img.getBitmap(),10);
+					imghead.setImageBitmap(bm);
+				}
 				LayoutParams pa = (LayoutParams)imghead.getLayoutParams();
 				pa.width = (int) (50*density);
 				pa.height = (int) (50*density);

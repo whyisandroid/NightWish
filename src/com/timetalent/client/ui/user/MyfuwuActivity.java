@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -173,6 +174,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 					for(final dictionarypackage temp:data){
 						if(temp.getType().equals("star")){
 							RadioButton eb = new RadioButton(MyfuwuActivity.this);
+							eb.setGravity(Gravity.CENTER);
 							eb.setText(""+temp.getName());
 							eb.setBackgroundResource(R.drawable.btn_smote);
 							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(

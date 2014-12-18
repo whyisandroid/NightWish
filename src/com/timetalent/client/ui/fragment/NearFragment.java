@@ -16,6 +16,7 @@ import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -460,6 +461,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("star")){
 								RadioButton eb = new RadioButton(getActivity());
+								eb.setGravity(Gravity.CENTER);
 								eb.setText(""+temp.getName());
 								eb.setBackgroundResource(R.drawable.btn_smote);
 								Drawable drawable = getActivity().getResources().getDrawable(

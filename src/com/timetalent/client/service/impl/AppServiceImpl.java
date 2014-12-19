@@ -764,7 +764,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("FriendData", resp.getData());
 			}
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 			
@@ -791,7 +791,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("FollowingData", resp.getData());
 			}
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 			
@@ -818,7 +818,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("FollowedData", resp.getData());
 			}
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	
 			
@@ -845,7 +845,7 @@ public class AppServiceImpl implements AppService {
 				context.addBusinessData("PushuserData", resp.getData());
 			}
 		} else{
-			throw new BusinessException(new ErrorMessage(resp.getText()));
+//			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
 	}
 

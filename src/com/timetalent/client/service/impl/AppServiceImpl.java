@@ -1201,9 +1201,9 @@ public class AppServiceImpl implements AppService {
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
 		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getStringData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("username", (String)context.getStringData("bianji.username")));
-		nameValuePairs.add(new BasicNameValuePair("phone", (String)context.getStringData("bianji.phone")));
-		nameValuePairs.add(new BasicNameValuePair("email", (String)context.getStringData("bianji.email")));
+//		nameValuePairs.add(new BasicNameValuePair("username", (String)context.getStringData("bianji.username")));
+//		nameValuePairs.add(new BasicNameValuePair("phone", (String)context.getStringData("bianji.phone")));
+//		nameValuePairs.add(new BasicNameValuePair("email", (String)context.getStringData("bianji.email")));
 		nameValuePairs.add(new BasicNameValuePair("sex", (String)context.getStringData("bianji.sex")));
 		nameValuePairs.add(new BasicNameValuePair("nickname", (String)context.getStringData("bianji.nickname")));
 		nameValuePairs.add(new BasicNameValuePair("realname", (String)context.getStringData("bianji.realname")));

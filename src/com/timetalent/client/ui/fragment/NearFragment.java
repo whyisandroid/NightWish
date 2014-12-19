@@ -461,23 +461,21 @@ public class NearFragment extends Fragment implements OnClickListener {
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("star")){
 								RadioButton eb = new RadioButton(getActivity());
-								eb.setGravity(Gravity.CENTER);
+//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
 								eb.setText(""+temp.getName());
 								eb.setBackgroundResource(R.drawable.btn_smote);
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
-								drawable.setBounds(0, 0,
-										drawable.getIntrinsicWidth(),
-										drawable.getIntrinsicHeight());
+								drawable.setBounds(0, 0,0,0);
 								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,null);
+								eb.setCompoundDrawables(null,null,null,drawable);
 								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
 									@Override
 									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 										if(isChecked){
-											major = temp.getKey();
+											major = temp.getName();
 											Log.i("zhiye", major);
 										}
 									}
@@ -501,13 +499,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 							if(temp.getType().equals("scout")){
 								RadioButton eb = new RadioButton(getActivity());
 								eb.setBackgroundResource(R.drawable.btn_smote);
+//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
-								drawable.setBounds(0, 0,
-										drawable.getIntrinsicWidth(),
-										drawable.getIntrinsicHeight());
+								drawable.setBounds(0, 0,0,0);
 								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,null);
+								eb.setCompoundDrawables(null,null,null,drawable);
 								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -515,7 +512,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 									@Override
 									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 										if(isChecked){
-											major = temp.getKey();
+											major = temp.getName();
 											Log.i("zhiye", major);
 										}
 									}
@@ -539,13 +536,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 							if(temp.getType().equals("fans")){
 								RadioButton eb = new RadioButton(getActivity());
 								eb.setBackgroundResource(R.drawable.btn_smote);
+//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
-								drawable.setBounds(0, 0,
-										drawable.getIntrinsicWidth(),
-										drawable.getIntrinsicHeight());
+								drawable.setBounds(0, 0,0,0);
 								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,null);
+								eb.setCompoundDrawables(null,null,null,drawable);
 								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -553,7 +549,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 									@Override
 									public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 										if(isChecked){
-											major = temp.getKey();
+											major = temp.getName();
 											Log.i("zhiye", major);
 										}
 									}

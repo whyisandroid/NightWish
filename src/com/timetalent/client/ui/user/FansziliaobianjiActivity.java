@@ -245,7 +245,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
         listView.setLayoutParams(params);  
     }
 	public void setvalue(){
-		controller.getContext().addBusinessData("bianji.username", etnickname.getText().toString());
+//		controller.getContext().addBusinessData("bianji.username", etnickname.getText().toString());
 		controller.getContext().addBusinessData("bianji.phone", u.getPhone());
 		controller.getContext().addBusinessData("bianji.email", "");
 		controller.getContext().addBusinessData("bianji.sex", u.getSex());

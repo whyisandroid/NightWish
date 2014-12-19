@@ -174,23 +174,21 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 					for(final dictionarypackage temp:data){
 						if(temp.getType().equals("star")){
 							RadioButton eb = new RadioButton(MyfuwuActivity.this);
-							eb.setGravity(Gravity.CENTER);
+//							eb.setGravity(Gravity.CENTER);
 							eb.setText(""+temp.getName());
 							eb.setBackgroundResource(R.drawable.btn_smote);
 							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(
 									R.drawable.acc_add);
-							drawable.setBounds(0, 0,
-									drawable.getIntrinsicWidth(),
-									drawable.getIntrinsicHeight());
+							drawable.setBounds(0,0,0,0);
 							eb.setButtonDrawable(android.R.color.transparent);
-							eb.setCompoundDrawables(null,null,null,null);
+							eb.setCompoundDrawables(null,null,null,drawable);
 							eb.setTextColor(Color.parseColor("#999999"));
 							eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 								@Override
 								public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 									if(isChecked){
 										Log.i("输出", temp.getKey());
-										bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,temp.getKey());
+										bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,temp.getName());
 										gvbody.setAdapter(bodyadapter);
 									}
 								}

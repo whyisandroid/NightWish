@@ -176,7 +176,11 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 							RadioButton eb = new RadioButton(MyfuwuActivity.this);
 //							eb.setGravity(Gravity.CENTER);
 							eb.setText(""+temp.getName());
-							eb.setBackgroundResource(R.drawable.btn_smote);
+							if(rgzhiye.getChildCount() == 0){
+								eb.setBackgroundResource(R.drawable.btn_sgeshou);
+							}else{
+								eb.setBackgroundResource(R.drawable.btn_smote);
+							}
 							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(
 									R.drawable.acc_add);
 							drawable.setBounds(0,0,0,0);
@@ -188,7 +192,7 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 								public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 									if(isChecked){
 										Log.i("输出", temp.getKey());
-										bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,temp.getName());
+										bodyadapter = new fuwubodyAdapter(MyfuwuActivity.this,temp.getKey());
 										gvbody.setAdapter(bodyadapter);
 									}
 								}

@@ -90,6 +90,7 @@ public class zhiyexuanzeAdapter extends BaseAdapter {
             }
 		if(position == 0){
 			holder.tvsrc.setOnClickListener(null);
+			holder.tvsrc.setText("选择职业");
 		}
 		if(data != null && position > 0){
 			holder.tvsrc.setText(""+data.get(position-1).getName());

@@ -463,7 +463,12 @@ public class NearFragment extends Fragment implements OnClickListener {
 								RadioButton eb = new RadioButton(getActivity());
 //								eb.setGravity(Gravity.CENTER_HORIZONTAL);
 								eb.setText(""+temp.getName());
-								eb.setBackgroundResource(R.drawable.btn_smote);
+								if(rgzhiye.getChildCount() == 0){
+									eb.setBackgroundResource(R.drawable.btn_sgeshou);
+								}else{
+									eb.setBackgroundResource(R.drawable.btn_smote);
+								}
+								
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);
@@ -498,8 +503,11 @@ public class NearFragment extends Fragment implements OnClickListener {
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("scout")){
 								RadioButton eb = new RadioButton(getActivity());
-								eb.setBackgroundResource(R.drawable.btn_smote);
-//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
+								if(rgzhiye.getChildCount() == 0){
+									eb.setBackgroundResource(R.drawable.btn_sgeshou);
+								}else{
+									eb.setBackgroundResource(R.drawable.btn_smote);
+								}
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);
@@ -535,8 +543,11 @@ public class NearFragment extends Fragment implements OnClickListener {
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("fans")){
 								RadioButton eb = new RadioButton(getActivity());
-								eb.setBackgroundResource(R.drawable.btn_smote);
-//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
+								if(rgzhiye.getChildCount() == 0){
+									eb.setBackgroundResource(R.drawable.btn_sgeshou);
+								}else{
+									eb.setBackgroundResource(R.drawable.btn_smote);
+								}
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);

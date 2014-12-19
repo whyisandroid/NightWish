@@ -25,6 +25,7 @@ import android.widget.LinearLayout.LayoutParams;
 import com.easemob.util.DensityUtil;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.timetalent.client.R;
+import com.timetalent.client.TimeTalentApplication;
 import com.timetalent.client.entities.AppPackage;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Userinfopackage;
@@ -61,6 +62,7 @@ import com.timetalent.common.util.Downloadapk;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
@@ -315,7 +317,12 @@ case 2:
 			IntentUtil.intent(this.mContext, MyfuwuActivity.class);
 			break;
 		case R.id.lmyrenzheng:
-			IntentUtil.intent(this.mContext, MyrenzhengActivity.class);
+			String loyal_pass = TimeTalentApplication.getInstance().getLoginInfo().getLoyal_pass();
+			if("0".equals(loyal_pass)){
+				IntentUtil.intent(this.mContext, MyrenzhengActivity.class);
+			}else{
+				ToastUtil.showToast(getActivity(), "已通过认证", ToastUtil.LENGTH_LONG);
+			}
 			break;
 		case R.id.lheimingdan:
 			IntentUtil.intent(this.mContext, MyheimingdanActivity.class);

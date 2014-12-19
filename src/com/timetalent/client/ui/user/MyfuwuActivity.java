@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
@@ -173,7 +174,8 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 					rgzhiye.removeAllViews();
 					for(final dictionarypackage temp:data){
 						if(temp.getType().equals("star")){
-							RadioButton eb = new RadioButton(MyfuwuActivity.this);
+//							RadioButton eb = new RadioButton(MyfuwuActivity.this);
+							RadioButton eb = (RadioButton) LayoutInflater.from(MyfuwuActivity.this).inflate(R.layout.myrb, null);
 //							eb.setGravity(Gravity.CENTER);
 							eb.setText(""+temp.getName());
 							if(rgzhiye.getChildCount() == 0){
@@ -181,11 +183,11 @@ public class MyfuwuActivity extends BaseActivity implements OnClickListener {
 							}else{
 								eb.setBackgroundResource(R.drawable.btn_smote);
 							}
-							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(
-									R.drawable.acc_add);
-							drawable.setBounds(0,0,0,0);
-							eb.setButtonDrawable(android.R.color.transparent);
-							eb.setCompoundDrawables(null,null,null,drawable);
+//							Drawable drawable = MyfuwuActivity.this.getResources().getDrawable(
+//									R.drawable.acc_add);
+//							drawable.setBounds(0,0,0,0);
+//							eb.setButtonDrawable(android.R.color.transparent);
+//							eb.setCompoundDrawables(null,null,null,drawable);
 							eb.setTextColor(Color.parseColor("#999999"));
 							eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 								@Override

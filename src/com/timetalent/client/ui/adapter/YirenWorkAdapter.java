@@ -35,6 +35,7 @@ import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.PictureUtil;
 import com.timetalent.common.util.ProgressDialogUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -140,7 +141,7 @@ public class YirenWorkAdapter extends BaseAdapter{
 		if(data!= null && data.getLists()!= null){
 			holder.tv_chance_title.setText(""+data.getLists().get(position).getTask().getTitle());
 			holder.tv_chance_address.setText(""+data.getLists().get(position).getTask().getPlace());
-			holder.tv_chance_time.setText("报名截止时间："+data.getLists().get(position).getTask().getCutoff_date());
+			holder.tv_chance_time.setText("报名截止时间："+StringUtil.transformTime(data.getLists().get(position).getTask().getCutoff_date()));
 			holder.relativeLayout1.setOnClickListener(new OnClickListener() {
 				
 				@Override

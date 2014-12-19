@@ -1,6 +1,7 @@
 package com.timetalent.client.ui.fragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -37,14 +38,18 @@ import android.widget.TextView;
 import com.timetalent.client.R;
 import com.timetalent.client.database.ContentEntry;
 import com.timetalent.client.database.SQLiteHelper;
+import com.timetalent.client.entities.Feed;
+import com.timetalent.client.entities.FeedData;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Nearlist;
+import com.timetalent.client.entities.Nearpackage;
 import com.timetalent.client.entities.dictionarypackage;
 import com.timetalent.client.entities.json.NearResp;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.MainFragmentActivity;
 import com.timetalent.client.ui.adapter.NearBaseAdapter;
 import com.timetalent.client.ui.dialog.IOSStyleDialog;
+import com.timetalent.client.ui.dynamic.DynamicAddActivity;
 import com.timetalent.client.ui.fragment.util.Background1;
 import com.timetalent.client.ui.fragment.util.Background2;
 import com.timetalent.client.ui.fragment.util.DipPxUtil;
@@ -56,8 +61,13 @@ import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.client.ui.user.FansziliaobianjiActivity;
 import com.timetalent.client.ui.user.XingtanziliaobianjiActivity;
 import com.timetalent.client.ui.user.YirenziliaobianjiActivity;
+import com.timetalent.client.ui.view.PullToRefreshView;
 import com.timetalent.client.ui.view.RadioGroup;
+import com.timetalent.client.ui.view.PullToRefreshView.OnFooterRefreshListener;
+import com.timetalent.client.ui.view.PullToRefreshView.OnHeaderRefreshListener;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.StringUtil;
+import com.timetalent.common.util.ToastUtil;
 import com.timetalent.common.util.UIUtils;
 
 /**
@@ -68,7 +78,7 @@ import com.timetalent.common.util.UIUtils;
  * @time: 2014-10-10 下午6:30:07
  ***************************************** 
  */
-public class NearFragment extends Fragment implements OnClickListener {
+public class NearFragment extends Fragment implements OnClickListener,OnHeaderRefreshListener,OnFooterRefreshListener {
 	private View view;
 	private Context mContext;
 	private AppController controller;
@@ -77,6 +87,13 @@ public class NearFragment extends Fragment implements OnClickListener {
 	private TextView tvtitle;
 	private TextView btsearch;
 	private ImageButton btback;
+	
+	
+	private PullToRefreshView main_pull_refresh_view;
+	private List<Nearpackage> listnearpkg = new  ArrayList<Nearpackage>();
+	private int pageNum = 1;
+	private int  tolalPage = -1;
+	private boolean refresh = false;
 	NearBaseAdapter adapter = null;
 
 	public String search = "";
@@ -221,11 +238,13 @@ public class NearFragment extends Fragment implements OnClickListener {
 			sqlHelper.close();
 			sqlHelper = null;
 		}
+		main_pull_refresh_view.setOnHeaderRefreshListener(this);
+		main_pull_refresh_view.setOnFooterRefreshListener(this);
 	}
 
 	public void setvalue() {
-		controller.getContext().addBusinessData("near.page", 1);
-		controller.getContext().addBusinessData("near.page_per", 100);
+		controller.getContext().addBusinessData("near.page", pageNum);
+		controller.getContext().addBusinessData("near.page_per", tolalPage);
 		controller.getContext().addBusinessData("near.search", "");
 		controller.getContext().addBusinessData("near.lat", lat);
 		controller.getContext().addBusinessData("near.lng", lng);
@@ -284,6 +303,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 		btshaixuan = (TextView) view.findViewById(R.id.main_top_left2);
 		btsearch = (TextView) view.findViewById(R.id.main_top_right);
 		tvtitle = (TextView) view.findViewById(R.id.main_top_title);
+		main_pull_refresh_view = (PullToRefreshView)view.findViewById(R.id.main_pull_refresh_view);
 	}
 
 	@Override
@@ -654,10 +674,32 @@ public class NearFragment extends Fragment implements OnClickListener {
 		public void handleMessage(Message msg) {
 			// super.handleMessage(msg);
 			switch (msg.what) {
+			case 0:
+				Nearlist data = (Nearlist) AppController.getController(getActivity()).getContext().getBusinessData("NearData");
+				if(refresh == false){
+					pageNum = Integer.valueOf(data.getPages().getPage());
+					tolalPage =  Integer.valueOf(data.getPages().getNum());
+				}
+				if(data != null){
+					for (Nearpackage pkg : data.getLists()) {
+						listnearpkg.add(pkg);
+					}
+					adapter = new NearBaseAdapter(getActivity());
+					list.setAdapter(adapter);
+					adapter.notifyDataSetChanged();
+				}
+				main_pull_refresh_view.onHeaderRefreshComplete();
+				main_pull_refresh_view.onFooterRefreshComplete();
+				break;
+			case 4:
+				main_pull_refresh_view.onHeaderRefreshComplete();
+				main_pull_refresh_view.onFooterRefreshComplete();
 			case 1:
 				adapter = new NearBaseAdapter(getActivity());
 				list.setAdapter(adapter);
 				adapter.notifyDataSetChanged();
+				main_pull_refresh_view.onHeaderRefreshComplete();
+				main_pull_refresh_view.onFooterRefreshComplete();
 				break;
 			case 2:
 				adapter.notifyDataSetChanged();
@@ -668,4 +710,33 @@ public class NearFragment extends Fragment implements OnClickListener {
 			}
 		}
 	};
+	@Override
+	public void onHeaderRefresh(PullToRefreshView view) {
+		refresh = true;
+		setvalue();
+		new Thread() {
+			public void run() {
+				controller.near();
+				handler.sendEmptyMessage(0);
+			};
+		}.start();
+	}
+	
+	@Override
+	public void onFooterRefresh(PullToRefreshView view) {
+		refresh = false;
+		int num = pageNum+1;
+		if(num > tolalPage){
+			main_pull_refresh_view.onFooterRefreshComplete();
+			ToastUtil.showToast(getActivity(), "没有更多了", ToastUtil.LENGTH_LONG);
+		}else{
+			setvalue();
+			new Thread() {
+				public void run() {
+					controller.near();
+					handler.sendEmptyMessage(0);
+				};
+			}.start();
+		}
+	}
 }

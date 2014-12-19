@@ -15,11 +15,24 @@ public class Nearlist {
 	public Nearlist(){
 	}
 	List<Nearpackage> lists = null;
+	Pages pages = null;
 	public List<Nearpackage> getLists() {
 		return lists;
 	}
 	public void setLists(List<Nearpackage> lists) {
 		this.lists = lists;
+	}
+	/**
+	 * @return pages : return the property pages.
+	 */
+	public Pages getPages() {
+		return pages;
+	}
+	/**
+	 * @param pages : set the property pages.
+	 */
+	public void setPages(Pages pages) {
+		this.pages = pages;
 	}
 
 

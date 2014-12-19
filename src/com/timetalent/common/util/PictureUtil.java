@@ -72,6 +72,7 @@ public class PictureUtil {
 		Intent intent = new Intent("android.intent.action.PICK");
 		intent.setDataAndType(MediaStore.Images.Media.INTERNAL_CONTENT_URI, "image/*");
 		intent.putExtra("output", Uri.fromFile(sdcardTempFile));
+		intent.putExtra("crop", "false");
 		intent.putExtra("outputX", crop);// 输出图片大小
 		intent.putExtra("outputY", crop);
 		activity.startActivityForResult(intent, 0);

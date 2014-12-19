@@ -125,34 +125,43 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	  * @time: 2014-12-12 下午3:43:30
 	  */
 	private File getFile() {
-		 sdcardTempFile = new File("/mnt/sdcard/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
+		 sdcardTempFile = new File("/mnt/sdcard/timetalent/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
 		return sdcardTempFile;
 	}
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			// picCursor(data);
-			if (sdcardTempFile == null) {
-				ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
-				return;
-			}
-			String path = sdcardTempFile.getAbsolutePath();
-			String id = UUID.randomUUID().toString();
-			if (PictureUtil.isPicture(path)) {
-				// 添加
-				Picture pic = new Picture(id, path);
-				if (!containsPic(pic)) {
-					imgList.add(pic);
-				} else {
-					ToastUtil.showToast(this, "您已添加此图片！",ToastUtil.LENGTH_SHORT);
-				}
-				adapter.notifyDataSetChanged();
-			} else {
-				Toast.makeText(this, "请选择png或者jpg格式的图片", Toast.LENGTH_SHORT).show();
-			}
-			adapter.setSdcardTempFile(getFile());
-			adapter.notifyDataSetChanged();
+			//picCursor(data);
+			picSdCard();
 		}
+	}
+	
+	/**
+	  * 方法描述：TODO
+	  * @author: why
+	  * @time: 2014-12-19 上午10:36:50
+	  */
+	private void picSdCard() {
+		if (sdcardTempFile == null) {
+			ToastUtil.showToast(DynamicAddActivity.this, "图片没找到", 0);
+			return;
+		}
+		String path = sdcardTempFile.getAbsolutePath();
+		String id = UUID.randomUUID().toString();
+		if (PictureUtil.isPicture(path)) {
+			// 添加
+			Picture pic = new Picture(id, path);
+			if (!containsPic(pic)) {
+				imgList.add(pic);
+			} else {
+				ToastUtil.showToast(this, "您已添加此图片！",ToastUtil.LENGTH_SHORT);
+			}
+			adapter.notifyDataSetChanged();
+		} else {
+			Toast.makeText(this, "请选择png或者jpg格式的图片", Toast.LENGTH_SHORT).show();
+		}
+		adapter.setSdcardTempFile(getFile());
+		adapter.notifyDataSetChanged();
 	}
 	
 	/**

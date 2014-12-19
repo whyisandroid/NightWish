@@ -88,7 +88,6 @@ public class DynamicAddAdapter extends BaseAdapter{
 	
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		
 		//控件的宽高
 				if(CommonData.getScreenWidth((DynamicAddActivity)mContext) != 0 || view_wh == 0){
 					view_wh = (CommonData.getScreenWidth((DynamicAddActivity)mContext)-UIUtils.dip2px(mContext, 14))/3;

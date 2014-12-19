@@ -55,6 +55,7 @@ import com.timetalent.client.ui.near.PictureActivity;
 import com.timetalent.client.ui.view.EditPicturesLayout;
 import com.timetalent.client.ui.view.RenzhengEditPicturesLayout;
 import com.timetalent.common.util.Config;
+import com.timetalent.common.util.IDCard;
 import com.timetalent.common.util.IntentUtil;
 import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.PictureUtil;
@@ -63,8 +64,8 @@ import com.timetalent.common.util.ToastUtil;
 
 
 /******************************************
- * 类描述： 登录界面
- * 类名称：LoginActivity  
+ * 类描述： 我的认证
+ * 类名称：MyrenzhengActivity  
  * @version: 1.0
  * @author: why
  * @time: 2014-10-10 下午6:32:12 
@@ -374,7 +375,7 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 			String realname = etrealname.getText().toString().trim();
 			String shenfenzheng = etshenfenzheng.getText().toString().trim();
 			String Validate1 = StringUtil.notnull(realname);
-			String Validate2 = StringUtil.shenfenzheng(shenfenzheng);
+			String Validate2 = IDCard.IDCardValidate(shenfenzheng);
 			if(!TextUtils.isEmpty(Validate1)){
 				ToastUtil.showToast(this, Validate1, ToastUtil.LENGTH_LONG);
 				return;
@@ -404,7 +405,6 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 				btnext.setText("下一步");
 				break;
 			case 2:
-				
 				new Thread(){
 					public void run() {
 						for(int i = 0; i < items.size(); i++){

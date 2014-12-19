@@ -28,6 +28,7 @@ import com.timetalent.client.ui.near.FansActivity;
 import com.timetalent.client.ui.near.XingtanActivity;
 import com.timetalent.client.ui.near.YirenActivity;
 import com.timetalent.common.util.IntentUtil;
+import com.timetalent.common.util.StringUtil;
 
 
 /******************************************
@@ -145,7 +146,7 @@ public class XingtanWorkAdapter extends BaseAdapter{
 		if(data!= null && data.getLists()!= null){
 			holder.tv_chance_title.setText(""+data.getLists().get(position).getTitle());
 			holder.tv_chance_address.setText(""+data.getLists().get(position).getPlace());
-			holder.tv_chance_time.setText("报名截止时间："+data.getLists().get(position).getCutoff_date());
+			holder.tv_chance_time.setText("报名截止时间："+StringUtil.transformTime(data.getLists().get(position).getCutoff_date()));
 		}
 		return convertView;
 	}

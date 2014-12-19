@@ -125,6 +125,7 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 //	UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 	main_top_left.setVisibility(View.VISIBLE);
 	main_top_right.setVisibility(View.VISIBLE);
+	main_top_right.setText("添加好友");
 //	UIUtils.setDrawableLeft(this,main_top_left2,R.drawable.d3_03);
 	main_top_left.setOnClickListener(this);
 	main_top_right.setOnClickListener(this);
@@ -136,6 +137,8 @@ public class MyhaoyouMainActivity extends TabActivity  implements OnClickListene
 		switch (v.getId()) {
 		case R.id.main_top_left:
 			finish();
+		case R.id.main_top_right:
+			IntentUtil.intent(MyhaoyouMainActivity.this, SearchActivity.class);
 			break;
 		default:
 			break;

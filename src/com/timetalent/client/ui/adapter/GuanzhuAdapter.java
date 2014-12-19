@@ -138,7 +138,7 @@ public class GuanzhuAdapter extends BaseAdapter {
 				holder.tvzhiye = (TextView) convertView.findViewById(R.id.tvzhiye);
 				holder.tvmiaoshu = (TextView) convertView.findViewById(R.id.tvmiaoshu);
 				holder.bttianjia = (ImageButton) convertView.findViewById(R.id.bttianjia);
-//				holder.bttianjia.setVisibility(holder.bttianjia.GONE);
+				holder.bttianjia.setVisibility(holder.bttianjia.GONE);
 				convertView.setTag(holder);//绑定ViewHolder对象
 			}
 			

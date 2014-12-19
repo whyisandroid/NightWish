@@ -460,8 +460,8 @@ public class NearFragment extends Fragment implements OnClickListener {
 						rgzhiye.removeAllViews();
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("star")){
-								RadioButton eb = new RadioButton(getActivity());
-//								eb.setGravity(Gravity.CENTER_HORIZONTAL);
+//								RadioButton eb = new RadioButton(getActivity());
+								RadioButton eb = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.myrb, null);
 								eb.setText(""+temp.getName());
 								if(rgzhiye.getChildCount() == 0){
 									eb.setBackgroundResource(R.drawable.btn_sgeshou);
@@ -472,9 +472,10 @@ public class NearFragment extends Fragment implements OnClickListener {
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);
-								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,drawable);
+//								eb.setButtonDrawable(android.R.color.transparent);
+//								eb.setCompoundDrawables(null,null,drawable,null);
 								eb.setTextColor(Color.parseColor("#999999"));
+//								eb.setGravity(Gravity.CENTER);
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
 									@Override
@@ -485,7 +486,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 										}
 									}
 								});
-								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 							}
 						}
 					}
@@ -502,7 +503,8 @@ public class NearFragment extends Fragment implements OnClickListener {
 						rgzhiye.removeAllViews();
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("scout")){
-								RadioButton eb = new RadioButton(getActivity());
+//								RadioButton eb = new RadioButton(getActivity());
+								RadioButton eb = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.myrb, null);
 								if(rgzhiye.getChildCount() == 0){
 									eb.setBackgroundResource(R.drawable.btn_sgeshou);
 								}else{
@@ -511,10 +513,11 @@ public class NearFragment extends Fragment implements OnClickListener {
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);
-								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,drawable);
+//								eb.setButtonDrawable(android.R.color.transparent);
+//								eb.setCompoundDrawables(null,null,drawable,null);
 								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
+//								eb.setGravity(Gravity.CENTER);
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
 									@Override
@@ -525,7 +528,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 										}
 									}
 								});
-								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 							}
 						}
 					}
@@ -542,7 +545,8 @@ public class NearFragment extends Fragment implements OnClickListener {
 						rgzhiye.removeAllViews();
 						for(final dictionarypackage temp:data){
 							if(temp.getType().equals("fans")){
-								RadioButton eb = new RadioButton(getActivity());
+//								RadioButton eb = new RadioButton(getActivity());
+								RadioButton eb = (RadioButton) LayoutInflater.from(getActivity()).inflate(R.layout.myrb, null);
 								if(rgzhiye.getChildCount() == 0){
 									eb.setBackgroundResource(R.drawable.btn_sgeshou);
 								}else{
@@ -551,10 +555,11 @@ public class NearFragment extends Fragment implements OnClickListener {
 								Drawable drawable = getActivity().getResources().getDrawable(
 										R.drawable.acc_add);
 								drawable.setBounds(0, 0,0,0);
-								eb.setButtonDrawable(android.R.color.transparent);
-								eb.setCompoundDrawables(null,null,null,drawable);
+//								eb.setButtonDrawable(android.R.color.transparent);
+//								eb.setCompoundDrawables(null,null,drawable,null);
 								eb.setTextColor(Color.parseColor("#999999"));
 								eb.setText(""+temp.getName());
+//								eb.setGravity(Gravity.CENTER);
 								eb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 									
 									@Override
@@ -565,7 +570,7 @@ public class NearFragment extends Fragment implements OnClickListener {
 										}
 									}
 								});
-								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT,1));
+								rgzhiye.addView(eb,new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 							}
 						}
 					}

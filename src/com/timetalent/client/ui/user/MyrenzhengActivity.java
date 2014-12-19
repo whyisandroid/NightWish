@@ -182,6 +182,9 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 	 * @time: 2014-10-10 下午6:36:02
 	 */
 	private void initView() {
+		
+	//	etshenfenzheng.setText("413001198801136517");
+
 		((TextView)this.findViewById(R.id.main_top_title)).setText("认证");
 //		UIUtils.setDrawableLeft(this,main_top_right,R.drawable.d3_06);
 		main_top_left.setVisibility(View.VISIBLE);
@@ -392,6 +395,16 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 					};
 				}.start();
 			}
+			
+			
+			if(index == 2){
+				String etitem11 = etitem.getText().toString();
+				if(TextUtils.isEmpty(etitem11)){
+					ToastUtil.showToast(this, "项目全称不能为空", ToastUtil.LENGTH_LONG);
+					return;
+				}
+			}
+			
 			index++;
 			switch (index) {
 			case 1:
@@ -405,6 +418,9 @@ public class MyrenzhengActivity extends BaseActivity implements OnClickListener 
 				btnext.setText("下一步");
 				break;
 			case 2:
+				
+				
+				
 				new Thread(){
 					public void run() {
 						for(int i = 0; i < items.size(); i++){

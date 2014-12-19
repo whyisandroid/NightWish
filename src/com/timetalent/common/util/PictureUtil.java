@@ -5,18 +5,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.ref.SoftReference;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
-
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.timetalent.client.ui.fragment.util.Background1;
-import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 
 import android.app.Activity;
 import android.content.Context;
@@ -26,14 +17,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.SystemClock;
 import android.provider.MediaStore;
 import android.util.Log;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.timetalent.client.ui.fragment.util.Background1;
+import com.timetalent.client.ui.view.CircleBitmapDisplayer;
 
 
 /******************************************
@@ -229,6 +225,21 @@ public class PictureUtil {
 		options.inJustDecodeBounds = false;
 		return BitmapFactory.decodeFile(pathName, options);
 	}
+	
+	//bit zhuan  file
+	public static File saveBitmapFile(Bitmap bitmap){
+        File file=new File(Config.IMAGEPATH+"tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");//将要保存图片的路径
+        try {
+                BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bos);
+                bos.flush();
+                bos.close();
+        } catch (IOException e) {
+                e.printStackTrace();
+        }
+        return file;
+}
+	
 	
 	/**
 	 * 生成圆角图片

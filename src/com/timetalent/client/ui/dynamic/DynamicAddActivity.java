@@ -131,8 +131,8 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
-			//picCursor(data);
-			picSdCard();
+			picCursor(data);
+			//picSdCard();
 		}
 	}
 	
@@ -262,7 +262,8 @@ public class DynamicAddActivity extends BaseActivity implements OnClickListener 
 			public void run() {
 				List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
 				for (int i = 0; i < imgList.size(); i++) {
-					File file2 = new File(imgList.get(i).getPath());
+					Bitmap bit = PictureUtil.decodeSampledBitmapFromFile(imgList.get(i).getPath(), 600, 600);
+					File file2 = PictureUtil.saveBitmapFile(bit);
 					picValuePair.add(new PicValuePair("photo"+(i+1), file2));
 				}
 				controller.dynamicAddPic(picValuePair);

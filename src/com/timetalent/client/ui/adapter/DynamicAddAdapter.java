@@ -5,7 +5,6 @@ import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -27,6 +26,7 @@ import com.timetalent.common.util.CommonData;
 import com.timetalent.common.util.Config;
 import com.timetalent.common.util.LogUtil;
 import com.timetalent.common.util.PictureUtil;
+import com.timetalent.common.util.StringUtil;
 import com.timetalent.common.util.UIUtils;
 
 
@@ -178,9 +178,9 @@ public class DynamicAddAdapter extends BaseAdapter{
 		public void onClick(View v) {
 			OnClickMessage onClickMessage = (OnClickMessage)v.getTag();
 			if ( onClickMessage.tag == ADD_TAG ) {
-				PictureUtil.headPic((Activity)mContext, 480, sdcardTempFile);
+				//PictureUtil.headPic((Activity)mContext, 480, sdcardTempFile);
 				
-				//StringUtil.doGoToImg(mContext);
+				StringUtil.doGoToImg(mContext);
 			}else if (onClickMessage.tag == SELECT_TAG){
 				 LogUtil.Log("点击图片路径："+mData.get(onClickMessage.position));
 				 String value = mData.get(onClickMessage.position).getPath();

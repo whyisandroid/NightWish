@@ -60,7 +60,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	 private int crop = 180; // 图片尺寸
 	 
 	 private File sdcardTempFile;
-	
+	 private List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -105,7 +105,7 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 		rl_register_data.setOnClickListener(this);
 		register = (Register)getIntent().getExtras().getSerializable("Register.register");
 		register.setType("fans");
-		sdcardTempFile = new File("/mnt/sdcard/timetalent/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
+		sdcardTempFile = new File("/mnt/sdcard/", "tmp_pic_" + SystemClock.currentThreadTimeMillis() + ".jpg");
 	}
 	
 	
@@ -158,7 +158,6 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 					.getAbsolutePath());
 			iv_register_head.setImageBitmap(bmp);
 			// 上传头像 处理
-			List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
 			picValuePair.add(new PicValuePair("avatar", sdcardTempFile));
 			controller.getContext().addBusinessData("Register.avatar", picValuePair);
 		}
@@ -171,6 +170,10 @@ public class RegisterSecondActivity extends BaseActivity implements OnClickListe
 	  */
 	private boolean invaild() {
 		String data = tv_register_data.getText().toString().trim();
+		if(picValuePair.size() == 0){
+			ToastUtil.showToast(this, "请选择头像", ToastUtil.LENGTH_LONG);
+			return false;
+		}
 		if(TextUtils.isEmpty(data)){
 			ToastUtil.showToast(this, "请选择生日", ToastUtil.LENGTH_LONG);
 			return false;

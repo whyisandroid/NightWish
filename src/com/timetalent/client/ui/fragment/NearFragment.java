@@ -152,15 +152,6 @@ public class NearFragment extends Fragment implements OnClickListener,OnHeaderRe
 				controller.mylocation_update();//更新本人经纬度
 				controller.near();
 				handler.sendEmptyMessage(1);
-				for(int y = 0;y < 30;y++){
-						try {
-							sleep(3000);
-						} catch (InterruptedException e) {
-						}
-						if(adapter != null){
-						handler.sendEmptyMessage(2);
-					}
-				}
 			};
 		}.start();
 		new Thread(){

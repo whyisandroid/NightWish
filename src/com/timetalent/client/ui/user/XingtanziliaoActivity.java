@@ -162,14 +162,14 @@ public class XingtanziliaoActivity extends BaseActivity implements OnClickListen
 		ldongtai.setOnClickListener(this);
 		tvage1.setText(u.getAge());
 		 tvxingzuo.setText(u.getConstella());
-		 tvdizhi.setText(user.getCity());
+		 tvdizhi.setText(u.getCity());
 		 tvtime.setText(user.getLast_time());
-		 tvname.setText(user.getRealname());
+		 tvname.setText(u.getNickname());
 		 tvnickname.setText(u.getNickname());
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(user.getProvince()+user.getCity());
+		 tvjiaxiang.setText(u.getProvince()+u.getCity());
 		 tvheight.setText(u.getMore().getHeight());
 		 tvfeed.setText(u.getCount().getFeed());
 		 tvcontent.setText(u.getMore().getContent()+"");

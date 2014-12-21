@@ -164,14 +164,14 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		ldongtai.setOnClickListener(this);
 		tvage1.setText(u.getAge());
 		 tvxingzuo.setText(u.getConstella());
-		 tvdizhi.setText(user.getProvince());
+		 tvdizhi.setText(u.getCity());
 		 tvtime.setText(user.getLast_time());
-		 tvname.setText(user.getRealname());
+		 tvname.setText(u.getNickname());
 		 tvnickname.setText(u.getNickname());
 		 tvage.setText(u.getAge());
 		 tvxingzuo1.setText(u.getConstella());
 		 tvzhiye.setText(u.getMajor());
-		 tvjiaxiang.setText(user.getProvince()+user.getCity());
+		 tvjiaxiang.setText(u.getProvince()+u.getCity());
 		 tvheight.setText(u.getMore().getHeight());
 		 tvsanwei.setText(u.getMore().getBust()+","+u.getMore().getHip()+","+u.getMore().getWaist());
 		 tvfeed.setText(u.getCount().getFeed());

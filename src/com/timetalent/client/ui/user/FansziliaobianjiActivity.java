@@ -202,6 +202,15 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 			imgsex.setImageResource(R.drawable.f_03);
 		}
 		spmajor.setAdapter(new zhiyexuanzeAdapter(FansziliaobianjiActivity.this, controller, "fans"));
+		
+		
+		etnickname.setText(u.getNickname());
+		tvage1.setText(u.getAge());
+		tvage.setText(u.getAge());
+		tvxingzuo.setText(u.getConstella());
+		tvxingzuo1.setText(u.getConstella());
+		tvjiaxiang.setText(u.getProvince()+u.getCity());
+		etheight.setText(u.getMore().getHeight());
 	}
 	
 	@Override
@@ -281,7 +290,7 @@ public class FansziliaobianjiActivity extends BaseActivity implements OnClickLis
 			break;
 		case R.id.bt_login_next:
 			break;
-		case R.id.lneardongtai:
+		case R.id.ldongtai:
 			IntentUtil.intent(FansziliaobianjiActivity.this, DynamicMyActivity.class);
 			break;
 		case R.id.main_top_left:

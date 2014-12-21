@@ -547,7 +547,7 @@
                             android:orientation="vertical" >
                         </LinearLayout>
                         <TextView
-                            android:id="@+id/TextView04"
+                            android:id="@+id/tvdaiyan"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/new_size_3"
@@ -587,7 +587,7 @@
                         android:orientation="vertical" >
 
                         <TextView
-                            android:id="@+id/TextView02"
+                            android:id="@+id/tvhuojiangjilu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:textSize="@dimen/new_size_3"

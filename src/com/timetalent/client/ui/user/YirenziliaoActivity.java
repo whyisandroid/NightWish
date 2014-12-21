@@ -29,6 +29,8 @@ import com.timetalent.client.R;
 import com.timetalent.client.entities.Baseinfopackage;
 import com.timetalent.client.entities.LoginData;
 import com.timetalent.client.entities.Userinfopackage;
+import com.timetalent.client.entities.advocatuspackage;
+import com.timetalent.client.entities.awardpackage;
 import com.timetalent.client.service.AppController;
 import com.timetalent.client.ui.BaseActivity;
 import com.timetalent.client.ui.GuideActivity;
@@ -67,6 +69,8 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 	TextView tvsanwei;
 	TextView tvfeed;
 	TextView tvcontent;
+	TextView tvdaiyan;
+	TextView tvhuojiangjilu;
 	int index = 0;
 	private LinearLayout ldongtai;
 	private ListView lzuopin;
@@ -140,6 +144,8 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		 imghead = (ImageView)this.findViewById(R.id.imghead);
 		 tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 		 tvcontent = (TextView) findViewById(R.id.tvcontent);
+		 tvdaiyan = (TextView) findViewById(R.id.tvdaiyan); 
+		 tvhuojiangjilu = (TextView) findViewById(R.id.tvhuojiangjilu); 
 	}
 
 	/**
@@ -176,6 +182,16 @@ public class YirenziliaoActivity extends BaseActivity implements OnClickListener
 		 tvsanwei.setText(u.getMore().getBust()+","+u.getMore().getHip()+","+u.getMore().getWaist());
 		 tvfeed.setText(u.getCount().getFeed());
 		 tvcontent.setText(u.getMore().getContent()+"");
+		 String awards = "";
+			for(awardpackage a:u.getMore().getAward()){
+				awards+= a.getContent()+"\n";
+			}
+			tvdaiyan.setText(awards);
+			String huojiang = "";
+			for(advocatuspackage b:u.getMore().getAdvocatus()){
+				huojiang+= b.getContent()+"\n";
+			}
+			tvhuojiangjilu.setText(huojiang);
 	}
 	void setvalue(){
 		

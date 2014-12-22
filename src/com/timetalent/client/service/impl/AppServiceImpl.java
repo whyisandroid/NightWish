@@ -1579,19 +1579,27 @@ public class AppServiceImpl implements AppService {
 
 	
 	@Override
-	public void myavatarupdate() throws BusinessException {
+	public void myavatarupdate(List<PicValuePair> picValuePair) throws BusinessException {
+
+
+		String _session_id = context.getStringData("_session_id");
 		Request<BaseResp> request = new Request<BaseResp>();
 		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
-		nameValuePairs.add(new BasicNameValuePair("_session_id", (String)context.getBusinessData("_session_id")));
-		nameValuePairs.add(new BasicNameValuePair("id", (String)context.getBusinessData("photo.id")));
+		nameValuePairs.add(new BasicNameValuePair("_session_id",_session_id));
 		request.addParameter(Request.AJAXPARAMS, nameValuePairs);
+		request.addParameter(Request.PICTURE, picValuePair);
 		request.setUrl(Config.HTTP_MY_AVATAR_UPDATE);
 		request.setR_calzz(BaseResp.class);
-		BaseResp resp = TimeTalentApplication.getAppSocket().shortConnect(request);
+		BaseResp resp = TimeTalentApplication.getAppSocket().imageLoad(request);
 		if ("1".equals(resp.getStatus())) {
-		} else{
+			ToastUtil.showToast(AppController.getController().getCurrentActivity(), resp.getText(), 1000);
+			} else{
 			throw new BusinessException(new ErrorMessage(resp.getText()));
 		}
+	
+		
+		
+		
 	}
 
 	

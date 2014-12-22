@@ -103,14 +103,13 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 	ImageView imgsex;
 	TextView tvxingzuo;
 	TextView tvxingzuo1;
-	TextView tvfeed;
-	TextView tvcontent;
 	
 	Spinner spmajor;
 	EditText etheight;
 	
 	LoginData user;
 	Userinfopackage u;
+	int updatetstte = 0;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -160,10 +159,8 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		tvxingzuo1 = (TextView) findViewById(R.id.tvxingzuo1);
 		tvxingzuo = (TextView) findViewById(R.id.tvxingzuo);
 		imgsex = (ImageView)this.findViewById(R.id.imgsex);
-		tvfeed = (TextView)this.findViewById(R.id.tvfeed);
 		etname = (EditText) this.findViewById(R.id.etname);
 		etnickname = (EditText) this.findViewById(R.id.etnickname);
-		tvcontent = (TextView) findViewById(R.id.tvcontent);
 		
 		spmajor = (Spinner) this.findViewById(R.id.spzhiye);
 		etheight = (EditText) this.findViewById(R.id.etheight);
@@ -192,8 +189,6 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 		tvage.setText(controller.getContext().getStringData("edit.age"));
 		tvxingzuo1.setText(controller.getContext().getStringData("edit.xingzuo"));
 		tvxingzuo.setText(controller.getContext().getStringData("edit.xingzuo"));
-		tvfeed.setText(u.getCount().getFeed());
-		tvcontent.setText(u.getMore().getContent()+"");
 		if(u.getSex().equals("1")){
 			imgsex.setImageResource(R.drawable.f_05);
 		}else{
@@ -288,8 +283,9 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 			break;
 		case R.id.bt_login_next:
 			break;
-		case R.id.lneardongtai:
-			IntentUtil.intent(XingtanziliaobianjiActivity.this, DynamicMyActivity.class);
+		case R.id.ldongtai:
+			updatetstte = 2;
+			StringUtil.doGoToImg(XingtanziliaobianjiActivity.this);
 			break;
 		case R.id.main_top_left:
 			finish();
@@ -405,8 +401,15 @@ public class XingtanziliaobianjiActivity extends BaseActivity implements OnClick
 							        
 								  File file = getFileFromBytes(b, Config.IMAGEPATH+"temp.jpg");
 								  List<PicValuePair> picValuePair = new ArrayList<PicValuePair>();
-									picValuePair.add(new PicValuePair("photo1", file));
-								  controller.myphotoupdate(picValuePair);
+								  if(updatetstte == 2){
+									  picValuePair.add(new PicValuePair("avatar", file));
+									  controller.myavatarupdate(picValuePair);
+									  updatetstte = 0;
+								  }else{
+									  picValuePair.add(new PicValuePair("photo1", file));
+									  controller.myphotoupdate(picValuePair);
+								  }
+									
 							  };
 						  }.start();
 					} else {

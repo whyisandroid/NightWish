@@ -927,9 +927,9 @@ public class AppController {
 			e.printStackTrace();
 		}
 	}
-	public void myavatarupdate() {
+	public void myavatarupdate(List<PicValuePair> picValuePair) {
 		try {
-			service.myavatarupdate();
+			service.myavatarupdate(picValuePair);
 		} catch (BusinessException e) {
 			handler.obtainMessage(HANDLER_TOAST, e.getErrorMessage().getMessage()).sendToTarget();
 		} catch (Exception e) {

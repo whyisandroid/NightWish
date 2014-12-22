@@ -166,7 +166,7 @@ public interface AppService {
 	public void myphoto() throws BusinessException;
 	public void myphotoupdate(List<PicValuePair> picValuePair) throws BusinessException;
 	public void myphotodel() throws BusinessException;
-	public void myavatarupdate() throws BusinessException;
+	public void myavatarupdate(List<PicValuePair> picValuePair) throws BusinessException;
 	public void myavatardel() throws BusinessException;
 	public void dictionary() throws BusinessException;
 	public void orderlist() throws BusinessException;

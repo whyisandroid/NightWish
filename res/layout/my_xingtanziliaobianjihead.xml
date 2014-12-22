@@ -122,14 +122,12 @@
             <LinearLayout
                 android:id="@+id/ldongtai"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:visibility="gone" >
+                android:gravity="center_vertical" >
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -142,7 +140,7 @@
                         android:layout_height="0dp"
                         android:layout_marginTop="3dp"
                         android:layout_weight="1"
-                        android:text="我的动态" />
+                        android:text="" />
 
                     <TextView
                         android:id="@+id/tvfeed"
@@ -150,14 +148,15 @@
                         android:layout_height="0dp"
                         android:layout_weight="1"
                         android:text=""
-                android:textSize="@dimen/new_size_2"
+            android:textSize="@dimen/new_size_2"
                         android:textColor="@color/bt_red" />
+
                 </LinearLayout>
 
                 <ImageView
                     android:id="@+id/imghead"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp" />
 
@@ -173,7 +172,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/color_3"
                     	android:textSize="@dimen/new_size_2"
-                        android:text="" />
+                        android:text="点击更新头像" />
 
                     <TextView
                         android:id="@+id/textView21"
@@ -182,7 +181,8 @@
                         android:layout_weight="1"
                         android:text=" "
                         android:textColor="@color/color_4"
-                    	android:textSize="@dimen/new_size_1" />
+                    android:textSize="@dimen/new_size_1" />
+
                 </LinearLayout>
 
                 <ImageView
@@ -191,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:src="@drawable/f10_45" />
+
             </LinearLayout>
 
             <LinearLayout

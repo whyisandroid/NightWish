@@ -325,8 +325,8 @@ public class FansActivity extends BaseActivity implements OnClickListener{
 						};
 					}.start();
 					tvxingzuo.setText(u.getConstella());
-					tvdizhi.setText(u.getAge());
-					 tvname.setText(u.getUsername());
+					tvdizhi.setText(u.getCity());
+					 tvname.setText(u.getNickname());
 					 tvnickname.setText(u.getNickname());
 					 tvage.setText(u.getAge());
 					 tvxingzuo1.setText(u.getConstella());

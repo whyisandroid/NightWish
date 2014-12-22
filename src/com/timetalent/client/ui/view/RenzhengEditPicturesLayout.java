@@ -135,7 +135,7 @@ public class RenzhengEditPicturesLayout extends LinearLayout implements
 		ltabs = new LinearLayout(mcontext);
 		this.setOrientation(this.VERTICAL);
 		this.setGravity(Gravity.CENTER_HORIZONTAL);
-		ltabs.setGravity(Gravity.CENTER_VERTICAL);
+		ltabs.setGravity(Gravity.CENTER_HORIZONTAL);
 		this.addView(vfpics);
 		this.addView(ltabs,new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 	}

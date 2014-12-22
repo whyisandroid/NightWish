@@ -330,7 +330,7 @@ Intent intent = new Intent(YirenActivity.this,ChatActivity.class);
 						};
 					}.start();
 					tvxingzuo.setText(u.getConstella());
-					tvdizhi.setText(u.getAge());
+					tvdizhi.setText(u.getCity());
 					 tvname.setText(u.getUsername());
 					 tvnickname.setText(u.getNickname());
 					 tvage.setText(u.getAge());
